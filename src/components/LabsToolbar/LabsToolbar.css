@@ -1,0 +1,109 @@
+/* ─── Labs Toolbar ─────────────────────────────────────────── */
+.labs-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+/* ── Search ─────────────────────────────────────── */
+.labs-toolbar__search {
+    position: relative;
+    flex: 1 1 240px;
+    min-width: 200px;
+}
+
+.labs-toolbar__search-icon {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.35);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.labs-toolbar__input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    padding: 0.6rem 2.5rem 0.6rem 2.5rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    font-family: inherit;
+}
+
+.labs-toolbar__input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.labs-toolbar__input:focus {
+    border-color: rgba(0, 212, 255, 0.45);
+    background: rgba(0, 212, 255, 0.04);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);
+}
+
+.labs-toolbar__clear {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 4px;
+    line-height: 1;
+    transition: color 0.15s;
+}
+.labs-toolbar__clear:hover { color: #fff; }
+
+/* ── Filter chips ────────────────────────────────── */
+.labs-toolbar__filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.labs-toolbar__chip {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.45rem 1rem;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+}
+
+.labs-toolbar__chip:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+    color: #fff;
+    background: rgba(0, 212, 255, 0.06);
+}
+
+.labs-toolbar__chip--active {
+    background: rgba(0, 212, 255, 0.12);
+    border-color: rgba(0, 212, 255, 0.55);
+    color: #00d4ff;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.15);
+}
+
+/* Special colour for "Teoría" chip when active */
+.labs-toolbar__chip--active[data-type="Teoría"] {
+    background: rgba(167, 139, 250, 0.12);
+    border-color: rgba(167, 139, 250, 0.55);
+    color: #a78bfa;
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.15);
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer';
 import GradientText from '../components/GradientText/GradientText';
 import SubjectCard from '../components/SubjectCard/SubjectCard';
 import LabCard from '../components/LabCard/LabCard';
+import LabsToolbar from '../components/LabsToolbar/LabsToolbar';
 import GuideView from '../components/GuideView/GuideView';
 import TheoryView from '../components/TheoryView/TheoryView';
 import Antigravity from '../components/Antigravity/Antigravity';
@@ -30,6 +31,10 @@ export default function MentoriasPage() {
     const [view, setView] = useState('subjects'); // 'subjects' | 'labs' | 'guide'
     const [subject, setSubject] = useState(null);
     const [lab, setLab] = useState(null);
+    const [filteredLabs, setFilteredLabs] = useState([]);
+
+    // Stable callback so LabsToolbar doesn't re-render on every keystroke
+    const handleFilterChange = useCallback((result) => setFilteredLabs(result), []);
 
     function navigate(to, nextSubject, nextLab) {
         if (to === 'subjects') { setSubject(null); setLab(null); }
@@ -120,16 +125,40 @@ export default function MentoriasPage() {
 
                                 <section className="mentorias-section">
                                     <h3 className="section-heading">Laboratorios</h3>
-                                    <div className="labs-grid">
-                                        {subject.labs.map((l, i) => (
-                                            <LabCard
-                                                key={l.id}
-                                                lab={l}
-                                                index={i}
-                                                onClick={(lb) => navigate('guide', subject, lb)}
-                                            />
-                                        ))}
-                                    </div>
+
+                                    {/* ── Search + Filter toolbar ── */}
+                                    <LabsToolbar
+                                        labs={subject.labs}
+                                        onChange={handleFilterChange}
+                                    />
+
+                                    {/* ── Results ── */}
+                                    {filteredLabs.length > 0 ? (
+                                        <div className="labs-grid">
+                                            {filteredLabs.map((l, i) => (
+                                                <LabCard
+                                                    key={l.id}
+                                                    lab={l}
+                                                    index={i}
+                                                    onClick={(lb) => navigate('guide', subject, lb)}
+                                                />
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <motion.div
+                                            className="labs-empty"
+                                            initial={{ opacity: 0, y: 12 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <span className="labs-empty__icon">🔍</span>
+                                            <p className="labs-empty__title">Sin resultados</p>
+                                            <p className="labs-empty__desc">
+                                                No se encontraron contenidos que coincidan con tu búsqueda.<br/>
+                                                Intenta con otro término o cambia el filtro.
+                                            </p>
+                                        </motion.div>
+                                    )}
                                 </section>
                             </motion.div>
                         )}
@@ -152,3 +181,4 @@ export default function MentoriasPage() {
         </div>
     );
 }
+

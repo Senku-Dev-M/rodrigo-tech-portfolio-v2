@@ -355,3 +355,35 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ─── Labs empty state ──────────────────────────────────────── */
+.labs-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+
+.labs-empty__icon {
+    font-size: 2.2rem;
+    opacity: 0.5;
+}
+
+.labs-empty__title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.labs-empty__desc {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.35);
+    line-height: 1.6;
+    margin: 0;
+}
