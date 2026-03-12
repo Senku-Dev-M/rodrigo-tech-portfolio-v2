@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 import './LabCard.css';
 
 const difficultyColor = {
@@ -8,6 +9,7 @@ const difficultyColor = {
 };
 
 export default function LabCard({ lab, onClick, index = 0 }) {
+    const { t } = useI18n();
     const color = difficultyColor[lab.difficulty] || '#00d4ff';
 
     return (
@@ -37,7 +39,7 @@ export default function LabCard({ lab, onClick, index = 0 }) {
 
             <div className="lab-card__footer">
                 <span className="lab-card__duration">⏱ {lab.duration}</span>
-                <span className="lab-card__cta">{lab.type === 'Teoría' ? 'Ver teoría →' : 'Ver guía →'}</span>
+                <span className="lab-card__cta">{lab.type === 'Teoría' ? t('lab.viewTheory') : t('lab.viewLab')}</span>
             </div>
         </motion.div>
     );

@@ -386,4 +386,39 @@
     color: rgba(255, 255, 255, 0.35);
     line-height: 1.6;
     margin: 0;
+}
+
+@media (max-width: 480px) {
+    .mentorias-page {
+        padding-top: 4rem;
+    }
+
+    .page-hero {
+        padding: 3rem 1rem 1rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-container {
+        padding: 1rem 1rem 4rem;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .areas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .approach-card {
+        padding: 1.2rem;
+    }
+
+    .subject-detail-header {
+        padding: 1.2rem;
+    }
 }

@@ -1,13 +1,16 @@
+import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 
-const stats = [
-    { iconName: 'calendar', value: '2+', label: 'Años mentoreando' },
-    { iconName: 'book', value: '6+', label: 'Cursos impartidos' },
-    { iconName: 'users', value: '100+', label: 'Estudiantes apoyados' },
-    { iconName: 'star', value: '3×', label: 'Estudiante Destacado' },
-];
-
 export default function MentoringStats() {
+    const { t } = useI18n();
+
+    const stats = [
+        { iconName: 'calendar', value: '2+', label: t('mentoring.stat1') },
+        { iconName: 'book', value: '6+', label: t('mentoring.stat2') },
+        { iconName: 'users', value: '100+', label: t('mentoring.stat3') },
+        { iconName: 'star', value: '3×', label: t('mentoring.stat4') },
+    ];
+
     return (
         <div className="stats-row">
             {stats.map((s, i) => (

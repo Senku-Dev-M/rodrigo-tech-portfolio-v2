@@ -100,6 +100,17 @@
     display: none !important;
 }
 
+/* Right group: lang switch + hamburger */
+.navbar-right-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-lang-item {
+    display: none;
+}
+
 /* Hamburger */
 .hamburger {
     display: none;
@@ -168,5 +179,27 @@
         width: 100%;
         text-align: center;
         padding: 0.8rem 0;
+    }
+
+    .navbar-lang-item {
+        display: block;
+    }
+
+    .navbar-right-group .lang-switch {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem 1rem;
+    }
+
+    .navbar-logo {
+        font-size: 1rem;
+    }
+
+    .hamburger span {
+        width: 20px;
     }
 }

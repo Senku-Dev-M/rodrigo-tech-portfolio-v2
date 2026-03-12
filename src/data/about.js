@@ -31,31 +31,43 @@ export const categoryColors = {
 
 export const experiences = [
     {
-        period: 'Nov. 2025 – Feb. 2026',
-        role: 'Desarrollador Full Stack',
+        period: { es: 'Nov. 2025 – Feb. 2026', en: 'Nov 2025 – Feb 2026' },
+        role: { es: 'Desarrollador Full Stack', en: 'Full Stack Developer' },
         company: 'Freelance',
-        desc: 'Desarrollé GymFlow AI — sistema de gestión para gimnasios con Python + FastAPI Onion Architecture, React 18 + TypeScript, JWT/RBAC, IA generativa para rutinas con OpenRouter, contenedorizado con Docker.',
+        desc: {
+            es: 'Desarrollé GymFlow AI — sistema de gestión para gimnasios con Python + FastAPI Onion Architecture, React 18 + TypeScript, JWT/RBAC, IA generativa para rutinas con OpenRouter, contenedorizado con Docker.',
+            en: 'Developed GymFlow AI — gym management system with Python + FastAPI Onion Architecture, React 18 + TypeScript, JWT/RBAC, generative AI for routines via OpenRouter, containerized with Docker.',
+        },
         accent: '#00d4ff',
     },
     {
-        period: 'Jul. 2025 – Sep. 2025',
-        role: 'Desarrollador Full Stack',
+        period: { es: 'Jul. 2025 – Sep. 2025', en: 'Jul 2025 – Sep 2025' },
+        role: { es: 'Desarrollador Full Stack', en: 'Full Stack Developer' },
         company: 'Jala University',
-        desc: 'Participé en PixPro, plataforma de gestión de imágenes con arquitectura distribuida. Backend en Node.js/TypeScript (Clean Architecture), microservicio Python para imágenes, Docker, GitLab CI/CD, MySQL, RabbitMQ, Supabase, frontend Angular.',
+        desc: {
+            es: 'Participé en PixPro, plataforma de gestión de imágenes con arquitectura distribuida. Backend en Node.js/TypeScript (Clean Architecture), microservicio Python para imágenes, Docker, GitLab CI/CD, MySQL, RabbitMQ, Supabase, frontend Angular.',
+            en: 'Contributed to PixPro, an image management platform with distributed architecture. Backend in Node.js/TypeScript (Clean Architecture), Python microservice for images, Docker, GitLab CI/CD, MySQL, RabbitMQ, Supabase, Angular frontend.',
+        },
         accent: '#0ea5e9',
     },
     {
-        period: 'Ene. 2024 – Actualidad',
-        role: 'Mentor de Ingeniería de Software',
+        period: { es: 'Ene. 2024 – Actualidad', en: 'Jan 2024 – Present' },
+        role: { es: 'Mentor de Ingeniería de Software', en: 'Software Engineering Mentor' },
         company: 'Jala University – Programa Mentor U',
-        desc: 'Mentoría académica en Programación I y II, Bases de Datos y Desarrollo de Software. Guía de APIs con Java/Spring Boot, revisiones de código y acompañamiento técnico en proyectos.',
+        desc: {
+            es: 'Mentoría académica en Programación I y II, Bases de Datos y Desarrollo de Software. Guía de APIs con Java/Spring Boot, revisiones de código y acompañamiento técnico en proyectos.',
+            en: 'Academic mentoring in Programming I & II, Databases, and Software Development. API guidance with Java/Spring Boot, code reviews, and technical project support.',
+        },
         accent: '#06b6d4',
     },
     {
-        period: 'Abr. 2025 – Jun. 2025',
-        role: 'Diseñador UI/UX',
+        period: { es: 'Abr. 2025 – Jun. 2025', en: 'Apr 2025 – Jun 2025' },
+        role: { es: 'Diseñador UI/UX', en: 'UI/UX Designer' },
         company: 'Jala University',
-        desc: 'Diseñé TeToca, app móvil de intercambio de servicios. Prototipo completo en Figma con Design Thinking, user flows, wireframes y prototipos de alta fidelidad.',
+        desc: {
+            es: 'Diseñé TeToca, app móvil de intercambio de servicios. Prototipo completo en Figma con Design Thinking, user flows, wireframes y prototipos de alta fidelidad.',
+            en: 'Designed TeToca, a mobile app for service exchange. Complete Figma prototype using Design Thinking, user flows, wireframes, and high-fidelity prototypes.',
+        },
         accent: '#22d3ee',
     },
 ];

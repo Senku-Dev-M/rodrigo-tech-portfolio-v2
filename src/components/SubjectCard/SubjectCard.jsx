@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 import './SubjectCard.css';
 
 export default function SubjectCard({ subject, onClick }) {
+    const { t } = useI18n();
+
     return (
         <motion.div
             className="subject-card"
@@ -23,13 +26,15 @@ export default function SubjectCard({ subject, onClick }) {
             <p className="subject-card__desc">{subject.description}</p>
 
             <div className="subject-card__topics">
-                {subject.topics.map(t => (
-                    <span key={t} className="subject-card__topic">{t}</span>
+                {subject.topics.map(tp => (
+                    <span key={tp} className="subject-card__topic">{tp}</span>
                 ))}
             </div>
 
             <div className="subject-card__footer">
-                <span className="subject-card__labs">{subject.labs.length} laboratorio{subject.labs.length !== 1 ? 's' : ''}</span>
+                <span className="subject-card__labs">
+                    {subject.labs.length} {subject.labs.length !== 1 ? t('subjectCard.labs') : t('subjectCard.lab')}
+                </span>
                 <span className="subject-card__arrow">→</span>
             </div>
         </motion.div>

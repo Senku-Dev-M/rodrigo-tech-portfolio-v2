@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 import ClientServerSim from './simulations/ClientServerSim';
 import P2PSim from './simulations/P2PSim';
@@ -14,9 +15,9 @@ import ScrumBoardSim from './simulations/ScrumBoardSim';
 import './NetworkSimulation.css';
 
 export default function NetworkSimulation({ type = 'client-server' }) {
+    const { t } = useI18n();
     const [isPlaying, setIsPlaying] = useState(false);
 
-    // Auto-stop simulation to reset state
     useEffect(() => {
         if (isPlaying) {
             let timeout = 4000;
@@ -25,7 +26,7 @@ export default function NetworkSimulation({ type = 'client-server' }) {
             if (type === 'git-flow') timeout = 7000;
             if (type === 'scrum-flow') timeout = 9000;
             if (type === 'scrum-board') timeout = 9000;
-            if (type === 'tcp-http') timeout = 10000; // Handshake takes longer
+            if (type === 'tcp-http') timeout = 10000;
 
             const timer = setTimeout(() => setIsPlaying(false), timeout);
             return () => clearTimeout(timer);
@@ -55,11 +56,9 @@ export default function NetworkSimulation({ type = 'client-server' }) {
                 onClick={() => setIsPlaying(true)}
                 disabled={isPlaying}
             >
-                {isPlaying ? 'Simulando...' : 'Iniciar simulación'}
+                {isPlaying ? t('sim.running') : t('sim.start')}
                 {!isPlaying && <Icon name="rocket" size={16} />}
             </button>
         </div>
     );
 }
-
-

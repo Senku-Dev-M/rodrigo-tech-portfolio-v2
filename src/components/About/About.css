@@ -393,3 +393,38 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 480px) {
+    .about {
+        padding: 4rem 1.2rem 5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .profile-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .avatar-photo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .timeline {
+        padding-left: 1.2rem;
+    }
+
+    .timeline-dot {
+        left: -1.6rem;
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-card {
+        padding: 1rem;
+    }
+}

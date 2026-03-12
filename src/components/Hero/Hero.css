@@ -183,3 +183,46 @@
     color: rgba(0, 212, 255, 0.4);
     font-size: 1.3rem;
 }
+
+/* ── Responsive adjustments ── */
+@media (max-width: 768px) {
+    .hero {
+        padding: 6rem 1.5rem 4rem;
+    }
+    .hero-bio {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 5rem 1rem 3rem;
+    }
+    
+    .hero-greeting {
+        font-size: 0.75rem;
+        letter-spacing: 0.25em;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.8rem;
+    }
+
+    .btn-primary, .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        padding: 0.9rem 1.5rem;
+    }
+
+    .hero-roles {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-socials {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

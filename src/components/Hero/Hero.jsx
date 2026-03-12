@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
+import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import Prism from '../Prism/Prism';
 import FuzzyText from '../FuzzyText/FuzzyText';
 import './Hero.css';
 
 const socialLinks = [
-    { label: 'GitHub', href: 'https://github.com/Senku-Dev-M', icon: '⌨' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/beimar-rodrigo-machaca-aruquipa-2052b1267/', icon: '💼' },
-    { label: 'Instagram', href: 'https://www.instagram.com/rodrigo_ml_1/', icon: '📸' },
-    { label: 'Email', href: 'mailto:beimar090@gmail.com', icon: '✉' },
+    { label: 'GitHub', href: 'https://github.com/Senku-Dev-M', icon: <Github size={24} /> },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/beimar-rodrigo-machaca-aruquipa-2052b1267/', icon: <Linkedin size={24} /> },
+    { label: 'Instagram', href: 'https://www.instagram.com/rodrigo_ml_1/', icon: <Instagram size={24} /> },
+    { label: 'Email', href: 'mailto:beimar090@gmail.com', icon: <Mail size={24} /> },
 ];
 
 const fadeUp = {
@@ -19,6 +21,8 @@ const fadeUp = {
 };
 
 export default function Hero() {
+    const { t } = useI18n();
+
     return (
         <section id="hero" className="hero">
 
@@ -39,13 +43,13 @@ export default function Hero() {
                 />
             </div>
 
-            {/* Overlay: only darken top & edges so Prism beams shine through bottom */}
+            {/* Overlay */}
             <div className="hero-overlay" />
 
             {/* Centered content */}
             <div className="hero-content">
                 <motion.span className="hero-greeting" variants={fadeUp} initial="hidden" animate="visible" custom={0}>
-                    hola, soy
+                    {t('hero.greeting')}
                 </motion.span>
 
                 <motion.div className="hero-fuzzy-wrapper" variants={fadeUp} initial="hidden" animate="visible" custom={1}>
@@ -66,15 +70,13 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div className="hero-roles" variants={fadeUp} initial="hidden" animate="visible" custom={2}>
-                    <span className="role-chip">Full Stack Developer</span>
-                    <span className="role-chip role-chip--dim">Mentor Académico</span>
-                    <span className="role-chip role-chip--dim">Backend · La Paz, Bolivia</span>
+                    <span className="role-chip">{t('hero.role1')}</span>
+                    <span className="role-chip role-chip--dim">{t('hero.role2')}</span>
+                    <span className="role-chip role-chip--dim">{t('hero.role3')}</span>
                 </motion.div>
 
                 <motion.p className="hero-bio" variants={fadeUp} initial="hidden" animate="visible" custom={3}>
-                    Estudiante de Ingeniería en Software Comercial. Apasionado por la arquitectura limpia,
-                    el backend y la automatización. Construyo sistemas escalables y
-                    experiencias de usuario memorables.
+                    {t('hero.bio')}
                 </motion.p>
 
                 <motion.div className="hero-actions" variants={fadeUp} initial="hidden" animate="visible" custom={4}>
@@ -83,7 +85,7 @@ export default function Hero() {
                         className="btn-primary"
                         onClick={e => { e.preventDefault(); document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' }); }}
                     >
-                        Conoce mi trabajo
+                        {t('hero.cta')}
                     </a>
                     <a href="https://github.com/Senku-Dev-M" target="_blank" rel="noopener noreferrer" className="btn-ghost">
                         GitHub →

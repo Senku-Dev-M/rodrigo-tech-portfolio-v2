@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
+import { pick } from '../../i18n/i18n';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -9,6 +11,10 @@ const fadeUp = {
 };
 
 export default function PortafolioProjectCard({ project, index }) {
+    const { t, lang } = useI18n();
+
+    const highlights = pick(project, 'highlights', lang) || [];
+
     return (
         <motion.div
             className="project-detail-card"
@@ -28,18 +34,18 @@ export default function PortafolioProjectCard({ project, index }) {
                             <span className="badge-type" style={{ color: project.accent, borderColor: `${project.accent}40` }}>
                                 {project.type}
                             </span>
-                            <span className="badge-period">{project.period}</span>
+                            <span className="badge-period">{pick(project, 'period', lang)}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <p className="project-detail-desc">{project.desc}</p>
+            <p className="project-detail-desc">{pick(project, 'desc', lang)}</p>
 
             <div className="project-highlights">
-                <h3>Aspectos destacados</h3>
+                <h3>{t('portfolio.highlights')}</h3>
                 <ul>
-                    {project.highlights.map((h, j) => (
+                    {highlights.map((h, j) => (
                         <li key={j}>
                             <span className="highlight-dot" style={{ background: project.accent }} />
                             {h}

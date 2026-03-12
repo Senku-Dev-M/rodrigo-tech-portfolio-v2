@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 
 export default function GithubCTA() {
+    const { t } = useI18n();
+
     return (
         <motion.div
             className="github-cta"
@@ -12,8 +15,8 @@ export default function GithubCTA() {
             <div className="github-cta-inner">
                 <span className="github-icon">⌨</span>
                 <div>
-                    <h3>Más proyectos en GitHub</h3>
-                    <p>Explora mi código, contribuciones y repos públicos.</p>
+                    <h3>{t('portfolio.githubTitle')}</h3>
+                    <p>{t('portfolio.githubDesc')}</p>
                 </div>
                 <a
                     href="https://github.com/Senku-Dev-M"
@@ -21,7 +24,7 @@ export default function GithubCTA() {
                     rel="noopener noreferrer"
                     className="btn-primary"
                 >
-                    Ver GitHub →
+                    {t('portfolio.githubCta')}
                 </a>
             </div>
         </motion.div>

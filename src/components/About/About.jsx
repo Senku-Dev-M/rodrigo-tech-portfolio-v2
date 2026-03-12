@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 import GradientText from '../GradientText/GradientText';
 import Antigravity from '../Antigravity/Antigravity';
 import profileImg from '../../assets/profile.jpg';
@@ -29,6 +30,7 @@ function SectionTitle({ children }) {
 }
 
 export default function About() {
+    const { t } = useI18n();
     const skillsRef = useRef(null);
     const expRef = useRef(null);
     const skillsInView = useInView(skillsRef, { once: true, margin: '-60px' });
@@ -36,28 +38,17 @@ export default function About() {
 
     return (
         <section id="about" className="about">
-            {/* Subtle Antigravity particle field in the background */}
             <div className="about-antigravity">
                 <Antigravity
-                    count={140}
-                    magnetRadius={8}
-                    ringRadius={9}
-                    waveSpeed={0.3}
-                    waveAmplitude={0.8}
-                    particleSize={0.45}
-                    lerpSpeed={0.04}
-                    color="#00d4ff"
-                    autoAnimate={true}
-                    particleVariance={0.8}
-                    rotationSpeed={0.05}
-                    depthFactor={0.6}
-                    pulseSpeed={2}
-                    particleShape="tetrahedron"
-                    fieldStrength={12}
+                    count={140} magnetRadius={8} ringRadius={9} waveSpeed={0.3}
+                    waveAmplitude={0.8} particleSize={0.45} lerpSpeed={0.04}
+                    color="#00d4ff" autoAnimate={true} particleVariance={0.8}
+                    rotationSpeed={0.05} depthFactor={0.6} pulseSpeed={2}
+                    particleShape="tetrahedron" fieldStrength={12}
                 />
             </div>
             <div className="section-container">
-                <SectionTitle>Sobre Mí</SectionTitle>
+                <SectionTitle>{t('about.title')}</SectionTitle>
 
                 {/* Profile Card */}
                 <motion.div
@@ -73,31 +64,19 @@ export default function About() {
                     </div>
                     <div className="profile-info">
                         <h3>Beimar Rodrigo Machaca Aruquipa</h3>
-                        <p className="profile-subtitle">Full Stack Developer · La Paz, Bolivia</p>
-                        <p className="profile-desc">
-                            Estudiante de último año de Ingeniería en Software Comercial y Técnico Superior en
-                            Informática Industrial. Orientado al backend con experiencia real en sistemas distribuidos,
-                            Clean Architecture y DevOps. Apasionado por la enseñanza, la mentoría y las buenas
-                            prácticas de ingeniería.
-                        </p>
+                        <p className="profile-subtitle">{t('about.subtitle')}</p>
+                        <p className="profile-desc">{t('about.desc')}</p>
                         <div className="profile-badges">
-                            <span className="badge">🎓 Estudiante Destacado × 3</span>
-                            <span className="badge">🧑‍🏫 Mentor Académico</span>
-                            <span className="badge">📍 La Paz, Bolivia</span>
+                            <span className="badge">{t('about.badge1')}</span>
+                            <span className="badge">{t('about.badge2')}</span>
+                            <span className="badge">{t('about.badge3')}</span>
                         </div>
                     </div>
                 </motion.div>
 
-                {/* Experience Timeline */}
                 <ExperienceSection expRef={expRef} expInView={expInView} />
-
-                {/* Skills Grid */}
                 <SkillsSection skillsRef={skillsRef} skillsInView={skillsInView} />
-
-                {/* Education */}
                 <EducationSection />
-
-                {/* Certifications highlight */}
                 <CertificationsSection />
             </div>
         </section>

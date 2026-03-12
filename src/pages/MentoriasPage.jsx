@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useI18n } from '../i18n/i18n';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import GradientText from '../components/GradientText/GradientText';
@@ -28,12 +29,12 @@ const slideVariants = {
 
 // ─── Main page ───────────────────────────────────────────────
 export default function MentoriasPage() {
-    const [view, setView] = useState('subjects'); // 'subjects' | 'labs' | 'guide'
+    const { t } = useI18n();
+    const [view, setView] = useState('subjects');
     const [subject, setSubject] = useState(null);
     const [lab, setLab] = useState(null);
     const [filteredLabs, setFilteredLabs] = useState([]);
 
-    // Stable callback so LabsToolbar doesn't re-render on every keystroke
     const handleFilterChange = useCallback((result) => setFilteredLabs(result), []);
 
     function navigate(to, nextSubject, nextLab) {
@@ -55,21 +56,19 @@ export default function MentoriasPage() {
                 {/* ── Page hero (always visible) ── */}
                 <div className="page-hero">
                     <motion.div className="page-back" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }}>
-                        <Link to="/" className="back-link">← Volver al inicio</Link>
+                        <Link to="/" className="back-link">{t('mentoring.backHome')}</Link>
                     </motion.div>
 
                     <motion.h1 className="page-title" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-                        <GradientText colors={['#00d4ff', '#0ea5e9', '#22d3ee', '#00d4ff']} animationSpeed={7}>Mentorías</GradientText>
+                        <GradientText colors={['#00d4ff', '#0ea5e9', '#22d3ee', '#00d4ff']} animationSpeed={7}>{t('mentoring.title')}</GradientText>
                     </motion.h1>
 
-                    <motion.p className="page-subtitle" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-                        Desde enero de 2024 formo parte del programa <strong>Mentor U</strong> de Jala University,
-                        brindando mentoría académica a estudiantes de ingeniería en software.
-                    </motion.p>
+                    <motion.p className="page-subtitle" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+                        dangerouslySetInnerHTML={{ __html: t('mentoring.subtitle') }}
+                    />
                 </div>
 
                 <div className="page-container">
-                    {/* ── Breadcrumb (only when inside a subject) ── */}
                     {view !== 'subjects' && (
                         <Breadcrumb
                             view={view}
@@ -79,19 +78,15 @@ export default function MentoriasPage() {
                         />
                     )}
 
-                    {/* ── Animated view swap ── */}
                     <AnimatePresence mode="wait">
 
                         {/* VIEW 1: subjects list */}
                         {view === 'subjects' && (
                             <motion.div key="subjects" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-
-                                {/* Stats */}
                                 <MentoringStats />
 
-                                {/* Subject cards */}
                                 <section className="mentorias-section">
-                                    <h2 className="section-heading">Materias</h2>
+                                    <h2 className="section-heading">{t('mentoring.subjects')}</h2>
                                     <div className="subjects-grid">
                                         {subjects.map(subj => (
                                             <SubjectCard
@@ -103,10 +98,7 @@ export default function MentoriasPage() {
                                     </div>
                                 </section>
 
-                                {/* Approach */}
                                 <MentoringApproach />
-
-                                {/* Certifications */}
                                 <MentoringCertifications />
                             </motion.div>
                         )}
@@ -124,15 +116,13 @@ export default function MentoriasPage() {
                                 </div>
 
                                 <section className="mentorias-section">
-                                    <h3 className="section-heading">Laboratorios</h3>
+                                    <h3 className="section-heading">{t('mentoring.labs')}</h3>
 
-                                    {/* ── Search + Filter toolbar ── */}
                                     <LabsToolbar
                                         labs={subject.labs}
                                         onChange={handleFilterChange}
                                     />
 
-                                    {/* ── Results ── */}
                                     {filteredLabs.length > 0 ? (
                                         <div className="labs-grid">
                                             {filteredLabs.map((l, i) => (
@@ -152,10 +142,10 @@ export default function MentoriasPage() {
                                             transition={{ duration: 0.3 }}
                                         >
                                             <span className="labs-empty__icon">🔍</span>
-                                            <p className="labs-empty__title">Sin resultados</p>
+                                            <p className="labs-empty__title">{t('mentoring.emptyTitle')}</p>
                                             <p className="labs-empty__desc">
-                                                No se encontraron contenidos que coincidan con tu búsqueda.<br/>
-                                                Intenta con otro término o cambia el filtro.
+                                                {t('mentoring.emptyDesc')}<br/>
+                                                {t('mentoring.emptyHint')}
                                             </p>
                                         </motion.div>
                                     )}
@@ -181,4 +171,3 @@ export default function MentoriasPage() {
         </div>
     );
 }
-

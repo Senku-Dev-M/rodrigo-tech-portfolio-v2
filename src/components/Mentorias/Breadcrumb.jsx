@@ -1,8 +1,12 @@
+import { useI18n } from '../../i18n/i18n';
+
 export default function Breadcrumb({ view, subject, lab, onNavigate }) {
+    const { t } = useI18n();
+
     return (
         <nav className="breadcrumb">
             <button className={`bc-item ${view === 'subjects' ? 'bc-item--active' : ''}`} onClick={() => onNavigate('subjects')}>
-                Mentoría
+                {t('mentoring.breadcrumbRoot')}
             </button>
             {subject && (
                 <>

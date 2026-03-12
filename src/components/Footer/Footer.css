@@ -41,6 +41,9 @@
     font-size: 0.83rem;
     font-weight: 500;
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .footer-links a:hover {

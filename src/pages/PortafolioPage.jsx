@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useI18n } from '../i18n/i18n';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import GradientText from '../components/GradientText/GradientText';
@@ -18,6 +19,8 @@ const fadeUp = {
 };
 
 export default function PortafolioPage() {
+    const { t } = useI18n();
+
     return (
         <div className="page-wrapper">
             <Navbar />
@@ -32,7 +35,7 @@ export default function PortafolioPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <Link to="/" className="back-link">← Volver al inicio</Link>
+                        <Link to="/" className="back-link">{t('portfolio.backHome')}</Link>
                     </motion.div>
 
                     <motion.h1
@@ -42,7 +45,7 @@ export default function PortafolioPage() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                     >
                         <GradientText colors={['#00d4ff', '#0ea5e9', '#22d3ee', '#00d4ff']} animationSpeed={7}>
-                            Portafolio
+                            {t('portfolio.title')}
                         </GradientText>
                     </motion.h1>
 
@@ -52,7 +55,7 @@ export default function PortafolioPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Proyectos reales con impacto — desde APIs con IA hasta apps móviles con UX de alta fidelidad.
+                        {t('portfolio.subtitle')}
                     </motion.p>
                 </div>
 

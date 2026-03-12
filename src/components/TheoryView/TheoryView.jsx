@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 import NetworkSimulation from '../NetworkSimulation/NetworkSimulation';
 import './TheoryView.css';
@@ -16,19 +17,19 @@ function Section({ title, desc, children }) {
 }
 
 // ── Pros & Cons Card ───────────────────────────────────────
-function ProsConsCard({ title, pros, cons }) {
+function ProsConsCard({ title, pros, cons, t }) {
     return (
         <div className="theory-proscons">
             <h3 className="theory-proscons__title">{title}</h3>
             <div className="theory-proscons__grid">
                 <div className="theory-proscons__col theory-proscons__col--pros">
-                    <h4><Icon name="checkCircle" size={16} color="#00ff88" /> Ventajas</h4>
+                    <h4><Icon name="checkCircle" size={16} color="#00ff88" /> {t('theory.pros')}</h4>
                     <ul>
                         {pros.map((p, i) => <li key={i}>{p}</li>)}
                     </ul>
                 </div>
                 <div className="theory-proscons__col theory-proscons__col--cons">
-                    <h4><Icon name="xCircle" size={16} color="#ff4444" /> Desventajas</h4>
+                    <h4><Icon name="xCircle" size={16} color="#ff4444" /> {t('theory.cons')}</h4>
                     <ul>
                         {cons.map((c, i) => <li key={i}>{c}</li>)}
                     </ul>
@@ -39,6 +40,7 @@ function ProsConsCard({ title, pros, cons }) {
 }
 
 export default function TheoryView({ lab }) {
+    const { t } = useI18n();
     const { content } = lab;
 
     return (
@@ -58,7 +60,7 @@ export default function TheoryView({ lab }) {
             </div>
 
             {/* ── INTRODUCCIÓN ───────────────────────────────── */}
-            <Section title="Introducción">
+            <Section title={t('theory.intro', 'Introducción')}>
                 <p className="theory-text">{content.intro}</p>
             </Section>
 
@@ -89,9 +91,10 @@ export default function TheoryView({ lab }) {
                     </div>
 
                     <ProsConsCard
-                        title={`Análisis de ${model.title}`}
+                        title={`${t('theory.analysis', 'Análisis de')} ${model.title}`}
                         pros={model.pros}
                         cons={model.cons}
+                        t={t}
                     />
                 </Section>
             ))}
@@ -236,7 +239,7 @@ export default function TheoryView({ lab }) {
                                     )}
 
                                     {(model.pros && model.cons) && (
-                                        <ProsConsCard title={`Análisis de ${model.title}`} pros={model.pros} cons={model.cons} />
+                                        <ProsConsCard title={`${t('theory.analysis', 'Análisis de')} ${model.title}`} pros={model.pros} cons={model.cons} t={t} />
                                     )}
                                 </div>
                             ))}
@@ -247,7 +250,7 @@ export default function TheoryView({ lab }) {
                 if (section.type === 'proscons') {
                     return (
                         <Section key={sectionIdx}>
-                            <ProsConsCard title={section.title} pros={section.pros} cons={section.cons} />
+                            <ProsConsCard title={section.title} pros={section.pros} cons={section.cons} t={t} />
                         </Section>
                     );
                 }
@@ -258,7 +261,7 @@ export default function TheoryView({ lab }) {
             {/* ── CONCLUSIÓN ─────────────────────────────────── */}
             <section className="theory-section theory-conclusion">
                 <Icon name="book" size={36} color="#00d4ff" />
-                <h2>Conclusión del Tema</h2>
+                <h2>{t('theory.conclusion')}</h2>
                 <p>{content.conclusion}</p>
             </section>
         </div>

@@ -1,18 +1,23 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 
 export default function CertificationsSection() {
+    const { t } = useI18n();
+
+    const certifications = [
+        { name: "Dean's List Recognition", issuer: 'Jala University', years: '2024 – 2025' },
+        { name: 'Programación 1 & 2 – Mentor U', issuer: 'Jala University', years: '2025' },
+        { name: 'Curso Profesional de Java', issuer: 'Código Facilito', years: '2023' },
+        { name: 'Java Spring Boot + JPA', issuer: 'Platzi', years: '2023' },
+        { name: 'Patrones de Diseño con Java', issuer: 'Código Facilito', years: '2023' },
+        { name: 'Python Essentials 1', issuer: 'Cisco Networking Academy', years: '2023' },
+    ];
+
     return (
         <div className="certs-section">
-            <h3 className="subsection-title">Certificaciones Destacadas</h3>
+            <h3 className="subsection-title">{t('about.certifications')}</h3>
             <div className="certs-grid">
-                {[
-                    { name: "Dean's List Recognition", issuer: "Jala University", years: "2024 – 2025" },
-                    { name: "Programación 1 & 2 – Mentor U", issuer: "Jala University", years: "2025" },
-                    { name: "Curso Profesional de Java", issuer: "Código Facilito", years: "2023" },
-                    { name: "Java Spring Boot + JPA", issuer: "Platzi", years: "2023" },
-                    { name: "Patrones de Diseño con Java", issuer: "Código Facilito", years: "2023" },
-                    { name: "Python Essentials 1", issuer: "Cisco Networking Academy", years: "2023" },
-                ].map((cert, i) => (
+                {certifications.map((cert, i) => (
                     <motion.div
                         key={i}
                         className="cert-card"
@@ -37,7 +42,7 @@ export default function CertificationsSection() {
                     rel="noopener noreferrer"
                     className="btn-primary"
                 >
-                    Ver todos los certificados →
+                    {t('about.viewAllCerts')}
                 </a>
             </div>
         </div>

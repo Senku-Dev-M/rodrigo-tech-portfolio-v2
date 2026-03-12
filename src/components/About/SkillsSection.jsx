@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 import { skills, categoryColors } from '../../data/about';
 
 const fadeUp = {
@@ -7,9 +8,11 @@ const fadeUp = {
 };
 
 export default function SkillsSection({ skillsRef, skillsInView }) {
+    const { t } = useI18n();
+
     return (
         <div ref={skillsRef} className="skills-section">
-            <h3 className="subsection-title">Habilidades Técnicas</h3>
+            <h3 className="subsection-title">{t('about.skills')}</h3>
             <div className="skills-grid">
                 {skills.map((skill, i) => (
                     <motion.div

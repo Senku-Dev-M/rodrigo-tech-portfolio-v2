@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 
 export default function EducationSection() {
+    const { t } = useI18n();
+
     return (
         <div className="education-section">
-            <h3 className="subsection-title">Formación</h3>
+            <h3 className="subsection-title">{t('about.education')}</h3>
             <div className="education-grid">
                 <motion.div
                     className="education-card"
@@ -14,9 +17,9 @@ export default function EducationSection() {
                 >
                     <div className="edu-icon">🎓</div>
                     <div>
-                        <h4>Ingeniería en Software Comercial</h4>
-                        <p className="edu-school">Jala University · 2023 – Actualidad</p>
-                        <p className="edu-desc">Formación intensiva Full Stack & QA Automation. Estudiante Destacado 3 semestres consecutivos.</p>
+                        <h4>{t('about.edu1Title')}</h4>
+                        <p className="edu-school">{t('about.edu1School')}</p>
+                        <p className="edu-desc">{t('about.edu1Desc')}</p>
                     </div>
                 </motion.div>
                 <motion.div
@@ -28,9 +31,9 @@ export default function EducationSection() {
                 >
                     <div className="edu-icon">🏭</div>
                     <div>
-                        <h4>Técnico Superior en Informática Industrial</h4>
-                        <p className="edu-school">Escuela Industrial Superior Pedro Domingo Murillo · 2020 – 2024</p>
-                        <p className="edu-desc">Formación técnica en informática industrial, programación y sistemas computacionales.</p>
+                        <h4>{t('about.edu2Title')}</h4>
+                        <p className="edu-school">{t('about.edu2School')}</p>
+                        <p className="edu-desc">{t('about.edu2Desc')}</p>
                     </div>
                 </motion.div>
             </div>

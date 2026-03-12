@@ -394,3 +394,21 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 480px) {
+    .theory-title {
+        font-size: 1.6rem;
+    }
+    
+    .theory-section__title {
+        font-size: 1.25rem;
+    }
+
+    .theory-grid-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .theory-conclusion {
+        padding: 1.5rem;
+    }
+}

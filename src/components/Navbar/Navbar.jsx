@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useI18n } from '../../i18n/i18n';
+import LangSwitch from './LangSwitch';
 import './Navbar.css';
 
-const navLinks = [
-    { label: 'Sobre Mí', href: '#about', route: '/', section: '#about' },
-    { label: 'Mentorías', href: '/mentorias', route: '/mentorias', section: null },
-    { label: 'Portafolio', href: '/portafolio', route: '/portafolio', section: null },
-];
-
 export default function Navbar() {
+    const { t } = useI18n();
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+
+    const navLinks = [
+        { label: t('nav.about'), href: '#about', route: '/', section: '#about' },
+        { label: t('nav.mentoring'), href: '/mentorias', route: '/mentorias', section: null },
+        { label: t('nav.portfolio'), href: '/portafolio', route: '/portafolio', section: null },
+    ];
 
     useEffect(() => {
         const handler = () => setScrolled(window.scrollY > 40);
@@ -25,7 +28,6 @@ export default function Navbar() {
         setMenuOpen(false);
 
         if (link.section) {
-            // It's a section on the home page
             if (location.pathname !== '/') {
                 navigate('/');
                 setTimeout(() => {
@@ -75,18 +77,24 @@ export default function Navbar() {
                             rel="noopener noreferrer"
                             className="navbar-cta"
                         >
-                            Certificados
+                            {t('nav.certificates')}
                         </a>
+                    </li>
+                    <li className="navbar-lang-item">
+                        <LangSwitch />
                     </li>
                 </ul>
 
-                <button
-                    className={`hamburger ${menuOpen ? 'active' : ''}`}
-                    onClick={() => setMenuOpen(v => !v)}
-                    aria-label="Toggle menu"
-                >
-                    <span /><span /><span />
-                </button>
+                <div className="navbar-right-group">
+                    <LangSwitch />
+                    <button
+                        className={`hamburger ${menuOpen ? 'active' : ''}`}
+                        onClick={() => setMenuOpen(v => !v)}
+                        aria-label="Toggle menu"
+                    >
+                        <span /><span /><span />
+                    </button>
+                </div>
             </div>
         </nav>
     );

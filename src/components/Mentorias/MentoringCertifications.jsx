@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 
 const certifications = [
@@ -11,9 +12,11 @@ const certifications = [
 ];
 
 export default function MentoringCertifications() {
+    const { t } = useI18n();
+
     return (
         <section className="mentorias-section">
-            <h2 className="section-heading">Certificados como Mentor</h2>
+            <h2 className="section-heading">{t('mentoring.certsTitle')}</h2>
             <div className="cert-list">
                 {certifications.map((cert, i) => (
                     <motion.div key={i} className="cert-row" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
@@ -24,7 +27,7 @@ export default function MentoringCertifications() {
             </div>
             <div className="cta-row">
                 <a href="https://drive.google.com/drive/folders/1ZjpmZptWPuFE_2xwMWTj7qRChAecPDzH" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                    Ver certificados completos →
+                    {t('mentoring.certsViewAll')}
                 </a>
             </div>
         </section>
