@@ -470,6 +470,107 @@ Hola desde VM1 - cliente NFS`,
                     ],
                 },
             },
+            {
+                id: 'wireshark-analisis',
+                title: 'Análisis de Tráfico de Red con Wireshark',
+                subtitle: 'Captura y comprensión de protocolos (DHCP, ICMP, DNS, HTTP)',
+                type: 'Laboratorio',
+                difficulty: 'Intermedio',
+                duration: '60–90 min',
+                tags: ['Wireshark', 'Packet Analysis', 'DHCP', 'ICMP', 'DNS', 'HTTP'],
+                guide: {
+                    intro: 'El análisis de tráfico de red es una habilidad esencial para diagnosticar problemas de conectividad, entender el comportamiento de las aplicaciones y detectar anomalías de seguridad. Wireshark es el analizador de protocolos de red (sniffer) más utilizado del mundo, permitiendo ver de forma microscópica lo que ocurre en los cables (o en el aire). En este laboratorio aprenderás a capturar paquetes y a diseccionar el intercambio de mensajes de 4 casos de uso fundamentales.',
+                    objectives: [
+                        'Entender el proceso de captura de tráfico de red en un entorno virtualizado.',
+                        'Diferenciar y filtrar el tráfico según protocolos (DHCP, ICMP, DNS, HTTP).',
+                        'Analizar el interior de un paquete y extraer información útil (IPs, MACs, puertos).',
+                        'Interpretar los handshakes y secuencias de mensajes cliente-servidor.',
+                    ],
+                    technologies: [
+                        { name: 'Wireshark', icon: 'tool' },
+                        { name: 'VirtualBox / VMware', icon: 'server' },
+                        { name: 'Ubuntu / Debian', icon: 'monitor' },
+                    ],
+                    labArchitecture: {
+                        diagram: `Cliente Linux (VM) <==== Network Bridge ====> Internet/Router Local`,
+                        desc: 'Se utilizará una máquina virtual conectada en modo Bridge (Puente). Esto permite que la VM actúe como un equipo físico independiente en la misma red local que la máquina Host, solicitando su propia IP al router y enviando el tráfico directamente sin NAT.',
+                    },
+                    steps: [
+                        {
+                            title: 'Preparación del ambiente de pruebas',
+                            text: 'Antes de iniciar cualquier prueba, debemos configurar correctamente nuestra máquina virtual para que el tráfico se genere y capture efectivamente.',
+                            steps: [
+                                'Abre VirtualBox o VMware y dirígete a la configuración de red de tu máquina virtual Linux.',
+                                'Cambia el adaptador a "Adaptador Puente" (Bridged Adapter). Esto conectará la VM directamente a tu router.',
+                                'Enciende la máquina virtual e inicia sesión.',
+                                'Abre y ejecuta Wireshark con privilegios de administrador: sudo wireshark',
+                                'Selecciona la interfaz de red activa (usualmente enp0s3 o eth0) e inicia la captura presionando el icono de la aleta de tiburón azul.',
+                            ],
+                        },
+                        {
+                            title: 'Prueba 1 — Análisis del protocolo DHCP',
+                            text: 'Vamos a forzar al sistema a pedir una nueva IP para interceptar el proceso DORA. En Wireshark, escribe el filtro "bootp" (DHCP se conoce técnicamente como Bootstrap Protocol) y presiona Enter.',
+                            command: 'sudo dhclient -r && sudo dhclient -v',
+                            explanation: 'El argumento -r libera la IP actual. La segunda instrucción vuelve a solicitar una.',
+                            tablePrompt: {
+                                fields: [
+                                    { label: 'IP del cliente DHCP al inicio de la solicitud', desc: '¿Qué IP IP origen usa el Discover?' },
+                                    { label: '¿Por qué utiliza esta dirección IP inicial?', desc: 'Justificación teórica' },
+                                    { label: 'IP destino de los mensajes del Cliente', desc: '¿A quién le habla?' },
+                                    { label: 'MAC destino de los mensajes del Cliente', desc: '¿Cuál es la MAC address de broadcast?' },
+                                    { label: 'IP destino de los mensajes del Servidor', desc: '¿Hacia dónde envía el Offer/ACK?' },
+                                    { label: 'Ip ofrecida al Cliente', desc: 'Your (client) IP address en el paquete' },
+                                    { label: 'Tiempo de asignación', desc: 'Lease Time ofrecido' },
+                                    { label: 'IP seleccionada por el cliente', desc: 'IP Server identifier confirmada' },
+                                ]
+                            },
+                            simulationLink: 'dhcp'
+                        },
+                        {
+                            title: 'Prueba 2 — Análisis de ICMP con ping',
+                            text: 'ICMP es el protocolo utilizado para enviar mensajes de control y error. El comando ping lo utiliza para comprobar la conectividad. Cambia el filtro en Wireshark a "icmp".',
+                            command: 'ping -c 4 debian.org',
+                            explanation: 'Enviaremos exactamente 4 paquetes ICMP Echo Request al servidor.',
+                            simulationLink: 'icmp'
+                        },
+                        {
+                            title: 'Prueba 3 — Análisis del proceso DNS',
+                            text: 'Cuando escribiste debian.org en el paso anterior, tu computadora necesitó traducir ese nombre a una dirección IP real antes de mandar el ping. Cambia el filtro de Wireshark a "dns".',
+                            tablePrompt: {
+                                fields: [
+                                    { label: 'Puerto del Servidor DNS', desc: 'Puerto de destino (Dst Port)' },
+                                    { label: 'IP destino de la solicitud DNS', desc: '¿A qué servidor le estás preguntando?' },
+                                    { label: 'Dirección IP devuelta', desc: 'Respuesta (Answers) dentro del paquete' },
+                                ]
+                            },
+                            simulationLink: 'dns'
+                        },
+                        {
+                            title: 'Prueba 4 — Análisis HTTP y TCP (Three-Way Handshake)',
+                            text: 'Abre el navegador web dentro de tu VM y dirígete a debian.org (asegúrate de ir a http:// para ver tráfico en texto plano si tu navegador no fuerza HTTPS, o simplemente analiza el handshake TCP inicial). Filtra en Wireshark por "tcp.port == 80" o "tcp.port == 443".',
+                            explanation: 'Busca los primeros tres paquetes entre tu IP y la IP del servidor. Deberías ver las flags [SYN], [SYN, ACK], y [ACK] antes de la petición principal GET/Client Hello.',
+                            simulationLink: 'tcp-http'
+                        },
+                        {
+                            title: 'Entrega del laboratorio',
+                            text: 'Una vez finalizado el laboratorio, asegúrate de documentar tus hallazgos.',
+                            steps: [
+                                'Detén la captura en Wireshark.',
+                                'Responde las preguntas teóricas solicitadas.',
+                                'Completa las dos tablas con los datos reales que capturaste.',
+                                'Toma capturas de pantalla de los momentos clave (el DORA de DHCP, el Handshake de TCP).',
+                                'Exporta tu documento a PDF o al formato solicitado por el instructor.',
+                            ],
+                        }
+                    ],
+                    learnings: [
+                        'Cómo capturar tráfico en modo promiscuo.',
+                        'Cómo filtrar tráfico masivo usando sintaxis de Wireshark (bootp, icmp, dns, tcp.port).',
+                        'Cómo identificar el mapeo entre capas desde Ethernet (MAC) hasta Aplicación (HTTP).',
+                        'Cómo diagnosticar visualmente la salud de una conexión TCP y DNS.',
+                    ],
+                },
+            },
         ],
     },
 ];

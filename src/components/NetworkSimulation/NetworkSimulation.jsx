@@ -9,7 +9,10 @@ export default function NetworkSimulation({ type = 'client-server' }) {
     // Auto-stop simulation to reset state
     useEffect(() => {
         if (isPlaying) {
-            const timeout = type === 'dhcp' ? 8500 : 4000;
+            let timeout = 4000;
+            if (type === 'dhcp') timeout = 8500;
+            if (type === 'tcp-http') timeout = 10000; // Handshake takes longer
+
             const timer = setTimeout(() => setIsPlaying(false), timeout);
             return () => clearTimeout(timer);
         }
@@ -21,6 +24,9 @@ export default function NetworkSimulation({ type = 'client-server' }) {
                 {type === 'client-server' && <ClientServerSim isPlaying={isPlaying} />}
                 {type === 'p2p' && <P2PSim isPlaying={isPlaying} />}
                 {type === 'dhcp' && <DHCPSim isPlaying={isPlaying} />}
+                {type === 'icmp' && <ICMPSim isPlaying={isPlaying} />}
+                {type === 'dns' && <DNSSim isPlaying={isPlaying} />}
+                {type === 'tcp-http' && <TCPHTTPSim isPlaying={isPlaying} />}
             </div>
 
             <button
@@ -204,6 +210,133 @@ function DHCPSim({ isPlaying }) {
                 </foreignObject>
                 <text x="0" y="55" className="sim-label">Servidor DHCP</text>
             </g>
+        </svg>
+    );
+}
+
+function ICMPSim({ isPlaying }) {
+    return (
+        <svg viewBox="0 0 500 300" className="sim-svg">
+            <path id="path-icmp" d="M 120 150 L 380 150" className="sim-path" />
+
+            {/* Echo Request */}
+            <g className={`icmp-msg ${isPlaying ? 'icmp-msg--req' : ''}`} style={{ opacity: 0 }} transform="translate(120, 150)">
+                <circle cx="0" cy="0" r="6" fill="#ff79c6" className="sim-packet" />
+                <rect x="-45" y="-35" width="90" height="22" rx="4" fill="rgba(255, 121, 198, 0.1)" stroke="#ff79c6" strokeWidth="1" />
+                <text x="0" y="-20" className="sim-label" fill="#ff79c6">Echo Request</text>
+            </g>
+
+            {/* Echo Reply */}
+            <g className={`icmp-msg ${isPlaying ? 'icmp-msg--rep' : ''}`} style={{ opacity: 0 }} transform="translate(380, 150)">
+                <circle cx="0" cy="0" r="6" fill="#8be9fd" className="sim-packet" />
+                <rect x="-45" y="15" width="90" height="22" rx="4" fill="rgba(139, 233, 253, 0.1)" stroke="#8be9fd" strokeWidth="1" />
+                <text x="0" y="30" className="sim-label" fill="#8be9fd">Echo Reply</text>
+            </g>
+
+            <g transform="translate(120, 150)">
+                <circle cx="0" cy="0" r="30" className="sim-node sim-node--client" />
+                <foreignObject x="-12" y="-12" width="24" height="24">
+                    <div style={{ color: '#fff' }}><Icon name="monitor" size={24} /></div>
+                </foreignObject>
+                <text x="0" y="50" className="sim-label">Tu VM</text>
+            </g>
+            <g transform="translate(380, 150)">
+                <circle cx="0" cy="0" r="30" className="sim-node sim-node--server" />
+                <foreignObject x="-12" y="-12" width="24" height="24">
+                    <div style={{ color: '#00d4ff' }}><Icon name="server" size={24} /></div>
+                </foreignObject>
+                <text x="0" y="50" className="sim-label">debian.org</text>
+            </g>
+        </svg>
+    );
+}
+
+function DNSSim({ isPlaying }) {
+    return (
+        <svg viewBox="0 0 500 300" className="sim-svg">
+            <path id="path-dns" d="M 120 150 L 380 150" className="sim-path" />
+
+            {/* Query */}
+            <g className={`dns-msg ${isPlaying ? 'dns-msg--query' : ''}`} style={{ opacity: 0 }} transform="translate(120, 150)">
+                <circle cx="0" cy="0" r="6" fill="#f1fa8c" className="sim-packet" />
+                <rect x="-65" y="-35" width="130" height="22" rx="4" fill="rgba(241, 250, 140, 0.1)" stroke="#f1fa8c" strokeWidth="1" />
+                <text x="0" y="-20" className="sim-label" fill="#f1fa8c">¿IP de debian.org?</text>
+            </g>
+
+            {/* Response */}
+            <g className={`dns-msg ${isPlaying ? 'dns-msg--res' : ''}`} style={{ opacity: 0 }} transform="translate(380, 150)">
+                <circle cx="0" cy="0" r="6" fill="#50fa7b" className="sim-packet" />
+                <rect x="-65" y="15" width="130" height="22" rx="4" fill="rgba(80, 250, 123, 0.1)" stroke="#50fa7b" strokeWidth="1" />
+                <text x="0" y="30" className="sim-label" fill="#50fa7b">Es 128.31.0.62</text>
+            </g>
+
+            <g transform="translate(120, 150)">
+                <circle cx="0" cy="0" r="30" className="sim-node sim-node--client" />
+                <foreignObject x="-12" y="-12" width="24" height="24">
+                    <div style={{ color: '#fff' }}><Icon name="monitor" size={24} /></div>
+                </foreignObject>
+                <text x="0" y="50" className="sim-label">Tu VM</text>
+            </g>
+            <g transform="translate(380, 150)">
+                <circle cx="0" cy="0" r="30" className="sim-node sim-node--server" />
+                <foreignObject x="-12" y="-12" width="24" height="24">
+                    <div style={{ color: '#00d4ff' }}><Icon name="server" size={24} /></div>
+                </foreignObject>
+                <text x="0" y="50" className="sim-label">DNS Server (8.8.8.8)</text>
+            </g>
+        </svg>
+    );
+}
+
+function TCPHTTPSim({ isPlaying }) {
+    return (
+        <svg viewBox="0 0 500 400" className="sim-svg">
+            {/* Lifelines */}
+            <line x1="120" y1="40" x2="120" y2="360" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="5,5" />
+            <line x1="380" y1="40" x2="380" y2="360" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="5,5" />
+
+            <text x="120" y="25" className="sim-label" fill="#fff" fontSize="14">Cliente</text>
+            <text x="380" y="25" className="sim-label" fill="#00d4ff" fontSize="14">Servidor</text>
+
+            <g style={{ opacity: isPlaying ? 1 : 0 }} className="tcp-arrows">
+                {/* SYN */}
+                <path d="M 120 70 L 370 100" stroke="#ffb86c" strokeWidth="2" markerEnd="url(#arrow-syn)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--1' : ''}`} opacity={0} />
+                <text x="250" y="80" className={`sim-label ${isPlaying ? 'tcp-arrow--1' : ''}`} opacity={0} fill="#ffb86c">[SYN]</text>
+
+                {/* SYN-ACK */}
+                <path d="M 380 120 L 130 150" stroke="#8be9fd" strokeWidth="2" markerEnd="url(#arrow-synack)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--2' : ''}`} opacity={0} />
+                <text x="250" y="130" className={`sim-label ${isPlaying ? 'tcp-arrow--2' : ''}`} opacity={0} fill="#8be9fd">[SYN, ACK]</text>
+
+                {/* ACK */}
+                <path d="M 120 170 L 370 200" stroke="#50fa7b" strokeWidth="2" markerEnd="url(#arrow-ack)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--3' : ''}`} opacity={0} />
+                <text x="250" y="180" className={`sim-label ${isPlaying ? 'tcp-arrow--3' : ''}`} opacity={0} fill="#50fa7b">[ACK]</text>
+
+                {/* HTTP GET */}
+                <path d="M 120 230 L 370 260" stroke="#bd93f9" strokeWidth="3" markerEnd="url(#arrow-http)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--4' : ''}`} opacity={0} />
+                <text x="250" y="235" className={`sim-label ${isPlaying ? 'tcp-arrow--4' : ''}`} opacity={0} fill="#bd93f9">HTTP GET /</text>
+
+                {/* HTTP Res */}
+                <path d="M 380 280 L 130 310" stroke="#ff79c6" strokeWidth="3" markerEnd="url(#arrow-res)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--5' : ''}`} opacity={0} />
+                <text x="250" y="285" className={`sim-label ${isPlaying ? 'tcp-arrow--5' : ''}`} opacity={0} fill="#ff79c6">HTTP 200 OK</text>
+            </g>
+
+            <defs>
+                <marker id="arrow-syn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffb86c" />
+                </marker>
+                <marker id="arrow-synack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8be9fd" />
+                </marker>
+                <marker id="arrow-ack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#50fa7b" />
+                </marker>
+                <marker id="arrow-http" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#bd93f9" />
+                </marker>
+                <marker id="arrow-res" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff79c6" />
+                </marker>
+            </defs>
         </svg>
     );
 }

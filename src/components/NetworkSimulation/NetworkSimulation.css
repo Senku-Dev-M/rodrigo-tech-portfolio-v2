@@ -430,3 +430,132 @@
         transform: translate(100px, 150px);
     }
 }
+
+/* ── ICMP Animations ── */
+.icmp-msg {
+    transition: opacity 0.2s ease;
+}
+
+.icmp-msg--req {
+    animation: icmpReq 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes icmpReq {
+    0% {
+        opacity: 1;
+        transform: translate(120px, 150px);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(380px, 150px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(380px, 150px);
+    }
+}
+
+.icmp-msg--rep {
+    animation: icmpRep 1.5s cubic-bezier(0.4, 0, 0.2, 1) 1.8s forwards;
+}
+
+@keyframes icmpRep {
+    0% {
+        opacity: 1;
+        transform: translate(380px, 150px);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(120px, 150px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(120px, 150px);
+    }
+}
+
+/* ── DNS Animations ── */
+.dns-msg {
+    transition: opacity 0.2s ease;
+}
+
+.dns-msg--query {
+    animation: dnsQuery 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes dnsQuery {
+    0% {
+        opacity: 1;
+        transform: translate(120px, 150px);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(380px, 150px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(380px, 150px);
+    }
+}
+
+.dns-msg--res {
+    animation: dnsRes 1.5s cubic-bezier(0.4, 0, 0.2, 1) 1.8s forwards;
+}
+
+@keyframes dnsRes {
+    0% {
+        opacity: 1;
+        transform: translate(380px, 150px);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(120px, 150px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(120px, 150px);
+    }
+}
+
+/* ── TCP/HTTP Message Sequence Chart Animations ── */
+.tcp-arrow {
+    transition: opacity 0.2s ease;
+}
+
+.tcp-arrow--1 {
+    animation: tcpFadeIn 0.5s ease 0.5s forwards;
+}
+
+.tcp-arrow--2 {
+    animation: tcpFadeIn 0.5s ease 2.0s forwards;
+}
+
+.tcp-arrow--3 {
+    animation: tcpFadeIn 0.5s ease 3.5s forwards;
+}
+
+.tcp-arrow--4 {
+    animation: tcpFadeIn 0.5s ease 5.0s forwards;
+}
+
+.tcp-arrow--5 {
+    animation: tcpFadeIn 0.5s ease 7.0s forwards;
+}
+
+@keyframes tcpFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

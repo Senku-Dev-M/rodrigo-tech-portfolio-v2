@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Icon from '../Icon/Icon';
+import NetworkSimulation from '../NetworkSimulation/NetworkSimulation';
 import './GuideView.css';
 
 // ── Reusable code block ─────────────────────────────────────
@@ -22,14 +23,22 @@ function Step({ step, index }) {
             transition={{ duration: 0.4, delay: index * 0.04 }}
         >
             <div className="guide-step__header">
-                <span className="guide-step__num">{step.id}</span>
+                <span className="guide-step__num">{step.id || String(index + 1).padStart(2, '0')}</span>
                 <div>
                     <h3 className="guide-step__title">{step.title}</h3>
                     <span className="guide-step__vm">{step.vm}</span>
                 </div>
             </div>
 
+            {step.text && <p className="guide-step__text" style={{ marginBottom: '1rem' }}>{step.text}</p>}
             {step.explanation && <p className="guide-step__text">{step.explanation}</p>}
+
+            {step.steps && (
+                <ul className="guide-step__list">
+                    {step.steps.map((s, i) => <li key={i}>{s}</li>)}
+                </ul>
+            )}
+
             {step.command && <CodeBlock code={`$ ${step.command}`} />}
 
             {step.commands && step.commands.map((c, i) => (
@@ -46,11 +55,52 @@ function Step({ step, index }) {
                 </>
             )}
 
-            <div className="guide-step__result">
-                <span className="guide-step__result-label">Salida esperada</span>
-                <CodeBlock code={step.expectedOutput} />
-                <p className="guide-step__result-text">{step.outputExplanation}</p>
-            </div>
+            {step.expectedOutput && (
+                <div className="guide-step__result">
+                    <span className="guide-step__result-label">Salida esperada</span>
+                    <CodeBlock code={step.expectedOutput} />
+                    <p className="guide-step__result-text">{step.outputExplanation}</p>
+                </div>
+            )}
+
+            {step.tablePrompt && (
+                <div className="guide-step__table-prompt">
+                    <p className="guide-step__text guide-step__text--prompt">Completar la siguiente tabla según el análisis en Wireshark:</p>
+                    <div className="guide-table-wrapper">
+                        <table className="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Dato Solicitado</th>
+                                    <th>Respuesta / Valor Capturado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {step.tablePrompt.fields.map((field, i) => (
+                                    <tr key={i}>
+                                        <td className="guide-table__label">
+                                            <strong>{field.label}</strong>
+                                            <span>{field.desc}</span>
+                                        </td>
+                                        <td className="guide-table__input">
+                                            <input
+                                                type="text"
+                                                className="guide-table__input-field"
+                                                placeholder="Ingresa tu respuesta..."
+                                            />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
+
+            {step.simulationLink && (
+                <div className="guide-step__sim">
+                    <NetworkSimulation type={step.simulationLink} />
+                </div>
+            )}
         </motion.div>
     );
 }
@@ -97,15 +147,19 @@ export default function GuideView({ lab }) {
 
             {/* ── INTRODUCCIÓN ───────────────────────────────── */}
             <Section title="Introducción">
-                <div className="guide-intro-grid">
-                    {introCards.map(c => (
-                        <div key={c.key} className="guide-intro-card">
-                            <Icon name={c.icon} size={22} color="#00d4ff" />
-                            <h3>{c.title}</h3>
-                            <p style={{ whiteSpace: 'pre-line' }}>{guide.intro[c.key]}</p>
-                        </div>
-                    ))}
-                </div>
+                {typeof guide.intro === 'string' ? (
+                    <p className="guide-step__text" style={{ fontSize: '0.95rem' }}>{guide.intro}</p>
+                ) : (
+                    <div className="guide-intro-grid">
+                        {introCards.map(c => (
+                            <div key={c.key} className="guide-intro-card">
+                                <Icon name={c.icon} size={22} color="#00d4ff" />
+                                <h3>{c.title}</h3>
+                                <p style={{ whiteSpace: 'pre-line' }}>{guide.intro[c.key]}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </Section>
 
             {/* ── TECNOLOGÍAS ────────────────────────────────── */}
@@ -123,82 +177,92 @@ export default function GuideView({ lab }) {
             )}
 
             {/* ── ESCENARIO ──────────────────────────────────── */}
-            <Section title="Escenario del Laboratorio" desc={guide.scenario.description}>
-                <div className="guide-scenario">
-                    {guide.scenario.vms.map((vm, i) => (
-                        <div key={vm.name} className="guide-vm-card">
-                            <div className="guide-vm-card__header">
-                                <div className="guide-vm-card__left">
-                                    <Icon name={i === 0 ? 'monitor' : 'server'} size={18} color="#00d4ff" />
-                                    <span className="guide-vm-card__name">{vm.name}</span>
+            {guide.scenario && (
+                <Section title="Escenario del Laboratorio" desc={guide.scenario.description}>
+                    <div className="guide-scenario">
+                        {guide.scenario.vms.map((vm, i) => (
+                            <div key={vm.name} className="guide-vm-card">
+                                <div className="guide-vm-card__header">
+                                    <div className="guide-vm-card__left">
+                                        <Icon name={i === 0 ? 'monitor' : 'server'} size={18} color="#00d4ff" />
+                                        <span className="guide-vm-card__name">{vm.name}</span>
+                                    </div>
+                                    <span className="guide-vm-card__ip">{vm.ip}</span>
                                 </div>
-                                <span className="guide-vm-card__ip">{vm.ip}</span>
+                                <p className="guide-vm-card__role">{vm.role}</p>
+                                <p className="guide-vm-card__desc">{vm.desc}</p>
                             </div>
-                            <p className="guide-vm-card__role">{vm.role}</p>
-                            <p className="guide-vm-card__desc">{vm.desc}</p>
+                        ))}
+                        <div className="guide-vm-connector">
+                            <div className="guide-vm-connector__line" />
+                            <span className="guide-vm-connector__label">Red NFS · TCP/IP</span>
+                            <div className="guide-vm-connector__line" />
                         </div>
-                    ))}
-                    <div className="guide-vm-connector">
-                        <div className="guide-vm-connector__line" />
-                        <span className="guide-vm-connector__label">Red NFS · TCP/IP</span>
-                        <div className="guide-vm-connector__line" />
                     </div>
-                </div>
-            </Section>
+                </Section>
+            )}
 
             {/* ── ARQUITECTURA ───────────────────────────────── */}
             {guide.labArchitecture && (
-                <Section title="Arquitectura del Laboratorio">
+                <Section title="Arquitectura del Laboratorio" desc={guide.labArchitecture.desc}>
                     <div className="guide-arch">
-                        {/* Client node */}
-                        <div className="guide-arch-node guide-arch-node--client">
-                            <div className="guide-arch-node__icon">
-                                <Icon name="monitor" size={24} color="#00d4ff" />
-                            </div>
-                            <div className="guide-arch-node__body">
-                                <span className="guide-arch-node__label">Cliente</span>
-                                <strong className="guide-arch-node__name">{guide.labArchitecture.client.name}</strong>
-                                <code className="guide-arch-node__ip">{guide.labArchitecture.client.ip}</code>
-                                <div className="guide-arch-node__pkgs">
-                                    {guide.labArchitecture.client.packages.map(p => (
-                                        <span key={p} className="guide-arch-pkg">{p}</span>
-                                    ))}
+                        {guide.labArchitecture.client ? (
+                            <>
+                                {/* Client node */}
+                                <div className="guide-arch-node guide-arch-node--client">
+                                    <div className="guide-arch-node__icon">
+                                        <Icon name="monitor" size={24} color="#00d4ff" />
+                                    </div>
+                                    <div className="guide-arch-node__body">
+                                        <span className="guide-arch-node__label">Cliente</span>
+                                        <strong className="guide-arch-node__name">{guide.labArchitecture.client.name}</strong>
+                                        <code className="guide-arch-node__ip">{guide.labArchitecture.client.ip}</code>
+                                        <div className="guide-arch-node__pkgs">
+                                            {guide.labArchitecture.client.packages.map(p => (
+                                                <span key={p} className="guide-arch-pkg">{p}</span>
+                                            ))}
+                                        </div>
+                                        <div className="guide-arch-node__mount">
+                                            <span className="guide-arch-node__mount-label">Monta en:</span>
+                                            <code>{guide.labArchitecture.client.mounts}</code>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="guide-arch-node__mount">
-                                    <span className="guide-arch-node__mount-label">Monta en:</span>
-                                    <code>{guide.labArchitecture.client.mounts}</code>
-                                </div>
-                            </div>
-                        </div>
 
-                        {/* Connection arrow */}
-                        <div className="guide-arch-conn">
-                            <div className="guide-arch-conn__line" />
-                            <div className="guide-arch-conn__arrow">↕</div>
-                            <span className="guide-arch-conn__label">{guide.labArchitecture.connection}</span>
-                            <div className="guide-arch-conn__line" />
-                        </div>
+                                {/* Connection arrow */}
+                                <div className="guide-arch-conn">
+                                    <div className="guide-arch-conn__line" />
+                                    <div className="guide-arch-conn__arrow">↕</div>
+                                    <span className="guide-arch-conn__label">{guide.labArchitecture.connection}</span>
+                                    <div className="guide-arch-conn__line" />
+                                </div>
 
-                        {/* Server node */}
-                        <div className="guide-arch-node guide-arch-node--server">
-                            <div className="guide-arch-node__icon">
-                                <Icon name="server" size={24} color="#00d4ff" />
-                            </div>
-                            <div className="guide-arch-node__body">
-                                <span className="guide-arch-node__label">Servidor</span>
-                                <strong className="guide-arch-node__name">{guide.labArchitecture.server.name}</strong>
-                                <code className="guide-arch-node__ip">{guide.labArchitecture.server.ip}</code>
-                                <div className="guide-arch-node__pkgs">
-                                    {guide.labArchitecture.server.packages.map(p => (
-                                        <span key={p} className="guide-arch-pkg">{p}</span>
-                                    ))}
+                                {/* Server node */}
+                                <div className="guide-arch-node guide-arch-node--server">
+                                    <div className="guide-arch-node__icon">
+                                        <Icon name="server" size={24} color="#00d4ff" />
+                                    </div>
+                                    <div className="guide-arch-node__body">
+                                        <span className="guide-arch-node__label">Servidor</span>
+                                        <strong className="guide-arch-node__name">{guide.labArchitecture.server.name}</strong>
+                                        <code className="guide-arch-node__ip">{guide.labArchitecture.server.ip}</code>
+                                        <div className="guide-arch-node__pkgs">
+                                            {guide.labArchitecture.server.packages.map(p => (
+                                                <span key={p} className="guide-arch-pkg">{p}</span>
+                                            ))}
+                                        </div>
+                                        <div className="guide-arch-node__mount">
+                                            <span className="guide-arch-node__mount-label">Exporta:</span>
+                                            <code>{guide.labArchitecture.server.exports}</code>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="guide-arch-node__mount">
-                                    <span className="guide-arch-node__mount-label">Exporta:</span>
-                                    <code>{guide.labArchitecture.server.exports}</code>
-                                </div>
+                            </>
+                        ) : (
+                            <div className="guide-arch-simple" style={{ width: '100%', textAlign: 'center', padding: '2rem', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.1)' }}>
+                                <code style={{ color: '#50fa7b', fontSize: '1rem' }}>{guide.labArchitecture.diagram}</code>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </Section>
             )}
@@ -304,8 +368,14 @@ export default function GuideView({ lab }) {
                                 transition={{ delay: i * 0.07 }}>
                                 <div className="guide-learning-dot" />
                                 <div>
-                                    <strong className="guide-learning-concept">{l.concept}</strong>
-                                    <p className="guide-learning-desc">{l.desc}</p>
+                                    {typeof l === 'string' ? (
+                                        <p className="guide-learning-desc" style={{ color: '#E2E8F0', marginTop: 0 }}>{l}</p>
+                                    ) : (
+                                        <>
+                                            <strong className="guide-learning-concept">{l.concept}</strong>
+                                            <p className="guide-learning-desc">{l.desc}</p>
+                                        </>
+                                    )}
                                 </div>
                             </motion.div>
                         ))}
@@ -341,9 +411,9 @@ export default function GuideView({ lab }) {
                 <Icon name="checkCircle" size={36} color="#00d4ff" />
                 <h2>Laboratorio completado</h2>
                 <p>
-                    Has configurado exitosamente un servidor NFS en Ubuntu usando dos máquinas virtuales.
-                    Puedes expandir el laboratorio montando el recurso automáticamente en el arranque
-                    agregando una línea en <code>/etc/fstab</code> del cliente.
+                    Has finalizado exitosamente todas las actividades de esta guía.
+                    Revisa que hayas respondido a todos los prompts solicitados y exporta la documentación
+                    si es requerido por tu instructor.
                 </p>
             </section>
 
