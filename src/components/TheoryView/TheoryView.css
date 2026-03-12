@@ -142,6 +142,88 @@
     color: #00d4ff;
 }
 
+.theory-list--large {
+    font-size: 1.05rem;
+    gap: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Processes (Step by Step) ── */
+.theory-process {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.theory-process__steps {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.theory-step {
+    display: flex;
+    gap: 1rem;
+    background: rgba(0, 212, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.theory-step:hover {
+    transform: translateX(4px);
+    background: rgba(0, 212, 255, 0.06);
+}
+
+.theory-step__num {
+    background: #00d4ff;
+    color: #080808;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.theory-step__content h4 {
+    margin: 0 0 0.3rem 0;
+    color: #fff;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.theory-step__sender {
+    font-size: 0.75rem;
+    color: #00d4ff;
+    font-weight: 600;
+    background: rgba(0, 212, 255, 0.15);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+}
+
+.theory-step__content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+}
+
+.theory-process__sim {
+    flex: 1;
+    min-width: 300px;
+}
+
 /* ── Pros & Cons Card ── */
 .theory-proscons {
     background: rgba(255, 255, 255, 0.02);

@@ -16,6 +16,74 @@ export const subjects = [
         topics: ['TCP/IP', 'Protocolos', 'Linux', 'Servidores', 'Networking'],
         labs: [
             {
+                id: 'dhcp-teoria',
+                title: 'DHCP — Asignación automática de direcciones IP',
+                subtitle: 'Configuración de red sin intervención manual',
+                type: 'Teoría',
+                difficulty: 'Básico',
+                duration: '15–20 min',
+                tags: ['Teoría', 'DHCP', 'Redes', 'IPv4'],
+                content: {
+                    intro: 'En las redes modernas, la asignación manual de direcciones IP a cada dispositivo no es práctica ni escalable. DHCP (Dynamic Host Configuration Protocol) soluciona este problema permitiendo que los dispositivos obtengan automáticamente su configuración de red al conectarse. Esto no solo entrega direcciones IP, sino también información vital como la máscara de subred, el gateway predeterminado y los servidores DNS.',
+                    models: {
+                        dhcpConcept: {
+                            title: '¿Qué es DHCP?',
+                            whatIs: 'El Protocolo de Configuración Dinámica de Host (DHCP) es un protocolo de red de tipo cliente-servidor que asigna dinámicamente direcciones IP y otros parámetros de configuración de red a los dispositivos, permitiéndoles comunicarse sin intervención de un administrador.',
+                            howWorks: 'Opera en la Capa de Aplicación del modelo TCP/IP. Utiliza el protocolo UDP para la transferencia de datos, operando específicamente en los puertos 67 (para el Servidor DHCP) y 68 (para el Cliente DHCP).',
+                            examples: ['Redes domésticas (Routers WiFi)', 'Redes empresariales corporativas', 'Proveedores de Internet (ISP)', 'Centros de datos y Cloud'],
+                            pros: [
+                                'Automatización completa de la configuración de red.',
+                                'Reducción drástica de errores humanos (ej. conflictos de IPs duplicadas).',
+                                'Administración centralizada y simplificada.',
+                                'Reutilización eficiente de direcciones IP (Garantía o Lease time).',
+                            ],
+                            cons: [
+                                'Dependencia crítica del servidor DHCP (si cae, los nuevos clientes no obtienen red).',
+                                'Riesgos de seguridad como el Rogue DHCP Server (un servidor DHCP malicioso asignando configuraciones falsas).',
+                                'Posibles conflictos si se combina descuidadamente con IPs estáticas.',
+                            ],
+                        }
+                    },
+                    dhcpProcess: {
+                        title: 'El proceso de asignación DORA',
+                        desc: 'Cuando un cliente se conecta a la red sin una IP configurada estáticamente, inicia un proceso de negociación de 4 pasos conocido como DORA:',
+                        steps: [
+                            {
+                                name: 'Discover',
+                                sender: 'Cliente',
+                                action: 'El cliente envía un mensaje de difusión (broadcast) al puerto 67 buscando un servidor DHCP disponible.'
+                            },
+                            {
+                                name: 'Offer',
+                                sender: 'Servidor',
+                                action: 'El servidor recibe el broadcast y responde (unicast o broadcast) con una oferta de dirección IP y configuración.'
+                            },
+                            {
+                                name: 'Request',
+                                sender: 'Cliente',
+                                action: 'El cliente recibe la oferta y envía una petición formal (broadcast) al servidor para aceptar la IP ofrecida.'
+                            },
+                            {
+                                name: 'Acknowledge',
+                                sender: 'Servidor',
+                                action: 'El servidor confirma la asignación (ACK) y registra la IP como "prestada" por un tiempo determinado (lease).'
+                            }
+                        ]
+                    },
+                    dhcpConfig: {
+                        title: 'Infomación que entrega DHCP',
+                        items: [
+                            'Dirección IP asignada al dispositivo.',
+                            'Máscara de subred (determina la red local).',
+                            'Gateway predeterminado (enrutador para salir a Internet).',
+                            'Servidores DNS (para resolver nombres de dominio).',
+                            'Tiempo de concesión (Lease Time, duración del préstamo de la IP).'
+                        ]
+                    },
+                    conclusion: 'DHCP es un pilar fundamental e invisible en la administración de redes modernas. Al automatizar la configuración del direccionamiento, permite que millones de dispositivos —desde smartphones hasta servidores cloud— se conecten a redes complejas de forma casi instantánea mediante el rápido proceso DORA (Discover, Offer, Request, Acknowledge).',
+                }
+            },
+            {
                 id: 'modelos-comunicacion',
                 title: 'Modelos de Comunicación en Redes',
                 subtitle: 'Cliente-Servidor vs Peer-to-Peer',

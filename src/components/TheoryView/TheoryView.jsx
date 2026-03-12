@@ -61,85 +61,96 @@ export default function TheoryView({ lab }) {
                 <p className="theory-text">{content.intro}</p>
             </Section>
 
-            {/* ── MODELO CLIENTE-SERVIDOR ────────────────────── */}
-            <Section title={content.models.clientServer.title}>
-                <div className="theory-model">
-                    <div className="theory-model__text">
-                        <h3>¿Qué es?</h3>
-                        <p>{content.models.clientServer.whatIs}</p>
+            {/* ── SECCIONES DINÁMICAS ────────────────────────────── */}
 
-                        <h3>¿Cómo funciona?</h3>
-                        <p>{content.models.clientServer.howWorks}</p>
+            {/* Si existe la sección de Modelos (C/S vs P2P) */}
+            {content.models && Object.entries(content.models).map(([key, model], idx) => (
+                <Section key={key} title={model.title}>
+                    <div className="theory-model">
+                        <div className="theory-model__text">
+                            <h3>¿Qué es?</h3>
+                            <p>{model.whatIs}</p>
 
-                        <h3>Ejemplos de uso</h3>
-                        <ul className="theory-list theory-list--cyan">
-                            {content.models.clientServer.examples.map((ex, i) => <li key={i}>{ex}</li>)}
-                        </ul>
+                            <h3>¿Cómo funciona?</h3>
+                            <p>{model.howWorks}</p>
+
+                            <h3>Ejemplos de uso</h3>
+                            <ul className="theory-list theory-list--cyan">
+                                {model.examples.map((ex, i) => <li key={i}>{ex}</li>)}
+                            </ul>
+                        </div>
+
+                        {/* Simulación SVG */}
+                        <div className="theory-model__sim">
+                            {/* Renderizar simulaciones específicas según la key o type */}
+                            <NetworkSimulation type={key === 'clientServer' ? 'client-server' : (key === 'p2p' ? 'p2p' : 'dhcp')} />
+                        </div>
                     </div>
 
-                    <div className="theory-model__sim">
-                        <NetworkSimulation type="client-server" />
-                    </div>
-                </div>
+                    <ProsConsCard
+                        title={`Análisis de ${model.title}`}
+                        pros={model.pros}
+                        cons={model.cons}
+                    />
+                </Section>
+            ))}
 
-                <ProsConsCard
-                    title="Análisis del Modelo Cliente-Servidor"
-                    pros={content.models.clientServer.pros}
-                    cons={content.models.clientServer.cons}
-                />
-            </Section>
-
-            {/* ── MODELO P2P ─────────────────────────────────── */}
-            <Section title={content.models.p2p.title}>
-                <div className="theory-model">
-                    <div className="theory-model__text">
-                        <h3>¿Qué es?</h3>
-                        <p>{content.models.p2p.whatIs}</p>
-
-                        <h3>¿Cómo funciona?</h3>
-                        <p>{content.models.p2p.howWorks}</p>
-
-                        <h3>Ejemplos de uso</h3>
-                        <ul className="theory-list theory-list--cyan">
-                            {content.models.p2p.examples.map((ex, i) => <li key={i}>{ex}</li>)}
-                        </ul>
-                    </div>
-
-                    <div className="theory-model__sim">
-                        <NetworkSimulation type="p2p" />
-                    </div>
-                </div>
-
-                <ProsConsCard
-                    title="Análisis del Modelo Peer-to-Peer"
-                    pros={content.models.p2p.pros}
-                    cons={content.models.p2p.cons}
-                />
-            </Section>
-
-            {/* ── COMPARACIÓN ────────────────────────────────── */}
-            <Section title="Tabla Comparativa">
-                <div className="theory-table-wrapper">
-                    <table className="theory-table">
-                        <thead>
-                            <tr>
-                                <th>Aspecto</th>
-                                <th>Cliente-Servidor</th>
-                                <th>Peer-to-Peer (P2P)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {content.comparison.map((row, i) => (
-                                <tr key={i}>
-                                    <td className="theory-table__aspect">{row.aspect}</td>
-                                    <td>{row.cs}</td>
-                                    <td>{row.p2p}</td>
-                                </tr>
+            {/* Si existe un proceso por pasos (ej. DORA Handshake en DHCP) */}
+            {content.dhcpProcess && (
+                <Section title={content.dhcpProcess.title} desc={content.dhcpProcess.desc}>
+                    <div className="theory-process">
+                        <div className="theory-process__steps">
+                            {content.dhcpProcess.steps.map((step, idx) => (
+                                <div key={idx} className="theory-step">
+                                    <div className="theory-step__num">{idx + 1}</div>
+                                    <div className="theory-step__content">
+                                        <h4>{step.name} <span className="theory-step__sender">({step.sender})</span></h4>
+                                        <p>{step.action}</p>
+                                    </div>
+                                </div>
                             ))}
-                        </tbody>
-                    </table>
-                </div>
-            </Section>
+                        </div>
+                        <div className="theory-process__sim">
+                            <NetworkSimulation type="dhcp" />
+                        </div>
+                    </div>
+                </Section>
+            )}
+
+            {/* Si existe lista de configuraciones / items (ej. DHCP config info) */}
+            {content.dhcpConfig && (
+                <Section title={content.dhcpConfig.title}>
+                    <ul className="theory-list theory-list--cyan theory-list--large">
+                        {content.dhcpConfig.items.map((item, i) => <li key={i}>{item}</li>)}
+                    </ul>
+                </Section>
+            )}
+
+            {/* ── TABLA COMPARATIVA (Opcional) ───────────────────── */}
+            {content.comparison && (
+                <Section title="Tabla Comparativa">
+                    <div className="theory-table-wrapper">
+                        <table className="theory-table">
+                            <thead>
+                                <tr>
+                                    <th>Aspecto</th>
+                                    <th>Cliente-Servidor</th>
+                                    <th>Peer-to-Peer (P2P)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {content.comparison.map((row, i) => (
+                                    <tr key={i}>
+                                        <td className="theory-table__aspect">{row.aspect}</td>
+                                        <td>{row.cs}</td>
+                                        <td>{row.p2p}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </Section>
+            )}
 
             {/* ── CONCLUSIÓN ─────────────────────────────────── */}
             <section className="theory-section theory-conclusion">

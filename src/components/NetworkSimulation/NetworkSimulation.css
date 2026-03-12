@@ -331,3 +331,102 @@
         transform: translate(200px, 60px);
     }
 }
+
+
+/* ── DHCP Animations (DORA Handshake) ── */
+
+.dhcp-msg {
+    transition: opacity 0.2s ease;
+}
+
+/* 1. DISCOVER: Client -> Broadcast */
+.dhcp-msg--discover {
+    animation: msgDiscover 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes msgDiscover {
+    0% {
+        opacity: 1;
+        transform: translate(100px, 150px);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translate(400px, 150px);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        transform: translate(400px, 150px);
+    }
+}
+
+/* 2. OFFER: Server -> Client */
+.dhcp-msg--offer {
+    animation: msgOffer 2s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
+}
+
+@keyframes msgOffer {
+    0% {
+        opacity: 1;
+        transform: translate(400px, 150px);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translate(100px, 150px);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        transform: translate(100px, 150px);
+    }
+}
+
+/* 3. REQUEST: Client -> Server */
+.dhcp-msg--request {
+    animation: msgRequest 2s cubic-bezier(0.4, 0, 0.2, 1) 4s forwards;
+}
+
+@keyframes msgRequest {
+    0% {
+        opacity: 1;
+        transform: translate(100px, 150px);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translate(400px, 150px);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        transform: translate(400px, 150px);
+    }
+}
+
+/* 4. ACK: Server -> Client */
+.dhcp-msg--ack {
+    animation: msgAck 2s cubic-bezier(0.4, 0, 0.2, 1) 6s forwards;
+}
+
+@keyframes msgAck {
+    0% {
+        opacity: 1;
+        transform: translate(400px, 150px);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translate(100px, 150px);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        transform: translate(100px, 150px);
+    }
+}
