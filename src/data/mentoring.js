@@ -1,8 +1,9 @@
 // ─────────────────────────────────────────────────────────────
 //  Mentoring Data — Subjects → Labs → Guide
-//  Add new subjects to the `subjects` array.
-//  Add new labs to any subject's `labs` array.
+//  Labs → Guide
 // ─────────────────────────────────────────────────────────────
+
+import red1lab2img from '../assets/red1lab2.png';
 
 export const subjects = [
     {
@@ -568,6 +569,123 @@ Hola desde VM1 - cliente NFS`,
                         'Cómo filtrar tráfico masivo usando sintaxis de Wireshark (bootp, icmp, dns, tcp.port).',
                         'Cómo identificar el mapeo entre capas desde Ethernet (MAC) hasta Aplicación (HTTP).',
                         'Cómo diagnosticar visualmente la salud de una conexión TCP y DNS.',
+                    ],
+                },
+            },
+            {
+                id: 'pt-lan-estatica',
+                title: 'Configuración de una Red Local con Direcciones IP Estáticas en Packet Tracer',
+                subtitle: 'Red LAN con IP Estáticas en Packet Tracer',
+                type: 'Laboratorio',
+                difficulty: 'Básico',
+                duration: '30–45 min',
+                tags: ['Networking', 'Packet Tracer', 'LAN', 'IPv4', 'Static IP'],
+                guide: {
+                    intro: 'Una red LAN (Local Area Network) es una red de computadoras que abarca un área local, como una casa, oficina o grupo de edificios, y se utiliza para conectar dispositivos físicos entre sí. Cisco Packet Tracer es una potente herramienta de simulación de red que nos permite estudiar y construir modelos estructurados visualmente sin necesidad de cablear hardware real.',
+                    objectives: [
+                        'Construir una topología básica de red local con 8 hosts.',
+                        'Configurar direcciones IPv4 estáticas manualmente de acuerdo a un plan.',
+                        'Comprender el funcionamiento de una red local conectada a un switch.',
+                        'Verificar conectividad entre distintos hosts usando paquetes ICMP (ping).',
+                    ],
+                    technologies: [
+                        { name: 'Cisco Packet Tracer', icon: 'tool' },
+                        { name: 'LAN Networking', icon: 'server' },
+                    ],
+                    labArchitecture: {
+                        image: red1lab2img,
+                        diagram: 'Router1\n  ↓\nSwitch1\n  ↓\nPC0 – PC7',
+                        desc: 'Topología con 1 Router, 1 Switch y 8 computadoras conectadas a la misma red: 192.168.0.0/24.',
+                    },
+                    steps: [
+                        {
+                            id: '01',
+                            title: 'Tabla de direccionamiento IP',
+                            text: 'A continuación se muestra la dirección IP, máscara de subred y puerta de enlace predeterminada que cada dispositivo debe tener asignado en tu topología.',
+                            dataTable: {
+                                headers: ['Dispositivo', 'Dirección IP', 'Máscara', 'Gateway'],
+                                rows: [
+                                    ['PC0', '192.168.0.2', '255.255.255.0', '192.168.0.1'],
+                                    ['PC1', '192.168.0.3', '255.255.255.0', '192.168.0.1'],
+                                    ['PC2', '192.168.0.4', '255.255.255.0', '192.168.0.1'],
+                                    ['PC3', '192.168.0.5', '255.255.255.0', '192.168.0.1'],
+                                    ['PC4', '192.168.0.6', '255.255.255.0', '192.168.0.1'],
+                                    ['PC5', '192.168.0.7', '255.255.255.0', '192.168.0.1'],
+                                    ['PC6', '192.168.0.8', '255.255.255.0', '192.168.0.1'],
+                                    ['PC7', '192.168.0.9', '255.255.255.0', '192.168.0.1'],
+                                    ['Router1', '192.168.0.1', '255.255.255.0', '—'],
+                                ]
+                            }
+                        },
+                        {
+                            id: '02',
+                            title: 'Construcción de la red en Packet Tracer',
+                            text: 'Sigue estos pasos para arrastrar todos los elementos al escritorio de Packet Tracer y cablearlos.',
+                            steps: [
+                                'Abre Cisco Packet Tracer en tu computadora.',
+                                'En la categoría de Network Devices (abajo a la izquierda), selecciona Routers y arrastra un Router a la parte superior de tu diseño.',
+                                'En la misma categoría, selecciona Switches y arrastra un Switch (ej. 2960) al área central debajo del router.',
+                                'Cambia a la categoría End Devices, selecciona PC y arrastra 8 computadoras distribuyéndolas alrededor del switch.',
+                                'Ve a Connections (el rayo). Utiliza cables directos (Copper Straight-Through, el rayo negro continuo) para conectar la interfaz GigabitEthernet del Router a un puerto Gigabit o FastEthernet del Switch.',
+                                'Usa los mismos cables Copper Straight-Through para conectar las interfaces FastEthernet de cada PC a los demás puertos del Switch.'
+                            ]
+                        },
+                        {
+                            id: '03',
+                            title: 'Configuración de encendido del Router',
+                            text: 'El router, por defecto, viene con sus puertos apagados. Encenderemos su interfaz y de paso le daremos su número IP. Abre la pestaña CLI del router y usa estos comandos:',
+                            commands: [
+                                { cmd: 'enable', desc: 'Ingresar al modo privilegiado.' },
+                                { cmd: 'configure terminal', desc: 'Entrar al modo de configuración.' },
+                                { cmd: 'interface gigabitEthernet0/0', desc: 'Acceder a la configuración de la interfaz que conectamos al switch.' },
+                                { cmd: 'ip address 192.168.0.1 255.255.255.0', desc: 'Asignarle manualmente su IP (según la tabla) y su máscara /24.' },
+                                { cmd: 'no shutdown', desc: 'Encender el puerto para levantar el enlace local.' },
+                                { cmd: 'exit', desc: 'Salir de la configuración.' }
+                            ]
+                        },
+                        {
+                            id: '04',
+                            title: 'Configuración de direcciones IP en los hosts',
+                            text: 'A continuación, configuraremos las IP estáticas definidas en la Tabla de Direccionamiento de nuestro paso 1.',
+                            steps: [
+                                'Haz un solo clic sobre PC0 para abrir su panel.',
+                                'Ve a la pestaña Desktop y haz clic en IP Configuration.',
+                                'En IP Address ingresa su respectiva IP: 192.168.0.2',
+                                'Al hacer clic en Subnet Mask, ésta se llenará automáticamente con: 255.255.255.0',
+                                'En Default Gateway ingresa la IP que le dimos al router: 192.168.0.1',
+                                'Cierra la ventana. Repite el mismo proceso exacto con las otras 7 computadoras asegurándote de usar su IP (.3, .4, .5...) según la tabla.'
+                            ]
+                        },
+                        {
+                            id: '05',
+                            title: 'Verificación de conectividad con Ping',
+                            text: 'El comando ping nos permite enviar paquetes a otro nodo y esperar confirmación. Comprobaremos que nuestras computadoras puedan conectarse entre sí.',
+                            explanation: 'Abre la Command Prompt (CMD) dentro de la pestaña Desktop en la PC0 e intenta realizar ping a la PC3.',
+                            command: 'ping 192.168.0.5',
+                            expectedOutput: `Pinging 192.168.0.5 with 32 bytes of data:
+
+Reply from 192.168.0.5: bytes=32 time=1ms TTL=128
+Reply from 192.168.0.5: bytes=32 time=1ms TTL=128
+Reply from 192.168.0.5: bytes=32 time=1ms TTL=128
+Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
+                            outputExplanation: 'La respuesta "Reply from" indicando que no se perdieron paquetes constata que los nodos están en la misma red exitosamente. Repite la prueba haciendo un ping hacia la dirección del Router para confirmar la conectividad global: ping 192.168.0.1'
+                        },
+                        {
+                            id: '06',
+                            title: 'Prueba de red completa y conclusión',
+                            text: 'Si todo ha sido ejecutado correctamente, habremos validado los conocimientos propuestos en este laboratorio.',
+                            steps: [
+                                'Prueba de PC0 → PC7',
+                                'Prueba de PC3 → PC5',
+                                'Prueba de PC1 → PC6'
+                            ]
+                        }
+                    ],
+                    learnings: [
+                        'Construcción visual y lógica de una red LAN a través de simuladores.',
+                        'Configuración de direcciones IP estáticas en terminales (Hosts).',
+                        'Uso de la línea de comandos básica (CLI) de Cisco IOS en el Router.',
+                        'Pruebas y trazabilidad de conectividad con el protocolo ICMP (Ping).'
                     ],
                 },
             },

@@ -63,6 +63,29 @@ function Step({ step, index }) {
                 </div>
             )}
 
+            {step.dataTable && (
+                <div className="guide-table-wrapper guide-table-wrapper--readonly" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+                    <table className="guide-table">
+                        <thead>
+                            <tr>
+                                {step.dataTable.headers.map((h, i) => (
+                                    <th key={i}>{h}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {step.dataTable.rows.map((row, i) => (
+                                <tr key={i}>
+                                    {row.map((cell, j) => (
+                                        <td key={j} style={{ color: '#fff', fontSize: '0.9rem' }}>{cell}</td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+
             {step.tablePrompt && (
                 <div className="guide-step__table-prompt">
                     <p className="guide-step__text guide-step__text--prompt">Completar la siguiente tabla según el análisis en Wireshark:</p>
@@ -258,9 +281,14 @@ export default function GuideView({ lab }) {
                                     </div>
                                 </div>
                             </>
+                        ) : guide.labArchitecture.image ? (
+                            <div className="guide-arch-image" style={{ width: '100%', textAlign: 'center', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '8px', padding: '1rem' }}>
+                                <img src={guide.labArchitecture.image} alt="Topología Lab" style={{ maxWidth: '100%', borderRadius: '4px' }} />
+                                {guide.labArchitecture.diagram && <code style={{ display: 'block', marginTop: '1rem', color: '#50fa7b', fontSize: '0.9rem' }}>{guide.labArchitecture.diagram}</code>}
+                            </div>
                         ) : (
                             <div className="guide-arch-simple" style={{ width: '100%', textAlign: 'center', padding: '2rem', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.1)' }}>
-                                <code style={{ color: '#50fa7b', fontSize: '1rem' }}>{guide.labArchitecture.diagram}</code>
+                                <code style={{ color: '#50fa7b', fontSize: '1rem', whiteSpace: 'pre-wrap' }}>{guide.labArchitecture.diagram}</code>
                             </div>
                         )}
                     </div>
