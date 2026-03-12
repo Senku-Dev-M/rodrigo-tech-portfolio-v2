@@ -1036,6 +1036,125 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                     ],
                 },
             },
+            // ── Scrum Theory ────────────────────────────────────────
+            {
+                id: 'intro-scrum',
+                title: 'Scrum — Metodología Ágil para el Desarrollo de Software',
+                subtitle: 'Framework ágil para desarrollar productos complejos mediante iteraciones cortas y colaboración continua',
+                type: 'Teoría',
+                difficulty: 'Básico / Intermedio',
+                duration: '20–30 min',
+                tags: ['Scrum', 'Agile', 'Software Development', 'Project Management'],
+                content: {
+                    intro: 'Los equipos de desarrollo de software durante décadas intentaron construir productos siguiendo planes rígidos y largos: definir todo, luego diseñar todo, luego programar todo. El problema: los requisitos cambian, los clientes cambian de opinión y el mundo cambia. Las <strong>metodologías ágiles</strong> nacieron como respuesta a este problema, priorizando la adaptabilidad, la colaboración y la entrega continua de valor sobre la documentación exhaustiva y los planes inflexibles. Scrum es el framework ágil más utilizado en la industria.',
+                    sections: [
+                        {
+                            type: 'text',
+                            title: '¿Qué es Scrum?',
+                            content: 'Scrum es un <strong>framework liviano</strong> para desarrollar y mantener productos complejos. No es una metodología completa ni un proceso rígido: es un conjunto de reglas, roles, eventos y artefactos diseñados para que los equipos puedan trabajar de forma iterativa, colaborativa y con capacidad de adaptación.\n\nFue definido formalmente por Jeff Sutherland y Ken Schwaber en la década de 1990. Su nombre proviene del rugby: en Scrum, todos los integrantes del equipo trabajan juntos, se apoyan mutuamente y avanzan como una unidad hacia el objetivo.\n\nLos cuatro principios clave de Scrum son: el <strong>trabajo iterativo</strong> (dividir el trabajo en ciclos cortos llamados Sprints), la <strong>colaboración continua</strong> (el equipo trabaja junto todos los días), las <strong>entregas incrementales</strong> (cada Sprint debe producir un incremento de producto funcional) y la <strong>mejora continua</strong> (el equipo reflexiona regularmente sobre cómo mejorar).',
+                        },
+                        {
+                            type: 'text',
+                            title: 'Roles en Scrum',
+                            content: '<strong>Product Owner (PO)</strong> — Es el responsable de maximizar el valor del producto. Define qué se va a construir y en qué orden. Gestiona el <em>Product Backlog</em>, la lista priorizada de todo el trabajo pendiente. Trabaja de puente entre el negocio y el equipo de desarrollo. No es jefe del equipo, es el responsable del producto.\n\n<strong>Scrum Master</strong> — Es el guardián del proceso Scrum. Se asegura de que el equipo entienda y aplique correctamente Scrum. Elimina impedimentos que bloqueen al equipo, facilita los eventos Scrum y protege al equipo de interrupciones externas. No es un jefe ni un gerente de proyecto: es un <em>servant leader</em>.\n\n<strong>Development Team</strong> — El equipo que construye el producto. Es auto-organizado: decide cómo hacer el trabajo sin que nadie les diga cómo. Es multifuncional: cuenta con todas las habilidades necesarias (diseño, desarrollo, QA) para entregar un incremento completo. El tamaño ideal es de 3 a 9 personas.',
+                        },
+                        {
+                            type: 'process',
+                            title: 'Flujo del Sprint Scrum',
+                            desc: 'Cada Sprint es un ciclo completo que pasa por cinco etapas. Pulsa "Iniciar simulación" para ver cómo fluye el trabajo.',
+                            simType: 'scrum-flow',
+                            steps: [
+                                {
+                                    name: 'Product Backlog',
+                                    sender: 'Product Owner',
+                                    action: 'Lista priorizada de todo el trabajo pendiente del producto. El PO decide qué entra al siguiente Sprint.',
+                                },
+                                {
+                                    name: 'Sprint Planning',
+                                    sender: 'Todo el equipo',
+                                    action: 'El equipo selecciona los ítems del Backlog que completará en el Sprint. Define el objetivo del Sprint y cómo lo va a lograr. Duración: 2-8 horas.',
+                                },
+                                {
+                                    name: 'Sprint (1-4 semanas)',
+                                    sender: 'Development Team',
+                                    action: 'El equipo trabaja para cumplir el Sprint Goal. Cada día hay un Daily Scrum. El Sprint no se puede cancelar ni extender (salvo situaciones excepcionales).',
+                                },
+                                {
+                                    name: 'Sprint Review',
+                                    sender: 'Todo el equipo + stakeholders',
+                                    action: 'El equipo presenta el incremento completado a los stakeholders. Se recibe feedback y se actualiza el Backlog según lo aprendido. Duración: 1-4 horas.',
+                                },
+                                {
+                                    name: 'Sprint Retrospective',
+                                    sender: 'Scrum Team',
+                                    action: 'El equipo reflexiona sobre su proceso de trabajo: qué salió bien, qué puede mejorar y qué acciones concretas tomar en el siguiente Sprint. Duración: 45-180 min.',
+                                },
+                            ],
+                        },
+                        {
+                            type: 'text',
+                            title: 'Eventos de Scrum',
+                            content: '<strong>Sprint</strong> — El corazón de Scrum. Un ciclo de trabajo de duración fija (1 a 4 semanas, generalmente 2). Al terminar, debe existir un incremento de producto potencialmente entregable. Si el objetivo del Sprint se vuelve obsoleto, puede cancelarse (solo el PO puede hacerlo).\n\n<strong>Sprint Planning</strong> — Primera reunión del Sprint. El equipo define el Sprint Goal y selecciona del Backlog los ítems que completará. El equipo responde: ¿Qué entregaremos? ¿Cómo lo haremos? Participan todos.\n\n<strong>Daily Scrum</strong> — Reunión diaria de 15 minutos para el Development Team. Cada miembro responde: ¿Qué hice ayer? ¿Qué haré hoy? ¿Tengo algún impedimento? No es una reunión de reporte, es una sincronización del equipo.\n\n<strong>Sprint Review</strong> — Al final del Sprint, el equipo muestra el trabajo completado a los stakeholders. El objetivo es obtener feedback e inspeccionar el producto. El Backlog se adapta según lo aprendido.\n\n<strong>Sprint Retrospective</strong> — Al final del Sprint, el equipo reflexiona sobre sí mismo: el proceso, las herramientas, las relaciones. Identifica mejoras concretas para el siguiente Sprint.',
+                        },
+                        {
+                            type: 'process',
+                            title: 'Tablero Scrum — Simulación de un Sprint',
+                            desc: 'Observa cómo las tareas avanzan desde el Backlog hasta Done durante el Sprint. Pulsa "Iniciar simulación" para verlo en acción.',
+                            simType: 'scrum-board',
+                            steps: [
+                                {
+                                    name: 'Backlog',
+                                    sender: 'Product Owner',
+                                    action: 'Tareas definidas y priorizadas que esperan ser seleccionadas para el Sprint.',
+                                },
+                                {
+                                    name: 'To Do',
+                                    sender: 'Development Team',
+                                    action: 'Tareas comprometidas para el Sprint actual, listas para comenzar.',
+                                },
+                                {
+                                    name: 'In Progress',
+                                    sender: 'Development Team',
+                                    action: 'Tareas que se están desarrollando activamente por algún miembro del equipo.',
+                                },
+                                {
+                                    name: 'Review',
+                                    sender: 'Development Team + QA',
+                                    action: 'Tareas completadas que están siendo revisadas o probadas antes de marcarse como Done.',
+                                },
+                                {
+                                    name: 'Done',
+                                    sender: 'Scrum Team',
+                                    action: 'Tareas que cumplen la Definition of Done: desarrolladas, probadas y listas para entregar.',
+                                },
+                            ],
+                        },
+                        {
+                            type: 'proscons',
+                            title: 'Scrum — Ventajas y Desafíos',
+                            pros: [
+                                'Entrega rápida de valor: el cliente recibe software funcional desde el primer Sprint.',
+                                'Adaptación al cambio: el Backlog puede reordenarse antes de cada Sprint.',
+                                'Mayor transparencia: el tablero y el Daily Scrum hacen visible el avance del equipo.',
+                                'Mejor comunicación: las ceremonias promueven la colaboración diaria.',
+                                'Detección temprana de problemas gracias a ciclos cortos de feedback.',
+                            ],
+                            cons: [
+                                'Mala gestión del Backlog: si el PO no prioriza bien, el equipo trabaja en lo incorrecto.',
+                                'Roles mal definidos: confundir al Scrum Master con un gerente de proyecto rompe el proceso.',
+                                'Falta de disciplina: los equipos sin experiencia tienden a saltarse retrospectivas o dailies.',
+                                'Difícil escalar: Scrum funciona bien para equipos pequeños; sistemas grandes requieren marcos adicionales (SAFe, LeSS).',
+                            ],
+                        },
+                        {
+                            type: 'text',
+                            title: 'Ejemplo Práctico — Sprint de una App Web',
+                            content: 'Imagina un equipo de 5 personas construyendo una aplicación de gestión de tareas. El <strong>Product Backlog</strong> incluye: Sistema de login, Registro de usuarios, Panel de usuario y Sistema de notificaciones.\n\nEn el <strong>Sprint Planning</strong>, el equipo selecciona "Sistema de login" y "Registro de usuarios" como objetivo del Sprint de 2 semanas. Durante el <strong>Sprint</strong>, cada día el equipo se sincroniza en el Daily Scrum (15 min). A mitad del Sprint, el PO sugiere agregar autenticación con Google — el equipo lo anota en el Backlog pero no lo agrega al Sprint actual.\n\nEn el <strong>Sprint Review</strong>, el equipo demuestra el login funcionando con usuarios reales. Los stakeholders dan feedback positivo y piden que el email de bienvenida sea más personalizado. En la <strong>Retrospectiva</strong>, el equipo identifica que los code reviews tardaban mucho — acordaron hacerlos en menos de 24 horas. El siguiente Sprint comienza con el Backlog actualizado.',
+                        },
+                    ],
+                    conclusion: 'Scrum no es una solución mágica ni una receta perfecta. Es un framework que ayuda a los equipos a aprender más rápido, adaptarse con agilidad y entregar valor de forma continua. Su poder real no está en sus reglas, sino en la cultura que fomenta: colaboración, transparencia y mejora constante. Dominar Scrum es una habilidad esencial para cualquier profesional que trabaje en equipos de desarrollo de software modernos.',
+                },
+            },
         ],
     },
 ];

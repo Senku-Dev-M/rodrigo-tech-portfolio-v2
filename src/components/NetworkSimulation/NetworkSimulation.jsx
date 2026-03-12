@@ -9,6 +9,8 @@ import DNSSim from './simulations/DNSSim';
 import TCPHTTPSim from './simulations/TCPHTTPSim';
 import SDLCSim from './simulations/SDLCSim';
 import GitFlowSim from './simulations/GitFlowSim';
+import ScrumFlowSim from './simulations/ScrumFlowSim';
+import ScrumBoardSim from './simulations/ScrumBoardSim';
 import './NetworkSimulation.css';
 
 export default function NetworkSimulation({ type = 'client-server' }) {
@@ -21,6 +23,8 @@ export default function NetworkSimulation({ type = 'client-server' }) {
             if (type === 'dhcp') timeout = 8500;
             if (type === 'sdlc') timeout = 8500;
             if (type === 'git-flow') timeout = 7000;
+            if (type === 'scrum-flow') timeout = 9000;
+            if (type === 'scrum-board') timeout = 9000;
             if (type === 'tcp-http') timeout = 10000; // Handshake takes longer
 
             const timer = setTimeout(() => setIsPlaying(false), timeout);
@@ -28,7 +32,7 @@ export default function NetworkSimulation({ type = 'client-server' }) {
         }
     }, [isPlaying, type]);
 
-    const isWide = type === 'sdlc' || type === 'git-flow';
+    const isWide = type === 'sdlc' || type === 'git-flow' || type === 'scrum-flow' || type === 'scrum-board';
 
     return (
         <div className="network-sim">
@@ -41,6 +45,8 @@ export default function NetworkSimulation({ type = 'client-server' }) {
                 {type === 'tcp-http' && <TCPHTTPSim isPlaying={isPlaying} />}
                 {type === 'sdlc' && <SDLCSim isPlaying={isPlaying} />}
                 {type === 'git-flow' && <GitFlowSim isPlaying={isPlaying} />}
+                {type === 'scrum-flow' && <ScrumFlowSim isPlaying={isPlaying} />}
+                {type === 'scrum-board' && <ScrumBoardSim isPlaying={isPlaying} />}
             </div>
 
             <button
