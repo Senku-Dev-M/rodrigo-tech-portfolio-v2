@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Icon from '../Icon/Icon';
 import NetworkSimulation from '../NetworkSimulation/NetworkSimulation';
@@ -151,6 +152,93 @@ export default function TheoryView({ lab }) {
                     </div>
                 </Section>
             )}
+
+            {/* ── SECCIONES GENÉRICAS (Escalabilidad) ─────────────── */}
+            {content.sections && content.sections.map((section, sectionIdx) => {
+                if (section.type === 'text') {
+                    return (
+                        <Section key={sectionIdx} title={section.title}>
+                            {section.content.split('\n').map((paragraph, i) => (
+                                <p 
+                                    key={i} 
+                                    className="theory-text" 
+                                    style={{ marginBottom: '1rem' }}
+                                    dangerouslySetInnerHTML={{ __html: paragraph }}
+                                />
+                            ))}
+                        </Section>
+                    );
+                }
+
+                if (section.type === 'process') {
+                    return (
+                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
+                            <div className="theory-process">
+                                <div className="theory-process__steps">
+                                    {section.steps.map((step, idx) => (
+                                        <div key={idx} className="theory-step">
+                                            <div className="theory-step__num">{idx + 1}</div>
+                                            <div className="theory-step__content">
+                                                <h4>{step.name} <span className="theory-step__sender">({step.sender})</span></h4>
+                                                <p>{step.action}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="theory-process__sim">
+                                    {section.simType && <NetworkSimulation type={section.simType} />}
+                                </div>
+                            </div>
+                        </Section>
+                    );
+                }
+
+                if (section.type === 'models') {
+                    return (
+                        <div key={sectionIdx}>
+                            <h2 className="theory-section__title" style={{ marginTop: '2.5rem', marginBottom: '1.5rem' }}>{section.title}</h2>
+                            {section.models.map((model, idx) => (
+                                <div key={idx} style={{ padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '1.5rem' }}>
+                                    <h3 style={{ color: '#00d4ff', fontSize: '1.25rem', marginBottom: '1rem' }}>{model.title}</h3>
+                                    
+                                    <div style={{ marginBottom: '1.25rem' }}>
+                                        <strong style={{ color: '#fff' }}>¿Qué es?</strong>
+                                        <p style={{ color: 'var(--text-grey)', marginTop: '0.25rem' }}>{model.whatIs}</p>
+                                    </div>
+
+                                    <div style={{ marginBottom: '1.25rem' }}>
+                                        <strong style={{ color: '#fff' }}>¿Cómo funciona?</strong>
+                                        <p style={{ color: 'var(--text-grey)', marginTop: '0.25rem' }}>{model.howWorks}</p>
+                                    </div>
+                                    
+                                    {model.examples && (
+                                        <div style={{ marginBottom: '1.25rem' }}>
+                                            <strong style={{ color: '#fff' }}>Ejemplos de uso</strong>
+                                            <ul className="theory-list theory-list--cyan" style={{ marginTop: '0.5rem' }}>
+                                                {model.examples.map((ex, i) => <li key={i}>{ex}</li>)}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {(model.pros && model.cons) && (
+                                        <ProsConsCard title={`Análisis de ${model.title}`} pros={model.pros} cons={model.cons} />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    );
+                }
+
+                if (section.type === 'proscons') {
+                    return (
+                        <Section key={sectionIdx}>
+                            <ProsConsCard title={section.title} pros={section.pros} cons={section.cons} />
+                        </Section>
+                    );
+                }
+
+                return null;
+            })}
 
             {/* ── CONCLUSIÓN ─────────────────────────────────── */}
             <section className="theory-section theory-conclusion">

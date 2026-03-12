@@ -13,30 +13,10 @@ import Icon from '../components/Icon/Icon';
 import { subjects } from '../data/mentoring';
 import './MentoriasPage.css';
 
-// ─── Breadcrumb ─────────────────────────────────────────────
-function Breadcrumb({ view, subject, lab, onNavigate }) {
-    return (
-        <nav className="breadcrumb">
-            <button className={`bc-item ${view === 'subjects' ? 'bc-item--active' : ''}`} onClick={() => onNavigate('subjects')}>
-                Mentoría
-            </button>
-            {subject && (
-                <>
-                    <span className="bc-sep">›</span>
-                    <button className={`bc-item ${view === 'labs' ? 'bc-item--active' : ''}`} onClick={() => onNavigate('labs')}>
-                        {subject.title}
-                    </button>
-                </>
-            )}
-            {lab && (
-                <>
-                    <span className="bc-sep">›</span>
-                    <span className="bc-item bc-item--active">{lab.title}</span>
-                </>
-            )}
-        </nav>
-    );
-}
+import MentoringStats from '../components/Mentorias/MentoringStats';
+import MentoringApproach from '../components/Mentorias/MentoringApproach';
+import MentoringCertifications from '../components/Mentorias/MentoringCertifications';
+import Breadcrumb from '../components/Mentorias/Breadcrumb';
 
 // ─── Page slide animation ────────────────────────────────────
 const slideVariants = {
@@ -44,23 +24,6 @@ const slideVariants = {
     animate: { opacity: 1, x: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
     exit: { opacity: 0, x: -20, transition: { duration: 0.2 } },
 };
-
-// ─── Stats (shown only in subjects view) ────────────────────
-const stats = [
-    { iconName: 'calendar', value: '2+', label: 'Años mentoreando' },
-    { iconName: 'book', value: '6+', label: 'Cursos impartidos' },
-    { iconName: 'users', value: '100+', label: 'Estudiantes apoyados' },
-    { iconName: 'star', value: '3×', label: 'Estudiante Destacado' },
-];
-
-const certifications = [
-    'Programación 1 – Jala University Mentor U (Ene. 2026)',
-    'Computer Networks 1 – Jala University Mentor U (Oct. 2025)',
-    'Programación 3 – Jala University Mentor U (Ago. 2025)',
-    'Desarrollo de Software I – Jala University Mentor U (May. 2025)',
-    'Base de Datos 2 – Jala University Mentor U (Abr. 2025)',
-    'Programación 2 – Jala University Mentor U (Feb. 2025)',
-];
 
 // ─── Main page ───────────────────────────────────────────────
 export default function MentoriasPage() {
@@ -119,15 +82,7 @@ export default function MentoriasPage() {
                             <motion.div key="subjects" variants={slideVariants} initial="initial" animate="animate" exit="exit">
 
                                 {/* Stats */}
-                                <div className="stats-row">
-                                    {stats.map((s, i) => (
-                                        <div key={i} className="stat-card">
-                                            <Icon name={s.iconName} size={20} color="rgba(0,212,255,0.5)" />
-                                            <span className="stat-value">{s.value}</span>
-                                            <span className="stat-label">{s.label}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                                <MentoringStats />
 
                                 {/* Subject cards */}
                                 <section className="mentorias-section">
@@ -144,37 +99,10 @@ export default function MentoriasPage() {
                                 </section>
 
                                 {/* Approach */}
-                                <section className="mentorias-section">
-                                    <h2 className="section-heading">Mi Enfoque</h2>
-                                    <div className="approach-card">
-                                        <p>Me caracterizo por un acompañamiento técnico <strong>personalizado</strong>, con revisiones de código, explicaciones paso a paso y ejemplos reales.</p>
-                                        <ul className="approach-list">
-                                            <li><Icon name="search" size={15} color="#00d4ff" /> Revisiones de código con feedback específico</li>
-                                            <li><Icon name="tool" size={15} color="#00d4ff" /> Guía en arquitectura y buenas prácticas</li>
-                                            <li><Icon name="book" size={15} color="#00d4ff" /> Apoyo en proyectos académicos y personales</li>
-                                            <li><Icon name="chat" size={15} color="#00d4ff" /> Sesiones adaptadas al nivel del estudiante</li>
-                                            <li><Icon name="rocket" size={15} color="#00d4ff" /> Enfoque en resultados: aprobar, aprender y crecer</li>
-                                        </ul>
-                                    </div>
-                                </section>
+                                <MentoringApproach />
 
                                 {/* Certifications */}
-                                <section className="mentorias-section">
-                                    <h2 className="section-heading">Certificados como Mentor</h2>
-                                    <div className="cert-list">
-                                        {certifications.map((cert, i) => (
-                                            <motion.div key={i} className="cert-row" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
-                                                <span className="cert-check"><Icon name="check" size={14} color="#00d4ff" /></span>
-                                                <span>{cert}</span>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                    <div className="cta-row">
-                                        <a href="https://drive.google.com/drive/folders/1ZjpmZptWPuFE_2xwMWTj7qRChAecPDzH" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                                            Ver certificados completos →
-                                        </a>
-                                    </div>
-                                </section>
+                                <MentoringCertifications />
                             </motion.div>
                         )}
 

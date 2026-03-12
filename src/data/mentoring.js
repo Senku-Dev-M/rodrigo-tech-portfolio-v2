@@ -691,6 +691,353 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
             },
         ],
     },
+    // ── Desarrollo de Software ─────────────────────────────────
+    {
+        id: 'desarrollo-software',
+        code: 'DEV-SOFT',
+        title: 'Desarrollo de Software',
+        description:
+            'Fundamentos del desarrollo de software, metodologías, ciclo de vida del software, arquitectura de sistemas y buenas prácticas de ingeniería.',
+        icon: 'code',
+        color: '#a78bfa',
+        topics: ['Software Engineering', 'SDLC', 'Programming', 'Software Design'],
+        labs: [
+            {
+                id: 'intro-sdlc',
+                title: 'Introducción al SDLC — Software Development Life Cycle',
+                subtitle: 'El proceso detrás de la creación de software profesional',
+                type: 'Teoría',
+                difficulty: 'Introductorio',
+                duration: '15–20 min',
+                tags: ['Software Engineering', 'SDLC', 'Programming', 'Software Design'],
+                content: {
+                    intro: 'El desarrollo de software profesional no se trata solo de escribir código, sino de resolver problemas complejos mediante un proceso estructurado y repetible. A medida que los sistemas crecen en complejidad, realizar cambios sin planificación se vuelve propenso a errores y muy costoso. Para crear software robusto, mantenible y escalable, la industria de la ingeniería de software utiliza el Ciclo de Vida del Desarrollo de Software (SDLC).',
+                    sections: [
+                        {
+                            type: 'text',
+                            title: '¿Qué es el SDLC?',
+                            content: 'El <strong>Software Development Life Cycle (SDLC)</strong> es un marco estructurado que guía a los equipos de ingeniería a través de todas las fases necesarias para construir y mantener software de alta calidad. Define tareas, responsabilidades y entregables desde la concepción de una idea hasta el retiro final del sistema.\n\nContar con un proceso SDLC estructurado permite:\n• Mejorar la calidad final del software construido.\n• Reducir y anticipar errores técnicos o de diseño antes de que lleguen a producción.\n• Organizar efectivamente el trabajo de equipos multidisciplinarios (devs, QA, producto, ops).\n• Gestionar de forma predecible el tiempo, costo y alcance de los proyectos.',
+                        },
+                        {
+                            type: 'process',
+                            title: 'Fases del Ciclo de Vida del Software',
+                            desc: 'Aunque existen diferentes metodologías, el ciclo de vida moderno generalmente se divide en 7 fases fundamentales interconectadas:',
+                            simType: 'sdlc',
+                            steps: [
+                                {
+                                    name: '1. Planificación',
+                                    sender: 'Project Managers',
+                                    action: 'Se define el alcance del proyecto, costos, viabilidad técnica, riesgos y el equipo necesario. Es la fase más estratégica del ciclo.',
+                                },
+                                {
+                                    name: '2. Análisis de Requerimientos',
+                                    sender: 'Analistas / Product Owners',
+                                    action: 'Se recopila y documenta exactamente qué tiene que hacer el software, respondiendo a las necesidades del cliente y del negocio.',
+                                },
+                                {
+                                    name: '3. Diseño del Sistema',
+                                    sender: 'Arquitectos / Diseñadores',
+                                    action: 'Se toman los requerimientos y se define la arquitectura de software, bases de datos e interfaces de usuario antes de escribir una sola línea de código.',
+                                },
+                                {
+                                    name: '4. Implementación',
+                                    sender: 'Desarrolladores',
+                                    action: 'Los ingenieros escriben el código fuente real, traduciendo los diseños técnicos a un producto funcional organizado en módulos y componentes.',
+                                },
+                                {
+                                    name: '5. Pruebas',
+                                    sender: 'Ingenieros QA',
+                                    action: 'Se detectan bugs y se verifica que el software cumpla estrictamente con los requerimientos definidos en el Análisis. Incluye pruebas unitarias, de integración y de aceptación.',
+                                },
+                                {
+                                    name: '6. Despliegue',
+                                    sender: 'DevOps / SysAdmins',
+                                    action: 'El software empaquetado y probado se lanza a los entornos de producción donde los usuarios reales podrán utilizarlo por primera vez.',
+                                },
+                                {
+                                    name: '7. Mantenimiento',
+                                    sender: 'Soporte / Desarrolladores',
+                                    action: 'La fase más larga de todas. Se resuelven problemas reportados por usuarios, se actualiza la seguridad y se añaden nuevas mejoras.',
+                                },
+                            ],
+                        },
+                        {
+                            type: 'models',
+                            title: 'Modelos Populares de SDLC',
+                            models: [
+                                {
+                                    title: 'Modelo Waterfall (Cascada)',
+                                    whatIs: 'Un enfoque lineal y secuencial donde cada fase depende por completo de los entregables de la fase anterior. Es el modelo más clásico de la ingeniería de software.',
+                                    howWorks: 'No se puede avanzar a la fase de Diseño si la fase de Análisis no ha terminado al 100%. Los cambios tardíos son difíciles y muy costosos de implementar.',
+                                    examples: [
+                                        'Sistemas de misión crítica (Aeroespacial, Salud)',
+                                        'Proyectos gubernamentales',
+                                        'Sistemas con requerimientos 100% inmutables',
+                                    ],
+                                    pros: [
+                                        'Fácil de entender y gestionar para equipos grandes.',
+                                        'Todos los requerimientos se conocen y documentan desde el inicio.',
+                                        'Documentación exhaustiva en cada etapa.',
+                                    ],
+                                    cons: [
+                                        'Poca o nula flexibilidad para cambios una vez iniciado.',
+                                        'El cliente no ve el producto real hasta el final del ciclo.',
+                                        'Alto riesgo de que el producto final resulte irrelevante.',
+                                    ],
+                                },
+                                {
+                                    title: 'Modelo Agile',
+                                    whatIs: 'Un enfoque iterativo e incremental donde el software se desarrolla y entrega en pequeños incrementos funcionales llamados Sprints.',
+                                    howWorks: 'En lugar de planificar años de producto de una vez, el equipo trabaja en iteraciones cortas de 2 a 4 semanas. Al final de cada Sprint, se le entrega al cliente una pieza funcional de software para recibir feedback continuo.',
+                                    examples: [
+                                        'Startups tecnológicas',
+                                        'Sistemas web modernos (Netflix, Spotify, etc.)',
+                                        'Lanzamiento continuo de software SaaS',
+                                    ],
+                                    pros: [
+                                        'Altísima capacidad de adaptación a cambios rápidos del negocio.',
+                                        'Entrega temprana y continua de valor al cliente.',
+                                        'Colaboración muy estrecha entre devs y clientes.',
+                                    ],
+                                    cons: [
+                                        'Difícil predecir alcance y presupuesto exactos al inicio.',
+                                        'Requiere mucha disciplina técnica y comunicativa.',
+                                        'La documentación puede pasar a segundo plano.',
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: 'proscons',
+                            title: 'Ventajas de implementar un SDLC formal',
+                            pros: [
+                                'Establece un lenguaje y marco común de trabajo entre todos los ingenieros del equipo.',
+                                'Permite escalar equipos y añadir nuevos desarrolladores rápidamente con documentación clara.',
+                                'Reduce drásticamente la probabilidad de fallos catastróficos en producción.',
+                                'Transforma el desarrollo de un arte empírico a un proceso predecible de ingeniería.',
+                            ],
+                            cons: [
+                                'Puede añadir carga burocrática e inicial a proyectos muy pequeños.',
+                                'Si se elige el modelo equivocado (ej. Cascada para una web dinámica), puede estancar al equipo.',
+                                'Requiere un equipo educado en las metodologías y disciplinas correspondientes.',
+                            ],
+                        },
+                        {
+                            type: 'text',
+                            title: 'Ejemplo Práctico',
+                            content: 'Imagina que se quiere crear una <strong>Aplicación Web de E-commerce</strong>. En <strong>Planificación</strong> se definiría si es técnica y financieramente viable. En <strong>Análisis</strong>, se decidiría que necesita login, carrito y pasarela de pagos. En <strong>Diseño</strong>, se dibujarían las pantallas en Figma y se elegiría React con una base de datos Postgres e infraestructura en AWS. En <strong>Implementación</strong>, los desarrolladores programarían la aplicación componente por componente. Luego, los testers probarían la pasarela con tarjetas falsas (<strong>Pruebas</strong>). Al no encontrar bugs críticos, la subirían a AWS para acceso público (<strong>Despliegue</strong>) y finalmente pasarían a parchear errores menores que encuentren los usuarios en <strong>Mantenimiento</strong>.',
+                        },
+                    ],
+                    conclusion: 'El SDLC es el pilar de la ingeniería de software profesional. Conocer los fundamentos teóricos sobre cómo planificar, construir, probar y entregar sistemas diferencia a los programadores solitarios de los ingenieros de software capaces de operar en equipos de élite desarrollando sistemas de gran escala e impacto real.',
+                },
+            },
+            // ── Git Guide ──────────────────────────────────────────
+            {
+                id: 'intro-git',
+                title: 'Introducción a Git y Control de Versiones',
+                subtitle: 'Domina el sistema de control de versiones más utilizado del mundo',
+                type: 'Guía',
+                difficulty: 'Básico / Intermedio',
+                duration: '30–45 min',
+                tags: ['Git', 'Version Control', 'Software Development', 'GitHub'],
+                guide: {
+                    intro: 'En el desarrollo de software moderno, el código cambia constantemente. Sin un sistema que registre esos cambios, es imposible colaborar en equipo, revertir errores o entender la evolución del proyecto. Git resuelve exactamente este problema: es el sistema de control de versiones distribuido más utilizado del mundo y es una habilidad fundamental para cualquier desarrollador de software.',
+                    objectives: [
+                        'Entender qué es el control de versiones y por qué es esencial en el trabajo en equipo.',
+                        'Comprender los conceptos clave de Git: repositorio, commit, branch, merge y remote.',
+                        'Instalar y configurar Git en un entorno Linux.',
+                        'Ejecutar el flujo básico de trabajo: editar → staging → commit.',
+                        'Trabajar con ramas para aislar funcionalidades.',
+                        'Conectar un repositorio local con GitHub y sincronizar cambios.',
+                    ],
+                    technologies: [
+                        { name: 'Git 2.x', category: 'Control de Versiones' },
+                        { name: 'GitHub', category: 'Repositorio Remoto' },
+                        { name: 'Terminal Bash', category: 'Entorno' },
+                    ],
+                    labArchitecture: {
+                        desc: 'Git organiza el trabajo en cuatro zonas. Pulsa "Iniciar simulación" para ver cómo fluyen los cambios de zona en zona.',
+                        simulationLink: 'git-flow',
+                    },
+                    steps: [
+                        {
+                            id: '01',
+                            title: '¿Qué es Git?',
+                            text: 'Git es un sistema de control de versiones distribuido creado por Linus Torvalds en 2005. A diferencia de sistemas centralizados, cada desarrollador tiene una copia completa del historial del repositorio en su propia máquina.',
+                            steps: [
+                                'Git ≠ GitHub: Git es la herramienta local; GitHub es una plataforma web para alojar repositorios Git remotos.',
+                                'Distribuido: no depende de un servidor central para funcionar — puedes hacer commits offline.',
+                                'Historial completo: cada repositorio contiene toda la historia de cambios del proyecto.',
+                                'Ramas (branches): permiten desarrollar funcionalidades en paralelo sin interferir entre sí.',
+                            ],
+                        },
+                        {
+                            id: '02',
+                            title: 'Conceptos fundamentales',
+                            text: 'Antes de ejecutar comandos, es importante entender el vocabulario de Git:',
+                            dataTable: {
+                                headers: ['Concepto', 'Significado'],
+                                rows: [
+                                    ['Repositorio (repo)', 'Carpeta del proyecto más toda la historia de cambios de Git.'],
+                                    ['Commit', 'Instantánea del estado del código en un momento dado, con un mensaje descriptivo.'],
+                                    ['Branch', 'Línea de desarrollo independiente. La rama principal se llama main o master.'],
+                                    ['Merge', 'Acción de integrar los cambios de una rama en otra.'],
+                                    ['Remote', 'Versión del repositorio alojada en un servidor (ej. GitHub).'],
+                                    ['Clone', 'Copia completa de un repositorio remoto en tu máquina local.'],
+                                    ['Stage / Index', 'Zona intermedia donde preparas los cambios antes de hacer commit.'],
+                                ],
+                            },
+                        },
+                        {
+                            id: '03',
+                            title: 'Instalación de Git en Linux',
+                            text: 'Para instalar Git en distribuciones basadas en Debian/Ubuntu, ejecuta los siguientes comandos:',
+                            commands: [
+                                { cmd: 'sudo apt update', desc: 'Actualiza la lista de paquetes disponibles en los repositorios.' },
+                                { cmd: 'sudo apt install git -y', desc: 'Instala Git. La opción -y acepta la confirmación automáticamente.' },
+                                { cmd: 'git --version', desc: 'Verifica que Git se instaló correctamente. Deberías ver algo como: git version 2.x.x' },
+                            ],
+                            expectedOutput: 'git version 2.43.0',
+                            outputExplanation: 'La versión exacta puede variar, pero cualquier versión 2.x es completamente funcional. Ahora configura tu identidad para que Git sepa quién hace cada commit.',
+                        },
+                        {
+                            id: '04',
+                            title: 'Configuración inicial de Git',
+                            text: 'Antes de usar Git, debes configurar tu nombre y correo. Esta información quedará registrada en cada commit que hagas:',
+                            commands: [
+                                { cmd: 'git config --global user.name "Tu Nombre"', desc: 'Establece tu nombre de usuario. Aparecerá en el historial de commits.' },
+                                { cmd: 'git config --global user.email "tu@email.com"', desc: 'Establece tu correo. Debe coincidir con el de tu cuenta GitHub.' },
+                                { cmd: 'git config --list', desc: 'Muestra toda la configuración activa para verificar que quedó guardada.' },
+                            ],
+                        },
+                        {
+                            id: '05',
+                            title: 'Inicializar un repositorio',
+                            text: 'Crea una carpeta de proyecto y conviértela en un repositorio Git:',
+                            commands: [
+                                { cmd: 'mkdir mi-proyecto && cd mi-proyecto', desc: 'Crea una carpeta llamada mi-proyecto y entra en ella.' },
+                                { cmd: 'git init', desc: 'Inicializa un repositorio Git vacío. Crea una carpeta oculta .git que almacena toda la historia.' },
+                            ],
+                            expectedOutput: 'Initialized empty Git repository in /home/usuario/mi-proyecto/.git/',
+                            outputExplanation: 'El repositorio está listo. Todavía no tiene commits — es una pizarra en blanco.',
+                        },
+                        {
+                            id: '06',
+                            title: 'El flujo básico: editar → add → commit',
+                            text: 'El flujo de trabajo diario en Git siempre sigue este patrón de tres pasos:',
+                            commands: [
+                                { cmd: 'echo "# Mi Proyecto" > README.md', desc: 'Paso 1 — Editar: Crea un archivo README.md con contenido básico.' },
+                                { cmd: 'git status', desc: 'Inspecciona el estado. Git mostrará README.md como un archivo sin rastrear (untracked).' },
+                                { cmd: 'git add README.md', desc: 'Paso 2 — Staging: Agrega el archivo al área de preparación (staging area).' },
+                                { cmd: 'git commit -m "Agrega README inicial"', desc: 'Paso 3 — Commit: Guarda la instantánea con un mensaje descriptivo.' },
+                            ],
+                            expectedOutput: '[main (root-commit) 1a2b3c4] Agrega README inicial\n 1 file changed, 1 insertion(+)',
+                            outputExplanation: 'El commit fue creado exitosamente. El hash (1a2b3c4) es el identificador único de este punto en la historia del proyecto.',
+                        },
+                        {
+                            id: '07',
+                            title: 'Comandos de inspección esenciales',
+                            text: 'Estos comandos te permiten entender el estado actual del repositorio en cualquier momento:',
+                            commands: [
+                                { cmd: 'git status', desc: 'Muestra qué archivos han cambiado, cuáles están en staging y cuáles sin rastrear.' },
+                                { cmd: 'git log', desc: 'Muestra el historial completo de commits con autor, fecha y mensaje.' },
+                                { cmd: 'git log --oneline', desc: 'Versión compacta del historial: un commit por línea con su hash corto y mensaje.' },
+                                { cmd: 'git diff', desc: 'Muestra exactamente qué líneas de código cambiaron en los archivos modificados.' },
+                            ],
+                        },
+                        {
+                            id: '08',
+                            title: 'Trabajo con ramas (branches)',
+                            text: 'Las ramas permiten trabajar en nuevas funcionalidades de forma aislada, sin afectar el código estable de main. Una vez lista, la rama se fusiona (merge) de vuelta.',
+                            commands: [
+                                { cmd: 'git branch', desc: 'Lista todas las ramas del repositorio. La activa aparece con un asterisco (*).' },
+                                { cmd: 'git checkout -b feature/login', desc: 'Crea una nueva rama llamada feature/login Y cambia a ella en un solo comando.' },
+                                { cmd: 'git add . && git commit -m "Agrega módulo de login"', desc: 'Trabaja normalmente en la nueva rama: edita archivos, agrega y hace commit.' },
+                                { cmd: 'git checkout main', desc: 'Regresa a la rama principal.' },
+                                { cmd: 'git merge feature/login', desc: 'Fusiona los cambios de feature/login en main.' },
+                            ],
+                            expectedOutput: 'Updating 1a2b3c4..5d6e7f8\nFast-forward\n login.js | 24 ++++++++++++++++++++++++\n 1 file changed, 24 insertions(+)',
+                            outputExplanation: 'Fast-forward significa que Git simplemente avanzó el puntero de main hasta el último commit de la rama, sin crear un commit de fusión extra.',
+                        },
+                        {
+                            id: '09',
+                            title: 'Conectar con GitHub (repositorio remoto)',
+                            text: 'Una vez que tienes un repositorio local, puedes sincronizarlo con GitHub para respaldarlo, colaborar en equipo y publicarlo:',
+                            steps: [
+                                '1. Crea un repositorio en github.com (sin inicializar con README).',
+                                '2. Copia la URL del repositorio (ejemplo: https://github.com/usuario/mi-proyecto.git).',
+                                '3. En la terminal, ejecuta los comandos a continuación.',
+                            ],
+                            commands: [
+                                { cmd: 'git remote add origin https://github.com/usuario/mi-proyecto.git', desc: 'Vincula tu repositorio local con el remoto. "origin" es el nombre convencional del remoto principal.' },
+                                { cmd: 'git push -u origin main', desc: 'Envía los commits locales a GitHub. La opción -u guarda la configuración para que los futuros push/pull sean más simples.' },
+                            ],
+                            expectedOutput: 'Branch \'main\' set up to track remote branch \'main\' from \'origin\'.',
+                            outputExplanation: 'Ahora tu repositorio local está vinculado con GitHub. Los próximos push solo necesitan git push.',
+                        },
+                        {
+                            id: '10',
+                            title: 'Actualizar desde el repositorio remoto',
+                            text: 'Cuando trabajas en equipo, otros desarrolladores hacen push de sus cambios. Necesitas descargarlos a tu máquina local:',
+                            commands: [
+                                { cmd: 'git fetch origin', desc: 'Descarga los cambios del remoto PERO no los aplica todavía. Útil para revisar antes de integrar.' },
+                                { cmd: 'git pull origin main', desc: 'Descarga los cambios de main en el servidor Y los fusiona automáticamente con tu rama local.' },
+                            ],
+                        },
+                        {
+                            id: '11',
+                            title: 'Clonar un repositorio existente',
+                            text: 'Para trabajar en un proyecto que ya existe en GitHub, usa git clone:',
+                            commands: [
+                                { cmd: 'git clone https://github.com/usuario/proyecto.git', desc: 'Descarga una copia completa del repositorio (todo el historial, ramas y archivos).' },
+                                { cmd: 'cd proyecto', desc: 'Entra a la carpeta del proyecto clonado. Ya está listo para trabajar.' },
+                            ],
+                        },
+                        {
+                            id: '12',
+                            title: 'Ejemplo práctico completo',
+                            text: 'Flujo real de trabajo desde cero hasta GitHub:',
+                            commands: [
+                                { cmd: 'mkdir proyecto-demo && cd proyecto-demo', desc: 'Crea la carpeta del proyecto.' },
+                                { cmd: 'git init', desc: 'Inicializa el repositorio Git.' },
+                                { cmd: 'touch index.html', desc: 'Crea el archivo principal.' },
+                                { cmd: 'git add index.html', desc: 'Agrega el archivo al staging area.' },
+                                { cmd: 'git commit -m "Primer commit: agrega index.html"', desc: 'Crea el primer commit con un mensaje claro y descriptivo.' },
+                                { cmd: 'git checkout -b feature/navbar', desc: 'Crea y cambia a una nueva rama para desarrollar la barra de navegación.' },
+                                { cmd: 'git add . && git commit -m "Agrega navbar al index"', desc: 'Después de editar index.html, agrega y commitea los cambios en la rama.' },
+                                { cmd: 'git checkout main && git merge feature/navbar', desc: 'Regresa a main y fusiona la función completada.' },
+                                { cmd: 'git push origin main', desc: 'Sube todos los cambios a GitHub.' },
+                            ],
+                        },
+                    ],
+                    learnings: [
+                        { concept: 'Control de versiones distribuido', desc: 'Cada desarrollador tiene una copia completa del historial del proyecto.' },
+                        { concept: 'Flujo Working Directory → Staging → Repository', desc: 'Tres zonas que permiten preparar y revisar cambios antes de confirmarlos.' },
+                        { concept: 'Ramas (branches)', desc: 'Permiten desarrollar funcionalidades en paralelo sin interferir con el código estable.' },
+                        { concept: 'Sincronización con remoto', desc: 'git push y git pull sincronizan el repositorio local con GitHub.' },
+                        { concept: 'Historial de commits', desc: 'git log proporciona una traza completa de todos los cambios del proyecto a lo largo del tiempo.' },
+                    ],
+                    extensions: [
+                        {
+                            title: '.gitignore — Ignorar archivos confidenciales',
+                            desc: 'Crea un archivo .gitignore para excluir archivos que no deben subirse a GitHub (node_modules, .env, credenciales, etc.).',
+                            command: 'echo "node_modules/\\n.env\\n*.log" > .gitignore && git add .gitignore && git commit -m "Agrega .gitignore"',
+                        },
+                        {
+                            title: 'git stash — Guardar trabajo en progreso',
+                            desc: 'Guarda temporalmente los cambios sin commitear cuando necesitas cambiar de rama urgentemente.',
+                            command: 'git stash        # Guarda cambios\ngit stash pop    # Recupera los cambios guardados',
+                        },
+                        {
+                            title: 'Revertir el último commit',
+                            desc: 'Si cometiste un error en el último commit, puedes deshacerlo manteniendo los cambios en el Working Directory.',
+                            command: 'git revert HEAD',
+                        },
+                    ],
+                },
+            },
+        ],
+    },
 ];
 
 export default subjects;

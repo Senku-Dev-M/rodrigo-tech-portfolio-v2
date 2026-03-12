@@ -20,6 +20,13 @@
     border-radius: 50%;
 }
 
+.network-sim__canvas--wide {
+    max-width: 100%;
+    aspect-ratio: 16/6;
+    border-radius: 12px;
+    background: none;
+}
+
 .sim-svg {
     width: 100%;
     height: 100%;
