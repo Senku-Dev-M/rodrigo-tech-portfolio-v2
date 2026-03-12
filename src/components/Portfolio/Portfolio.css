@@ -1,0 +1,99 @@
+.portfolio {
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, #070314 0%, #0a0520 100%);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 1.8rem;
+    position: relative;
+    cursor: default;
+    transition: border-color 0.3s, background 0.3s;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent, #7c5cfc);
+    border-radius: 20px 20px 0 0;
+    opacity: 0.6;
+}
+
+.project-card:hover {
+    background: rgba(124, 92, 252, 0.05);
+    border-color: rgba(124, 92, 252, 0.2);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.project-icon {
+    font-size: 2rem;
+}
+
+.project-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+}
+
+.project-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+
+.project-desc {
+    color: rgba(210, 200, 240, 0.65);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tag {
+    background: rgba(124, 92, 252, 0.1);
+    border: 1px solid rgba(124, 92, 252, 0.2);
+    color: rgba(200, 185, 255, 0.8);
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.portfolio-more {
+    text-align: center;
+}
+
+.portfolio-more p {
+    color: rgba(210, 200, 240, 0.6);
+    margin-bottom: 1.2rem;
+    font-size: 0.97rem;
+}

@@ -1,0 +1,90 @@
+.lab-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 3px solid var(--accent, #00d4ff);
+    border-radius: 14px;
+    padding: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.lab-card:hover {
+    background: rgba(0, 212, 255, 0.04);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.lab-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lab-card__type {
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.lab-card__difficulty {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.lab-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.lab-card__subtitle {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+}
+
+.lab-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.lab-card__tag {
+    font-size: 0.73rem;
+    font-weight: 500;
+    color: var(--accent, #00d4ff);
+    background: rgba(0, 212, 255, 0.07);
+    border: 1px solid rgba(0, 212, 255, 0.18);
+    padding: 0.18rem 0.6rem;
+    border-radius: 50px;
+}
+
+.lab-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lab-card__duration {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.lab-card__cta {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent, #00d4ff);
+    transition: transform 0.2s;
+}
+
+.lab-card:hover .lab-card__cta {
+    transform: translateX(4px);
+}
