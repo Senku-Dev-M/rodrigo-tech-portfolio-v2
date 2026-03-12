@@ -1054,15 +1054,32 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                             content: 'Scrum es un <strong>framework liviano</strong> para desarrollar y mantener productos complejos. No es una metodología completa ni un proceso rígido: es un conjunto de reglas, roles, eventos y artefactos diseñados para que los equipos puedan trabajar de forma iterativa, colaborativa y con capacidad de adaptación.\n\nFue definido formalmente por Jeff Sutherland y Ken Schwaber en la década de 1990. Su nombre proviene del rugby: en Scrum, todos los integrantes del equipo trabajan juntos, se apoyan mutuamente y avanzan como una unidad hacia el objetivo.\n\nLos cuatro principios clave de Scrum son: el <strong>trabajo iterativo</strong> (dividir el trabajo en ciclos cortos llamados Sprints), la <strong>colaboración continua</strong> (el equipo trabaja junto todos los días), las <strong>entregas incrementales</strong> (cada Sprint debe producir un incremento de producto funcional) y la <strong>mejora continua</strong> (el equipo reflexiona regularmente sobre cómo mejorar).',
                         },
                         {
-                            type: 'text',
+                            type: 'grid-cards',
                             title: 'Roles en Scrum',
-                            content: '<strong>Product Owner (PO)</strong> — Es el responsable de maximizar el valor del producto. Define qué se va a construir y en qué orden. Gestiona el <em>Product Backlog</em>, la lista priorizada de todo el trabajo pendiente. Trabaja de puente entre el negocio y el equipo de desarrollo. No es jefe del equipo, es el responsable del producto.\n\n<strong>Scrum Master</strong> — Es el guardián del proceso Scrum. Se asegura de que el equipo entienda y aplique correctamente Scrum. Elimina impedimentos que bloqueen al equipo, facilita los eventos Scrum y protege al equipo de interrupciones externas. No es un jefe ni un gerente de proyecto: es un <em>servant leader</em>.\n\n<strong>Development Team</strong> — El equipo que construye el producto. Es auto-organizado: decide cómo hacer el trabajo sin que nadie les diga cómo. Es multifuncional: cuenta con todas las habilidades necesarias (diseño, desarrollo, QA) para entregar un incremento completo. El tamaño ideal es de 3 a 9 personas.',
+                            cards: [
+                                {
+                                    title: 'Product Owner (PO)',
+                                    color: '#f59e0b',
+                                    text: 'Es el responsable de <strong>maximizar el valor</strong> del producto. Define qué se va a construir y en qué orden. Gestiona el <em>Product Backlog</em>. Trabaja de puente entre el negocio y el equipo de desarrollo. No es jefe del equipo.'
+                                },
+                                {
+                                    title: 'Scrum Master',
+                                    color: '#a78bfa',
+                                    text: 'Es el <strong>guardián del proceso</strong> Scrum. Se asegura de que el equipo entienda y aplique correctamente Scrum. Elimina impedimentos, facilita los eventos y protege al equipo de interrupciones externas. Es un <em>servant leader</em>.'
+                                },
+                                {
+                                    title: 'Development Team',
+                                    color: '#00d4ff',
+                                    text: 'El equipo que construye el producto. Es <strong>auto-organizado</strong> (decide cómo hacer el trabajo) y <strong>multifuncional</strong> (cuenta con todas las habilidades necesarias como diseño, desarrollo y QA). El tamaño ideal es de 3 a 9 personas.'
+                                }
+                            ]
                         },
                         {
                             type: 'process',
                             title: 'Flujo del Sprint Scrum',
                             desc: 'Cada Sprint es un ciclo completo que pasa por cinco etapas. Pulsa "Iniciar simulación" para ver cómo fluye el trabajo.',
                             simType: 'scrum-flow',
+                            simLayout: 'stacked',
                             steps: [
                                 {
                                     name: 'Product Backlog',
@@ -1092,15 +1109,42 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                             ],
                         },
                         {
-                            type: 'text',
+                            type: 'grid-cards',
                             title: 'Eventos de Scrum',
-                            content: '<strong>Sprint</strong> — El corazón de Scrum. Un ciclo de trabajo de duración fija (1 a 4 semanas, generalmente 2). Al terminar, debe existir un incremento de producto potencialmente entregable. Si el objetivo del Sprint se vuelve obsoleto, puede cancelarse (solo el PO puede hacerlo).\n\n<strong>Sprint Planning</strong> — Primera reunión del Sprint. El equipo define el Sprint Goal y selecciona del Backlog los ítems que completará. El equipo responde: ¿Qué entregaremos? ¿Cómo lo haremos? Participan todos.\n\n<strong>Daily Scrum</strong> — Reunión diaria de 15 minutos para el Development Team. Cada miembro responde: ¿Qué hice ayer? ¿Qué haré hoy? ¿Tengo algún impedimento? No es una reunión de reporte, es una sincronización del equipo.\n\n<strong>Sprint Review</strong> — Al final del Sprint, el equipo muestra el trabajo completado a los stakeholders. El objetivo es obtener feedback e inspeccionar el producto. El Backlog se adapta según lo aprendido.\n\n<strong>Sprint Retrospective</strong> — Al final del Sprint, el equipo reflexiona sobre sí mismo: el proceso, las herramientas, las relaciones. Identifica mejoras concretas para el siguiente Sprint.',
+                            cards: [
+                                {
+                                    title: 'Sprint',
+                                    color: '#00d4ff',
+                                    text: 'El <strong>corazón de Scrum</strong>. Un ciclo de trabajo de duración fija (1 a 4 semanas, generalmente 2). Al terminar, debe existir un incremento de producto potencialmente entregable.'
+                                },
+                                {
+                                    title: 'Sprint Planning',
+                                    color: '#a78bfa',
+                                    text: 'Primera reunión del Sprint. El equipo define el <strong>Sprint Goal</strong> y selecciona del Backlog los ítems que completará. Responden: ¿Qué entregaremos? y ¿Cómo lo haremos?'
+                                },
+                                {
+                                    title: 'Daily Scrum',
+                                    color: '#fb7185',
+                                    text: 'Reunión diaria de <strong>15 minutos</strong> para el Development Team. Cada miembro responde: ¿Qué hice ayer? ¿Qué haré hoy? ¿Tengo algún impedimento? Es una sincronización, no un reporte.'
+                                },
+                                {
+                                    title: 'Sprint Review',
+                                    color: '#00ff88',
+                                    text: 'Al final del Sprint, el equipo <strong>muestra el trabajo completado</strong> a los stakeholders. El objetivo es obtener feedback e inspeccionar el producto. El Backlog se adapta según lo aprendido.'
+                                },
+                                {
+                                    title: 'Sprint Retrospective',
+                                    color: '#f59e0b',
+                                    text: 'Al final del Sprint, el equipo <strong>reflexiona sobre sí mismo</strong>: el proceso, las herramientas, las relaciones. Identifica mejoras concretas y procesables para el siguiente Sprint.'
+                                }
+                            ]
                         },
                         {
                             type: 'process',
                             title: 'Tablero Scrum — Simulación de un Sprint',
                             desc: 'Observa cómo las tareas avanzan desde el Backlog hasta Done durante el Sprint. Pulsa "Iniciar simulación" para verlo en acción.',
                             simType: 'scrum-board',
+                            simLayout: 'stacked',
                             steps: [
                                 {
                                     name: 'Backlog',

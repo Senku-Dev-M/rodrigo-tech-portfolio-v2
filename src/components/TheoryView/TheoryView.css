@@ -154,7 +154,24 @@
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.theory-process--stacked {
+    flex-direction: column;
+}
+
+.theory-process--stacked .theory-process__sim {
+    width: 100%;
+    order: -1;
+    margin-bottom: 1rem;
+}
+
+.theory-process--stacked .theory-process__steps {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
 }
 
 .theory-process__steps {
@@ -222,6 +239,40 @@
 .theory-process__sim {
     flex: 1;
     min-width: 300px;
+    width: 100%;
+}
+
+/* ── Grid Cards (For rich text info) ── */
+.theory-grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.theory-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.theory-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.theory-card h3 {
+    margin: 0 0 0.8rem 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.theory-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
 }
 
 /* ── Pros & Cons Card ── */

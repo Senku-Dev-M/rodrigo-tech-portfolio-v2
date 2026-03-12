@@ -32,11 +32,12 @@ export default function NetworkSimulation({ type = 'client-server' }) {
         }
     }, [isPlaying, type]);
 
-    const isWide = type === 'sdlc' || type === 'git-flow' || type === 'scrum-flow' || type === 'scrum-board';
+    const isWide = type === 'sdlc' || type === 'git-flow' || type === 'scrum-flow';
+    const isAuto = type === 'scrum-board';
 
     return (
         <div className="network-sim">
-            <div className={`network-sim__canvas ${isWide ? 'network-sim__canvas--wide' : ''}`}>
+            <div className={`network-sim__canvas ${isWide ? 'network-sim__canvas--wide' : ''} ${isAuto ? 'network-sim__canvas--auto' : ''}`}>
                 {type === 'client-server' && <ClientServerSim isPlaying={isPlaying} />}
                 {type === 'p2p' && <P2PSim isPlaying={isPlaying} />}
                 {type === 'dhcp' && <DHCPSim isPlaying={isPlaying} />}

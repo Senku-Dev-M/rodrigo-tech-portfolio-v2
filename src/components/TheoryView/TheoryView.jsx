@@ -173,7 +173,7 @@ export default function TheoryView({ lab }) {
                 if (section.type === 'process') {
                     return (
                         <Section key={sectionIdx} title={section.title} desc={section.desc}>
-                            <div className="theory-process">
+                            <div className={`theory-process ${section.simLayout === 'stacked' ? 'theory-process--stacked' : ''}`}>
                                 <div className="theory-process__steps">
                                     {section.steps.map((step, idx) => (
                                         <div key={idx} className="theory-step">
@@ -188,6 +188,21 @@ export default function TheoryView({ lab }) {
                                 <div className="theory-process__sim">
                                     {section.simType && <NetworkSimulation type={section.simType} />}
                                 </div>
+                            </div>
+                        </Section>
+                    );
+                }
+
+                if (section.type === 'grid-cards') {
+                    return (
+                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
+                            <div className="theory-grid-cards">
+                                {section.cards.map((c, i) => (
+                                    <div key={i} className="theory-card">
+                                        <h3 style={{ color: c.color || '#00d4ff' }}>{c.title}</h3>
+                                        <p dangerouslySetInnerHTML={{ __html: c.text }} />
+                                    </div>
+                                ))}
                             </div>
                         </Section>
                     );
