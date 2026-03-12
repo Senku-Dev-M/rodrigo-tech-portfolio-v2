@@ -1,0 +1,333 @@
+.network-sim {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.network-sim__canvas {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 4/3;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.sim-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.sim-node {
+    fill: #080808;
+    stroke: rgba(0, 212, 255, 0.3);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.sim-node--server {
+    stroke: #00d4ff;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4));
+}
+
+.sim-node--peer {
+    stroke: rgba(0, 212, 255, 0.6);
+}
+
+.sim-label {
+    fill: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    font-weight: 600;
+    text-anchor: middle;
+    font-family: inherit;
+}
+
+.sim-path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 2;
+    stroke-dasharray: 4 4;
+}
+
+.sim-packet {
+    filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.8));
+}
+
+/* ── UI Button ── */
+.network-sim__btn {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.network-sim__btn:hover:not(:disabled) {
+    background: rgba(0, 212, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.network-sim__btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.network-sim__btn--active {
+    animation: simPulse 1.5s infinite;
+}
+
+@keyframes simPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 212, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 212, 255, 0);
+    }
+}
+
+/* ── Client Server Animations ── */
+/* Req 1: C1 -> Server */
+.sim-packet--req-1 {
+    animation: packetCSReq1 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes packetCSReq1 {
+    0% {
+        opacity: 1;
+        transform: translate(100px, 220px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(200px, 80px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(200px, 80px);
+    }
+}
+
+/* Req 2: C2 -> Server */
+.sim-packet--req-2 {
+    animation: packetCSReq2 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes packetCSReq2 {
+    0% {
+        opacity: 1;
+        transform: translate(200px, 250px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(200px, 80px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(200px, 80px);
+    }
+}
+
+/* Req 3: C3 -> Server */
+.sim-packet--req-3 {
+    animation: packetCSReq3 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+}
+
+@keyframes packetCSReq3 {
+    0% {
+        opacity: 1;
+        transform: translate(300px, 220px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(200px, 80px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(200px, 80px);
+    }
+}
+
+/* Res 1: Server -> C1 */
+.sim-packet--res-1 {
+    animation: packetCSRes1 1s cubic-bezier(0.4, 0, 0.2, 1) 1.5s forwards;
+}
+
+@keyframes packetCSRes1 {
+    0% {
+        opacity: 1;
+        transform: translate(200px, 80px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(100px, 220px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(100px, 220px);
+    }
+}
+
+/* Res 2: Server -> C2 */
+.sim-packet--res-2 {
+    animation: packetCSRes2 1s cubic-bezier(0.4, 0, 0.2, 1) 1.8s forwards;
+}
+
+@keyframes packetCSRes2 {
+    0% {
+        opacity: 1;
+        transform: translate(200px, 80px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(200px, 250px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(200px, 250px);
+    }
+}
+
+/* Res 3: Server -> C3 */
+.sim-packet--res-3 {
+    animation: packetCSRes3 1s cubic-bezier(0.4, 0, 0.2, 1) 1.6s forwards;
+}
+
+@keyframes packetCSRes3 {
+    0% {
+        opacity: 1;
+        transform: translate(200px, 80px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(300px, 220px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(300px, 220px);
+    }
+}
+
+
+/* ── P2P Animations ── */
+/* P1: Nodo A -> Nodo B */
+.sim-packet--p2p-1 {
+    animation: packetP2P1 1.2s linear 0s forwards;
+}
+
+@keyframes packetP2P1 {
+    0% {
+        opacity: 1;
+        transform: translate(200px, 60px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(100px, 230px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(100px, 230px);
+    }
+}
+
+/* P2: Nodo B -> Nodo C */
+.sim-packet--p2p-2 {
+    animation: packetP2P2 1.2s linear 0.6s forwards;
+}
+
+@keyframes packetP2P2 {
+    0% {
+        opacity: 1;
+        transform: translate(100px, 230px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(300px, 230px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(300px, 230px);
+    }
+}
+
+/* P3: Nodo C -> Nodo A */
+.sim-packet--p2p-3 {
+    animation: packetP2P3 1.2s linear 0.2s forwards;
+}
+
+@keyframes packetP2P3 {
+    0% {
+        opacity: 1;
+        transform: translate(300px, 230px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(200px, 60px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(200px, 60px);
+    }
+}
+
+/* P4: Nodo B -> Nodo A */
+.sim-packet--p2p-4 {
+    animation: packetP2P4 1.2s linear 1.4s forwards;
+}
+
+@keyframes packetP2P4 {
+    0% {
+        opacity: 1;
+        transform: translate(100px, 230px);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(200px, 60px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(200px, 60px);
+    }
+}

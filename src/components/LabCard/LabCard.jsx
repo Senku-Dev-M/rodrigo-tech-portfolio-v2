@@ -22,7 +22,7 @@ export default function LabCard({ lab, onClick, index = 0 }) {
             whileHover={{ y: -3 }}
         >
             <div className="lab-card__top">
-                <span className="lab-card__type">{lab.type}</span>
+                <span className="lab-card__type" style={lab.type === 'Teoría' ? { color: '#a855f7' } : {}}>{lab.type}</span>
                 <span className="lab-card__difficulty" style={{ color }}>{lab.difficulty}</span>
             </div>
 
@@ -37,7 +37,7 @@ export default function LabCard({ lab, onClick, index = 0 }) {
 
             <div className="lab-card__footer">
                 <span className="lab-card__duration">⏱ {lab.duration}</span>
-                <span className="lab-card__cta">Ver guía →</span>
+                <span className="lab-card__cta">{lab.type === 'Teoría' ? 'Ver teoría →' : 'Ver guía →'}</span>
             </div>
         </motion.div>
     );

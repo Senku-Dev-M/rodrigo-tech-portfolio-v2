@@ -7,6 +7,7 @@ import GradientText from '../components/GradientText/GradientText';
 import SubjectCard from '../components/SubjectCard/SubjectCard';
 import LabCard from '../components/LabCard/LabCard';
 import GuideView from '../components/GuideView/GuideView';
+import TheoryView from '../components/TheoryView/TheoryView';
 import Antigravity from '../components/Antigravity/Antigravity';
 import Icon from '../components/Icon/Icon';
 import { subjects } from '../data/mentoring';
@@ -205,10 +206,14 @@ export default function MentoriasPage() {
                             </motion.div>
                         )}
 
-                        {/* VIEW 3: full guide */}
+                        {/* VIEW 3: full guide / theory */}
                         {view === 'guide' && lab && (
                             <motion.div key="guide" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-                                <GuideView lab={lab} />
+                                {lab.type === 'Teoría' ? (
+                                    <TheoryView lab={lab} />
+                                ) : (
+                                    <GuideView lab={lab} />
+                                )}
                             </motion.div>
                         )}
 

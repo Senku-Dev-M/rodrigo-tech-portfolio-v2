@@ -16,6 +16,60 @@ export const subjects = [
         topics: ['TCP/IP', 'Protocolos', 'Linux', 'Servidores', 'Networking'],
         labs: [
             {
+                id: 'modelos-comunicacion',
+                title: 'Modelos de Comunicación en Redes',
+                subtitle: 'Cliente-Servidor vs Peer-to-Peer',
+                type: 'Teoría',
+                difficulty: 'Básico',
+                duration: '15–25 min',
+                tags: ['Teoría', 'Arquitectura', 'C/S', 'P2P'],
+                content: {
+                    intro: 'Los modelos de comunicación en redes definen cómo interactúan los diferentes dispositivos (nodos) dentro de una red para intercambiar información y servicios. Elegir el modelo adecuado es una de las decisiones arquitectónicas más importantes al diseñar sistemas distribuidos, ya que impacta directamente en la escalabilidad, seguridad, mantenimiento y tolerancia a fallos del sistema.',
+                    models: {
+                        clientServer: {
+                            title: 'Modelo Cliente-Servidor',
+                            whatIs: 'Es una arquitectura distribuida donde los roles están claramente definidos y separados: algunos equipos actúan como proveedores exclusivos de recursos (Servidores) y otros actúan como consumidores (Clientes).',
+                            howWorks: 'El nodo Cliente inicia la comunicación enviando una solicitud (Request) a través de la red hacia el nodo Servidor. El Servidor recibe la solicitud, la procesa de forma centralizada (ej. consultando una base de datos o generando un archivo), y devuelve una respuesta (Response) al Cliente.',
+                            examples: ['Navegación Web (HTTP)', 'Bases de Datos centralizadas', 'Correo electrónico (SMTP/IMAP)', 'APIs RESTful'],
+                            pros: [
+                                'Administración y seguridad centralizada.',
+                                'Copias de seguridad fáciles de gestionar.',
+                                'El rendimiento del servidor puede ser escalado (Scale-up).',
+                            ],
+                            cons: [
+                                'Punto único de fallo: si el servidor cae, los clientes se quedan sin servicio.',
+                                'Cuello de botella bajo alta concurrencia.',
+                                'Altos costos de infraestructura inicial.',
+                            ],
+                        },
+                        p2p: {
+                            title: 'Modelo Peer-to-Peer (P2P)',
+                            whatIs: 'Es una arquitectura descentralizada en la que todos los nodos o participantes (Peers) tienen los mismos privilegios y responsabilidades dentro de la red.',
+                            howWorks: 'No hay un servidor central. Cada nodo actúa de forma dinámica y simultánea como Cliente (cuando solicita recursos) y como Servidor (cuando provee recursos a otros nodos). La comunicación es directa entre los equipos.',
+                            examples: ['Protocolo BitTorrent', 'Redes Blockchain (Bitcoin, Ethereum)', 'Sistemas de archivos distribuidos (IPFS)', 'Voz sobre IP distribuida (Skype clásico)'],
+                            pros: [
+                                'Altamente escalable: más usuarios = más ancho de banda global.',
+                                'Tolerancia a fallos: no hay un punto único de falla.',
+                                'Bajos costos iniciales al no requerir servidores dedicados costosos.',
+                            ],
+                            cons: [
+                                'Administración compleja: seguridad y backups descentralizados.',
+                                'Rendimiento impredecible (depende del nodo al que te conectes).',
+                                'Dificultad para localizar archivos sin un directorio central.',
+                            ],
+                        }
+                    },
+                    comparison: [
+                        { aspect: 'Arquitectura', cs: 'Centralizada', p2p: 'Descentralizada / Distribuida' },
+                        { aspect: 'Roles', cs: 'Definidos y fijos (Cliente o Servidor)', p2p: 'Dinámicos (Actúa de ambos)' },
+                        { aspect: 'Escalabilidad', cs: 'Limitada por recursos del Servidor (o requiere balanceadores)', p2p: 'Alta mente escalable por diseño (cada nodo suma recursos)' },
+                        { aspect: 'Tolerancia a Fallos', cs: 'Baja (si cae el servidor central, falla el sistema)', p2p: 'Alta (si cae un nodo, la red sigue funcionando)' },
+                        { aspect: 'Administración', cs: 'Fácil, centralizada y estandarizada', p2p: 'Compleja, las políticas deben replicarse por nodo' },
+                    ],
+                    conclusion: 'La elección entre Cliente-Servidor y P2P depende del caso de uso. El modelo Cliente-Servidor es el estándar de facto para aplicaciones web modernas, bases de datos y sistemas corporativos porque garantiza control y seguridad sobre los datos. Por otro lado, el modelo P2P brilla en aplicaciones donde la resistencia a la censura, la distribución masiva de archivos pesados y la reducción de costos de transferencia son las prioridades absolutas.',
+                }
+            },
+            {
                 id: 'nfs-ubuntu',
                 title: 'Configuración de servidor NFS con Ubuntu',
                 subtitle: 'Cliente y servidor usando dos máquinas virtuales',
