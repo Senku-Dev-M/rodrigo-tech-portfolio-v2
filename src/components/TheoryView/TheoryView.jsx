@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 import NetworkSimulation from '../NetworkSimulation/NetworkSimulation';
+import InteractiveCodeBlock from './InteractiveCodeBlock';
 import './TheoryView.css';
 
 // ── Section wrapper ─────────────────────────────────────────
@@ -62,6 +63,16 @@ export default function TheoryView({ lab }) {
             {/* ── INTRODUCCIÓN ───────────────────────────────── */}
             <Section title={t('theory.intro', 'Introducción')}>
                 <p className="theory-text">{content.intro}</p>
+                {content.objectives && (
+                    <div style={{ marginTop: '1.5rem', background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <h3 style={{ color: '#00d4ff', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <Icon name="checkCircle" size={20} /> Objetivos de aprendizaje
+                        </h3>
+                        <ul className="theory-list theory-list--cyan">
+                            {content.objectives.map((obj, i) => <li key={i}>{obj}</li>)}
+                        </ul>
+                    </div>
+                )}
             </Section>
 
             {/* ── SECCIONES DINÁMICAS ────────────────────────────── */}
@@ -177,17 +188,19 @@ export default function TheoryView({ lab }) {
                     return (
                         <Section key={sectionIdx} title={section.title} desc={section.desc}>
                             <div className={`theory-process ${section.simLayout === 'stacked' ? 'theory-process--stacked' : ''}`}>
-                                <div className="theory-process__steps">
-                                    {section.steps.map((step, idx) => (
-                                        <div key={idx} className="theory-step">
-                                            <div className="theory-step__num">{idx + 1}</div>
-                                            <div className="theory-step__content">
-                                                <h4>{step.name} <span className="theory-step__sender">({step.sender})</span></h4>
-                                                <p>{step.action}</p>
+                                {section.steps && section.steps.length > 0 && (
+                                    <div className="theory-process__steps">
+                                        {section.steps.map((step, idx) => (
+                                            <div key={idx} className="theory-step">
+                                                <div className="theory-step__num">{idx + 1}</div>
+                                                <div className="theory-step__content">
+                                                    <h4>{step.name} <span className="theory-step__sender">({step.sender})</span></h4>
+                                                    <p>{step.action}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
+                                )}
                                 <div className="theory-process__sim">
                                     {section.simType && <NetworkSimulation type={section.simType} />}
                                 </div>
@@ -251,6 +264,64 @@ export default function TheoryView({ lab }) {
                     return (
                         <Section key={sectionIdx}>
                             <ProsConsCard title={section.title} pros={section.pros} cons={section.cons} t={t} />
+                        </Section>
+                    );
+                }
+
+                if (section.type === 'interactiveCode') {
+                    return (
+                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
+                            <InteractiveCodeBlock code={section.code} explanations={section.explanations} />
+                        </Section>
+                    );
+                }
+
+                if (section.type === 'featureCards' || section.type === 'useCases') {
+                    const items = section.features || section.cases || [];
+                    return (
+                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+                                {items.map((item, i) => (
+                                    <div key={i} className="theory-card" style={{ transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'default' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                                            <div style={{ background: 'rgba(0,212,255,0.1)', padding: '0.75rem', borderRadius: '12px', color: '#00d4ff', display: 'flex' }}>
+                                                <Icon name={item.icon || 'star'} size={24} />
+                                            </div>
+                                            <h3 style={{ color: '#fff', fontSize: '1.1rem', margin: 0 }}>{item.title}</h3>
+                                        </div>
+                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.9rem', lineHeight: '1.6' }}>{item.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </Section>
+                    );
+                }
+
+                if (section.type === 'comparisonTable') {
+                    return (
+                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
+                            <div style={{ overflowX: 'auto', marginTop: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.2)' }}>
+                                <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', textAlign: 'left' }}>
+                                    <thead style={{ background: 'rgba(0,212,255,0.1)', borderBottom: '1px solid rgba(0,212,255,0.2)' }}>
+                                        <tr>
+                                            {section.headers.map((header, i) => (
+                                                <th key={i} style={{ padding: '1rem', color: '#00d4ff', fontWeight: 'bold' }}>{header}</th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {section.rows.map((row, i) => (
+                                            <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s', cursor: 'default' }} onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                                                {row.map((cell, j) => (
+                                                    <td key={j} style={{ padding: '1rem', color: j === 0 ? '#fff' : 'var(--text-grey)', fontWeight: j === 0 ? '500' : 'normal' }}>
+                                                        {cell}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </Section>
                     );
                 }

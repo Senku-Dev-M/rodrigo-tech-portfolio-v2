@@ -1201,6 +1201,165 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
             },
         ],
     },
+    // ── Programación 1 ─────────────────────────────────────────
+    {
+        id: 'programacion-1',
+        code: 'PROG-I',
+        title: 'Programación 1',
+        description:
+            'Fundamentos de programación, lógica algorítmica y sintaxis inicial usando el lenguaje Java.',
+        icon: 'terminal',
+        color: '#f59e0b',
+        topics: ['Java', 'Algoritmos', 'Lógica', 'POO Básica'],
+        labs: [
+            {
+                id: 'intro-java',
+                title: 'Introducción a Java',
+                subtitle: 'Primeros pasos con el lenguaje de programación orientado a objetos',
+                type: 'Teoría',
+                difficulty: 'Principiante',
+                duration: '15–25 min',
+                tags: ['Java', 'Programación orientada a objetos', 'Sintaxis básica', 'JVM', 'Programación 1'],
+                content: {
+                    intro: 'Crear software robusto requiere un lenguaje maduro. Java es uno de los lenguajes de programación más utilizados a nivel mundial. Su filosofía "Write Once, Run Anywhere" revolucionó el desarrollo multiplataforma. En Programación 1, aprender Java es fundamental porque te obliga a entender desde el primer momento qué son las clases, los objetos y el tipado estricto, construyendo una base inquebrantable para tu carrera como ingeniero de software.',
+                    objectives: [
+                        'Comprender qué es el lenguaje Java y su propósito.',
+                        'Conocer la arquitectura básica de Java (Código → Bytecode → JVM).',
+                        'Entender el rol vital que cumple la Java Virtual Machine (JVM).',
+                        'Identificar la estructura de un programa "Hola Mundo" básico.',
+                        'Reconocer los usos más comunes del lenguaje en la industria actual.'
+                    ],
+                    sections: [
+                        {
+                            type: 'text',
+                            title: '1. ¿Qué es Java?',
+                            content: 'Java es un lenguaje de programación de propósito general, tipado estático y fuertemente orientado a objetos, creado por James Gosling en Sun Microsystems (1995). \n\nA diferencia de lenguajes compilados nativamente como C++, que generan ejecutables atados a procesadores específicos (ej. Windows x86), Java fue diseñado para resolver el problema de la portabilidad. Cuando compilas código fuente Java, no se convierte en código máquina, sino en un código intermedio universal llamado **Bytecode**. Este Bytecode es interpretado y ejecutado por un software dedicado llamado **Máquina Virtual de Java (JVM)**, el cual sí está adaptado a cada sistema operativo.'
+                        },
+                        {
+                            type: 'process',
+                            title: '2. Cómo funciona Java',
+                            desc: 'Haz clic en los pasos de la simulación para visualizar cómo un archivo de código fuente se transforma en una aplicación funcional que puede correr en cualquier sistema operativo usando la JVM.',
+                            simType: 'java-compile'
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '3. Primer programa en Java',
+                            desc: 'En Java, todo programa debe tener al menos una clase y un método de entrada llamado `main`. Pasa el cursor sobre las líneas de código para entender qué hace exactamente cada una.',
+                            code: 'public class HolaMundo {\n    public static void main(String[] args) {\n        System.out.println("Hola Mundo!");\n    }\n}',
+                            explanations: [
+                                { line: 1, text: 'Define una clase pública llamada "HolaMundo". En Java todo pertenece a una clase. El archivo obligatoriamente debe llamarse "HolaMundo.java".' },
+                                { line: 2, text: 'El método "main" es el punto de entrada oficial. "public" permite que la JVM acceda a él, "static" permite cargarlo sin instanciar la clase, "void" indica que no retorna nada y "String[] args" recibe los argumentos de consola.' },
+                                { line: 3, text: 'Instrucción que usa la clase "System.out" (salida estándar) para imprimir la cadena de texto en la consola.' }
+                            ]
+                        },
+                        {
+                            type: 'featureCards',
+                            title: '4. Características principales',
+                            features: [
+                                { icon: 'box', title: 'Orientado a Objetos', desc: 'Todo en Java (excepto tipos primitivos) es un objeto. Promueve el encapsulamiento y reutilización modular.' },
+                                { icon: 'globe', title: 'Portabilidad y JVM', desc: 'Write Once, Run Anywhere. El bytecode generado corre en Windows, Mac o Linux sin modificar el origen.' },
+                                { icon: 'shield', title: 'Seguridad y Memoria', desc: 'Manejo automático de memoria mediante Garbage Collector, evitando fugas graves como en C o C++.' },
+                                { icon: 'package', title: 'Gran Ecosistema', desc: 'Inmensa cantidad de librerías, estándares de empresa (Jakarta EE) y frameworks maduros (Spring Boot).' }
+                            ]
+                        },
+                        {
+                            type: 'useCases',
+                            title: '5. ¿Dónde se usa Java hoy en día?',
+                            desc: 'Aunque Java nació hace décadas, sigue dominando sectores críticos de la tecnología global:',
+                            cases: [
+                                { icon: 'server', title: 'Backend Web (Spring Boot)', desc: 'Servicios de alta disponibilidad y microservicios escalables para bancos y plataformas masivas.' },
+                                { icon: 'smartphone', title: 'Aplicaciones Android', desc: 'Java impulsó la creación de Android. Gran parte de las apps móviles legacy y modernas usan Java.' },
+                                { icon: 'database', title: 'Big Data y Data Analytics', desc: 'Frameworks de procesamiento masivo de datos como Apache Hadoop y Apache Spark están escritos en Java/Scala.' },
+                                { icon: 'briefcase', title: 'Software Financiero', desc: 'Bancos, aseguradoras y fintechs confían ciegamente en Java por su extremada robustez y tipado fuerte.' }
+                            ]
+                        }
+                    ],
+                    conclusion: 'En esta materia aprenderás no solo a escribir sentencias de código, sino a pensar estructuralmente. Al dominar estas bases en Java, adquirirás superpoderes para el análisis de sistemas y te será muy fácil, en el futuro, adoptar otros lenguajes con filosofías similares o distintas.'
+                }
+            },
+            {
+                id: 'java-variables',
+                title: 'Variables en Java y tipos de datos',
+                subtitle: 'Aprende a almacenar y manejar información en memoria',
+                type: 'Teoría',
+                difficulty: 'Principiante',
+                duration: '20–30 min',
+                tags: ['Java', 'Variables', 'Tipos de datos', 'Programación básica', 'Programación 1'],
+                content: {
+                    intro: 'Uno de los fundamentos principales de la programación es la capacidad de recordar datos interactuando con la memoria de la computadora. En Java, utilizamos **variables** para almacenar información como números, textos o estados (verdadero/falso). Entender qué son, cómo se declaran y la diferencia entre datos primitivos e instancias de objetos es vital para tu crecimiento profesional.',
+                    objectives: [
+                        'Comprender qué es una variable como espacio en la memoria RAM.',
+                        'Aprender cómo declarar e inicializar variables en el lenguaje Java.',
+                        'Conocer los tipos de datos primitivos más importantes (int, double, boolean, etc).',
+                        'Comprender la diferencia crucial entre tipos primitivos y tipos de referencia.',
+                        'Aplicar variables en un programa real realizando operaciones matemáticas.'
+                    ],
+                    sections: [
+                        {
+                            type: 'process',
+                            title: '1. ¿Qué es una variable?',
+                            desc: 'Una variable es, conceptualmente, una caja o un espacio reservado en la memoria RAM donde almacenamos un valor que nuestro programa necesita usar temporalmente.',
+                            simType: 'java-memory'
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '2. Sintaxis de una variable en Java',
+                            desc: 'Como Java es de tipado estático estricto, siempre debemos declarar qué tipo de dato albergará nuestra variable antes del nombre. Pasa el ratón por el código para ver cada parte.',
+                            code: 'int edad = 20;\nString nombre = "Carlos";\ndouble precio = 19.99;',
+                            explanations: [
+                                { line: 1, text: 'TIPO (int) + NOMBRE (edad) + VALOR (20). Se reserva espacio de 32 bits exacto para un número entero.' },
+                                { line: 2, text: 'TIPO (String) es un objeto de referencia. NOMBRE (nombre) apuntará en memoria al texto "Carlos".' },
+                                { line: 3, text: 'TIPO (double). Se utiliza para números con precisión decimal. En este caso almacena 19.99.' }
+                            ]
+                        },
+                        {
+                            type: 'featureCards',
+                            title: '3. Tipos de datos primitivos',
+                            features: [
+                                { icon: 'box', title: 'int', desc: 'Enteros de 32 bits. Rango: -2 mil millones a 2 mil millones. Ej: int edad = 21;' },
+                                { icon: 'cpu', title: 'double / float', desc: 'Punto flotante para decimales. double (64 bits) tiene más precisión que float (32 bits). Ej: double pi = 3.14;' },
+                                { icon: 'type', title: 'char', desc: 'Un único carácter unicode de 16 bits. Va entre comillas simples. Ej: char letra = \'A\';' },
+                                { icon: 'toggle-right', title: 'boolean', desc: 'Representa condiciones lógicas, solo ocupa 1 bit evaluado como: true o false. Ej: boolean activo = true;' }
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '4. Tipos de referencia vs Objetos',
+                            desc: 'A diferencia de los primitivos que almacenan el valor directamente, los tipos de referencia almacenan la DIRECCIÓN de memoria donde habita el objeto (por ejemplo un String o un Scanner).',
+                            simType: 'java-references'
+                        },
+                        {
+                            type: 'comparisonTable',
+                            title: '5. Comparación: Primitivos vs Referencia',
+                            desc: 'Compara detalladamente cómo se comporta cada tipo dentro del lenguaje.',
+                            headers: ['Característica', 'Primitivos', 'Referencia'],
+                            rows: [
+                                ['Qué almacenan', 'El valor directo', 'Dirección de memoria (puntero)'],
+                                ['Ejemplo', 'int, double, char, boolean', 'String, Scanner, Arrays, Objetos'],
+                                ['Uso general', 'Datos numéricos / simples rápidos de procesar', 'Entidades complejas, cadenas, lógica de negocios'],
+                                ['Valores por defecto', '0, 0.0, false', 'null'],
+                                ['Memoria principal', 'Stack', 'Heap (apunta desde Stack)']
+                            ]
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '6. Ejemplo práctico: Calculadora básica',
+                            desc: 'Revisemos este programa que solicita dos números al usuario por consola y usa variables para realizar todas las operaciones elementales.',
+                            code: 'import java.util.Scanner;\n\npublic class Calculadora {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        \n        double num1 = scanner.nextDouble();\n        double num2 = scanner.nextDouble();\n\n        double suma = num1 + num2;\n        double resta = num1 - num2;\n        double multiplicacion = num1 * num2;\n        double division = num1 / num2;\n\n        System.out.println("Suma: " + suma);\n        System.out.println("Rest: " + resta);\n    }\n}',
+                            explanations: [
+                                { line: 1, text: 'Importamos la clase Scanner de la librería estandar java.util para poder leer texto de entrada.' },
+                                { line: 5, text: 'Instanciamos e inicializamos una variable (tipo de referencia) "scanner" para leer desde el teclado (System.in).' },
+                                { line: 7, text: 'Declaramos la variable primitiva "double num1" y le asignamos el siguiente valor que introduzca el usuario.' },
+                                { line: 10, text: 'Creamos nuevas variables de tipo primitivo "double" en las cuales guardaremos el cálculo matemático hecho entre num1 y num2.' },
+                                { line: 15, text: 'Imprimimos en pantalla el valor concatenado (+) con la cadena de texto.' }
+                            ]
+                        }
+                    ],
+                    conclusion: 'Dominar las variables y la gestión fundamental de memoria (primitivos vs paso por valor/referencia) te evitará la inmensa mayoría de los errores lógicos silenciosos al trabajar con Java corporativo. ¡Sigue experimentando con diferentes cálculos matemáticos en tu IDE local!'
+                }
+            }
+        ]
+    }
 ];
 
 export default subjects;
