@@ -156,7 +156,7 @@ export default function MentoriasPage() {
                         {/* VIEW 3: full guide / theory */}
                         {view === 'guide' && lab && (
                             <motion.div key="guide" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-                                {lab.type === 'Teoría' ? (
+                                {lab.content ? (
                                     <TheoryView lab={lab} />
                                 ) : (
                                     <GuideView lab={lab} />

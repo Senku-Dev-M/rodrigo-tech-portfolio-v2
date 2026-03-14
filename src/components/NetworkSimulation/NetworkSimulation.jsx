@@ -18,6 +18,10 @@ import JavaReferenceSim from './simulations/JavaReferenceSim';
 import JavaCondFlowSim from './simulations/JavaCondFlowSim';
 import JavaLoopSim from './simulations/JavaLoopSim';
 import JavaForEachSim from './simulations/JavaForEachSim';
+import JavaArrayMemorySim from './simulations/JavaArrayMemorySim';
+import JavaArrayIterateSim from './simulations/JavaArrayIterateSim';
+import JavaMatrixSim from './simulations/JavaMatrixSim';
+import JavaDeskcheckSim from './simulations/JavaDeskcheckSim';
 import './NetworkSimulation.css';
 
 export default function NetworkSimulation({ type = 'client-server' }) {
@@ -39,8 +43,8 @@ export default function NetworkSimulation({ type = 'client-server' }) {
         }
     }, [isPlaying, type]);
 
-    const isWide = type === 'sdlc' || type === 'git-flow' || type === 'scrum-flow' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach';
-    const isAuto = type === 'scrum-board' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach';
+    const isWide = type === 'sdlc' || type === 'git-flow' || type === 'scrum-flow' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach' || type === 'java-array-memory' || type === 'java-array-iterate' || type === 'java-matrix' || type === 'java-deskcheck';
+    const isAuto = type === 'scrum-board' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach' || type === 'java-array-memory' || type === 'java-array-iterate' || type === 'java-matrix' || type === 'java-deskcheck';
 
     return (
         <div className="network-sim">
@@ -61,9 +65,13 @@ export default function NetworkSimulation({ type = 'client-server' }) {
                 {type === 'java-cond-flow' && <JavaCondFlowSim />}
                 {type === 'java-loop' && <JavaLoopSim />}
                 {type === 'java-foreach' && <JavaForEachSim />}
+                {type === 'java-array-memory' && <JavaArrayMemorySim />}
+                {type === 'java-array-iterate' && <JavaArrayIterateSim />}
+                {type === 'java-matrix' && <JavaMatrixSim />}
+                {type === 'java-deskcheck' && <JavaDeskcheckSim />}
             </div>
 
-            {type !== 'java-compile' && type !== 'java-memory' && type !== 'java-references' && type !== 'java-cond-flow' && type !== 'java-loop' && type !== 'java-foreach' && (
+            {type !== 'java-compile' && type !== 'java-memory' && type !== 'java-references' && type !== 'java-cond-flow' && type !== 'java-loop' && type !== 'java-foreach' && type !== 'java-array-memory' && type !== 'java-array-iterate' && type !== 'java-matrix' && type !== 'java-deskcheck' && (
                 <button
                     className={`network-sim__btn ${isPlaying ? 'network-sim__btn--active' : ''}`}
                     onClick={() => setIsPlaying(true)}

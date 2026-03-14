@@ -1445,6 +1445,85 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                     ],
                     conclusion: 'Has comprendido cómo dotar de "inteligencia" matemática a tu código y hacer que tu programa tome sus propios rumbos en tiempo de ejecución. ¡Experimenta mezclando ifs adentro de whiles y loops adentro de condicionales para crear tus primeros lógicos de negocio!'
                 }
+            },
+            {
+                id: 'java-arrays',
+                title: 'Estructuras de Datos Básicas: Arreglos en Java',
+                subtitle: 'Almacena y gestiona múltiples datos en memoria',
+                type: 'Laboratorio',
+                difficulty: 'Principiante',
+                duration: '35–45 min',
+                tags: ['Java', 'Arrays', 'Estructuras de datos', 'Debugging', 'Deskcheck', 'Programación 1'],
+                content: {
+                    intro: 'Imagina que necesitas guardar las calificaciones de 100 estudiantes. Declarar 100 variables lineales (nota1, nota2...) sería un desastre de mantenimiento. Las **estructuras de datos** nos brindan contenedores organizados en memoria para almacenar miles o millones de elementos usando un solo nombre de referencia. Los **Arreglos** (o Arrays) son la primera y más rápida estructura fundamental que aprenderemos.',
+                    objectives: [
+                        'Comprender qué es un arreglo y su distribución contigua en memoria.',
+                        'Saber cómo declarar, inicializar y leer valores pre-existentes en Java.',
+                        'Poder manipular o leer un arreglo vectorialmente utilizando ciclos (fors).',
+                        'Entender cómo crear tablas matemáticas a través de los Arreglos Bidimensionales (Matrices).',
+                        'Dominar las técnicas primordiales de debugging visual y la técnica clásica de DeskCheck (prueba de escritorio).'
+                    ],
+                    sections: [
+                        {
+                            type: 'featureCards',
+                            title: '1. ¿Por qué usamos Estructuras de Datos?',
+                            features: [
+                                { icon: 'layers', title: 'Colecciones', desc: 'Permiten agrupar miles de datos primitivos o de referencia bajo un único nombre lógico.' },
+                                { icon: 'search', title: 'Organización', desc: 'Sistematizan la información posibilitando realizar búsquedas eficientes en grandes volúmenes de datos.' },
+                                { icon: 'activity', title: 'Iterabilidad', desc: 'A diferencia de cientos de variables sueltas, las estructuras se pueden recorrer fácilmente usando bucles.' }
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '2. Arreglos Unidimensionales (Vectores)',
+                            desc: 'Un arreglo no es más que una tira horizontal contigua de bloques de memoria. Piensa en un tren donde cada vagón almacena un valor del mismo tipo de dato, y a cada vagón le asignamos un índice numérico para acceder a él que SIEMPRE empieza en el cero.',
+                            simType: 'java-array-memory'
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '3. Declarando y Operando Arreglos',
+                            desc: 'Estudiemos la sintaxis esencial de cómo cobrarán vida estas cajas de memoria contiguas al programarlas en código puro. Fíjate en el uso de los corchetes [] y cómo accedemos a vagones específicos.',
+                            code: 'int[] numeros = new int[5]; // Declaración vacía\n\nint[] edades = {10, 20, 30, 40, 50}; // Inicializando valores directamente\n\nint valor = edades[2]; // ¡Extrayendo el número 30!\nedades[0] = 15; // Reemplazando el 10 con un 15',
+                            explanations: [
+                                { line: 1, text: 'Reservamos una fila de 5 espacios estrictos de tamaño "int" en la memoria Heap. Por defecto se rellenan con [0,0,0,0,0].' },
+                                { line: 3, text: 'Instanciamos dinámicamente el arreglo dándole el tamaño y los valores exactos definidos entre llaves. ¡Súper útil!' },
+                                { line: 5, text: 'Los arreglos inician en el índice Cero (0). Así que edades[2] se refiere al TERCER vagón del tren que guardaba el número 30.' },
+                                { line: 6, text: 'Podemos sobreescribir mutablemente los valores apuntando a la caja con brackets [] y reasignando un dato equivalente.' }
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '4. El Recorrido: Bucle For e Índices',
+                            desc: 'Para revisar todos los cajones del arreglo, es estándar invocar un condicional For que empiece su iterador `i` desde exactamente en Cero.',
+                            simType: 'java-array-iterate'
+                        },
+                        {
+                            type: 'process',
+                            title: '5. La Cuadrícula: Arreglos Bidimensionales',
+                            desc: 'Cuando un arreglo unidimensional no es suficiente (por ejemplo un tablero de ajedrez o celdas de Excel), recurrimos a una "Lista de Listas" o sea, una Matriz 2D. Éstas se conforman de filas [][], y columnas [][].',
+                            simType: 'java-matrix'
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '6. Recorriendo la Matriz (For Anidado)',
+                            desc: 'Al igual que para navegar una cuadrícula necesitas primero definir en qué fila estás parado, y luego iterar cada columna de esa misma fila, programar un array 2D requiere meter un Ciclo For adentro de otro Ciclo For.',
+                            code: 'int[][] matriz = {\n    {1, 2, 3},\n    {4, 5, 6},\n    {7, 8, 9}\n};\n\nfor (int i = 0; i < matriz.length; i++) {\n    for (int j = 0; j < matriz[i].length; j++) {\n        System.out.println(matriz[i][j]);\n    }\n}',
+                            explanations: [
+                                { line: 1, text: 'Nota como encerramos múltiples arreglos de 1 dimensión adentro de un arreglo maestro para crear la retícula 3x3.' },
+                                { line: 7, text: 'FOR PRINCIPAL (FILAN): La variable `i` nos marca en qué piso horizontal estamos actualmente.' },
+                                { line: 8, text: 'FOR SUCESOR (COLUMNA): Por CADA iteración de `i`, la variable `j` recorrerá de izquierda a derecha la fila completa evaluando valores.' },
+                                { line: 9, text: 'Imprimimos la intercepción de (Fila Y, Columna X). Ej: Si i=1 y j=2, imprimirá el centro derecho: el número 6.' }
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '7. Laboratorio Visual: DeskCheck & Debugging Paso a Paso',
+                            desc: 'Al procesar grandes bucles iterativos sin un interfaz gráfico es fácil que nuestros algoritmos pierdan consistencia lógica. El "DeskCheck" o "Prueba de Escritorio" manual y el Debugging computarizado nos permiten poner en cuarentena nuestro programa y correrlo cuadro por cuadro, pausando y observando sub-rutinas y valores variables para atrapar errores a mano.',
+                            simType: 'java-deskcheck'
+                        }
+                    ],
+                    conclusion: 'Dominar la manera en la cual la información convive empaquetada en la memoria es el pimer paso formal hacia la algoritmia y sistemas corporativos ágiles que calculan billones de promedios. Trata de construir una calculadora que exiga un arreglo con todos los sueldos en Scanner y devuelva solo quién es superior al sueldo estadístico mínimo.'
+                }
             }
         ]
     }
