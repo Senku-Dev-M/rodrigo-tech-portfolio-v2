@@ -17,7 +17,7 @@ export default function JavaMemorySim() {
                 {steps[step].desc}
             </p>
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', flexWrap: 'nowrap', minHeight: '180px', width: '100%', overflowX: 'auto', padding: '1rem 0', position: 'relative' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', flexWrap: 'nowrap', minHeight: '200px', width: '100%', overflow: 'visible', padding: '1.5rem 0', position: 'relative' }}>
                 
                 {/* Código de origen */}
                 <div style={{ padding: '1rem', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', fontFamily: 'monospace', fontSize: '1.2rem', color: '#fff' }}>

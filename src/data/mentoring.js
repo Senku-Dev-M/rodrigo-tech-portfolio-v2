@@ -1357,6 +1357,94 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                     ],
                     conclusion: 'Dominar las variables y la gestión fundamental de memoria (primitivos vs paso por valor/referencia) te evitará la inmensa mayoría de los errores lógicos silenciosos al trabajar con Java corporativo. ¡Sigue experimentando con diferentes cálculos matemáticos en tu IDE local!'
                 }
+            },
+            {
+                id: 'java-control-flow',
+                title: 'Estructuras de control en Java',
+                subtitle: 'Toma de decisiones y ciclos de repetición',
+                type: 'Teoría',
+                difficulty: 'Principiante',
+                duration: '25–35 min',
+                tags: ['Java', 'Estructuras de control', 'Condicionales', 'Ciclos', 'Programación básica', 'Programación 1'],
+                content: {
+                    intro: 'Sin las estructuras de control, todos los programas informáticos se ejecutarían de forma estrictamente lineal, de arriba hacia abajo, instrucción por instrucción. Las **estructuras de control** son las herramientas que nos permiten romper esa linealidad para **tomar decisiones** o **repetir acciones** dinámicamente.',
+                    objectives: [
+                        'Comprender qué son y para qué sirven las estructuras de control.',
+                        'Aprender a utilizar condicionales lógicos (if, else if, switch).',
+                        'Aprender a utilizar ciclos de repetición (for, while, do-while).',
+                        'Comprender cuándo y por qué usar cada tipo de estructura.',
+                        'Aplicar estructuras de control de flujo en la resolución de algoritmos en Java.'
+                    ],
+                    sections: [
+                        {
+                            type: 'process',
+                            title: '1. ¿Qué son las estructuras de control?',
+                            desc: 'Son instrucciones que alteran el flujo lineal de un programa evaluando condiciones booleanas (verdadero o falso). Existen dos grandes familias: Condicionales (bifurcaciones) y Ciclos (bucles iterativos).',
+                            simType: 'java-cond-flow'
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '2. Condicionales: if, else if, else',
+                            desc: 'La estructura "if" evalúa una condición reservada entre paréntesis. Si es verdadera, ejecuta el bloque entre llaves. Si es falsa, puede pasar el control a un "else if" o a un "else" por defecto.',
+                            code: 'int nota = 85;\n\nif (nota >= 90) {\n    System.out.println("Excelente");\n} else if (nota >= 70) {\n    System.out.println("Aprobado");\n} else {\n    System.out.println("Reprobado");\n}',
+                            explanations: [
+                                { line: 3, text: 'Evalúa la primera condición (¿nota es mayor o igual a 90?).' },
+                                { line: 5, text: 'Como 85 no es >= 90, salta aquí y evalúa esta segunda condición (¿es >= 70?).' },
+                                { line: 6, text: '¡Esta condición es verdadera! Ejecuta su instrucción e ignora el bloque "else" final.' },
+                                { line: 7, text: 'Si ninguna condición previa hubiera sido verdadera, ejecutaría este bloque por defecto.' }
+                            ]
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '3. El bloque condicional: Switch',
+                            desc: 'El "switch" es útil cuando necesitamos evaluar una misma variable exacta contra múltiples valores fijos posibles, evitando crear cadenas gigantes de "if-else".',
+                            code: 'int dia = 3;\n\nswitch (dia) {\n    case 1:\n        System.out.println("Lunes");\n        break;\n    case 2:\n        System.out.println("Martes");\n        break;\n    case 3:\n        System.out.println("Miércoles");\n        break;\n    default:\n        System.out.println("Otro día");\n}',
+                            explanations: [
+                                { line: 3, text: 'Iniciamos el switch evaluando estrictamente el valor de la variable "dia".' },
+                                { line: 4, text: 'Compara si la variable es == 1.' },
+                                { line: 6, text: 'MUY IMPORTANTE: La palabra clave "break" rompe el bloque switch y sale, evitando que se ejecuten accidentalmente los casos de abajo.' },
+                                { line: 10, text: 'Como dia es 3, el flujo saltará directamente a este caso y lo ejecutará.' },
+                                { line: 13, text: 'Como un "else", "default" engloba cualquier valor que no coincida con los casos enumerados.' }
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '4. El mundo de la iteración: Ciclos (Bucles)',
+                            desc: 'En programación odiamos copiar y pegar la misma línea cien veces. Los ciclos ("loops") nos permiten programar UNA sola instrucción y decirle a Java cuántas veces debe repetirla de manera animada o mientras se mantenga un estado.',
+                            simType: 'java-loop'
+                        },
+                        {
+                            type: 'comparisonTable',
+                            title: '5. Comparación: for vs while vs do-while',
+                            desc: 'Los tres hacen esencialmente lo mismo (repetir), pero tienen casos de uso perfectos.',
+                            headers: ['Estructura', 'Uso ideal', 'Anatomía', 'Condición Evaluada'],
+                            rows: [
+                                ['for', 'Cuando sabes EXACTAMENTE cuántas veces vas a iterar (Ej: 10 veces).', 'Inicializador, Condición, Incremento en 1 sola línea.', 'Antes de cada iteración.'],
+                                ['while', 'Cuando no sabes el límite, pero depende de un estado (Ej: "mientras queden vidas").', 'Evalúa antes de entrar, si es falsa de inicio ¡nunca se ejecuta!.', 'Antes de cada iteración.'],
+                                ['do-while', 'Igual que el while, pero garantiza que el bloque se ejecutará AL MENOS UNA VEZ.', 'Ejecuta el bloque primero y pregunta después.', 'Después de cada iteración.']
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '6. Recorriendo Arreglos (For-Each)',
+                            desc: 'Cuando tienes una colección o un arreglo con muchos datos, Java provee un "for" especial simplificado, ideal para leer de izquierda a derecha sin lidiar matemáticamente con los contadores.',
+                            simType: 'java-foreach'
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '7. Ejemplo Integrador: Pares e Impares',
+                            desc: 'Poniendo todo junto: Un programa que cuenta limpiamente del 1 al 10, y utiliza un condicional "if" para evaluar si el residuo de la división (%) es cero y así determinar numéricamente la paridad.',
+                            code: 'for (int i = 1; i <= 10; i++) {\n\n    if (i % 2 == 0) {\n        System.out.println(i + " es número PAR");\n    } else {\n        System.out.println(i + " es número IMPAR");\n    }\n\n}',
+                            explanations: [
+                                { line: 1, text: 'Declaramos el ciclo FOR: Arranca en i=1. Se repetirá MIENTRAS i <= 10. Tras cada ciclo, aumenta i en 1 (i++).' },
+                                { line: 3, text: 'En una iteración actual, dividimos "i" entre 2. Si el resto exacto (%) es CERO, significa que es matemáticamente PAR.' },
+                                { line: 4, text: 'Si la condición del "if" es verdadera, entonces se anuncia como numero PAR.' },
+                                { line: 6, text: 'Si hay residuo (ejemplo en 3 o 5), no entra al "if", entra al "else" y lo declara como IMPAR.' }
+                            ]
+                        }
+                    ],
+                    conclusion: 'Has comprendido cómo dotar de "inteligencia" matemática a tu código y hacer que tu programa tome sus propios rumbos en tiempo de ejecución. ¡Experimenta mezclando ifs adentro de whiles y loops adentro de condicionales para crear tus primeros lógicos de negocio!'
+                }
             }
         ]
     }
