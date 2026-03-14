@@ -1524,6 +1524,78 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                     ],
                     conclusion: 'Dominar la manera en la cual la información convive empaquetada en la memoria es el pimer paso formal hacia la algoritmia y sistemas corporativos ágiles que calculan billones de promedios. Trata de construir una calculadora que exiga un arreglo con todos los sueldos en Scanner y devuelva solo quién es superior al sueldo estadístico mínimo.'
                 }
+            },
+            {
+                id: 'java-methods',
+                title: 'Métodos en Java: Modularidad y Paso de Parámetros',
+                subtitle: 'Divide, organiza y reutiliza la lógica de tus aplicaciones',
+                type: 'Teoría',
+                difficulty: 'Principiante',
+                duration: '40–50 min',
+                tags: ['Java', 'Métodos', 'Modularidad', 'Parámetros', 'Argumentos', 'Línea de comandos', 'Programación 1'],
+                content: {
+                    intro: 'Un sistema corporativo real puede tener cientos de miles de líneas de código. Poner absolutamente todo dentro del bloque `main` haría el programa imposible de leer y mantener. Los **Métodos** nos permiten fraccionar algoritmos gigantes en bloques lógicos pequeños, nombrados y reutilizables (Módulos).',
+                    objectives: [
+                        'Comprender qué es un método y cómo fomenta la Programación Modular.',
+                        'Entender las partes anatómicas obligatorias de una Declaración (Firma/Signature).',
+                        'Manejar de forma segura las Fronteras de Memoria de variables (Ámbito de Variable/Scope).',
+                        'Asimilar el funcionamiento de clonación matemática en el Paso por Valor de Java.',
+                        'Aprender a interceptar parámetros iniciales ejecutivs desde la línea de comandos de terminal (String[] args).'
+                    ],
+                    sections: [
+                        {
+                            type: 'featureCards',
+                            title: '1. Modularidad: La regla dorada',
+                            features: [
+                                { icon: 'scissors', title: 'División', desc: 'Divide problemas intimidantes en mini-tareas asilables mucho más fáciles de atacar y probar.' },
+                                { icon: 'refresh-cw', title: 'Reutilización', desc: 'Escribe un cálculo matemático complicado una sola vez, e invócalo mil veces desde cualquier archivo.' },
+                                { icon: 'eye', title: 'Legibilidad', desc: 'Leer `procesarNomina()` es infinitamente más claro para un humano que leer 500 líneas de condicionales y fors matemáticos.' }
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '2. Anatomía de la Firma (Signature)',
+                            desc: 'Antes de poder usar un método, tienes que declararlo, estableciendo sus reglas de acceso, el tipo de respuesta que prometerá devolver (o "void" si no devuelve nada), su nombre representativo y la lista de información en bruto que necesita recibir para trabajar.',
+                            simType: 'java-method-signature'
+                        },
+                        {
+                            type: 'process',
+                            title: '3. El Salto del Hilo de Ejecución',
+                            desc: 'El programa siempre arranca y corre de arriba hacia abajo dentro del `main`. Cuando en esa bajada vertical se topa con el nombre de un Método ya existente, el hilo de CPU pega un "salto" cuántico hacia ese bloque, ejecuta todo adentro, y una vez finalizado, viaja en el tiempo de regreso al punto exacto donde se quedó en `main`.',
+                            simType: 'java-method-flow'
+                        },
+                        {
+                            type: 'process',
+                            title: '4. Áreas Restringidas: El "Scope" (Ámbito)',
+                            desc: 'Si creas una variable `int vidas = 3` adentro del Bloque de Nivel 1 (ej: un método), esta variable NACERÁ y MORIRÁ de forma estrictamente reservada para ese bloque y las llaves que vivan dentro de él. Si intentas invocar a `vidas` desde el Bloque 2 u otro Método externo... Java te dirá que la variable no existe.',
+                            simType: 'java-scope'
+                        },
+                        {
+                            type: 'process',
+                            title: '5. Paso de Parámetros (Clonaje por Valor)',
+                            desc: 'Si un Método1 tiene la variable `salario` y se la envía al Método2, Java NUNCA entrega de forma directa la variable original para salvaguardarla de alteraciones maliciosas. En vez de eso, Java "fotocopia" en la RAM el valor literal y lo transporta al Método2 como un clon temporal desligado del original.',
+                            simType: 'java-param-pass'
+                        },
+                        {
+                            type: 'interactiveCode',
+                            title: '6. Inyectando Datos desde Consola CLI',
+                            desc: '¿Alguna vez te preguntaste qué significa la firma mágica que todos los proyectos Java incluyen por defecto? ( `public static void main(String[] args)` ) Es un Arreglo de Texto Crudo. Su función es recibir a través de la consola un listado masivo de "palabras" escritas por el usuario antes de dar Enter al arrancar el Software.',
+                            code: 'public class Argumentos {\n    public static void main(String[] args) {\n        System.out.println("Primer valor crudo: " + args[0]);\n        System.out.println("Segundo valor crudo: " + args[1]);\n        \n        // Los argumentos inician como texto estricto.\n        // Si inyectaste números para hacer sumas matemáticas,\n        // hay que "Parsear" o traducir el String a Int:\n        int edadStrTextual = Integer.parseInt(args[1]);\n    }\n}',
+                            explanations: [
+                                { line: 2, text: 'Recibe TODA palabra extra separada por espacios que el Usuario agregó al momento de tipear "java Programa" en el CMD negro.' },
+                                { line: 3, text: 'Podemos extraer inyecciones concretas asumiendo los índices de Arrays que ya dominas. El primer sufijo siempre es args[0].' },
+                                { line: 9, text: 'La clase Integer posee un Método Mágico público en Java llamado "parseInt()". Recibe tu texto crudo "18" y te lo devuelve convertido en el número entero puro 18 para matemáticas inmediatas.' }
+                            ]
+                        },
+                        {
+                            type: 'process',
+                            title: '7. Simulador: Laboratorio CLI y Operadores',
+                            desc: 'Pondremos todo en práctica. Fingiremos estar en la terminal de la computadora, digitaremos un comando con dos números como sufijos estáticos... y al dar Start, rastrearemos cómo Java los parsea, los introduce en un Método externo (clonados) sumándolos.',
+                            simType: 'java-command-line'
+                        }
+                    ],
+                    conclusion: 'La modularidad es el pilar de la Ingeniería de Software Avanzada. Ningún ser humano es mentalmente capaz de mantener las 50 millones de líneas de código de Windows o Linux. Se sostienen gracias al fraccionamiento hiper-modular donde cada clase y cada método son como Legos herméticos que se vinculan entre sí. ¡Felicidades! Has completado los fundamentos sintácticos del paradigma imperativo de Java Orientado a Estructuras.'
+                }
             }
         ]
     }

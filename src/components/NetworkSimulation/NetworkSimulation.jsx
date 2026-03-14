@@ -22,6 +22,11 @@ import JavaArrayMemorySim from './simulations/JavaArrayMemorySim';
 import JavaArrayIterateSim from './simulations/JavaArrayIterateSim';
 import JavaMatrixSim from './simulations/JavaMatrixSim';
 import JavaDeskcheckSim from './simulations/JavaDeskcheckSim';
+import JavaMethodFlowSim from './simulations/JavaMethodFlowSim';
+import JavaMethodSignatureSim from './simulations/JavaMethodSignatureSim';
+import JavaScopeSim from './simulations/JavaScopeSim';
+import JavaParamPassSim from './simulations/JavaParamPassSim';
+import JavaCommandLineArgsSim from './simulations/JavaCommandLineArgsSim';
 import './NetworkSimulation.css';
 
 export default function NetworkSimulation({ type = 'client-server' }) {
@@ -43,8 +48,8 @@ export default function NetworkSimulation({ type = 'client-server' }) {
         }
     }, [isPlaying, type]);
 
-    const isWide = type === 'sdlc' || type === 'git-flow' || type === 'scrum-flow' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach' || type === 'java-array-memory' || type === 'java-array-iterate' || type === 'java-matrix' || type === 'java-deskcheck';
-    const isAuto = type === 'scrum-board' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach' || type === 'java-array-memory' || type === 'java-array-iterate' || type === 'java-matrix' || type === 'java-deskcheck';
+    const isWide = type === 'sdlc' || type === 'git-flow' || type === 'scrum-flow' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach' || type === 'java-array-memory' || type === 'java-array-iterate' || type === 'java-matrix' || type === 'java-deskcheck' || type === 'java-method-flow' || type === 'java-method-signature' || type === 'java-scope' || type === 'java-param-pass' || type === 'java-command-line';
+    const isAuto = type === 'scrum-board' || type === 'java-compile' || type === 'java-memory' || type === 'java-references' || type === 'java-cond-flow' || type === 'java-loop' || type === 'java-foreach' || type === 'java-array-memory' || type === 'java-array-iterate' || type === 'java-matrix' || type === 'java-deskcheck' || type === 'java-method-flow' || type === 'java-method-signature' || type === 'java-scope' || type === 'java-param-pass' || type === 'java-command-line';
 
     return (
         <div className="network-sim">
@@ -69,9 +74,14 @@ export default function NetworkSimulation({ type = 'client-server' }) {
                 {type === 'java-array-iterate' && <JavaArrayIterateSim />}
                 {type === 'java-matrix' && <JavaMatrixSim />}
                 {type === 'java-deskcheck' && <JavaDeskcheckSim />}
+                {type === 'java-method-flow' && <JavaMethodFlowSim />}
+                {type === 'java-method-signature' && <JavaMethodSignatureSim />}
+                {type === 'java-scope' && <JavaScopeSim />}
+                {type === 'java-param-pass' && <JavaParamPassSim />}
+                {type === 'java-command-line' && <JavaCommandLineArgsSim />}
             </div>
 
-            {type !== 'java-compile' && type !== 'java-memory' && type !== 'java-references' && type !== 'java-cond-flow' && type !== 'java-loop' && type !== 'java-foreach' && type !== 'java-array-memory' && type !== 'java-array-iterate' && type !== 'java-matrix' && type !== 'java-deskcheck' && (
+            {type !== 'java-compile' && type !== 'java-memory' && type !== 'java-references' && type !== 'java-cond-flow' && type !== 'java-loop' && type !== 'java-foreach' && type !== 'java-array-memory' && type !== 'java-array-iterate' && type !== 'java-matrix' && type !== 'java-deskcheck' && type !== 'java-method-flow' && type !== 'java-method-signature' && type !== 'java-scope' && type !== 'java-param-pass' && type !== 'java-command-line' && (
                 <button
                     className={`network-sim__btn ${isPlaying ? 'network-sim__btn--active' : ''}`}
                     onClick={() => setIsPlaying(true)}
