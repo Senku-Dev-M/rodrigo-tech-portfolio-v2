@@ -10,6 +10,7 @@ import LabCard from '../components/LabCard/LabCard';
 import LabsToolbar from '../components/LabsToolbar/LabsToolbar';
 import GuideView from '../components/GuideView/GuideView';
 import TheoryView from '../components/TheoryView/TheoryView';
+import PacketTracerLabView from '../components/PacketTracerLabView/PacketTracerLabView';
 import Antigravity from '../components/Antigravity/Antigravity';
 import Icon from '../components/Icon/Icon';
 import { subjects } from '../data/mentoring';
@@ -156,7 +157,9 @@ export default function MentoriasPage() {
                         {/* VIEW 3: full guide / theory */}
                         {view === 'guide' && lab && (
                             <motion.div key="guide" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-                                {lab.content ? (
+                                {lab.isPacketTracerLab ? (
+                                    <PacketTracerLabView lab={lab} />
+                                ) : lab.content ? (
                                     <TheoryView lab={lab} />
                                 ) : (
                                     <GuideView lab={lab} />

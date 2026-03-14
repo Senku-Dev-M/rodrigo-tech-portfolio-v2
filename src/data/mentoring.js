@@ -472,6 +472,156 @@ Hola desde VM1 - cliente NFS`,
                 },
             },
             {
+                id: 'packet-tracer-lan',
+                isPacketTracerLab: true,
+                title: 'Laboratorio LAN en Cisco Packet Tracer: DHCP, DNS, HTTP, SMTP e ICMP',
+                type: 'Laboratorio',
+                difficulty: 'Intermedio Inicial',
+                duration: '60–90 min',
+                tags: ['Redes 1', 'Cisco Packet Tracer', 'LAN', 'DHCP', 'DNS', 'HTTP', 'HTTPS', 'SMTP', 'POP3', 'ICMP', 'ARP', 'Switching', 'Topologías de Red'],
+                labData: {
+                    intro: 'En este laboratorio íntegro, pasarás de la teoría a la práctica construyendo desde cero una topología de Red Lógica (LAN) operativa simulando una infraestructura de servidores corporativos. El objetivo primordial es aprender a configurar, interconectar y analizar tráfico de Capa 3, Capa 4 y Capa 7 utilizando el entorno de simulación emulado de Cisco Packet Tracer. Observaremos con una lupa virtual cómo los Acuses de Recibos y Segmentos TCP/UDP viajan por los cables en tiempo real.',
+                    objectives: [
+                        'Construir una red LAN funcional en Cisco Packet Tracer.',
+                        'Configurar servicios de red básicos (DHCP, DNS, Web, Correo).',
+                        'Comprobar conectividad entre hosts y servidores.',
+                        'Analizar protocolos DHCP, DNS, HTTP, HTTPS, SMTP e ICMP mediante tablas PDU.',
+                        'Interpretar paquetes y campos relevantes en modo Simulación paso a paso.',
+                        'Aplicar análisis técnico sobre el tráfico real de red respondiendo al cuestionario final.'
+                    ],
+                    steps: [
+                        {
+                            id: '01',
+                            title: 'Configurar el Servidor DHCP',
+                            text: 'Haz clic en el Servidor DHCP en el área de trabajo para abrir su ventana de configuración principal.',
+                            steps: [
+                                'Ve a la pestaña Config > Global Settings, e ingresa la Puerta de Enlace (Gateway) 172.16.0.1.',
+                                'En la misma pestaña Config, selecciona FastEthernet0, asigna la IP 172.16.0.10 y la Máscara 255.255.0.0.',
+                                'Ve a la pestaña Services y asegúrate de deshabilitar explícitamente HTTP, HTTPS, DNS, SMTP y POP3.',
+                                'Entra a Services > DHCP y enciéndelo (On).',
+                                'Configura el Default Gateway en 172.16.0.1 y el DNS Server en 172.16.0.11.',
+                                'Establece la Start IP Address en 172.16.0.100 y presiona Save.'
+                            ]
+                        },
+                        {
+                            id: '02',
+                            title: 'Configurar el Servidor DNS',
+                            text: 'Haz clic en el Servidor DNS en el área de topología lógica.',
+                            steps: [
+                                'Ve a Config > Global Settings, e ingresa el Gateway: 172.16.0.1.',
+                                'En Config > FastEthernet0, asigna la IP 172.16.0.11 y la Máscara 255.255.0.0.',
+                                'Ve a Services, y deshabilita HTTP, HTTPS, DHCP, SMTP y POP3.',
+                                'Entra a Services > DNS y habilita el servicio (On).',
+                                'Crea el primer dominio introduciendo Name: jala.university, Type: A Record, Address: 172.16.0.20, y haz clic en Add.',
+                                'Crea el segundo dominio introduciendo Name: www.pruebas.com, Type: A Record, Address: 172.16.0.30, y presiona Add.'
+                            ]
+                        },
+                        {
+                            id: '03',
+                            title: 'Configurar el Servidor Web Jala University',
+                            text: 'Haz clic en el servidor etiquetado como Web Server: jala.university.',
+                            steps: [
+                                'En Config > Global Settings, asigna su Gateway: 172.16.0.1.',
+                                'En Config > FastEthernet0, asigna su IP 172.16.0.20 y Máscara 255.255.0.0.',
+                                'En Services, deshabilita DHCP, SMTP, POP3 y DNS.',
+                                'Asegúrate de que HTTP y HTTPS estén encendidos (On).',
+                                'En Services > HTTP, selecciona file manager, edita el archivo index.html sobrescribiendo con: <hr> Bienvenido a la página web de JALA University!'
+                            ]
+                        },
+                        {
+                            id: '04',
+                            title: 'Configurar el Servidor Web Pruebas',
+                            text: 'Haz clic en el servidor etiquetado como Web Server: www.pruebas.com.',
+                            steps: [
+                                'En Config > Global Settings, asigna el Gateway: 172.16.0.1.',
+                                'En Config > FastEthernet0, introduce IP 172.16.0.30 y Máscara 255.255.0.0.',
+                                'En Services, deshabilita DHCP, SMTP, POP3 y DNS.',
+                                'Verifica que HTTP y HTTPS permanezcan en On.',
+                                'En Services > HTTP, edita index.html e introduce: <hr> Está es una página de pruebas!'
+                            ]
+                        },
+                        {
+                            id: '05',
+                            title: 'Configurar el Servidor de Correo Electrónico',
+                            text: 'Selecciona el Servidor Email (mail.jala.university) para configurar el buzón.',
+                            steps: [
+                                'En Config > Global Settings, configura Gateway: 172.16.0.1.',
+                                'En Config > FastEthernet0, usa IP 172.16.0.40 y Máscara 255.255.0.0.',
+                                'En Services, deshabilita DHCP, HTTP, HTTPS y DNS.',
+                                'Ingresa a Services > Email y asegúrate de que SMTP y POP3 estén encendidos.',
+                                'Escribe Domain Name: jala.com y haz clic en el botón Set.',
+                                'En la sección de usuarios, añade el primero: User: user1, Password: datacom1 y haz clic en (+).',
+                                'Añade el segundo: User: user2, Password: datacom2, (+).',
+                                'Añade el tercero: User: <tu_nombre.apellido>, Password: <fecha DDMMAAAA>, (+).'
+                            ]
+                        },
+                        {
+                            id: '06',
+                            title: 'Configurar PCs Dinámicas (Dynamic 1 y Dynamic 2)',
+                            text: 'Configuraremos estas terminales para que soliciten la IP al Servidor DHCP autónomamente.',
+                            steps: [
+                                'Haz un solo clic en la PC1 llamada Dynamic 1.',
+                                'Ve a la pestaña Desktop y abre la aplicación IP Configuration.',
+                                'Cambia la burbuja de Static a DHCP.',
+                                'Espera unos dos segundos a visualizar el mensaje "DHCP request successful" con los nuevos parámetros.',
+                                'Cierra la ventana y repite los tres pasos anteriores para la PC2 (Dynamic 2).'
+                            ]
+                        },
+                        {
+                            id: '07',
+                            title: 'Configurar PC Estática (Static)',
+                            text: 'A diferencia de las demás, la PC3 necesita ser configurada a mano.',
+                            steps: [
+                                'Abre el panel de PC3 (Static).',
+                                'Ve a Desktop > IP Configuration. Manten la burbuja en modo Static.',
+                                'Escribe IPv4 Address: 172.16.0.90',
+                                'Subnet Mask: 255.255.0.0',
+                                'Default Gateway: 172.16.0.1',
+                                'DNS Server: 172.16.0.11'
+                            ]
+                        },
+                        {
+                            id: '08',
+                            title: 'Enlazar los Clientes de Correo en las PCs',
+                            text: 'Configura el protocolo de la bandeja de correo en los clientes para conectarse con mail.jala.university.',
+                            steps: [
+                                'Abre nuevamente PC1, entra a la pestaña Desktop y haz clic en la app Email.',
+                                'Your Name: user1',
+                                'Email Address: user1@jala.com',
+                                'Incoming Mail Server: mail.jala.university',
+                                'Outgoing Mail Server: mail.jala.university',
+                                'Logon Information - Username: user1, Password: datacom1',
+                                'Presiona el botón Save en la parte inferior.',
+                                'Repite el proceso para PC2 emparejando sus datos (user2@jala.com, user2, datacom2).',
+                                'Repite el proceso en PC3 usando la cuenta con tu nombre que creaste en el paso 5.'
+                            ]
+                        }
+                    ],
+                    wiring: [
+                        { from: 'Conexión a servidores', cable: 'Cable Directo (Straight-through)' },
+                        { from: 'Conexión a switches', cable: 'Cable Cruzado (Cross-over)' },
+                        { from: 'Conexión a PCs', cable: 'Cable Directo (Straight-through)' }
+                    ],
+                    questions: [
+                        '¿DHCP es un servicio orientado a la conexión?',
+                        '¿DHCP utiliza TCP o UDP?',
+                        '¿Cuál es el puerto utilizado por los Servidores DHCP?',
+                        'Mencione 3 protocoles qué usan el servicio TCP',
+                        '¿Qué protocolo interviene antes de HTTP/HTTPS?',
+                        '¿Cuál es el puerto de origen de los servidores HTTP?',
+                        '¿Cuál es el puerto de origen de los servidores HTTPS?',
+                        '¿Cuál es la diferencia a nivel de datos entre HTTP y HTTPS?',
+                        '¿Qué protocolo interviene antes de SMTP?',
+                        '¿Cuál es el puerto de origen de un servidor SMTP?',
+                        'Identifique 3 campos propios de TCP, no presentes en UDP.',
+                        '¿Qué protocolo interviene antes de ICMP?',
+                        '¿Cuál es el puerto de origen de un servidor ICMP?',
+                        'Al ejecutar arp -a. Qué direcciones IP y físicas se pueden observar.',
+                        'Analizando el primer paquete ICMP, rellene los datos siguientes:\n\nDirección IP de origen:\nDirección IP de destino:\nTipo de ICMP:\nCódigo de ICMP:\nDirección Ethernet de origen:\nDirección Ethernet de destino:\nVersión de IP:\nTiempo de vida (TTL):'
+                    ]
+                }
+            },
+            {
                 id: 'wireshark-analisis',
                 title: 'Análisis de Tráfico de Red con Wireshark',
                 subtitle: 'Captura y comprensión de protocolos (DHCP, ICMP, DNS, HTTP)',
