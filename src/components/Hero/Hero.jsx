@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
@@ -22,26 +23,36 @@ const fadeUp = {
 
 export default function Hero() {
     const { t } = useI18n();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <section id="hero" className="hero">
 
-            {/* Prism — full background, high intensity */}
-            <div className="hero-prism">
-                <Prism
-                    animationType="rotate"
-                    timeScale={0.5}
-                    height={3.5}
-                    baseWidth={5.5}
-                    scale={3.6}
-                    hueShift={0}
-                    colorFrequency={1}
-                    noise={0}
-                    bloom={1}
-                    transparent={true}
-                    suspendWhenOffscreen={true}
-                />
-            </div>
+            {/* Prism — disabled on mobile for massive performance gains */}
+            {!isMobile && (
+                <div className="hero-prism">
+                    <Prism
+                        animationType="rotate"
+                        timeScale={0.5}
+                        height={3.5}
+                        baseWidth={5.5}
+                        scale={3.6}
+                        hueShift={0}
+                        colorFrequency={1}
+                        noise={0}
+                        bloom={1}
+                        transparent={true}
+                        suspendWhenOffscreen={true}
+                    />
+                </div>
+            )}
 
             {/* Overlay */}
             <div className="hero-overlay" />
