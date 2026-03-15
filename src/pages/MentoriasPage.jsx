@@ -145,7 +145,7 @@ export default function MentoriasPage() {
                                             <span className="labs-empty__icon">🔍</span>
                                             <p className="labs-empty__title">{t('mentoring.emptyTitle')}</p>
                                             <p className="labs-empty__desc">
-                                                {t('mentoring.emptyDesc')}<br/>
+                                                {t('mentoring.emptyDesc')}<br />
                                                 {t('mentoring.emptyHint')}
                                             </p>
                                         </motion.div>

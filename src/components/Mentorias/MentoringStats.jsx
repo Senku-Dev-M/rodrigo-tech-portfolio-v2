@@ -7,7 +7,7 @@ export default function MentoringStats() {
     const stats = [
         { iconName: 'calendar', value: '2+', label: t('mentoring.stat1') },
         { iconName: 'book', value: '6+', label: t('mentoring.stat2') },
-        { iconName: 'users', value: '100+', label: t('mentoring.stat3') },
+        { iconName: 'users', value: '50+', label: t('mentoring.stat3') },
         { iconName: 'star', value: '3×', label: t('mentoring.stat4') },
     ];
 

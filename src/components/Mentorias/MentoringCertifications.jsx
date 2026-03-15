@@ -3,12 +3,12 @@ import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 
 const certifications = [
-    'Programación 1 – Jala University Mentor U (Ene. 2026)',
-    'Computer Networks 1 – Jala University Mentor U (Oct. 2025)',
-    'Programación 3 – Jala University Mentor U (Ago. 2025)',
-    'Desarrollo de Software I – Jala University Mentor U (May. 2025)',
-    'Base de Datos 2 – Jala University Mentor U (Abr. 2025)',
-    'Programación 2 – Jala University Mentor U (Feb. 2025)',
+    'Programación 1 – Jala University Mentor U (3 periodos: 2024, 2025, 2026)',
+    'Programación 2 – Jala University Mentor U (2025)',
+    'Programación 3 – Jala University Mentor U (2025)',
+    'Redes de Computadoras 1 – Jala University Mentor U (2025)',
+    'Desarrollo de Software I – Jala University Mentor U (2025)',
+    'Base de Datos 2 – Jala University Mentor U (2025)',
 ];
 
 export default function MentoringCertifications() {
