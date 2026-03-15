@@ -73,21 +73,25 @@
     position: absolute;
     inset: -5px;
     border-radius: 50%;
-    border: 1.5px solid transparent;
-    background: linear-gradient(135deg, #00d4ff, transparent 50%, #0ea5e9) border-box;
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
+    padding: 2px; /* Border width equivalent */
+    background: conic-gradient(from 0deg, #00d4ff, transparent 50%, #0ea5e9, #00d4ff);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
     mask-composite: exclude;
+    pointer-events: none;
     animation: slow-spin 8s linear infinite;
+    /* Force GPU acceleration to avoid main thread layout thrashing */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 @keyframes slow-spin {
     from {
-        transform: rotate(0deg);
+        transform: rotate(0deg) translateZ(0);
     }
-
     to {
-        transform: rotate(360deg);
+        transform: rotate(360deg) translateZ(0);
     }
 }
 
@@ -426,5 +430,18 @@
 
     .timeline-card {
         padding: 1rem;
+        /* Mobile Performance: Remove box-shadows on cards */
+        box-shadow: none !important;
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .education-card, .cert-card, .profile-card {
+        box-shadow: none !important;
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .skill-chip {
+        box-shadow: none !important;
+        background: transparent;
     }
 }

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import GradientText from '../GradientText/GradientText';
@@ -35,13 +35,25 @@ export default function About() {
     const expRef = useRef(null);
     const skillsInView = useInView(skillsRef, { once: true, margin: '-60px' });
     const expInView = useInView(expRef, { once: true, margin: '-60px' });
+    
+    // Performance optimization for mobile devices
+    const [particleCount, setParticleCount] = useState(140);
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setParticleCount(window.innerWidth < 768 ? 60 : 140);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <section id="about" className="about">
             <div className="about-antigravity">
                 <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
                     <Antigravity
-                        count={140} magnetRadius={8} ringRadius={9} waveSpeed={0.3}
+                        count={particleCount} magnetRadius={8} ringRadius={9} waveSpeed={0.3}
                         waveAmplitude={0.8} particleSize={0.45} lerpSpeed={0.04}
                         color="#00d4ff" autoAnimate={true} particleVariance={0.8}
                         rotationSpeed={0.05} depthFactor={0.6} pulseSpeed={2}
