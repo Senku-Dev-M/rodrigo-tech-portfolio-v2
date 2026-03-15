@@ -39,13 +39,15 @@ export default function About() {
     return (
         <section id="about" className="about">
             <div className="about-antigravity">
-                <Antigravity
-                    count={140} magnetRadius={8} ringRadius={9} waveSpeed={0.3}
-                    waveAmplitude={0.8} particleSize={0.45} lerpSpeed={0.04}
-                    color="#00d4ff" autoAnimate={true} particleVariance={0.8}
-                    rotationSpeed={0.05} depthFactor={0.6} pulseSpeed={2}
-                    particleShape="tetrahedron" fieldStrength={12}
-                />
+                <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+                    <Antigravity
+                        count={140} magnetRadius={8} ringRadius={9} waveSpeed={0.3}
+                        waveAmplitude={0.8} particleSize={0.45} lerpSpeed={0.04}
+                        color="#00d4ff" autoAnimate={true} particleVariance={0.8}
+                        rotationSpeed={0.05} depthFactor={0.6} pulseSpeed={2}
+                        particleShape="tetrahedron" fieldStrength={12}
+                    />
+                </div>
             </div>
             <div className="section-container">
                 <SectionTitle>{t('about.title')}</SectionTitle>
