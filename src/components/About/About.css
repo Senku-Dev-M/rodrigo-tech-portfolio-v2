@@ -366,11 +366,12 @@
 .btn-primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     background: #00d4ff;
     color: #080808;
     text-decoration: none;
     padding: 0.8rem 2rem;
-    border-radius: 6px;
+    border-radius: 50px;
     font-weight: 700;
     font-size: 0.9rem;
     transition: transform 0.2s, box-shadow 0.2s;

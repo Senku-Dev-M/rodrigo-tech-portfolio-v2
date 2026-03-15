@@ -37,9 +37,9 @@ export default function Hero() {
                     hueShift={0}
                     colorFrequency={1}
                     noise={0}
-                    glow={1}
                     bloom={1}
                     transparent={true}
+                    suspendWhenOffscreen={true}
                 />
             </div>
 

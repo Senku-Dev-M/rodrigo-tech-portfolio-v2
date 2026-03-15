@@ -29,6 +29,7 @@ const FuzzyText = ({
         let glitchTimeoutId;
         let glitchEndTimeoutId;
         let clickTimeoutId;
+        let isIntersecting = true;
         const canvas = canvasRef.current;
         if (!canvas) return;
 
@@ -155,6 +156,11 @@ const FuzzyText = ({
 
             const run = timestamp => {
                 if (isCancelled) return;
+                if (!isIntersecting) {
+                    animationFrameId = window.requestAnimationFrame(run);
+                    return;
+                }
+                
                 if (timestamp - lastFrameTime < frameDuration) {
                     animationFrameId = window.requestAnimationFrame(run);
                     return;
@@ -180,9 +186,16 @@ const FuzzyText = ({
                     currentIntensity = targetIntensity;
                 }
 
-                for (let j = 0; j < tightHeight; j++) {
-                    const dx = Math.floor(currentIntensity * (Math.random() - 0.5) * fuzzRange);
-                    ctx.drawImage(offscreen, 0, j, offscreenWidth, 1, dx, j, offscreenWidth, 1);
+                if (currentIntensity < 0.001) {
+                    // Fast path for when no fuzz is applied
+                    ctx.drawImage(offscreen, 0, 0);
+                } else {
+                    // Handle mobile performance - step by 2 on small screens if needed, but for now just single rows
+                    const stepSize = window.innerWidth < 768 ? 2 : 1;
+                    for (let j = 0; j < tightHeight; j += stepSize) {
+                        const dx = Math.floor(currentIntensity * (Math.random() - 0.5) * fuzzRange);
+                        ctx.drawImage(offscreen, 0, j, offscreenWidth, stepSize, dx, j, offscreenWidth, stepSize);
+                    }
                 }
 
                 animationFrameId = window.requestAnimationFrame(run);
@@ -224,6 +237,13 @@ const FuzzyText = ({
                 }
                 if (clickEffect) canvas.removeEventListener('click', handleClick);
             };
+
+            const observer = new IntersectionObserver((entries) => {
+                isIntersecting = entries[0].isIntersecting;
+            }, { rootMargin: '50px' });
+            observer.observe(canvas);
+            
+            canvas.cleanupObserver = () => observer.disconnect();
         };
 
         init();
@@ -235,6 +255,7 @@ const FuzzyText = ({
             clearTimeout(glitchEndTimeoutId);
             clearTimeout(clickTimeoutId);
             if (canvas && canvas.cleanupFuzzyText) canvas.cleanupFuzzyText();
+            if (canvas && canvas.cleanupObserver) canvas.cleanupObserver();
         };
     }, [
         children, fontSize, fontWeight, fontFamily, color,

@@ -227,7 +227,9 @@
 }
 
 .btn-primary {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, #0284c7, #00d4ff);
     color: #fff;
     text-decoration: none;
