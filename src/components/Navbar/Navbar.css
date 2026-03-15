@@ -84,7 +84,7 @@
     color: #00d4ff !important;
     border: 1px solid rgba(0, 212, 255, 0.35) !important;
     padding: 0.42rem 1.1rem !important;
-    border-radius: 6px;
+    border-radius: 50px;
     font-weight: 600 !important;
     font-size: 0.85rem !important;
     transition: background 0.2s, border-color 0.2s, color 0.2s !important;
@@ -120,6 +120,11 @@
     border: none;
     cursor: pointer;
     padding: 4px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.hamburger:focus {
+    outline: none;
 }
 
 .hamburger span {
@@ -182,7 +187,9 @@
     }
 
     .navbar-lang-item {
-        display: block;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
     }
 
     .navbar-right-group .lang-switch {

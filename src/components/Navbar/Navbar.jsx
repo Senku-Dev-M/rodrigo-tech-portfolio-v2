@@ -70,16 +70,7 @@ export default function Navbar() {
                             </a>
                         </li>
                     ))}
-                    <li>
-                        <a
-                            href="https://drive.google.com/drive/folders/1ZjpmZptWPuFE_2xwMWTj7qRChAecPDzH"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="navbar-cta"
-                        >
-                            {t('nav.certificates')}
-                        </a>
-                    </li>
+
                     <li className="navbar-lang-item">
                         <LangSwitch />
                     </li>
