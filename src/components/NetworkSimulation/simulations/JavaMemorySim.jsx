@@ -21,7 +21,7 @@ export default function JavaMemorySim() {
                 
                 {/* Código de origen */}
                 <div style={{ padding: '1rem', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', fontFamily: 'monospace', fontSize: '1.2rem', color: '#fff' }}>
-                    <span style={{ color: '#c678dd' }}>int</span> <span style={{ color: '#e06c75' }}>edad</span> {step >= 1 && <span style={{ color: '#56b6c2' }}>=</span>} {step >= 1 && <span style={{ color: '#d19a66' }}>20</span>};
+                    <span style={{ color: '#67e8f9' }}>int</span> <span style={{ color: '#e06c75' }}>edad</span> {step >= 1 && <span style={{ color: '#56b6c2' }}>=</span>} {step >= 1 && <span style={{ color: '#d19a66' }}>20</span>};
                 </div>
 
                 {/* Flecha animada */}
@@ -111,3 +111,4 @@ export default function JavaMemorySim() {
         </div>
     );
 }
+

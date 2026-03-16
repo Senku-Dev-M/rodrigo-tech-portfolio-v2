@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
+:root {
+  --mentor-accent: #00d4ff;
+  --mentor-accent-strong: #0ea5e9;
+  --mentor-accent-soft: #67e8f9;
+  --mentor-accent-deep: #0369a1;
+  --mentor-accent-rgb: 0, 212, 255;
+  --mentor-accent-strong-rgb: 14, 165, 233;
+  --mentor-accent-soft-rgb: 103, 232, 249;
+  --text-grey: rgba(226, 232, 240, 0.72);
+}
+
 *,
 *::before,
 *::after {
@@ -31,12 +42,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00d4ff;
+  background: var(--mentor-accent);
   border-radius: 4px;
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.2);
+  background: rgba(var(--mentor-accent-rgb), 0.2);
   color: #fff;
 }
 

@@ -39,10 +39,10 @@ export default function JavaArrayIterateSim() {
                 {/* Código */}
                 <div style={{ background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1rem', color: '#e5e7eb' }}>
                     <div>
-                        <span style={{ color: '#c678dd' }}>int[]</span> <span style={{ color: '#e06c75' }}>datos</span> = {'{'}8, 16, 32, 64{'}'};
+                        <span style={{ color: '#67e8f9' }}>int[]</span> <span style={{ color: '#e06c75' }}>datos</span> = {'{'}8, 16, 32, 64{'}'};
                     </div>
                     <div style={{ marginTop: '1rem' }}>
-                        <span style={{ color: '#c678dd' }}>for</span> (
+                        <span style={{ color: '#67e8f9' }}>for</span> (
                         <span style={{ color: '#00d4ff' }}>int i = 0</span>; 
                         <span style={{ color: i < array.length ? '#27ae60' : '#e74c3c' }}> i &lt; datos.length</span>; 
                         <span style={{ color: '#e06c75' }}> i++</span>) {'{'}
@@ -51,7 +51,7 @@ export default function JavaArrayIterateSim() {
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println( <span style={{ color: '#e06c75' }}>datos[</span>
                         <motion.span 
                             key={`code-${i}`} 
-                            initial={i >= 0 && i < array.length ? { scale: 1.5, color: '#f39c12' } : false} 
+                            initial={i >= 0 && i < array.length ? { scale: 1.5, color: '#38bdf8' } : false} 
                             animate={{ scale: 1, color: '#00d4ff' }} 
                             style={{ display: 'inline-block', fontWeight: 'bold' }}
                         >
@@ -167,3 +167,4 @@ export default function JavaArrayIterateSim() {
         </div>
     );
 }
+

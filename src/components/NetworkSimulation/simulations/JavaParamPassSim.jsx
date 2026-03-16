@@ -49,7 +49,7 @@ export default function JavaParamPassSim() {
                                 animate={{ x: 60, scale: 1, opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 1.5, ease: 'easeInOut', repeat: Infinity }}
-                                style={{ position: 'absolute', zIndex: 10, background: '#f39c12', color: '#000', padding: '0.4rem 0.8rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', border: '2px solid #fff' }}
+                                style={{ position: 'absolute', zIndex: 10, background: '#38bdf8', color: '#000', padding: '0.4rem 0.8rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', border: '2px solid #fff' }}
                             >
                                 Clon(100) →
                             </motion.div>
@@ -71,16 +71,16 @@ export default function JavaParamPassSim() {
                 </div>
 
                 {/* Panel de Memoria del Método Externo */}
-                <div style={{ background: 'rgba(243, 156, 18, 0.05)', padding: '1.5rem', borderRadius: '8px', border: '2px dashed rgba(243, 156, 18, 0.2)', width: '220px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', opacity: step >= 2 ? 1 : 0.2, transition: 'opacity 0.3s' }}>
-                    <div style={{ color: '#f39c12', fontWeight: 'bold' }}>METHOD MEMORY</div>
+                <div style={{ background: 'rgba(56, 189, 248, 0.05)', padding: '1.5rem', borderRadius: '8px', border: '2px dashed rgba(56, 189, 248, 0.2)', width: '220px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', opacity: step >= 2 ? 1 : 0.2, transition: 'opacity 0.3s' }}>
+                    <div style={{ color: '#38bdf8', fontWeight: 'bold' }}>METHOD MEMORY</div>
                     <div style={{ fontSize: '0.85rem', color: '#e5e7eb', fontFamily: 'monospace' }}>
                         int monto;
                     </div>
                     
                     {/* Caja Variable Local Módulo */}
-                    <div style={{ width: '80px', height: '80px', borderRadius: '8px', background: 'rgba(243, 156, 18, 0.1)', border: '2px solid #f39c12', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', fontWeight: 'bold', color: step === 4 ? '#e74c3c' : '#fff', position: 'relative', boxShadow: step === 3 ? '0 0 20px rgba(243, 156, 18, 0.4)' : 'none' }}>
+                    <div style={{ width: '80px', height: '80px', borderRadius: '8px', background: 'rgba(56, 189, 248, 0.1)', border: '2px solid #38bdf8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', fontWeight: 'bold', color: step === 4 ? '#e74c3c' : '#fff', position: 'relative', boxShadow: step === 3 ? '0 0 20px rgba(56, 189, 248, 0.4)' : 'none' }}>
                         {step < 2 ? '?' : step < 3 ? '100' : '115'}
-                        <div style={{ position: 'absolute', bottom: '-25px', fontSize: '0.8rem', color: '#f39c12' }}>[Caja 2y (Aislada)]</div>
+                        <div style={{ position: 'absolute', bottom: '-25px', fontSize: '0.8rem', color: '#38bdf8' }}>[Caja 2y (Aislada)]</div>
                     </div>
                     <AnimatePresence>
                         {step === 3 && (
@@ -125,3 +125,4 @@ export default function JavaParamPassSim() {
         </div>
     );
 }
+

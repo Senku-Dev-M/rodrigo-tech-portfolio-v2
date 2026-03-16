@@ -5,7 +5,7 @@ export default function JavaMethodSignatureSim() {
     const [hoveredPart, setHoveredPart] = useState(null);
 
     const signatureParts = {
-        modifier: { label: 'Modificador de Acceso', color: '#c678dd', desc: 'Define quién puede "ver" y ejecutar este método. "public" significa que cualquier parte del proyecto puede llamarlo. "static" significa que pertenece a la clase globalmente.' },
+        modifier: { label: 'Modificador de Acceso', color: '#67e8f9', desc: 'Define quién puede "ver" y ejecutar este método. "public" significa que cualquier parte del proyecto puede llamarlo. "static" significa que pertenece a la clase globalmente.' },
         returnType: { label: 'Tipo de Retorno', color: '#e06c75', desc: 'La promesa matemática del método. En este caso "int", promete que pase lo que pase adentro, devolverá como respuesta un número entero crudo al terminal que lo invocó. ("void" si no devuelve nada).' },
         name: { label: 'Nombre Identificador', color: '#61afef', desc: 'Así bautizamos al método para invocarlo desde otras partes del código. Sigue reglas cainelCase (minúscula inicial).' },
         params: { label: 'Parámetros (Input)', color: '#d19a66', desc: 'Variables "vacías" de recepción. El método enlista qué tipo exacto de datos necesita que le entreguen como materia prima para poder funcionar de puertas para adentro.' }
@@ -26,7 +26,7 @@ export default function JavaMethodSignatureSim() {
                     <motion.div 
                         onHoverStart={() => setHoveredPart('modifier')}
                         onHoverEnd={() => setHoveredPart(null)}
-                        style={{ cursor: 'pointer', padding: '0.2rem 0.5rem', borderRadius: '4px', background: hoveredPart === 'modifier' ? 'rgba(198, 120, 221, 0.2)' : 'transparent', color: '#c678dd', borderBottom: hoveredPart === 'modifier' ? '2px solid #c678dd' : '2px solid transparent' }}
+                        style={{ cursor: 'pointer', padding: '0.2rem 0.5rem', borderRadius: '4px', background: hoveredPart === 'modifier' ? 'rgba(103, 232, 249, 0.2)' : 'transparent', color: '#67e8f9', borderBottom: hoveredPart === 'modifier' ? '2px solid #67e8f9' : '2px solid transparent' }}
                     >
                         public static
                     </motion.div>
@@ -91,3 +91,4 @@ export default function JavaMethodSignatureSim() {
         </div>
     );
 }
+

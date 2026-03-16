@@ -2,14 +2,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // ── Zone config ────────────────────────────────────────────────
 const ZONES = [
-    { id: 'wd',    label: 'Working\nDirectory', icon: '📁', color: '#f59e0b', desc: 'Editas archivos' },
-    { id: 'stage', label: 'Staging\nArea',       icon: '📋', color: '#a78bfa', desc: 'git add' },
+    { id: 'wd',    label: 'Working\nDirectory', icon: '📁', color: '#38bdf8', desc: 'Editas archivos' },
+    { id: 'stage', label: 'Staging\nArea',       icon: '📋', color: '#7dd3fc', desc: 'git add' },
     { id: 'local', label: 'Local\nRepository',   icon: '💾', color: '#00d4ff', desc: 'git commit' },
     { id: 'remote',label: 'Remote\n(GitHub)',     icon: '☁️', color: '#00ff88', desc: 'git push' },
 ];
 
 const ARROWS = [
-    { from: 'wd',    to: 'stage', label: 'git add',    color: '#a78bfa', delay: 0 },
+    { from: 'wd',    to: 'stage', label: 'git add',    color: '#7dd3fc', delay: 0 },
     { from: 'stage', to: 'local', label: 'git commit', color: '#00d4ff', delay: 1.8 },
     { from: 'local', to: 'remote',label: 'git push',   color: '#00ff88', delay: 3.6 },
 ];
@@ -188,3 +188,4 @@ export default function GitFlowSim({ isPlaying }) {
         </svg>
     );
 }
+

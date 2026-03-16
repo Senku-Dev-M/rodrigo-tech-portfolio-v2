@@ -28,7 +28,7 @@ export default function JavaCommandLineArgsSim() {
                     
                     {/* Inyección visual */}
                     <motion.span 
-                        animate={{ background: (step === 0 || step === 1) ? 'rgba(255, 255, 255, 0.2)' : 'transparent', color: (step === 1 || step === 2) ? '#f39c12' : '#fff' }}
+                        animate={{ background: (step === 0 || step === 1) ? 'rgba(255, 255, 255, 0.2)' : 'transparent', color: (step === 1 || step === 2) ? '#38bdf8' : '#fff' }}
                         style={{ padding: '0 0.5rem', borderRadius: '4px', marginLeft: '0.5rem' }}
                     >
                         12
@@ -48,25 +48,25 @@ export default function JavaCommandLineArgsSim() {
                 <div style={{ background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1rem', color: '#e5e7eb', width: '100%', maxWidth: '600px', position: 'relative' }}>
                     
                     {/* Visualización inyección a firma args */}
-                    <div style={{ position: 'relative', margin: '0.5rem 0', background: step === 1 ? 'rgba(198, 120, 221, 0.1)' : 'transparent', borderLeft: step === 1 ? '4px solid #c678dd' : '4px solid transparent', paddingLeft: '0.5rem' }}>
-                        public static void main(String[] <span style={{ color: step === 1 ? '#c678dd' : '#61afef', fontWeight: step === 1 ? 'bold' : 'normal' }}>args</span>) {'{'}
+                    <div style={{ position: 'relative', margin: '0.5rem 0', background: step === 1 ? 'rgba(103, 232, 249, 0.1)' : 'transparent', borderLeft: step === 1 ? '4px solid #67e8f9' : '4px solid transparent', paddingLeft: '0.5rem' }}>
+                        public static void main(String[] <span style={{ color: step === 1 ? '#67e8f9' : '#61afef', fontWeight: step === 1 ? 'bold' : 'normal' }}>args</span>) {'{'}
                         
                         <AnimatePresence>
                             {(step === 1 || step === 2) && (
                                 <motion.div 
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    style={{ position: 'absolute', right: '10px', top: '-15px', background: 'rgba(0,0,0,0.8)', border: '1px solid #c678dd', padding: '0.2rem 0.5rem', borderRadius: '4px', color: '#fff', fontSize: '0.8rem', display: 'flex', gap: '0.5rem' }}
+                                    style={{ position: 'absolute', right: '10px', top: '-15px', background: 'rgba(0,0,0,0.8)', border: '1px solid #67e8f9', padding: '0.2rem 0.5rem', borderRadius: '4px', color: '#fff', fontSize: '0.8rem', display: 'flex', gap: '0.5rem' }}
                                 >
                                     <span>args = </span>
-                                    <span>[ <span style={{ color: '#f39c12' }}>"12"</span>, <span style={{ color: '#00d4ff' }}>"8"</span> ]</span>
+                                    <span>[ <span style={{ color: '#38bdf8' }}>"12"</span>, <span style={{ color: '#00d4ff' }}>"8"</span> ]</span>
                                 </motion.div>
                             )}
                         </AnimatePresence>
                     </div>
 
-                    <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', position: 'relative', opacity: step >= 2 ? 1 : 0.3, background: step === 2 || step === 3 ? 'rgba(243, 156, 18, 0.1)' : 'transparent', borderLeft: step === 2 || step === 3 ? '4px solid #f39c12' : '4px solid transparent' }}>
-                        <span style={{ color: '#c678dd' }}>int</span> n1 = Integer.parseInt( <span style={{ color: step === 2 ? '#f39c12' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}>args[0]</span> ); 
+                    <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', position: 'relative', opacity: step >= 2 ? 1 : 0.3, background: step === 2 || step === 3 ? 'rgba(56, 189, 248, 0.1)' : 'transparent', borderLeft: step === 2 || step === 3 ? '4px solid #38bdf8' : '4px solid transparent' }}>
+                        <span style={{ color: '#67e8f9' }}>int</span> n1 = Integer.parseInt( <span style={{ color: step === 2 ? '#38bdf8' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}>args[0]</span> ); 
                         
                         <AnimatePresence>
                             {step === 3 && (
@@ -78,7 +78,7 @@ export default function JavaCommandLineArgsSim() {
                     </div>
 
                     <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', position: 'relative', opacity: step >= 2 ? 1 : 0.3, background: step === 2 || step === 3 ? 'rgba(0, 212, 255, 0.1)' : 'transparent', borderLeft: step === 2 || step === 3 ? '4px solid #00d4ff' : '4px solid transparent' }}>
-                        <span style={{ color: '#c678dd' }}>int</span> n2 = Integer.parseInt( <span style={{ color: step === 2 ? '#00d4ff' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}>args[1]</span> );
+                        <span style={{ color: '#67e8f9' }}>int</span> n2 = Integer.parseInt( <span style={{ color: step === 2 ? '#00d4ff' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}>args[1]</span> );
                         
                         <AnimatePresence>
                             {step === 3 && (
@@ -90,7 +90,7 @@ export default function JavaCommandLineArgsSim() {
                     </div>
 
                     <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', opacity: step >= 4 ? 1 : 0.3, background: step === 4 ? 'rgba(39, 174, 96, 0.1)' : 'transparent', borderLeft: step === 4 ? '4px solid #27ae60' : '4px solid transparent' }}>
-                        <span style={{ color: '#c678dd' }}>int</span> resul = <span style={{ color: '#61afef' }}>sumarValores</span>(n1, n2);
+                        <span style={{ color: '#67e8f9' }}>int</span> resul = <span style={{ color: '#61afef' }}>sumarValores</span>(n1, n2);
                     </div>
 
                     <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', opacity: step >= 4 ? 1 : 0.3 }}>
@@ -138,3 +138,4 @@ export default function JavaCommandLineArgsSim() {
         </div>
     );
 }
+

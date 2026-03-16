@@ -38,13 +38,13 @@ export default function JavaDeskcheckSim() {
                 {/* Editor Principal */}
                 <div style={{ background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '0.95rem', color: '#e5e7eb', lineHeight: '1.7' }}>
                     <div style={{ color: '#5c6370', marginBottom: '0.5rem' }}>// PromedioArray.java</div>
-                    <div style={{ opacity: step >= 0 ? 1 : 0.3 }}><span style={{ color: '#4b5563', marginRight: '1rem' }}> 2</span><span style={{ color: '#c678dd' }}>int</span>[] numeros = {'{'}10,20,30,40,50{'}'};</div>
+                    <div style={{ opacity: step >= 0 ? 1 : 0.3 }}><span style={{ color: '#4b5563', marginRight: '1rem' }}> 2</span><span style={{ color: '#67e8f9' }}>int</span>[] numeros = {'{'}10,20,30,40,50{'}'};</div>
                     <div style={{ background: step === 0 ? 'rgba(0, 212, 255, 0.1)' : 'transparent', borderLeft: step === 0 ? '2px solid #00d4ff' : '2px solid transparent', paddingLeft: step === 0 ? '0.5rem' : '0' }}>
-                        <span style={{ color: '#4b5563', marginRight: step === 0 ? '0.5rem' : '1rem' }}> 4</span><span style={{ color: '#c678dd' }}>int</span> suma = <span style={{ color: '#d19a66' }}>0</span>;
+                        <span style={{ color: '#4b5563', marginRight: step === 0 ? '0.5rem' : '1rem' }}> 4</span><span style={{ color: '#67e8f9' }}>int</span> suma = <span style={{ color: '#d19a66' }}>0</span>;
                     </div>
                     <div><span style={{ color: '#4b5563', marginRight: '1rem' }}> 5</span></div>
-                    <div style={{ background: [1,3,5,7,9,11].includes(step) ? 'rgba(243, 156, 18, 0.1)' : 'transparent', borderLeft: [1,3,5,7,9,11].includes(step) ? '2px solid #f39c12' : '2px solid transparent', paddingLeft: [1,3,5,7,9,11].includes(step) ? '0.5rem' : '0' }}>
-                        <span style={{ color: '#4b5563', marginRight: [1,3,5,7,9,11].includes(step) ? '0.5rem' : '1rem' }}> 6</span><span style={{ color: '#c678dd' }}>for</span>(<span style={{ color: '#c678dd' }}>int</span> num : numeros) {'{'}
+                    <div style={{ background: [1,3,5,7,9,11].includes(step) ? 'rgba(56, 189, 248, 0.1)' : 'transparent', borderLeft: [1,3,5,7,9,11].includes(step) ? '2px solid #38bdf8' : '2px solid transparent', paddingLeft: [1,3,5,7,9,11].includes(step) ? '0.5rem' : '0' }}>
+                        <span style={{ color: '#4b5563', marginRight: [1,3,5,7,9,11].includes(step) ? '0.5rem' : '1rem' }}> 6</span><span style={{ color: '#67e8f9' }}>for</span>(<span style={{ color: '#67e8f9' }}>int</span> num : numeros) {'{'}
                     </div>
                     <div style={{ background: [2,4,6,8,10].includes(step) ? 'rgba(39, 174, 96, 0.1)' : 'transparent', borderLeft: [2,4,6,8,10].includes(step) ? '2px solid #27ae60' : '2px solid transparent', paddingLeft: [2,4,6,8,10].includes(step) ? '1.5rem' : '1rem' }}>
                         <span style={{ color: '#4b5563', marginRight: [2,4,6,8,10].includes(step) ? '0.5rem' : '1rem' }}> 7</span>suma += num;
@@ -52,7 +52,7 @@ export default function JavaDeskcheckSim() {
                     <div><span style={{ color: '#4b5563', marginRight: '1rem' }}> 8</span>{'}'}</div>
                     <div><span style={{ color: '#4b5563', marginRight: '1rem' }}> 9</span></div>
                     <div style={{ background: step === 12 ? 'rgba(0, 212, 255, 0.1)' : 'transparent', borderLeft: step === 12 ? '2px solid #00d4ff' : '2px solid transparent', paddingLeft: step === 12 ? '0.5rem' : '0' }}>
-                        <span style={{ color: '#4b5563', marginRight: step === 12 ? '0.5rem' : '1rem' }}>10</span><span style={{ color: '#c678dd' }}>double</span> promedio = (<span style={{ color: '#c678dd' }}>double</span>)suma / numeros.length;
+                        <span style={{ color: '#4b5563', marginRight: step === 12 ? '0.5rem' : '1rem' }}>10</span><span style={{ color: '#67e8f9' }}>double</span> promedio = (<span style={{ color: '#67e8f9' }}>double</span>)suma / numeros.length;
                     </div>
                     <div><span style={{ color: '#4b5563', marginRight: '1rem' }}>11</span></div>
                     <div style={{ background: step === 13 ? 'rgba(0, 212, 255, 0.1)' : 'transparent', borderLeft: step === 13 ? '2px solid #00d4ff' : '2px solid transparent', paddingLeft: step === 13 ? '0.5rem' : '0' }}>
@@ -64,7 +64,7 @@ export default function JavaDeskcheckSim() {
                 <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.15)', maxHeight: '380px', display: 'flex', flexDirection: 'column' }}>
                     <div style={{ color: '#00d4ff', marginBottom: '1rem', fontWeight: 'bold' }}>Registro de Variables de Memoria RAM</div>
                     
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1.5fr', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem', marginBottom: '0.5rem', fontSize: '0.85rem', color: '#c678dd', fontWeight: 'bold' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1.5fr', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem', marginBottom: '0.5rem', fontSize: '0.85rem', color: '#67e8f9', fontWeight: 'bold' }}>
                         <div>i(idx)</div>
                         <div>num</div>
                         <div>suma</div>
@@ -84,7 +84,7 @@ export default function JavaDeskcheckSim() {
                                 borderRadius: '4px'
                             }}>
                                 <div>{row.i}</div>
-                                <div style={{ color: index === step && row.num !== '-' ? '#f39c12' : undefined }}>{row.num}</div>
+                                <div style={{ color: index === step && row.num !== '-' ? '#38bdf8' : undefined }}>{row.num}</div>
                                 <div style={{ color: index === step && row.suma !== '-' ? '#27ae60' : undefined }}>{row.suma}</div>
                                 <div>{row.promedio}</div>
                                 <div style={{ fontStyle: 'italic', fontSize: '0.8rem' }}>{row.log}</div>
@@ -127,3 +127,4 @@ export default function JavaDeskcheckSim() {
         </div>
     );
 }
+

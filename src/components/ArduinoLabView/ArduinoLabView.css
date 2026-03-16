@@ -1,0 +1,1288 @@
+/* ── ArduinoLabView.css ─────────────────────────────────────────
+   Uses identical visual tokens as the rest of the portfolio
+   (GuideView.css variables, same glass morphism, same typography)
+──────────────────────────────────────────────────────────────── */
+
+/* ── Shared section structure (mirrors GuideView) ─────────────── */
+.ard-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.ard-intro-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1.6rem;
+}
+
+.ard-section-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0 1.4rem;
+    line-height: 1.65;
+}
+
+.ard-inline-code {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.88em;
+}
+
+/* ── Intro Cards ──────────────────────────────────────────────── */
+.ard-intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.ard-intro-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 3px solid #f59e0b;
+    border-radius: 10px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ard-intro-card h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.ard-intro-card p {
+    margin: 0;
+    font-size: 0.83rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.55;
+}
+
+/* ── Objectives ───────────────────────────────────────────────── */
+.ard-objectives {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.ard-objective-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: background 0.2s;
+}
+
+.ard-objective-card:hover {
+    background: rgba(245, 158, 11, 0.04);
+}
+
+.ard-objective-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Arduino Photo Board ─────────────────────────────────────── */
+.ard-board-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ard-photo-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.ard-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+}
+
+/* CSS hotspot pins overlaid on the photo */
+.ard-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.ard-pin__pulse {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, 0.3);
+    animation: pin-pulse 2s ease-in-out infinite;
+}
+
+.ard-pin__dot {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #f59e0b;
+    color: #000;
+    font-size: 11px;
+    font-weight: 900;
+    font-family: Georgia, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5), 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s, box-shadow 0.15s;
+    z-index: 1;
+}
+
+.ard-pin:hover .ard-pin__dot,
+.ard-pin--active .ard-pin__dot {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px #f59e0b, 0 4px 14px rgba(245, 158, 11, 0.6);
+    background: #fff;
+}
+
+.ard-pin--active .ard-pin__pulse {
+    background: rgba(245, 158, 11, 0.5);
+    animation: pin-pulse-active 1s ease-in-out infinite;
+}
+
+@keyframes pin-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes pin-pulse-active {
+    0%, 100% { transform: scale(1.2); opacity: 0.7; }
+    50% { transform: scale(1.8); opacity: 0; }
+}
+
+.ard-tooltip {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: rgba(18, 18, 28, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-left: 3px solid #f59e0b;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    backdrop-filter: blur(10px);
+}
+
+.ard-tooltip__close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.8rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    font-size: 0.85rem;
+    line-height: 1;
+    padding: 0.2rem;
+    transition: color 0.2s;
+}
+
+.ard-tooltip__close:hover { color: #fff; }
+
+.ard-tooltip__title {
+    margin: 0 0 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #f59e0b;
+}
+
+.ard-tooltip__desc {
+    margin: 0;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.55;
+}
+
+.ard-board-hint {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ── Circuit SVG ──────────────────────────────────────────────── */
+.ard-connections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.4rem;
+}
+
+.ard-connection-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 0.88rem;
+    font-family: monospace;
+}
+
+.ard-connection-from { font-weight: 700; }
+.ard-connection-arrow { font-size: 1rem; }
+.ard-connection-to { color: rgba(255, 255, 255, 0.6); }
+
+.ard-circuit-wrap {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.ard-circuit-svg {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    aspect-ratio: 580 / 300;
+}
+
+/* ── Components Grid ──────────────────────────────────────────── */
+.ard-components-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.ard-component-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    cursor: default;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.ard-component-card:hover {
+    background: rgba(245, 158, 11, 0.04);
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.ard-component-emoji {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.ard-component-name {
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.ard-component-desc {
+    margin: 0;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.4;
+}
+
+.ard-component-role {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 50px;
+    padding: 0.15rem 0.6rem;
+    margin-top: 0.2rem;
+}
+
+/* ── Code Block ───────────────────────────────────────────────── */
+.ard-code-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ard-code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 0.6rem 1rem;
+}
+
+.ard-code-lang {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #f59e0b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.ard-code-hint {
+    font-size: 0.73rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.ard-code-block {
+    background: rgba(10, 10, 20, 0.85);
+    overflow-x: auto;
+}
+
+.ard-code-line {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.28rem 0;
+    transition: background 0.15s;
+    position: relative;
+}
+
+.ard-code-line--clickable {
+    cursor: pointer;
+}
+
+.ard-code-line--clickable:hover {
+    background: rgba(245, 158, 11, 0.07);
+}
+
+.ard-code-line--selected {
+    background: rgba(245, 158, 11, 0.12) !important;
+    border-left: 2px solid #f59e0b;
+}
+
+.ard-code-linenum {
+    display: inline-block;
+    min-width: 2.8rem;
+    padding: 0 0.8rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.2);
+    font-family: 'Fira Code', monospace;
+    user-select: none;
+    text-align: right;
+}
+
+.ard-code-content {
+    flex: 1;
+    font-size: 0.88rem;
+    font-family: 'Fira Code', monospace;
+    color: #E2E8F0;
+    white-space: pre;
+    padding-right: 1rem;
+}
+
+.ard-kw--fn { color: #bd93f9 !important; }
+.ard-kw--call { color: #66d9e8 !important; }
+
+.ard-code-indicator {
+    margin-right: 0.8rem;
+    font-size: 0.65rem;
+    color: rgba(245, 158, 11, 0.6);
+    user-select: none;
+}
+
+.ard-code-explanation {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    background: rgba(245, 158, 11, 0.06);
+    border-top: 1px solid rgba(245, 158, 11, 0.15);
+    padding: 0.9rem 1rem;
+    overflow: hidden;
+}
+
+.ard-code-explanation p {
+    margin: 0;
+    font-size: 0.87rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+}
+
+/* ── LED Simulation ───────────────────────────────────────────── */
+.ard-sim-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    padding: 1.6rem;
+}
+
+.ard-sim-board {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.ard-sim-arduino {
+    background: #1e7a44;
+    border: 2px solid #0d4a28;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 120px;
+}
+
+.ard-sim-arduino-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #c8e6c9;
+    font-family: monospace;
+    letter-spacing: 0.08em;
+}
+
+.ard-sim-pin {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.ard-sim-pin-label {
+    font-size: 0.7rem;
+    color: #a5d6a7;
+    font-family: monospace;
+    min-width: 50px;
+}
+
+.ard-sim-wire {
+    height: 3px;
+    width: 60px;
+    background: #555;
+    border-radius: 2px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.ard-sim-wire--hot {
+    background: #e74c3c;
+    animation: wire-flow 0.5s linear infinite;
+}
+
+.ard-sim-wire--gnd {
+    background: #3498db;
+}
+
+@keyframes wire-flow {
+    0% { box-shadow: -20px 0 8px #ff6b35 inset; }
+    100% { box-shadow: 20px 0 8px #ff6b35 inset; }
+}
+
+.ard-sim-circuit-line {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.ard-sim-current {
+    display: flex;
+    align-items: center;
+}
+
+.ard-sim-resistor {
+    background: rgba(232, 200, 138, 0.15);
+    border: 1.5px solid rgba(184, 152, 90, 0.5);
+    border-radius: 4px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.72rem;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.5);
+    transition: border-color 0.3s;
+}
+
+.ard-sim-current--flowing .ard-sim-resistor {
+    border-color: #e74c3c;
+    color: #e74c3c;
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.3);
+}
+
+.ard-sim-led {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.08);
+    border: 2px solid rgba(255, 107, 53, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.ard-sim-led--on {
+    background: rgba(255, 107, 53, 0.7);
+    border-color: #ff6b35;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.8), 0 0 40px rgba(255, 107, 53, 0.4);
+}
+
+.ard-sim-led-glow {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.3);
+    transition: all 0.3s;
+}
+
+.ard-sim-led--on .ard-sim-led-glow {
+    background: #fff;
+    box-shadow: 0 0 8px #fff;
+}
+
+.ard-sim-led-label {
+    position: absolute;
+    bottom: -20px;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: monospace;
+}
+
+.ard-sim-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.ard-sim-state {
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all 0.3s;
+}
+
+.ard-sim-state--on {
+    background: rgba(255, 107, 53, 0.08);
+    border-color: rgba(255, 107, 53, 0.3);
+    color: #ff8c5a;
+}
+
+.ard-sim-state--off {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.ard-sim-cycle {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.35);
+    padding-left: 0.2rem;
+}
+
+.ard-sim-controls {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.ard-sim-code-trace {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 1rem;
+}
+
+.ard-trace-line {
+    font-size: 0.82rem;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.25);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.ard-trace-line--active {
+    color: #66d9e8;
+    background: rgba(102, 217, 232, 0.08);
+    border-left: 2px solid #66d9e8;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.ard-btn {
+    padding: 0.6rem 1.3rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.ard-btn--primary {
+    background: #f59e0b;
+    color: #000;
+}
+
+.ard-btn--primary:hover {
+    background: #d97706;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+}
+
+.ard-btn--secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ard-btn--secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.ard-btn--ghost {
+    background: transparent;
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.ard-btn--ghost:hover {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: #f59e0b;
+}
+
+/* ── Flow Diagram ─────────────────────────────────────────────── */
+.ard-flow-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+.ard-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-width: 480px;
+    width: 100%;
+}
+
+.ard-flow-node {
+    width: 100%;
+    border-radius: 12px;
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.ard-flow-node--start {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+    font-weight: 700;
+    color: #f59e0b;
+    font-size: 0.9rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.ard-flow-node--setup {
+    background: rgba(102, 217, 232, 0.06);
+    border-color: rgba(102, 217, 232, 0.25);
+}
+
+.ard-flow-node--loop {
+    background: rgba(189, 147, 249, 0.06);
+    border-color: rgba(189, 147, 249, 0.25);
+}
+
+.ard-flow-node code {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #E2E8F0;
+    font-family: 'Fira Code', monospace;
+}
+
+.ard-flow-node__sub {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-left: 0.2rem;
+}
+
+.ard-flow-node__detail {
+    font-size: 0.78rem;
+    font-family: monospace;
+    color: #66d9e8;
+    background: rgba(102, 217, 232, 0.07);
+    border-radius: 5px;
+    padding: 0.25rem 0.6rem;
+    margin-top: 0.3rem;
+    display: inline-block;
+}
+
+.ard-flow-node__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+}
+
+.ard-flow-step {
+    font-size: 0.8rem;
+    font-family: monospace;
+    padding: 0.25rem 0.7rem;
+    border-radius: 5px;
+    animation: step-pulse 4s ease-in-out infinite;
+}
+
+.ard-flow-step--on {
+    background: rgba(255, 107, 53, 0.12);
+    color: #ff8c5a;
+    border-left: 2px solid #ff6b35;
+    animation-delay: 0s;
+}
+
+.ard-flow-step--wait {
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.35);
+    animation-delay: 1s;
+}
+
+.ard-flow-step--off {
+    background: rgba(52, 152, 219, 0.1);
+    color: #5dade2;
+    border-left: 2px solid #3498db;
+    animation-delay: 2s;
+}
+
+@keyframes step-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.ard-flow-arrow {
+    width: 2px;
+    height: 32px;
+    background: linear-gradient(to bottom, rgba(245, 158, 11, 0.6), rgba(245, 158, 11, 0.2));
+    position: relative;
+}
+
+.ard-flow-arrow::after {
+    content: '▼';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    color: rgba(245, 158, 11, 0.6);
+}
+
+.ard-flow-arrow--animated {
+    animation: arrow-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes arrow-pulse {
+    0%, 100% { background: linear-gradient(to bottom, rgba(245, 158, 11, 0.6), rgba(245, 158, 11, 0.2)); }
+    50% { background: linear-gradient(to bottom, rgba(245, 158, 11, 1), rgba(245, 158, 11, 0.5)); }
+}
+
+.ard-flow-return {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    width: 100%;
+}
+
+.ard-flow-return__line {
+    flex: 1;
+    height: 1px;
+    background: rgba(189, 147, 249, 0.3);
+    border-radius: 1px;
+}
+
+.ard-flow-return__label {
+    font-size: 0.78rem;
+    color: rgba(189, 147, 249, 0.7);
+    white-space: nowrap;
+    font-family: monospace;
+}
+
+/* ── Experiments ──────────────────────────────────────────────── */
+.ard-experiments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.ard-experiment-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    overflow: hidden;
+}
+
+.ard-experiment-card:hover,
+.ard-experiment-card--open {
+    background: rgba(245, 158, 11, 0.04);
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.ard-experiment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.ard-experiment-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ard-experiment-title {
+    flex: 1;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.ard-experiment-toggle {
+    font-size: 0.65rem;
+    color: rgba(245, 158, 11, 0.6);
+    user-select: none;
+}
+
+.ard-experiment-desc {
+    margin: 0.8rem 0 0 2.8rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* ── Traffic Light Challenge ──────────────────────────────────── */
+.ard-challenge {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.ard-challenge-header {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.ard-challenge-title {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.ard-challenge-desc {
+    margin: 0;
+    font-size: 0.87rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+}
+
+.ard-traffic-light {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.ard-tl-housing {
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 18px;
+    padding: 1rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 72px;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.ard-tl-led {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ard-tl-led--red   { background: rgba(220, 53, 53, 0.2); border: 2px solid #dc3545; }
+.ard-tl-led--yellow{ background: rgba(255, 193, 7, 0.2); border: 2px solid #ffc107; }
+.ard-tl-led--green { background: rgba(40, 167, 69, 0.2); border: 2px solid #28a745; }
+
+.ard-tl-glow {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+.ard-tl-glow--red    { background: #cc2929; }
+.ard-tl-glow--yellow { background: #cc9900; }
+.ard-tl-glow--green  { background: #1a7a30; }
+
+/* Traffic light cycle animation */
+.ard-tl-led--red .ard-tl-glow--red {
+    animation: tl-red 7s infinite;
+}
+.ard-tl-led--yellow .ard-tl-glow--yellow {
+    animation: tl-yellow 7s infinite;
+}
+.ard-tl-led--green .ard-tl-glow--green {
+    animation: tl-green 7s infinite;
+}
+.ard-tl-led--red { animation: tl-red-glow 7s infinite; }
+.ard-tl-led--yellow { animation: tl-yellow-glow 7s infinite; }
+.ard-tl-led--green { animation: tl-green-glow 7s infinite; }
+
+@keyframes tl-red-glow {
+    0%, 57%, 100% { background: rgba(220, 53, 53, 0.2); }
+    58%, 100% { background: rgba(220, 53, 53, 0.6); box-shadow: 0 0 12px rgba(220, 53, 53, 0.6); }
+}
+@keyframes tl-yellow-glow {
+    0%, 42%, 56%, 100% { background: rgba(255, 193, 7, 0.2); }
+    43%, 55% { background: rgba(255, 193, 7, 0.7); box-shadow: 0 0 12px rgba(255, 193, 7, 0.6); }
+}
+@keyframes tl-green-glow {
+    0%, 1%, 41%, 100% { background: rgba(40, 167, 69, 0.2); }
+    2%, 40% { background: rgba(40, 167, 69, 0.7); box-shadow: 0 0 12px rgba(40, 167, 69, 0.6); }
+}
+
+@keyframes tl-red   { 0%, 57%, 100% { background: #cc2929; } 58% { background: #ff4444; } }
+@keyframes tl-yellow{ 0%, 42%, 56%, 100% { background: #cc9900; } 43%, 55% { background: #ffee00; } }
+@keyframes tl-green { 0%, 1%, 41%, 100% { background: #1a7a30; } 2%, 40% { background: #00ee44; } }
+
+.ard-tl-labels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.7rem;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.3);
+    margin-left: 0.5rem;
+}
+
+.ard-solution-btn {
+    align-self: flex-start;
+}
+
+.ard-solution {
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.ard-solution-code {
+    background: rgba(10, 10, 20, 0.85);
+    color: #E2E8F0;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    padding: 1.2rem;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .ard-intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ard-components-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ard-sim-board {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+
+    .ard-flow {
+        max-width: 100%;
+    }
+
+    .ard-challenge-header {
+        flex-direction: column;
+    }
+
+    .ard-tl-housing {
+        flex-direction: row;
+        width: auto;
+        height: 60px;
+        padding: 0.8rem 1.2rem;
+        border-radius: 12px;
+    }
+
+    .ard-tl-labels {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ard-components-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Palette alignment with mentoring theme */
+.ard-view {
+    --ard-accent: var(--mentor-accent);
+    --ard-accent-strong: var(--mentor-accent-strong);
+    --ard-accent-soft: var(--mentor-accent-soft);
+}
+
+.ard-view .ard-inline-code,
+.ard-view .ard-tooltip__title,
+.ard-view .ard-component-role,
+.ard-view .ard-code-lang,
+.ard-view .ard-btn--ghost,
+.ard-view .ard-flow-node--start {
+    color: var(--ard-accent);
+}
+
+.ard-view .ard-inline-code {
+    background: rgba(var(--mentor-accent-rgb), 0.12);
+}
+
+.ard-view .ard-intro-card {
+    border-left-color: var(--ard-accent);
+}
+
+.ard-view .ard-objective-card:hover,
+.ard-view .ard-component-card:hover,
+.ard-view .ard-experiment-card:hover,
+.ard-view .ard-experiment-card--open {
+    background: rgba(var(--mentor-accent-rgb), 0.04);
+    border-color: rgba(var(--mentor-accent-rgb), 0.2);
+}
+
+.ard-view .ard-objective-icon,
+.ard-view .ard-experiment-icon {
+    background: rgba(var(--mentor-accent-rgb), 0.1);
+    border-color: rgba(var(--mentor-accent-rgb), 0.2);
+}
+
+.ard-view .ard-component-role {
+    background: rgba(var(--mentor-accent-rgb), 0.1);
+    border-color: rgba(var(--mentor-accent-rgb), 0.2);
+}
+
+.ard-view .ard-pin__pulse {
+    background: rgba(var(--mentor-accent-rgb), 0.28);
+}
+
+.ard-view .ard-pin__dot {
+    background: var(--ard-accent);
+    box-shadow: 0 0 0 2px rgba(var(--mentor-accent-rgb), 0.45), 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.ard-view .ard-pin:hover .ard-pin__dot,
+.ard-view .ard-pin--active .ard-pin__dot {
+    box-shadow: 0 0 0 3px var(--ard-accent), 0 4px 14px rgba(var(--mentor-accent-rgb), 0.55);
+}
+
+.ard-view .ard-pin--active .ard-pin__pulse {
+    background: rgba(var(--mentor-accent-rgb), 0.42);
+}
+
+.ard-view .ard-tooltip {
+    border-color: rgba(var(--mentor-accent-rgb), 0.3);
+    border-left-color: var(--ard-accent);
+}
+
+.ard-view .ard-board-hint {
+    color: rgba(255, 255, 255, 0.42);
+    text-align: center;
+}
+
+.ard-view .ard-code-line--clickable:hover {
+    background: rgba(var(--mentor-accent-rgb), 0.07);
+}
+
+.ard-view .ard-code-line--selected {
+    background: rgba(var(--mentor-accent-rgb), 0.12) !important;
+    border-left-color: var(--ard-accent);
+}
+
+.ard-view .ard-kw--fn {
+    color: var(--ard-accent-soft) !important;
+}
+
+.ard-view .ard-code-indicator,
+.ard-view .ard-experiment-toggle {
+    color: rgba(var(--mentor-accent-rgb), 0.6);
+}
+
+.ard-view .ard-code-explanation {
+    background: rgba(var(--mentor-accent-rgb), 0.06);
+    border-top-color: rgba(var(--mentor-accent-rgb), 0.15);
+}
+
+.ard-view .ard-btn--primary {
+    background: var(--ard-accent);
+    color: #03131b;
+}
+
+.ard-view .ard-btn--primary:hover {
+    background: var(--ard-accent-strong);
+    box-shadow: 0 4px 14px rgba(var(--mentor-accent-rgb), 0.35);
+}
+
+.ard-view .ard-btn--ghost {
+    border-color: rgba(var(--mentor-accent-rgb), 0.3);
+}
+
+.ard-view .ard-btn--ghost:hover {
+    background: rgba(var(--mentor-accent-rgb), 0.08);
+    border-color: var(--ard-accent);
+}
+
+.ard-view .ard-flow-node--start {
+    background: rgba(var(--mentor-accent-rgb), 0.1);
+    border-color: rgba(var(--mentor-accent-rgb), 0.3);
+}
+
+.ard-view .ard-flow-node--loop {
+    background: rgba(var(--mentor-accent-strong-rgb), 0.08);
+    border-color: rgba(var(--mentor-accent-strong-rgb), 0.24);
+}
+
+.ard-view .ard-flow-node__detail,
+.ard-view .ard-trace-line--active {
+    color: var(--ard-accent);
+}
+
+.ard-view .ard-trace-line--active {
+    background: rgba(var(--mentor-accent-rgb), 0.08);
+    border-left-color: var(--ard-accent);
+}
+
+.ard-view .ard-flow-arrow {
+    background: linear-gradient(to bottom, rgba(var(--mentor-accent-rgb), 0.6), rgba(var(--mentor-accent-rgb), 0.2));
+}
+
+.ard-view .ard-flow-arrow::after {
+    color: rgba(var(--mentor-accent-rgb), 0.6);
+}
+
+.ard-view .ard-flow-return__line {
+    background: rgba(var(--mentor-accent-strong-rgb), 0.3);
+}
+
+.ard-view .ard-flow-return__label {
+    color: rgba(var(--mentor-accent-strong-rgb), 0.8);
+}
+
+.ard-view .ard-solution {
+    border-color: rgba(var(--mentor-accent-rgb), 0.2);
+}
+
+@keyframes arrow-pulse {
+    0%, 100% { background: linear-gradient(to bottom, rgba(var(--mentor-accent-rgb), 0.6), rgba(var(--mentor-accent-rgb), 0.2)); }
+    50% { background: linear-gradient(to bottom, rgba(var(--mentor-accent-rgb), 1), rgba(var(--mentor-accent-rgb), 0.5)); }
+}
+
+@media (max-width: 640px) {
+    .ard-connection-row {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .ard-code-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+    }
+
+    .ard-flow-return {
+        flex-direction: column;
+    }
+
+    .ard-flow-return__label {
+        text-align: center;
+    }
+
+    .ard-board-hint {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .ard-challenge,
+    .ard-sim-wrap {
+        padding: 1.15rem;
+    }
+}

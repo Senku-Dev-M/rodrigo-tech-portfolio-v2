@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Sprint cycle stages
 const STAGES = [
-    { id: 'backlog',  label: 'Product\nBacklog',  color: '#f59e0b', icon: '📋' },
-    { id: 'planning', label: 'Sprint\nPlanning',  color: '#a78bfa', icon: '🗓' },
+    { id: 'backlog',  label: 'Product\nBacklog',  color: '#38bdf8', icon: '📋' },
+    { id: 'planning', label: 'Sprint\nPlanning',  color: '#7dd3fc', icon: '🗓' },
     { id: 'sprint',   label: 'Sprint\n(1-4 sem)', color: '#00d4ff', icon: '⚡' },
     { id: 'review',   label: 'Sprint\nReview',    color: '#00ff88', icon: '✅' },
     { id: 'retro',    label: 'Retro-\nspectiva',  color: '#fb7185', icon: '🔄' },
@@ -137,3 +137,4 @@ export default function ScrumFlowSim({ isPlaying }) {
         </svg>
     );
 }
+

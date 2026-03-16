@@ -26,7 +26,7 @@ export default function JavaMatrixSim() {
                     {/* Headers de Columnas (j) */}
                     <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '50px' }}>
                         {matrix[0].map((_, colIdx) => (
-                            <div key={`header-col-${colIdx}`} style={{ width: '60px', textAlign: 'center', color: '#f39c12', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                            <div key={`header-col-${colIdx}`} style={{ width: '60px', textAlign: 'center', color: '#38bdf8', fontSize: '0.85rem', fontWeight: 'bold' }}>
                                 Col [{colIdx}]
                             </div>
                         ))}
@@ -35,7 +35,7 @@ export default function JavaMatrixSim() {
                     {matrix.map((row, rowIdx) => (
                         <div key={`row-${rowIdx}`} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                             {/* Header de Fila (i) */}
-                            <div style={{ width: '45px', textAlign: 'right', color: '#c678dd', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                            <div style={{ width: '45px', textAlign: 'right', color: '#67e8f9', fontSize: '0.85rem', fontWeight: 'bold' }}>
                                 Fila [{rowIdx}]
                             </div>
 
@@ -90,7 +90,7 @@ export default function JavaMatrixSim() {
                     ) : (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <div>
-                                <span style={{ color: '#c678dd' }}>int</span> valor = matriz[<span style={{ color: '#c678dd', fontWeight: 'bold' }}>{selectedCell[0]}</span>][<span style={{ color: '#f39c12', fontWeight: 'bold' }}>{selectedCell[1]}</span>];
+                                <span style={{ color: '#67e8f9' }}>int</span> valor = matriz[<span style={{ color: '#67e8f9', fontWeight: 'bold' }}>{selectedCell[0]}</span>][<span style={{ color: '#38bdf8', fontWeight: 'bold' }}>{selectedCell[1]}</span>];
                             </div>
                             <div style={{ color: '#56b6c2' }}>
                                 System.out.println(valor);
@@ -106,3 +106,4 @@ export default function JavaMatrixSim() {
         </div>
     );
 }
+

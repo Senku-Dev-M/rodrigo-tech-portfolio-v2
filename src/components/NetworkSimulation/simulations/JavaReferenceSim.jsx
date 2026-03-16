@@ -44,7 +44,7 @@ export default function JavaReferenceSim() {
                         <motion.div 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: step >= 1 ? 1 : 0.3 }}
-                            style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', border: step >= 1 ? '2px solid #c678dd' : '2px solid rgba(255,255,255,0.2)', color: '#c678dd', fontSize: '0.8rem', width: '70px', textAlign: 'center' }}
+                            style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', border: step >= 1 ? '2px solid #67e8f9' : '2px solid rgba(255,255,255,0.2)', color: '#67e8f9', fontSize: '0.8rem', width: '70px', textAlign: 'center' }}
                         >
                             {step >= 2 ? '0x1A4' : '(ref)'}
                         </motion.div>
@@ -59,13 +59,13 @@ export default function JavaReferenceSim() {
                             >
                                 <defs>
                                     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                        <polygon points="0 0, 10 3.5, 0 7" fill="#c678dd" />
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#67e8f9" />
                                     </marker>
                                 </defs>
                                 <motion.path 
                                     d="M 0 0 Q 60 0, 100 40" 
                                     fill="transparent" 
-                                    stroke="#c678dd" 
+                                    stroke="#67e8f9" 
                                     strokeWidth="3" 
                                     strokeDasharray="5,5"
                                     markerEnd="url(#arrowhead)" 
@@ -82,9 +82,9 @@ export default function JavaReferenceSim() {
                     <motion.div 
                         initial={{ scale: 0 }}
                         animate={{ scale: step >= 1 ? 1 : 0 }}
-                        style={{ marginTop: '2.5rem', padding: '1rem', background: 'rgba(198, 120, 221, 0.1)', borderRadius: '8px', border: '2px dashed #c678dd', textAlign: 'center' }}
+                        style={{ marginTop: '2.5rem', padding: '1rem', background: 'rgba(103, 232, 249, 0.1)', borderRadius: '8px', border: '2px dashed #67e8f9', textAlign: 'center' }}
                     >
-                        <span style={{ fontSize: '0.7rem', color: '#c678dd', display: 'block', marginBottom: '0.5rem' }}>Dir: 0x1A4</span>
+                        <span style={{ fontSize: '0.7rem', color: '#67e8f9', display: 'block', marginBottom: '0.5rem' }}>Dir: 0x1A4</span>
                         <span style={{ color: '#98c379', fontSize: '1.2rem', fontWeight: 'bold' }}>"Hola"</span>
                     </motion.div>
                 </div>
@@ -119,3 +119,4 @@ export default function JavaReferenceSim() {
         </div>
     );
 }
+

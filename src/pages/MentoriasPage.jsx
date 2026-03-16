@@ -11,6 +11,7 @@ import LabsToolbar from '../components/LabsToolbar/LabsToolbar';
 import GuideView from '../components/GuideView/GuideView';
 import TheoryView from '../components/TheoryView/TheoryView';
 import PacketTracerLabView from '../components/PacketTracerLabView/PacketTracerLabView';
+import ArduinoLabView from '../components/ArduinoLabView/ArduinoLabView';
 import Antigravity from '../components/Antigravity/Antigravity';
 import Icon from '../components/Icon/Icon';
 import { subjects } from '../data/mentoring';
@@ -108,11 +109,23 @@ export default function MentoriasPage() {
                         {view === 'labs' && subject && (
                             <motion.div key="labs" variants={slideVariants} initial="initial" animate="animate" exit="exit">
                                 <div className="subject-detail-header">
-                                    <span className="subject-detail-icon">{subject.icon}</span>
+                                    <div className="subject-detail-icon">
+                                        <Icon name={subject.icon} size={30} color={subject.color} />
+                                    </div>
                                     <div>
                                         <span className="subject-detail-code">{subject.code}</span>
                                         <h2 className="subject-detail-title">{subject.title}</h2>
                                         <p className="subject-detail-desc">{subject.description}</p>
+                                        <div className="subject-detail-meta">
+                                            <span className="subject-detail-count">
+                                                {subject.labs.length} {subject.labs.length !== 1 ? t('subjectCard.labs') : t('subjectCard.lab')}
+                                            </span>
+                                        </div>
+                                        <div className="subject-detail-topics">
+                                            {subject.topics.map(topic => (
+                                                <span key={topic} className="subject-detail-topic">{topic}</span>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -157,7 +170,9 @@ export default function MentoriasPage() {
                         {/* VIEW 3: full guide / theory */}
                         {view === 'guide' && lab && (
                             <motion.div key="guide" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-                                {lab.isPacketTracerLab ? (
+                                {lab.isArduinoLab ? (
+                                    <ArduinoLabView lab={lab} />
+                                ) : lab.isPacketTracerLab ? (
                                     <PacketTracerLabView lab={lab} />
                                 ) : lab.content ? (
                                     <TheoryView lab={lab} />

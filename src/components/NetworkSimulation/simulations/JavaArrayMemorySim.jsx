@@ -30,9 +30,9 @@ export default function JavaArrayMemorySim() {
                 
                 {/* Código */}
                 <div style={{ background: '#111', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', fontFamily: 'monospace', fontSize: '1.1rem', color: '#fff', minWidth: '350px' }}>
-                    {step === 0 && <><span style={{ color: '#c678dd' }}>int</span><span style={{ color: '#e06c75' }}>[]</span> numeros = <span style={{ color: '#c678dd' }}>new int</span>[<span style={{ color: '#d19a66' }}>5</span>];</>}
-                    {step === 1 && <><span style={{ color: '#c678dd' }}>int</span><span style={{ color: '#e06c75' }}>[]</span> numeros = {'{'} <span style={{ color: '#d19a66' }}>10, 20, 30, 40, 50</span> {'}'};</>}
-                    {step === 2 && <><span style={{ color: '#c678dd' }}>int</span> valor = numeros[<span style={{ color: '#00d4ff', fontWeight: 'bold' }}>2</span>]; // Extrae 30</>}
+                    {step === 0 && <><span style={{ color: '#67e8f9' }}>int</span><span style={{ color: '#e06c75' }}>[]</span> numeros = <span style={{ color: '#67e8f9' }}>new int</span>[<span style={{ color: '#d19a66' }}>5</span>];</>}
+                    {step === 1 && <><span style={{ color: '#67e8f9' }}>int</span><span style={{ color: '#e06c75' }}>[]</span> numeros = {'{'} <span style={{ color: '#d19a66' }}>10, 20, 30, 40, 50</span> {'}'};</>}
+                    {step === 2 && <><span style={{ color: '#67e8f9' }}>int</span> valor = numeros[<span style={{ color: '#00d4ff', fontWeight: 'bold' }}>2</span>]; // Extrae 30</>}
                     {step === 3 && <>numeros[<span style={{ color: '#e74c3c', fontWeight: 'bold' }}>0</span>] = <span style={{ color: '#e74c3c' }}>99</span>;</>}
                 </div>
 
@@ -114,3 +114,4 @@ export default function JavaArrayMemorySim() {
         </div>
     );
 }
+

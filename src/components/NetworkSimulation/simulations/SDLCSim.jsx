@@ -120,22 +120,23 @@ export default function SDLCSim({ isPlaying }) {
                     cy={maintenance.y}
                     r="30"
                     fill="#151515"
-                    stroke={isPlaying ? "rgba(167, 139, 250, 0.3)" : "rgba(255,255,255,0.1)"}
+                    stroke={isPlaying ? "rgba(56, 189, 248, 0.3)" : "rgba(255,255,255,0.1)"}
                     strokeWidth="2"
                     initial={{ scale: 1 }}
                     animate={isPlaying ? {
                         scale: [1, 1.2, 1],
-                        stroke: ["rgba(167, 139, 250, 0.3)", "#a78bfa", "rgba(167, 139, 250, 0.3)"]
+                        stroke: ["rgba(56, 189, 248, 0.3)", "#7dd3fc", "rgba(56, 189, 248, 0.3)"]
                     } : {}}
                     transition={{ duration: 0.5, delay: 7.2, ease: "easeInOut" }}
                 />
                 <text x={maintenance.x} y={maintenance.y + 48} textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="12" fontWeight="500">
                     {maintenance.text}
                 </text>
-                <text x={maintenance.x} y={maintenance.y + 4} textAnchor="middle" fill="#a78bfa" fontSize="12" fontWeight="bold">
+                <text x={maintenance.x} y={maintenance.y + 4} textAnchor="middle" fill="#7dd3fc" fontSize="12" fontWeight="bold">
                     ∞
                 </text>
             </g>
         </svg>
     );
 }
+

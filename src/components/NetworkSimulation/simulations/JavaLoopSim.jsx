@@ -39,7 +39,7 @@ export default function JavaLoopSim() {
                 {/* Panel de Código en vivo */}
                 <div style={{ background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1.1rem', color: '#e5e7eb' }}>
                     <div>
-                        <span style={{ color: '#c678dd' }}>for</span> (
+                        <span style={{ color: '#67e8f9' }}>for</span> (
                         <span style={{ color: '#00d4ff' }}>int i = 0</span>; 
                         <span style={{ color: i < maxIterations ? '#27ae60' : '#e74c3c', fontWeight: i === maxIterations ? 'bold' : 'normal' }}> i &lt; 5</span>; 
                         <span style={{ color: '#e06c75' }}> i++</span>) {'{'}
@@ -48,7 +48,7 @@ export default function JavaLoopSim() {
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println(
                         <motion.span 
                             key={i} 
-                            initial={{ scale: 1.5, color: '#f39c12' }} 
+                            initial={{ scale: 1.5, color: '#38bdf8' }} 
                             animate={{ scale: 1, color: '#98c379' }} 
                             style={{ display: 'inline-block' }}
                         >
@@ -137,3 +137,4 @@ export default function JavaLoopSim() {
         </div>
     );
 }
+

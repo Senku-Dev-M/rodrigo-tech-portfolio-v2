@@ -47,7 +47,7 @@ export default function JavaCompilationSim() {
                             key="compiler"
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            style={{ width: '65px', height: '75px', background: '#f39c12', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', border: step === 1 ? '2px solid #00d4ff' : '1px solid transparent', flexShrink: 0 }}
+                            style={{ width: '65px', height: '75px', background: '#38bdf8', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', border: step === 1 ? '2px solid #00d4ff' : '1px solid transparent', flexShrink: 0 }}
                         >
                             <span style={{ fontSize: '1.7rem' }}>⚙️</span>
                             <span style={{ fontSize: '0.8rem', color: '#fff', marginTop: '6px', fontWeight: 'bold' }}>javac</span>
@@ -147,3 +147,4 @@ export default function JavaCompilationSim() {
         </div>
     );
 }
+

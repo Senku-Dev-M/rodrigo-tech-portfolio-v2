@@ -93,7 +93,7 @@ export default function JavaCondFlowSim() {
                             <motion.circle initial={{ cy: 0 }} animate={{ cy: 45 }} transition={{ duration: 1, repeat: Infinity }} cx="200" r="6" fill="#00d4ff" />
                         )}
                         {step === 1 && (
-                            <motion.circle initial={{ scale: 0 }} animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 1, repeat: Infinity }} cx="200" cy="95" r="8" fill="#f39c12" />
+                            <motion.circle initial={{ scale: 0 }} animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 1, repeat: Infinity }} cx="200" cy="95" r="8" fill="#38bdf8" />
                         )}
                         {isTruePath && (
                             <motion.circle 
@@ -144,3 +144,4 @@ export default function JavaCondFlowSim() {
         </div>
     );
 }
+

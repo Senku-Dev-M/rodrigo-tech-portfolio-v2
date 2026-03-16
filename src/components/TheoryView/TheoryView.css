@@ -25,12 +25,17 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #fff;
-    background: rgba(147, 51, 234, 0.4);
-    /* Purple for theory */
-    border: 1px solid rgba(147, 51, 234, 0.8);
+    color: #04131f;
+    background: linear-gradient(135deg, #67e8f9, #00d4ff);
+    border: 1px solid rgba(var(--mentor-accent-rgb), 0.42);
     padding: 0.22rem 0.7rem;
     border-radius: 4px;
+}
+
+.theory-type-badge--lab {
+    color: var(--mentor-accent);
+    background: rgba(var(--mentor-accent-rgb), 0.08);
+    border-color: rgba(var(--mentor-accent-rgb), 0.22);
 }
 
 .theory-difficulty,
@@ -60,9 +65,9 @@
 
 .theory-tag {
     font-size: 0.75rem;
-    color: #a855f7;
-    background: rgba(168, 85, 247, 0.1);
-    border: 1px solid rgba(168, 85, 247, 0.3);
+    color: var(--mentor-accent-soft);
+    background: rgba(var(--mentor-accent-rgb), 0.08);
+    border: 1px solid rgba(var(--mentor-accent-rgb), 0.22);
     padding: 0.2rem 0.65rem;
     border-radius: 50px;
 }
@@ -87,6 +92,13 @@
     color: rgba(255, 255, 255, 0.65);
     line-height: 1.7;
     margin: 0;
+}
+
+.theory-section__desc {
+    font-size: 0.92rem;
+    color: rgba(180, 225, 245, 0.58);
+    line-height: 1.7;
+    margin-top: -0.6rem;
 }
 
 /* ── Models (Text + Sim) ── */
@@ -368,8 +380,8 @@
 .theory-conclusion {
     text-align: center;
     align-items: center;
-    background: rgba(147, 51, 234, 0.05);
-    border: 1px solid rgba(147, 51, 234, 0.2);
+    background: rgba(var(--mentor-accent-rgb), 0.05);
+    border: 1px solid rgba(var(--mentor-accent-rgb), 0.18);
     border-radius: 16px;
     padding: 2.5rem;
 }
@@ -391,6 +403,28 @@
 /* ── Responsive ── */
 @media (max-width: 768px) {
     .theory-proscons__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .theory-model,
+    .theory-process {
+        gap: 1.25rem;
+    }
+
+    .theory-model__text,
+    .theory-model__sim,
+    .theory-process__steps,
+    .theory-process__sim {
+        min-width: 100%;
+    }
+
+    .theory-step {
+        padding: 0.9rem;
+    }
+
+    .theory-process--stacked .theory-process__steps {
         grid-template-columns: 1fr;
     }
 }

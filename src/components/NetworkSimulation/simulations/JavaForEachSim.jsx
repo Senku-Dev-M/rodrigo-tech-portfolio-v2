@@ -39,16 +39,16 @@ export default function JavaForEachSim() {
                 {/* Código */}
                 <div style={{ background: '#111', padding: '1rem 2rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1.1rem', color: '#e5e7eb' }}>
                     <div>
-                        <span style={{ color: '#c678dd' }}>int[]</span> <span style={{ color: '#e06c75' }}>numeros</span> = {'{'}10, 25, 50, 80, 100{'}'};
+                        <span style={{ color: '#67e8f9' }}>int[]</span> <span style={{ color: '#e06c75' }}>numeros</span> = {'{'}10, 25, 50, 80, 100{'}'};
                     </div>
                     <div style={{ marginTop: '1rem' }}>
-                        <span style={{ color: '#c678dd' }}>for</span> (<span style={{ color: '#c678dd' }}>int</span> <span style={{ color: '#00d4ff' }}>num</span> : <span style={{ color: '#e06c75' }}>numeros</span>) {'{'}
+                        <span style={{ color: '#67e8f9' }}>for</span> (<span style={{ color: '#67e8f9' }}>int</span> <span style={{ color: '#00d4ff' }}>num</span> : <span style={{ color: '#e06c75' }}>numeros</span>) {'{'}
                     </div>
                     <div style={{ paddingLeft: '2rem', margin: '0.5rem 0' }}>
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println(
                         <motion.span 
                             key={currentIndex} 
-                            initial={currentIndex >= 0 && currentIndex < array.length ? { scale: 1.5, color: '#f39c12' } : false} 
+                            initial={currentIndex >= 0 && currentIndex < array.length ? { scale: 1.5, color: '#38bdf8' } : false} 
                             animate={{ scale: 1, color: '#00d4ff' }} 
                             style={{ display: 'inline-block' }}
                         >
@@ -143,3 +143,4 @@ export default function JavaForEachSim() {
         </div>
     );
 }
+

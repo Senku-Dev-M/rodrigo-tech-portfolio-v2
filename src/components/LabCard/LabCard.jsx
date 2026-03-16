@@ -3,14 +3,20 @@ import { useI18n } from '../../i18n/i18n';
 import './LabCard.css';
 
 const difficultyColor = {
-    'Inicial': '#22d3ee',
+    'Inicial': '#67e8f9',
+    'Introductorio': '#67e8f9',
+    'Principiante': '#38bdf8',
+    'Básico': '#22d3ee',
+    'Básico / Intermedio': '#0ea5e9',
     'Intermedio': '#0ea5e9',
-    'Avanzado': '#a78bfa',
+    'Intermedio Inicial': '#38bdf8',
+    'Avanzado': '#0369a1',
 };
 
 export default function LabCard({ lab, onClick, index = 0 }) {
     const { t } = useI18n();
     const color = difficultyColor[lab.difficulty] || '#00d4ff';
+    const typeColor = lab.type === 'Teoría' ? '#7dd3fc' : '#00d4ff';
 
     return (
         <motion.div
@@ -24,7 +30,7 @@ export default function LabCard({ lab, onClick, index = 0 }) {
             whileHover={{ y: -3 }}
         >
             <div className="lab-card__top">
-                <span className="lab-card__type" style={lab.type === 'Teoría' ? { color: '#a855f7' } : {}}>{lab.type}</span>
+                <span className="lab-card__type" style={{ color: typeColor }}>{lab.type}</span>
                 <span className="lab-card__difficulty" style={{ color }}>{lab.difficulty}</span>
             </div>
 

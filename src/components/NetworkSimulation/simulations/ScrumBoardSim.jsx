@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // ── Board config ─────────────────────────────────────────────
 const COLUMNS = ['Backlog', 'To Do', 'In Progress', 'Review', 'Done'];
-const COL_COLORS = ['#64748b', '#f59e0b', '#00d4ff', '#a78bfa', '#00ff88'];
+const COL_COLORS = ['#64748b', '#38bdf8', '#00d4ff', '#7dd3fc', '#00ff88'];
 
 const INITIAL_TASKS = [
     { id: 1, text: 'Implementar login',     colIdx: 0 },
@@ -126,3 +126,4 @@ export default function ScrumBoardSim({ isPlaying }) {
         </div>
     );
 }
+

@@ -849,7 +849,7 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
         description:
             'Fundamentos del desarrollo de software, metodologías, ciclo de vida del software, arquitectura de sistemas y buenas prácticas de ingeniería.',
         icon: 'code',
-        color: '#a78bfa',
+        color: '#38bdf8',
         topics: ['Software Engineering', 'SDLC', 'Programming', 'Software Design'],
         labs: [
             {
@@ -1209,12 +1209,12 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                             cards: [
                                 {
                                     title: 'Product Owner (PO)',
-                                    color: '#f59e0b',
+                                    color: '#67e8f9',
                                     text: 'Es el responsable de <strong>maximizar el valor</strong> del producto. Define qué se va a construir y en qué orden. Gestiona el <em>Product Backlog</em>. Trabaja de puente entre el negocio y el equipo de desarrollo. No es jefe del equipo.'
                                 },
                                 {
                                     title: 'Scrum Master',
-                                    color: '#a78bfa',
+                                    color: '#38bdf8',
                                     text: 'Es el <strong>guardián del proceso</strong> Scrum. Se asegura de que el equipo entienda y aplique correctamente Scrum. Elimina impedimentos, facilita los eventos y protege al equipo de interrupciones externas. Es un <em>servant leader</em>.'
                                 },
                                 {
@@ -1269,22 +1269,22 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                                 },
                                 {
                                     title: 'Sprint Planning',
-                                    color: '#a78bfa',
+                                    color: '#38bdf8',
                                     text: 'Primera reunión del Sprint. El equipo define el <strong>Sprint Goal</strong> y selecciona del Backlog los ítems que completará. Responden: ¿Qué entregaremos? y ¿Cómo lo haremos?'
                                 },
                                 {
                                     title: 'Daily Scrum',
-                                    color: '#fb7185',
+                                    color: '#7dd3fc',
                                     text: 'Reunión diaria de <strong>15 minutos</strong> para el Development Team. Cada miembro responde: ¿Qué hice ayer? ¿Qué haré hoy? ¿Tengo algún impedimento? Es una sincronización, no un reporte.'
                                 },
                                 {
                                     title: 'Sprint Review',
-                                    color: '#00ff88',
+                                    color: '#0ea5e9',
                                     text: 'Al final del Sprint, el equipo <strong>muestra el trabajo completado</strong> a los stakeholders. El objetivo es obtener feedback e inspeccionar el producto. El Backlog se adapta según lo aprendido.'
                                 },
                                 {
                                     title: 'Sprint Retrospective',
-                                    color: '#f59e0b',
+                                    color: '#67e8f9',
                                     text: 'Al final del Sprint, el equipo <strong>reflexiona sobre sí mismo</strong>: el proceso, las herramientas, las relaciones. Identifica mejoras concretas y procesables para el siguiente Sprint.'
                                 }
                             ]
@@ -1359,7 +1359,7 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
         description:
             'Fundamentos de programación, lógica algorítmica y sintaxis inicial usando el lenguaje Java.',
         icon: 'terminal',
-        color: '#f59e0b',
+        color: '#0ea5e9',
         topics: ['Java', 'Algoritmos', 'Lógica', 'POO Básica'],
         labs: [
             {
@@ -1748,7 +1748,29 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
                 }
             }
         ]
-    }
+    },
+    {
+        id: 'robotica-arduino',
+        code: 'ROBO-I',
+        title: 'Robótica con Arduino',
+        description:
+            'Introducción práctica a la robótica con microcontroladores Arduino. Sensores, actuadores, circuitos electrónicos y programación embebida para construir sistemas robóticos básicos desde cero.',
+        icon: 'cpu',
+        color: '#22d3ee',
+        topics: ['Arduino', 'Electrónica', 'Sensores', 'Actuadores', 'C++'],
+        labs: [
+            {
+                id: 'intro-arduino',
+                title: 'Laboratorio: Introducción a Robótica con Arduino',
+                subtitle: 'Construye tu primer sistema robótico básico con un microcontrolador',
+                type: 'Laboratorio',
+                difficulty: 'Principiante',
+                duration: '60–90 min',
+                tags: ['Arduino', 'Robótica', 'Electrónica básica', 'Sensores', 'Actuadores', 'Microcontroladores', 'Programación embebida'],
+                isArduinoLab: true,
+            },
+        ],
+    },
 ];
 
 export default subjects;
