@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from '../Icon/Icon';
+import ContentHeader from '../MentoringContent/ContentHeader';
 import arduinoImg from '../../assets/arduinoplaca.png';
 import './ArduinoLabView.css';
 
@@ -505,18 +506,7 @@ export default function ArduinoLabView({ lab }) {
         <div className="ard-view">
 
             {/* ── HEADER ─────────────────────────────────────────── */}
-            <div className="guide-header">
-                <div className="guide-header__meta">
-                    <span className="guide-type-badge">{lab.type}</span>
-                    <span className="guide-difficulty" style={{ color: accentStrong }}>{lab.difficulty}</span>
-                    <span className="guide-duration">{lab.duration}</span>
-                </div>
-                <h1 className="guide-title">{lab.title}</h1>
-                <p className="guide-subtitle">{lab.subtitle}</p>
-                <div className="guide-tags">
-                    {lab.tags.map(t => <span key={t} className="guide-tag">{t}</span>)}
-                </div>
-            </div>
+            <ContentHeader lab={lab} variant="guide" difficultyStyle={{ color: accentStrong }} />
 
             {/* ── INTRODUCCIÓN ────────────────────────────────────── */}
             <section className="guide-section">

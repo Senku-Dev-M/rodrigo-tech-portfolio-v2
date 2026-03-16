@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import { useI18n } from '../../i18n/i18n';
 
 export default function GithubCTA() {
@@ -19,7 +20,7 @@ export default function GithubCTA() {
                     <p>{t('portfolio.githubDesc')}</p>
                 </div>
                 <a
-                    href="https://github.com/Senku-Dev-M"
+                    href={EXTERNAL_LINKS.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary"

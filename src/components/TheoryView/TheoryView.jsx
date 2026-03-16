@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
-import NetworkSimulation from '../NetworkSimulation/NetworkSimulation';
+import ContentHeader from '../MentoringContent/ContentHeader';
+import ConceptSimulation from '../ConceptSimulation/ConceptSimulation';
 import InteractiveCodeBlock from './InteractiveCodeBlock';
 import './TheoryView.css';
 
@@ -47,18 +47,7 @@ export default function TheoryView({ lab }) {
     return (
         <div className="theory-view">
             {/* ── HEADER ─────────────────────────────────────── */}
-            <div className="theory-header">
-                <div className="theory-header__meta">
-                    <span className="theory-type-badge">{lab.type}</span>
-                    <span className="theory-difficulty">{lab.difficulty}</span>
-                    <span className="theory-duration">{lab.duration}</span>
-                </div>
-                <h1 className="theory-title">{lab.title}</h1>
-                <p className="theory-subtitle">{lab.subtitle}</p>
-                <div className="theory-tags">
-                    {lab.tags.map((t, i) => <span key={i} className="theory-tag">{t}</span>)}
-                </div>
-            </div>
+            <ContentHeader lab={lab} variant="theory" />
 
             {/* ── INTRODUCCIÓN ───────────────────────────────── */}
             <Section title={t('theory.intro', 'Introducción')}>
@@ -97,7 +86,7 @@ export default function TheoryView({ lab }) {
                         {/* Simulación SVG */}
                         <div className="theory-model__sim">
                             {/* Renderizar simulaciones específicas según la key o type */}
-                            <NetworkSimulation type={key === 'clientServer' ? 'client-server' : (key === 'p2p' ? 'p2p' : 'dhcp')} />
+                            <ConceptSimulation type={key === 'clientServer' ? 'client-server' : (key === 'p2p' ? 'p2p' : 'dhcp')} />
                         </div>
                     </div>
 
@@ -126,7 +115,7 @@ export default function TheoryView({ lab }) {
                             ))}
                         </div>
                         <div className="theory-process__sim">
-                            <NetworkSimulation type="dhcp" />
+                            <ConceptSimulation type="dhcp" />
                         </div>
                     </div>
                 </Section>
@@ -202,7 +191,7 @@ export default function TheoryView({ lab }) {
                                     </div>
                                 )}
                                 <div className="theory-process__sim">
-                                    {section.simType && <NetworkSimulation type={section.simType} />}
+                                    {section.simType && <ConceptSimulation type={section.simType} />}
                                 </div>
                             </div>
                         </Section>

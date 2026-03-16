@@ -71,3 +71,27 @@ export const experiences = [
         accent: '#22d3ee',
     },
 ];
+
+export const educationEntries = [
+    {
+        icon: '🎓',
+        titleKey: 'about.edu1Title',
+        schoolKey: 'about.edu1School',
+        descriptionKey: 'about.edu1Desc',
+    },
+    {
+        icon: '🏭',
+        titleKey: 'about.edu2Title',
+        schoolKey: 'about.edu2School',
+        descriptionKey: 'about.edu2Desc',
+    },
+];
+
+export const certificationEntries = [
+    { name: "Dean's List Recognition", issuer: 'Jala University', years: '2024 – 2025' },
+    { name: 'Programación 1 & 2 – Mentor U', issuer: 'Jala University', years: '2025' },
+    { name: 'Curso Profesional de Java', issuer: 'Código Facilito', years: '2023' },
+    { name: 'Java Spring Boot + JPA', issuer: 'Platzi', years: '2023' },
+    { name: 'Patrones de Diseño con Java', issuer: 'Código Facilito', years: '2023' },
+    { name: 'Python Essentials 1', issuer: 'Cisco Networking Academy', years: '2023' },
+];

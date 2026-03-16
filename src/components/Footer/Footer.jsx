@@ -1,13 +1,14 @@
 import { useI18n } from '../../i18n/i18n';
 import { Github, Linkedin, Instagram, Mail, Award } from 'lucide-react';
+import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import './Footer.css';
 
 const footerLinks = [
-    { labelKey: null, label: 'GitHub', href: 'https://github.com/Senku-Dev-M', icon: <Github size={18} /> },
-    { labelKey: null, label: 'LinkedIn', href: 'https://www.linkedin.com/in/beimar-rodrigo-machaca-aruquipa-2052b1267/', icon: <Linkedin size={18} /> },
-    { labelKey: null, label: 'Instagram', href: 'https://www.instagram.com/rodrigo_ml_1/', icon: <Instagram size={18} /> },
-    { labelKey: null, label: 'Email', href: 'mailto:beimar090@gmail.com', icon: <Mail size={18} /> },
-    { labelKey: 'footer.certificates', label: null, href: 'https://drive.google.com/drive/folders/1ZjpmZptWPuFE_2xwMWTj7qRChAecPDzH', icon: <Award size={18} /> },
+    { labelKey: null, label: 'GitHub', href: EXTERNAL_LINKS.github, icon: <Github size={18} /> },
+    { labelKey: null, label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin, icon: <Linkedin size={18} /> },
+    { labelKey: null, label: 'Instagram', href: EXTERNAL_LINKS.instagram, icon: <Instagram size={18} /> },
+    { labelKey: null, label: 'Email', href: EXTERNAL_LINKS.email, icon: <Mail size={18} /> },
+    { labelKey: 'footer.certificates', label: null, href: EXTERNAL_LINKS.certifications, icon: <Award size={18} /> },
 ];
 
 export default function Footer() {

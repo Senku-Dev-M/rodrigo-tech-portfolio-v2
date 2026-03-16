@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { useI18n } from '../../i18n/i18n';
-import { pick } from '../../i18n/i18n';
+import { pick, useI18n } from '../../i18n/i18n';
 import { experiences } from '../../data/about';
 
 const fadeUp = {

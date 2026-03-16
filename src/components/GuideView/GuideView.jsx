@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import Icon from '../Icon/Icon';
+import ContentHeader from '../MentoringContent/ContentHeader';
 import CodeBlock from './CodeBlock';
 import Step from './Step';
 import Section from './Section';
-import NetworkSimulation from '../NetworkSimulation/NetworkSimulation';
+import ConceptSimulation from '../ConceptSimulation/ConceptSimulation';
 import './GuideView.css';
 
 // ── Intro card config ───────────────────────────────────────
@@ -22,18 +23,7 @@ export default function GuideView({ lab }) {
         <div className="guide-view">
 
             {/* ── HEADER ─────────────────────────────────────── */}
-            <div className="guide-header">
-                <div className="guide-header__meta">
-                    <span className="guide-type-badge">{lab.type}</span>
-                    <span className="guide-difficulty">{lab.difficulty}</span>
-                    <span className="guide-duration">{lab.duration}</span>
-                </div>
-                <h1 className="guide-title">{lab.title}</h1>
-                <p className="guide-subtitle">{lab.subtitle}</p>
-                <div className="guide-tags">
-                    {lab.tags.map(t => <span key={t} className="guide-tag">{t}</span>)}
-                </div>
-            </div>
+            <ContentHeader lab={lab} variant="guide" />
 
             {/* ── INTRODUCCIÓN ───────────────────────────────── */}
             <Section title="Introducción">
@@ -97,7 +87,7 @@ export default function GuideView({ lab }) {
                 <Section title="Arquitectura del Laboratorio" desc={guide.labArchitecture.desc}>
                     <div className="guide-arch">
                         {guide.labArchitecture.simulationLink ? (
-                            <NetworkSimulation type={guide.labArchitecture.simulationLink} />
+                            <ConceptSimulation type={guide.labArchitecture.simulationLink} />
                         ) : guide.labArchitecture.client ? (
                             <>
                                 {/* Client node */}

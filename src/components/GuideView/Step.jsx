@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import NetworkSimulation from '../NetworkSimulation/NetworkSimulation';
+import ConceptSimulation from '../ConceptSimulation/ConceptSimulation';
 import CodeBlock from './CodeBlock';
 
 export default function Step({ step, index }) {
@@ -110,7 +110,7 @@ export default function Step({ step, index }) {
 
             {step.simulationLink && (
                 <div className="guide-step__sim">
-                    <NetworkSimulation type={step.simulationLink} />
+                    <ConceptSimulation type={step.simulationLink} />
                 </div>
             )}
         </motion.div>

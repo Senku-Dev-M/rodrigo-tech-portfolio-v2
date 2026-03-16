@@ -1,22 +1,12 @@
 import { motion } from 'framer-motion';
+import { getLabTypeColor, LAB_DIFFICULTY_COLORS, LAB_THEORY_TYPE } from '../../constants/labs';
 import { useI18n } from '../../i18n/i18n';
 import './LabCard.css';
 
-const difficultyColor = {
-    'Inicial': '#67e8f9',
-    'Introductorio': '#67e8f9',
-    'Principiante': '#38bdf8',
-    'Básico': '#22d3ee',
-    'Básico / Intermedio': '#0ea5e9',
-    'Intermedio': '#0ea5e9',
-    'Intermedio Inicial': '#38bdf8',
-    'Avanzado': '#0369a1',
-};
-
 export default function LabCard({ lab, onClick, index = 0 }) {
     const { t } = useI18n();
-    const color = difficultyColor[lab.difficulty] || '#00d4ff';
-    const typeColor = lab.type === 'Teoría' ? '#7dd3fc' : '#00d4ff';
+    const color = LAB_DIFFICULTY_COLORS[lab.difficulty] || '#00d4ff';
+    const typeColor = getLabTypeColor(lab.type);
 
     return (
         <motion.div
@@ -30,22 +20,30 @@ export default function LabCard({ lab, onClick, index = 0 }) {
             whileHover={{ y: -3 }}
         >
             <div className="lab-card__top">
-                <span className="lab-card__type" style={{ color: typeColor }}>{lab.type}</span>
-                <span className="lab-card__difficulty" style={{ color }}>{lab.difficulty}</span>
+                <span className="lab-card__type" style={{ color: typeColor }}>
+                    {lab.type}
+                </span>
+                <span className="lab-card__difficulty" style={{ color }}>
+                    {lab.difficulty}
+                </span>
             </div>
 
             <h3 className="lab-card__title">{lab.title}</h3>
             <p className="lab-card__subtitle">{lab.subtitle}</p>
 
             <div className="lab-card__tags">
-                {lab.tags.map(tag => (
-                    <span key={tag} className="lab-card__tag">{tag}</span>
+                {lab.tags.map((tag) => (
+                    <span key={tag} className="lab-card__tag">
+                        {tag}
+                    </span>
                 ))}
             </div>
 
             <div className="lab-card__footer">
                 <span className="lab-card__duration">⏱ {lab.duration}</span>
-                <span className="lab-card__cta">{lab.type === 'Teoría' ? t('lab.viewTheory') : t('lab.viewLab')}</span>
+                <span className="lab-card__cta">
+                    {lab.type === LAB_THEORY_TYPE ? t('lab.viewTheory') : t('lab.viewLab')}
+                </span>
             </div>
         </motion.div>
     );

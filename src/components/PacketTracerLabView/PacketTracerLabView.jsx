@@ -1,4 +1,5 @@
 import Icon from '../Icon/Icon';
+import ContentHeader from '../MentoringContent/ContentHeader';
 import Step from '../GuideView/Step';
 import '../TheoryView/TheoryView.css'; // Reusing some base styles
 import red1lab3img from '../../assets/red1lab3.png';
@@ -18,17 +19,11 @@ export default function PacketTracerLabView({ lab }) {
     return (
         <div className="theory-view">
             {/* ── HEADER ─────────────────────────────────────── */}
-            <header className="theory-header">
-                <div className="theory-header__meta">
-                    <span className="theory-type-badge theory-type-badge--lab">{lab.type}</span>
-                    <span className="theory-difficulty">{lab.difficulty}</span>
-                    <span className="theory-duration">{lab.duration}</span>
-                </div>
-                <h1 className="theory-title">{lab.title}</h1>
-                <div className="theory-tags">
-                    {lab.tags?.map(t => <span key={t} className="theory-tag">{t}</span>)}
-                </div>
-            </header>
+            <ContentHeader
+                lab={lab}
+                variant="theory"
+                typeBadgeClassName="theory-type-badge--lab"
+            />
 
             <div className="theory-content">
                 {/* Intro & Objectives */}

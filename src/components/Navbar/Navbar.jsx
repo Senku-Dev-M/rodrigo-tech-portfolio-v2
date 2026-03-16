@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/i18n';
+import { HOME_ROUTE, MENTORING_ROUTE, PORTFOLIO_ROUTE } from '../../constants/routes';
+import { scrollToSelector, scrollToTop } from '../../utils/scroll';
 import LangSwitch from './LangSwitch';
 import './Navbar.css';
 
@@ -12,9 +14,9 @@ export default function Navbar() {
     const location = useLocation();
 
     const navLinks = [
-        { label: t('nav.about'), href: '#about', route: '/', section: '#about' },
-        { label: t('nav.mentoring'), href: '/mentorias', route: '/mentorias', section: null },
-        { label: t('nav.portfolio'), href: '/portafolio', route: '/portafolio', section: null },
+        { label: t('nav.about'), href: '#about', route: HOME_ROUTE, section: '#about' },
+        { label: t('nav.mentoring'), href: MENTORING_ROUTE, route: MENTORING_ROUTE, section: null },
+        { label: t('nav.portfolio'), href: PORTFOLIO_ROUTE, route: PORTFOLIO_ROUTE, section: null },
     ];
 
     useEffect(() => {
@@ -28,31 +30,31 @@ export default function Navbar() {
         setMenuOpen(false);
 
         if (link.section) {
-            if (location.pathname !== '/') {
-                navigate('/');
+            if (location.pathname !== HOME_ROUTE) {
+                navigate(HOME_ROUTE);
                 setTimeout(() => {
-                    document.querySelector(link.section)?.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSelector(link.section);
                 }, 200);
             } else {
-                document.querySelector(link.section)?.scrollIntoView({ behavior: 'smooth' });
+                scrollToSelector(link.section);
             }
         } else {
             navigate(link.route);
-            window.scrollTo(0, 0);
+            scrollToTop();
         }
     };
 
     const goHome = (e) => {
         e.preventDefault();
         setMenuOpen(false);
-        navigate('/');
-        window.scrollTo(0, 0);
+        navigate(HOME_ROUTE);
+        scrollToTop();
     };
 
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="navbar-inner">
-                <a href="/" className="navbar-logo" onClick={goHome}>
+                <a href={HOME_ROUTE} className="navbar-logo" onClick={goHome}>
                     <span className="logo-bracket">&lt;</span>
                     <span className="logo-name">RM</span>
                     <span className="logo-bracket">/&gt;</span>

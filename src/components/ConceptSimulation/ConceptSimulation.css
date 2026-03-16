@@ -1,0 +1,126 @@
+.concept-sim {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.concept-sim__canvas {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 4/3;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.concept-sim__canvas--wide {
+    max-width: 100%;
+    aspect-ratio: 16/6;
+    border-radius: 12px;
+    background: none;
+}
+
+.concept-sim__canvas--auto {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 12px;
+    background: none;
+}
+
+.sim-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.sim-node {
+    fill: #080808;
+    stroke: rgba(0, 212, 255, 0.3);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.sim-node--server {
+    stroke: #00d4ff;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4));
+}
+
+.sim-node--peer {
+    stroke: rgba(0, 212, 255, 0.6);
+}
+
+.sim-label {
+    fill: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    font-weight: 600;
+    text-anchor: middle;
+    font-family: inherit;
+}
+
+.sim-path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 2;
+    stroke-dasharray: 4 4;
+}
+
+.sim-packet {
+    filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.8));
+}
+
+.concept-sim__btn {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.concept-sim__btn:hover:not(:disabled) {
+    background: rgba(0, 212, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.concept-sim__btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.concept-sim__btn--active {
+    animation: simPulse 1.5s infinite;
+}
+
+@keyframes simPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 212, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 212, 255, 0);
+    }
+}

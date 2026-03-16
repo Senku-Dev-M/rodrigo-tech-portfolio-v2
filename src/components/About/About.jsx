@@ -1,6 +1,7 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
+import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
 import GradientText from '../GradientText/GradientText';
 import Antigravity from '../Antigravity/Antigravity';
 import profileImg from '../../assets/profile.jpg';
@@ -35,18 +36,8 @@ export default function About() {
     const expRef = useRef(null);
     const skillsInView = useInView(skillsRef, { once: true, margin: '-60px' });
     const expInView = useInView(expRef, { once: true, margin: '-60px' });
-    
-    // Performance optimization for mobile devices
-    const [particleCount, setParticleCount] = useState(140);
-    
-    useEffect(() => {
-        const handleResize = () => {
-            setParticleCount(window.innerWidth < 768 ? 60 : 140);
-        };
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const isMobile = useWindowWidthBelow(768);
+    const particleCount = isMobile ? 60 : 140;
 
     return (
         <section id="about" className="about">

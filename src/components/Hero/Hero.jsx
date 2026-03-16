@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
+import { EXTERNAL_LINKS } from '../../constants/externalLinks';
+import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
+import { scrollToSelector } from '../../utils/scroll';
 import Prism from '../Prism/Prism';
 import FuzzyText from '../FuzzyText/FuzzyText';
 import './Hero.css';
 
 const socialLinks = [
-    { label: 'GitHub', href: 'https://github.com/Senku-Dev-M', icon: <Github size={24} /> },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/beimar-rodrigo-machaca-aruquipa-2052b1267/', icon: <Linkedin size={24} /> },
-    { label: 'Instagram', href: 'https://www.instagram.com/rodrigo_ml_1/', icon: <Instagram size={24} /> },
-    { label: 'Email', href: 'mailto:beimar090@gmail.com', icon: <Mail size={24} /> },
+    { label: 'GitHub', href: EXTERNAL_LINKS.github, icon: <Github size={24} /> },
+    { label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin, icon: <Linkedin size={24} /> },
+    { label: 'Instagram', href: EXTERNAL_LINKS.instagram, icon: <Instagram size={24} /> },
+    { label: 'Email', href: EXTERNAL_LINKS.email, icon: <Mail size={24} /> },
 ];
 
 const fadeUp = {
@@ -23,14 +25,7 @@ const fadeUp = {
 
 export default function Hero() {
     const { t } = useI18n();
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 768);
-        handleResize(); // Initial check
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const isMobile = useWindowWidthBelow(768);
 
     return (
         <section id="hero" className="hero">
@@ -94,11 +89,14 @@ export default function Hero() {
                     <a
                         href="#about"
                         className="btn-primary"
-                        onClick={e => { e.preventDefault(); document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' }); }}
+                        onClick={(event) => {
+                            event.preventDefault();
+                            scrollToSelector('#about');
+                        }}
                     >
                         {t('hero.cta')}
                     </a>
-                    <a href="https://github.com/Senku-Dev-M" target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                    <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="btn-ghost">
                         GitHub →
                     </a>
                 </motion.div>
