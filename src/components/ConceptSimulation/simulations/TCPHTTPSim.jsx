@@ -1,34 +1,89 @@
+import { AnimatedMotionGroup, FadeGroup } from './NetworkAnimationPrimitives';
+
+const STEPS = [
+    {
+        begin: '0.2s',
+        dur: '1.2s',
+        path: 'M 120 70 L 370 100',
+        stroke: '#ffb86c',
+        label: '[SYN]',
+        labelX: 250,
+        labelY: 80,
+        marker: 'url(#arrow-syn)',
+    },
+    {
+        begin: '1.8s',
+        dur: '1.2s',
+        path: 'M 380 120 L 130 150',
+        stroke: '#8be9fd',
+        label: '[SYN, ACK]',
+        labelX: 250,
+        labelY: 130,
+        marker: 'url(#arrow-synack)',
+    },
+    {
+        begin: '3.4s',
+        dur: '1.2s',
+        path: 'M 120 170 L 370 200',
+        stroke: '#50fa7b',
+        label: '[ACK]',
+        labelX: 250,
+        labelY: 180,
+        marker: 'url(#arrow-ack)',
+    },
+    {
+        begin: '5s',
+        dur: '1.5s',
+        path: 'M 120 230 L 370 260',
+        stroke: '#bd93f9',
+        label: 'HTTP GET /',
+        labelX: 250,
+        labelY: 235,
+        marker: 'url(#arrow-http)',
+        strokeWidth: 3,
+    },
+    {
+        begin: '7.1s',
+        dur: '1.5s',
+        path: 'M 380 280 L 130 310',
+        stroke: '#ff79c6',
+        label: 'HTTP 200 OK',
+        labelX: 250,
+        labelY: 285,
+        marker: 'url(#arrow-res)',
+        strokeWidth: 3,
+    },
+];
+
 export default function TCPHTTPSim({ isPlaying }) {
     return (
-        <svg viewBox="0 0 500 400" className="sim-svg">
-            {/* Lifelines */}
+        <svg viewBox="0 0 500 400" className="sim-svg" preserveAspectRatio="xMidYMid meet">
             <line x1="120" y1="40" x2="120" y2="360" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="5,5" />
             <line x1="380" y1="40" x2="380" y2="360" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="5,5" />
 
             <text x="120" y="25" className="sim-label" fill="#fff" fontSize="14">Cliente</text>
             <text x="380" y="25" className="sim-label" fill="#00d4ff" fontSize="14">Servidor</text>
 
-            <g style={{ opacity: isPlaying ? 1 : 0 }} className="tcp-arrows">
-                {/* SYN */}
-                <path d="M 120 70 L 370 100" stroke="#ffb86c" strokeWidth="2" markerEnd="url(#arrow-syn)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--1' : ''}`} opacity={0} />
-                <text x="250" y="80" className={`sim-label ${isPlaying ? 'tcp-arrow--1' : ''}`} opacity={0} fill="#ffb86c">[SYN]</text>
+            {isPlaying && STEPS.map((step) => (
+                <g key={step.label}>
+                    <FadeGroup begin={step.begin} dur={step.dur}>
+                        <path
+                            d={step.path}
+                            stroke={step.stroke}
+                            strokeWidth={step.strokeWidth ?? 2}
+                            markerEnd={step.marker}
+                            fill="none"
+                        />
+                        <text x={step.labelX} y={step.labelY} className="sim-label" fill={step.stroke}>
+                            {step.label}
+                        </text>
+                    </FadeGroup>
 
-                {/* SYN-ACK */}
-                <path d="M 380 120 L 130 150" stroke="#8be9fd" strokeWidth="2" markerEnd="url(#arrow-synack)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--2' : ''}`} opacity={0} />
-                <text x="250" y="130" className={`sim-label ${isPlaying ? 'tcp-arrow--2' : ''}`} opacity={0} fill="#8be9fd">[SYN, ACK]</text>
-
-                {/* ACK */}
-                <path d="M 120 170 L 370 200" stroke="#50fa7b" strokeWidth="2" markerEnd="url(#arrow-ack)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--3' : ''}`} opacity={0} />
-                <text x="250" y="180" className={`sim-label ${isPlaying ? 'tcp-arrow--3' : ''}`} opacity={0} fill="#50fa7b">[ACK]</text>
-
-                {/* HTTP GET */}
-                <path d="M 120 230 L 370 260" stroke="#bd93f9" strokeWidth="3" markerEnd="url(#arrow-http)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--4' : ''}`} opacity={0} />
-                <text x="250" y="235" className={`sim-label ${isPlaying ? 'tcp-arrow--4' : ''}`} opacity={0} fill="#bd93f9">HTTP GET /</text>
-
-                {/* HTTP Res */}
-                <path d="M 380 280 L 130 310" stroke="#ff79c6" strokeWidth="3" markerEnd="url(#arrow-res)" className={`tcp-arrow ${isPlaying ? 'tcp-arrow--5' : ''}`} opacity={0} />
-                <text x="250" y="285" className={`sim-label ${isPlaying ? 'tcp-arrow--5' : ''}`} opacity={0} fill="#ff79c6">HTTP 200 OK</text>
-            </g>
+                    <AnimatedMotionGroup begin={step.begin} dur={step.dur} path={step.path}>
+                        <circle cx="0" cy="0" r="5" fill={step.stroke} className="sim-packet" />
+                    </AnimatedMotionGroup>
+                </g>
+            ))}
 
             <defs>
                 <marker id="arrow-syn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">

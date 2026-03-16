@@ -1,9 +1,98 @@
 .guide-view {
-    max-width: 900px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 2rem;
+}
+
+.guide-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 250px) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.guide-sidebar {
+    position: sticky;
+    top: 5rem;
+    align-self: start;
+}
+
+.guide-main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.guide-compass,
+.guide-callout,
+.guide-exercise {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(14px);
+}
+
+.guide-compass {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.guide-compass__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.guide-compass__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--mentor-accent-soft);
+}
+
+.guide-compass__title {
+    font-size: 1.1rem;
+    color: #fff;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.guide-compass__desc {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.guide-compass__chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.guide-chip {
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgba(var(--mentor-accent-rgb), 0.24);
+    background: rgba(var(--mentor-accent-rgb), 0.06);
+    color: #d9f6ff;
+    padding: 0.55rem 0.9rem;
+    border-radius: 14px;
+    font: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.guide-chip:hover {
+    transform: translateY(-1px);
+    background: rgba(var(--mentor-accent-rgb), 0.12);
+    border-color: rgba(var(--mentor-accent-rgb), 0.45);
 }
 
 /* ── Header ── */
@@ -48,11 +137,13 @@
     color: #fff;
     letter-spacing: -0.02em;
     line-height: 1.2;
+    margin: 0;
 }
 
 .guide-subtitle {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.45);
+    margin: 0;
 }
 
 .guide-tags {
@@ -76,6 +167,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    scroll-margin-top: 8rem;
 }
 
 .guide-section__title {
@@ -84,6 +176,7 @@
     color: #fff;
     padding-bottom: 0.6rem;
     border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    margin: 0;
 }
 
 .guide-section__desc {
@@ -91,12 +184,19 @@
     color: rgba(255, 255, 255, 0.45);
     line-height: 1.7;
     margin-top: -0.5rem;
+    margin-bottom: 0;
 }
 
 /* ── Intro Grid ── */
 .guide-intro-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.guide-callout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
     gap: 1rem;
 }
 
@@ -126,6 +226,46 @@
     color: rgba(255, 255, 255, 0.5);
     line-height: 1.65;
     margin: 0;
+}
+
+.guide-callout {
+    padding: 1rem 1.1rem;
+}
+
+.guide-callout__header,
+.guide-exercise__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.guide-callout__icon,
+.guide-exercise__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--mentor-accent-rgb), 0.12);
+    color: var(--mentor-accent-soft);
+    flex-shrink: 0;
+}
+
+.guide-callout__title,
+.guide-exercise__title,
+.guide-exercise__subtitle {
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.guide-callout__text {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.68;
 }
 
 /* ── Scenario ── */
@@ -269,6 +409,11 @@
     color: rgba(255, 255, 255, 0.55);
     line-height: 1.7;
     margin: 0;
+}
+
+.guide-step__text--lead {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .guide-step__list {
@@ -521,6 +666,30 @@
     border-radius: 12px;
     padding: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.guide-arch-image,
+.guide-arch-simple {
+    width: 100%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.guide-arch-image img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.guide-arch-image__caption,
+.guide-arch-simple code {
+    display: block;
+    margin-top: 1rem;
+    color: #50fa7b;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
 }
 
 .guide-arch-node {
@@ -806,6 +975,11 @@
     margin: 0;
 }
 
+.guide-learning-desc--plain {
+    color: #e2e8f0;
+    margin-top: 0;
+}
+
 /* ── Extensions ── */
 .guide-extensions {
     display: flex;
@@ -852,10 +1026,57 @@
     margin: 0;
 }
 
+.guide-exercise {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.guide-exercise__block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.guide-reflection {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    border-radius: 14px;
+    padding: 0.9rem 1rem;
+    background: rgba(var(--mentor-accent-rgb), 0.08);
+    border: 1px solid rgba(var(--mentor-accent-rgb), 0.18);
+    color: #d8f4ff;
+}
+
+.guide-reflection p {
+    margin: 0;
+    line-height: 1.6;
+}
+
 
 /* ── Responsive ── */
 
 @media (max-width: 680px) {
+    .guide-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .guide-sidebar {
+        position: static;
+    }
+
+    .guide-compass__chips {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .guide-chip {
+        width: auto;
+        border-radius: 999px;
+    }
+
     .guide-intro-grid {
         grid-template-columns: 1fr;
     }
@@ -875,6 +1096,12 @@
 }
 
 @media (max-width: 560px) {
+    .guide-compass,
+    .guide-exercise {
+        padding: 1rem;
+        border-radius: 18px;
+    }
+
     .guide-step,
     .guide-vm-card,
     .guide-arch-node,

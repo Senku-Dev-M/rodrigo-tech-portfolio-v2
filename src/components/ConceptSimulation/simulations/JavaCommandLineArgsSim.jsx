@@ -1,141 +1,255 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import useCompactSimulationLayout from '../useCompactSimulationLayout';
 
 export default function JavaCommandLineArgsSim() {
     const [step, setStep] = useState(0);
+    const isCompact = useCompactSimulationLayout();
 
     const steps = [
-        { title: '1. Comando Terminal', desc: 'Escribimos "java" para invocar la JVM, seguido del nombre de la clase compilada, y luego añadimos nuestros datos separados por espacios.' },
-        { title: '2. Recepción en args[]', desc: 'La JVM milagrosamente agarra todo el texto, lo pica usando los espacios vacíos, y crea un arreglo de Strings inyectándolo en "args".' },
-        { title: '3. Extracción de Datos', desc: 'Nos metemos al arreglo args para sacar el texto "12" referenciando la posición/índice [0] y luego la [1].' },
-        { title: '4. Parseo a Matemáticas', desc: 'Como "12" es texto, sumar "12"+"8" daría "128" (concatenación). Usamos Integer.parseInt() para traducir el texto al número matemático real 12 y 8.' },
-        { title: '5. Ejecución Metódica', desc: 'Llamamos a nuestro método utilitario aislado enviándole clones matemáticos (Paso por Valor) para que sume y devuelva el gran total.' }
+        'Escribes `java`, el nombre de la clase y luego los datos separados por espacios.',
+        'La JVM parte esos datos y crea el arreglo `args[]`.',
+        'Ahora el programa extrae `args[0]` y `args[1]`.',
+        'Luego convierte esos textos en numeros reales con `Integer.parseInt()`.',
+        'Finalmente llama al metodo que hace la suma y muestra el resultado.',
     ];
 
     return (
-        <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulador: Inyección por Línea de Comandos (CLI)</h3>
-            <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem', height: '40px' }}>
-                {steps[step].desc}
+        <div
+            style={{
+                padding: isCompact ? '1.35rem 1rem' : '2.5rem 2rem',
+                background: 'rgba(20,20,20,0.8)',
+                borderRadius: '12px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                textAlign: 'center',
+            }}
+        >
+            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulador: linea de comandos</h3>
+            <p
+                style={{
+                    color: 'var(--text-grey)',
+                    marginBottom: '1.5rem',
+                    fontSize: isCompact ? '0.84rem' : '0.9rem',
+                    minHeight: isCompact ? 'auto' : '40px',
+                }}
+            >
+                {steps[step]}
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center', minHeight: '340px' }}>
-                
-                {/* Terminal Falsa */}
-                <div style={{ background: '#000', padding: '1.5rem', borderRadius: '8px', border: '1px solid #333', textAlign: 'left', fontFamily: 'monospace', fontSize: '1.2rem', color: '#00ff00', width: '100%', maxWidth: '600px', boxShadow: 'inset 0 0 10px rgba(0,255,0,0.1)' }}>
-                    <span>C:\Usuario\Proyectos&gt; </span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', alignItems: 'center' }}>
+                <div
+                    style={{
+                        background: '#000',
+                        padding: isCompact ? '1rem' : '1.35rem',
+                        borderRadius: '8px',
+                        border: '1px solid #333',
+                        textAlign: 'left',
+                        fontFamily: 'monospace',
+                        fontSize: isCompact ? '0.9rem' : '1.05rem',
+                        color: '#00ff00',
+                        width: '100%',
+                        maxWidth: '600px',
+                        boxShadow: 'inset 0 0 10px rgba(0,255,0,0.1)',
+                        overflowWrap: 'anywhere',
+                    }}
+                >
+                    <span>C:\\Usuario\\Proyectos&gt; </span>
                     <span style={{ color: '#fff' }}>java CalculadoraArgs</span>
-                    
-                    {/* Inyección visual */}
-                    <motion.span 
-                        animate={{ background: (step === 0 || step === 1) ? 'rgba(255, 255, 255, 0.2)' : 'transparent', color: (step === 1 || step === 2) ? '#38bdf8' : '#fff' }}
-                        style={{ padding: '0 0.5rem', borderRadius: '4px', marginLeft: '0.5rem' }}
+                    <span
+                        style={{
+                            marginLeft: '0.45rem',
+                            padding: '0.12rem 0.35rem',
+                            borderRadius: '4px',
+                            background: step <= 1 ? 'rgba(255,255,255,0.16)' : 'transparent',
+                            color: step >= 1 ? '#38bdf8' : '#fff',
+                        }}
                     >
                         12
-                    </motion.span>
-                    
-                    <motion.span 
-                        animate={{ background: (step === 0 || step === 1) ? 'rgba(255, 255, 255, 0.2)' : 'transparent', color: (step === 1 || step === 2) ? '#00d4ff' : '#fff' }}
-                        style={{ padding: '0 0.5rem', borderRadius: '4px' }}
+                    </span>
+                    <span
+                        style={{
+                            marginLeft: '0.2rem',
+                            padding: '0.12rem 0.35rem',
+                            borderRadius: '4px',
+                            background: step <= 1 ? 'rgba(255,255,255,0.16)' : 'transparent',
+                            color: step >= 1 ? '#00d4ff' : '#fff',
+                        }}
                     >
                         8
+                    </span>
+                    <motion.span animate={{ opacity: [0, 1] }} transition={{ repeat: Infinity }} style={{ fontWeight: 'bold' }}>
+                        _
                     </motion.span>
-                    
-                    <motion.span animate={{ opacity: [0, 1] }} transition={{ repeat: Infinity }} style={{ fontWeight: 'bold' }}>_</motion.span>
                 </div>
 
-                {/* Código Híbrido Visual */}
-                <div style={{ background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1rem', color: '#e5e7eb', width: '100%', maxWidth: '600px', position: 'relative' }}>
-                    
-                    {/* Visualización inyección a firma args */}
-                    <div style={{ position: 'relative', margin: '0.5rem 0', background: step === 1 ? 'rgba(103, 232, 249, 0.1)' : 'transparent', borderLeft: step === 1 ? '4px solid #67e8f9' : '4px solid transparent', paddingLeft: '0.5rem' }}>
+                <div
+                    style={{
+                        background: '#111',
+                        padding: isCompact ? '1rem' : '1.35rem',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        textAlign: 'left',
+                        fontFamily: 'monospace',
+                        fontSize: isCompact ? '0.82rem' : '0.96rem',
+                        color: '#e5e7eb',
+                        width: '100%',
+                        maxWidth: '600px',
+                    }}
+                >
+                    <div
+                        style={{
+                            margin: '0.35rem 0',
+                            background: step === 1 ? 'rgba(103, 232, 249, 0.1)' : 'transparent',
+                            borderLeft: step === 1 ? '4px solid #67e8f9' : '4px solid transparent',
+                            paddingLeft: '0.55rem',
+                        }}
+                    >
                         public static void main(String[] <span style={{ color: step === 1 ? '#67e8f9' : '#61afef', fontWeight: step === 1 ? 'bold' : 'normal' }}>args</span>) {'{'}
-                        
-                        <AnimatePresence>
-                            {(step === 1 || step === 2) && (
-                                <motion.div 
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    style={{ position: 'absolute', right: '10px', top: '-15px', background: 'rgba(0,0,0,0.8)', border: '1px solid #67e8f9', padding: '0.2rem 0.5rem', borderRadius: '4px', color: '#fff', fontSize: '0.8rem', display: 'flex', gap: '0.5rem' }}
-                                >
-                                    <span>args = </span>
-                                    <span>[ <span style={{ color: '#38bdf8' }}>"12"</span>, <span style={{ color: '#00d4ff' }}>"8"</span> ]</span>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
                     </div>
 
-                    <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', position: 'relative', opacity: step >= 2 ? 1 : 0.3, background: step === 2 || step === 3 ? 'rgba(56, 189, 248, 0.1)' : 'transparent', borderLeft: step === 2 || step === 3 ? '4px solid #38bdf8' : '4px solid transparent' }}>
-                        <span style={{ color: '#67e8f9' }}>int</span> n1 = Integer.parseInt( <span style={{ color: step === 2 ? '#38bdf8' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}>args[0]</span> ); 
-                        
-                        <AnimatePresence>
-                            {step === 3 && (
-                                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: '#27ae60', fontSize: '0.8rem', fontWeight: 'bold', marginLeft: '1rem' }}>
-                                    → Parseo: String "12" a int '12'
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
+                    <AnimatePresence>
+                        {(step === 1 || step === 2) && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -8 }}
+                                style={{
+                                    margin: '0.6rem 0 0.9rem',
+                                    display: 'inline-flex',
+                                    flexWrap: 'wrap',
+                                    gap: '0.35rem',
+                                    padding: '0.38rem 0.6rem',
+                                    borderRadius: '8px',
+                                    background: 'rgba(0,0,0,0.65)',
+                                    border: '1px solid #67e8f9',
+                                    color: '#fff',
+                                    fontSize: isCompact ? '0.76rem' : '0.82rem',
+                                }}
+                            >
+                                <span>args =</span>
+                                <span>[</span>
+                                <span style={{ color: '#38bdf8' }}>"12"</span>
+                                <span>,</span>
+                                <span style={{ color: '#00d4ff' }}>"8"</span>
+                                <span>]</span>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    <div
+                        style={{
+                            paddingLeft: isCompact ? '1rem' : '1.5rem',
+                            margin: '0.45rem 0',
+                            opacity: step >= 2 ? 1 : 0.35,
+                            background: step === 2 || step === 3 ? 'rgba(56, 189, 248, 0.1)' : 'transparent',
+                            borderLeft: step === 2 || step === 3 ? '4px solid #38bdf8' : '4px solid transparent',
+                            overflowWrap: 'anywhere',
+                        }}
+                    >
+                        <span style={{ color: '#67e8f9' }}>int</span> n1 = Integer.parseInt(
+                        <span style={{ color: step === 2 ? '#38bdf8' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}> args[0] </span>);
                     </div>
 
-                    <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', position: 'relative', opacity: step >= 2 ? 1 : 0.3, background: step === 2 || step === 3 ? 'rgba(0, 212, 255, 0.1)' : 'transparent', borderLeft: step === 2 || step === 3 ? '4px solid #00d4ff' : '4px solid transparent' }}>
-                        <span style={{ color: '#67e8f9' }}>int</span> n2 = Integer.parseInt( <span style={{ color: step === 2 ? '#00d4ff' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}>args[1]</span> );
-                        
-                        <AnimatePresence>
-                            {step === 3 && (
-                                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: '#27ae60', fontSize: '0.8rem', fontWeight: 'bold', marginLeft: '1rem' }}>
-                                    → Parseo: String "8" a int '8'
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
+                    <div
+                        style={{
+                            paddingLeft: isCompact ? '1rem' : '1.5rem',
+                            margin: '0.45rem 0',
+                            opacity: step >= 2 ? 1 : 0.35,
+                            background: step === 2 || step === 3 ? 'rgba(0, 212, 255, 0.1)' : 'transparent',
+                            borderLeft: step === 2 || step === 3 ? '4px solid #00d4ff' : '4px solid transparent',
+                            overflowWrap: 'anywhere',
+                        }}
+                    >
+                        <span style={{ color: '#67e8f9' }}>int</span> n2 = Integer.parseInt(
+                        <span style={{ color: step === 2 ? '#00d4ff' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}> args[1] </span>);
                     </div>
 
-                    <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', opacity: step >= 4 ? 1 : 0.3, background: step === 4 ? 'rgba(39, 174, 96, 0.1)' : 'transparent', borderLeft: step === 4 ? '4px solid #27ae60' : '4px solid transparent' }}>
+                    {step === 3 && (
+                        <div
+                            style={{
+                                margin: '0.8rem 0',
+                                padding: '0.45rem 0.7rem',
+                                borderRadius: '8px',
+                                background: 'rgba(39, 174, 96, 0.12)',
+                                border: '1px solid rgba(39, 174, 96, 0.35)',
+                                color: '#86efac',
+                                fontSize: isCompact ? '0.76rem' : '0.82rem',
+                            }}
+                        >
+                            parseInt() traduce "12" y "8" desde texto hacia enteros.
+                        </div>
+                    )}
+
+                    <div
+                        style={{
+                            paddingLeft: isCompact ? '1rem' : '1.5rem',
+                            margin: '0.45rem 0',
+                            opacity: step >= 4 ? 1 : 0.35,
+                            background: step === 4 ? 'rgba(39, 174, 96, 0.1)' : 'transparent',
+                            borderLeft: step === 4 ? '4px solid #27ae60' : '4px solid transparent',
+                        }}
+                    >
                         <span style={{ color: '#67e8f9' }}>int</span> resul = <span style={{ color: '#61afef' }}>sumarValores</span>(n1, n2);
                     </div>
 
-                    <div style={{ paddingLeft: '2rem', margin: '0.5rem 0', opacity: step >= 4 ? 1 : 0.3 }}>
+                    <div style={{ paddingLeft: isCompact ? '1rem' : '1.5rem', margin: '0.45rem 0', opacity: step >= 4 ? 1 : 0.35 }}>
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println(resul);
-                        
-                        <AnimatePresence>
-                            {step === 4 && (
-                                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ color: '#00ff00', fontWeight: 'bold', marginTop: '0.5rem', background: '#000', padding: '0.5rem', borderRadius: '4px', border: '1px solid #333', display: 'inline-block' }}>
-                                    &gt; Consola real imprime: 20
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
                     </div>
 
-                    <div style={{ marginTop: '0.5rem' }}>{'}'}</div>
-                </div>
+                    {step === 4 && (
+                        <div
+                            style={{
+                                marginTop: '0.8rem',
+                                background: '#000',
+                                padding: '0.55rem 0.75rem',
+                                borderRadius: '6px',
+                                border: '1px solid #333',
+                                color: '#00ff00',
+                                display: 'inline-block',
+                                fontSize: isCompact ? '0.8rem' : '0.88rem',
+                            }}
+                        >
+                            {'>'} Consola: 20
+                        </div>
+                    )}
 
+                    <div style={{ marginTop: '0.55rem' }}>{'}'}</div>
+                </div>
             </div>
 
-            <div style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                <button 
+            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <button
                     onClick={() => setStep(Math.max(0, step - 1))}
                     disabled={step === 0}
-                    style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: step === 0 ? 'not-allowed' : 'pointer', opacity: step === 0 ? 0.5 : 1 }}
+                    style={{
+                        background: 'rgba(255,255,255,0.1)',
+                        color: '#fff',
+                        border: 'none',
+                        padding: '0.58rem 1rem',
+                        borderRadius: '6px',
+                        cursor: step === 0 ? 'not-allowed' : 'pointer',
+                        opacity: step === 0 ? 0.5 : 1,
+                    }}
                 >
-                    Atrás
+                    Atras
                 </button>
-                <button 
+                <button
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
-                    style={{ background: '#00d4ff', color: '#000', border: 'none', padding: '0.6rem 2rem', borderRadius: '8px', cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer', fontWeight: 'bold', fontSize: '1rem', opacity: step === steps.length - 1 ? 0.5 : 1 }}
+                    style={{
+                        background: '#00d4ff',
+                        color: '#000',
+                        border: 'none',
+                        padding: '0.62rem 1rem',
+                        borderRadius: '8px',
+                        cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer',
+                        fontWeight: 'bold',
+                        opacity: step === steps.length - 1 ? 0.5 : 1,
+                    }}
                 >
-                    Avanzar Ejecución JVM
+                    Avanzar ejecucion
                 </button>
-                
-                {step === steps.length - 1 && (
-                    <button 
-                        onClick={() => setStep(0)}
-                        style={{ background: 'transparent', color: '#e74c3c', border: '1px solid #e74c3c', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer' }}
-                    >
-                        Reiniciar
-                    </button>
-                )}
             </div>
         </div>
     );
 }
-

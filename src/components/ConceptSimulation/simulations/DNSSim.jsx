@@ -1,23 +1,26 @@
 import Icon from '../../Icon/Icon';
+import { AnimatedMotionGroup } from './NetworkAnimationPrimitives';
 
 export default function DNSSim({ isPlaying }) {
     return (
-        <svg viewBox="0 0 500 300" className="sim-svg">
-            <path id="path-dns" d="M 120 150 L 380 150" className="sim-path" />
+        <svg viewBox="0 0 500 300" className="sim-svg" preserveAspectRatio="xMidYMid meet">
+            <path d="M 120 150 L 380 150" className="sim-path" />
 
-            {/* Query */}
-            <g className={`dns-msg ${isPlaying ? 'dns-msg--query' : ''}`} style={{ opacity: 0 }} transform="translate(120, 150)">
-                <circle cx="0" cy="0" r="6" fill="#f1fa8c" className="sim-packet" />
-                <rect x="-65" y="-35" width="130" height="22" rx="4" fill="rgba(241, 250, 140, 0.1)" stroke="#f1fa8c" strokeWidth="1" />
-                <text x="0" y="-20" className="sim-label" fill="#f1fa8c">¿IP de debian.org?</text>
-            </g>
+            {isPlaying && (
+                <>
+                    <AnimatedMotionGroup begin="0.25s" dur="1.35s" path="M 120 150 L 380 150">
+                        <circle cx="0" cy="0" r="6" fill="#f1fa8c" className="sim-packet" />
+                        <rect x="-65" y="-35" width="130" height="22" rx="4" fill="rgba(241, 250, 140, 0.1)" stroke="#f1fa8c" strokeWidth="1" />
+                        <text x="0" y="-20" className="sim-label" fill="#f1fa8c">¿IP de debian.org?</text>
+                    </AnimatedMotionGroup>
 
-            {/* Response */}
-            <g className={`dns-msg ${isPlaying ? 'dns-msg--res' : ''}`} style={{ opacity: 0 }} transform="translate(380, 150)">
-                <circle cx="0" cy="0" r="6" fill="#50fa7b" className="sim-packet" />
-                <rect x="-65" y="15" width="130" height="22" rx="4" fill="rgba(80, 250, 123, 0.1)" stroke="#50fa7b" strokeWidth="1" />
-                <text x="0" y="30" className="sim-label" fill="#50fa7b">Es 128.31.0.62</text>
-            </g>
+                    <AnimatedMotionGroup begin="2s" dur="1.35s" path="M 380 150 L 120 150">
+                        <circle cx="0" cy="0" r="6" fill="#50fa7b" className="sim-packet" />
+                        <rect x="-65" y="16" width="130" height="22" rx="4" fill="rgba(80, 250, 123, 0.1)" stroke="#50fa7b" strokeWidth="1" />
+                        <text x="0" y="31" className="sim-label" fill="#50fa7b">Es 128.31.0.62</text>
+                    </AnimatedMotionGroup>
+                </>
+            )}
 
             <g transform="translate(120, 150)">
                 <circle cx="0" cy="0" r="30" className="sim-node sim-node--client" />

@@ -63,12 +63,14 @@
     color: #fff;
     letter-spacing: -0.03em;
     line-height: 1.1;
+    margin: 0;
 }
 
 .theory-subtitle {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.62);
     max-width: 760px;
+    margin: 0;
 }
 
 .theory-tags {
@@ -183,12 +185,14 @@
     color: #fff;
     padding-bottom: 0.65rem;
     border-bottom: 1px solid rgba(var(--mentor-accent-rgb), 0.18);
+    margin: 0;
 }
 
 .theory-section__desc {
     font-size: 0.94rem;
     line-height: 1.7;
     color: rgba(186, 226, 241, 0.72);
+    margin: 0;
 }
 
 .theory-text {
@@ -328,6 +332,7 @@
 
 .theory-info-card {
     padding: 1.15rem;
+    border-left: 3px solid var(--theory-card-accent, rgba(var(--mentor-accent-rgb), 0.38));
 }
 
 .theory-model-layout,
@@ -851,5 +856,25 @@
     .theory-code-line {
         gap: 0.65rem;
         padding-inline: 0.45rem;
+    }
+
+    .theory-code-line__number {
+        width: 22px;
+        font-size: 0.74rem;
+    }
+
+    .theory-code-line__content,
+    .theory-code-output__body {
+        font-size: 0.76rem;
+        line-height: 1.55;
+    }
+
+    .theory-code-explanation__title {
+        font-size: 0.96rem;
+        margin: 0;
+    }
+
+    .theory-code-explanation__group {
+        padding: 0.75rem 0.8rem;
     }
 }

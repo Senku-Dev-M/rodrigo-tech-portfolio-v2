@@ -47,7 +47,8 @@ export default function GitFlowSim({ isPlaying }) {
 
     return (
         <svg
-            viewBox="0 0 900 220"
+            viewBox="0 0 900 240"
+            preserveAspectRatio="xMidYMid meet"
             style={{ width: '100%', height: 'auto', display: 'block' }}
             aria-label="Diagrama del flujo de Git"
         >
@@ -62,7 +63,7 @@ export default function GitFlowSim({ isPlaying }) {
             </defs>
 
             {/* ── Background ─────────────────────────────── */}
-            <rect width="900" height="220" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <rect width="900" height="240" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
 
             {/* ── Arrows + labels ─────────────────────────── */}
             {ARROWS.map((a, i) => {

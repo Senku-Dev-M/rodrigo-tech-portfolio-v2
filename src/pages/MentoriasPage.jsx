@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import ArduinoLabView from '../components/ArduinoLabView/ArduinoLabView';
 import GuideView from '../components/GuideView/GuideView';
@@ -77,29 +77,34 @@ function SubjectDetailHeader({ subject, t }) {
     );
 }
 
-function SubjectLearningPath({ subject }) {
+function SubjectLearningPathLegacy({ subject }) {
     if (!subject.learningPath) {
         return null;
     }
 
     return (
         <section className="subject-learning-path">
-            <div className="subject-learning-path__top">
-                <div>
+            <div className="subject-learning-path__intro">
+                <div className="subject-learning-path__heading-row">
                     <span className="subject-learning-path__eyebrow">{subject.learningPath.title}</span>
-                    <h3 className="subject-learning-path__title">Recorrido recomendado</h3>
-                    <p className="subject-learning-path__summary">{subject.learningPath.summary}</p>
+                    <div className="subject-learning-path__heading-main">
+                        <h3 className="subject-learning-path__title">Recorrido recomendado</h3>
+                    </div>
                 </div>
                 <div className="subject-learning-path__stats">
                     <span className="subject-learning-path__stat">
-                        <Icon name="calendar" size={16} />
+                        <Icon name="calendar" size={14} />
                         {subject.learningPath.estimatedDuration}
                     </span>
-                    <span className="subject-learning-path__stat">
-                        <Icon name="book" size={16} />
+                    <span
+                        className="subject-learning-path__stat subject-learning-path__stat--count"
+                        data-count={subject.labs.length}
+                    >
+                        <Icon name="book" size={14} />
                         {subject.labs.length} mentorías
                     </span>
                 </div>
+                <p className="subject-learning-path__summary">{subject.learningPath.summary}</p>
             </div>
 
             <div className="subject-learning-path__outcomes">
@@ -119,6 +124,90 @@ function SubjectLearningPath({ subject }) {
                     </article>
                 ))}
             </div>
+        </section>
+    );
+}
+
+function SubjectLearningPath({ subject }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    if (!subject.learningPath) {
+        return null;
+    }
+
+    return (
+        <section className={`subject-learning-path ${isExpanded ? 'subject-learning-path--expanded' : ''}`}>
+            <div className="subject-learning-path__bar">
+                <div className="subject-learning-path__copy">
+                    <span className="subject-learning-path__eyebrow">{subject.learningPath.title}</span>
+                    <h3 className="subject-learning-path__title">Recorrido recomendado</h3>
+                    <p className="subject-learning-path__summary">{subject.learningPath.summary}</p>
+                </div>
+
+                <div className="subject-learning-path__meta">
+                    <div className="subject-learning-path__stats">
+                        <span className="subject-learning-path__stat">
+                            <Icon name="calendar" size={14} />
+                            {subject.learningPath.estimatedDuration}
+                        </span>
+                        <span className="subject-learning-path__stat">
+                            <Icon name="book" size={14} />
+                            {subject.labs.length} mentorias
+                        </span>
+                    </div>
+
+                    <button
+                        type="button"
+                        className="subject-learning-path__toggle"
+                        onClick={() => setIsExpanded((value) => !value)}
+                        aria-expanded={isExpanded}
+                    >
+                        <span>{isExpanded ? 'Ocultar detalle' : 'Ver detalle'}</span>
+                        <span
+                            className={`subject-learning-path__toggle-icon ${
+                                isExpanded ? 'subject-learning-path__toggle-icon--open' : ''
+                            }`}
+                            aria-hidden="true"
+                        >
+                            <Icon name="chevronRight" size={14} />
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <AnimatePresence initial={false}>
+                {isExpanded && (
+                    <motion.div
+                        className="subject-learning-path__body"
+                        initial={{ opacity: 0, height: 0, y: -6 }}
+                        animate={{ opacity: 1, height: 'auto', y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -6 }}
+                        transition={{ duration: 0.22, ease: 'easeOut' }}
+                    >
+                        <div className="subject-learning-path__stages">
+                            {subject.learningPath.stages.map((stage, index) => (
+                                <article key={stage.title} className="subject-learning-stage">
+                                    <div className="subject-learning-stage__top">
+                                        <span className="subject-learning-stage__index">{index + 1}</span>
+                                        <h4 className="subject-learning-stage__title">{stage.title}</h4>
+                                    </div>
+                                    <p className="subject-learning-stage__desc">{stage.desc}</p>
+                                </article>
+                            ))}
+                        </div>
+
+                        <div className="subject-learning-path__outcomes">
+                            <h4 className="subject-learning-path__outcomes-title">Que te llevas</h4>
+                            {subject.learningPath.outcomes.map((outcome) => (
+                                <div key={outcome} className="subject-learning-path__outcome">
+                                    <Icon name="checkCircle" size={15} />
+                                    <span>{outcome}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

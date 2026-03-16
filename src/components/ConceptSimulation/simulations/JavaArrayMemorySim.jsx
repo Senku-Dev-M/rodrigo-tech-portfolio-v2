@@ -1,117 +1,164 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import useCompactSimulationLayout from '../useCompactSimulationLayout';
 
 export default function JavaArrayMemorySim() {
-    const defaultArray = [null, null, null, null, null];
-    const initializedArray = [10, 20, 30, 40, 50];
-    
     const [step, setStep] = useState(0);
+    const isCompact = useCompactSimulationLayout();
 
     const steps = [
-        { title: '1. Declaración Vacía', code: 'int[] numeros = new int[5];', desc: 'Java reserva un bloque de 5 espacios enteros contiguos en memoria, inicializados secretamente en ceros o nulos.' },
-        { title: '2. Inicialización Directa', code: 'int[] numeros = { 10, 20, 30, 40, 50 };', desc: 'Podemos inyectar los valores directamente al nacer. Los índices se auto-asignan de izquierda a derecha (0 a 4).' },
-        { title: '3. Acceso Lectura (GET)', code: 'int valor = numeros[2];', desc: 'Para leer el tercer vagón, le pedimos a Java que busque en el tren "numeros" la posición exacta del Índice [2].' },
-        { title: '4. Acceso Escritura (SET)', code: 'numeros[0] = 99;', desc: 'De forma similar, apuntamos a un índice existente (ej. el Cero) e inyectamos un nuevo valor directo en esa celda.' }
+        { desc: 'Java reserva un bloque de 5 espacios enteros contiguos en memoria.' },
+        { desc: 'Tambien puedes inicializar todos los valores del arreglo desde el inicio.' },
+        { desc: 'Para leer un valor, apuntas a un indice exacto como numeros[2].' },
+        { desc: 'Para escribir, eliges una posicion y reemplazas lo que habia alli.' },
     ];
 
-    const currentArray = step === 0 ? defaultArray : step === 3 ? [99, 20, 30, 40, 50] : initializedArray;
-    
-    // Highlight states
+    const currentArray = step === 0 ? [0, 0, 0, 0, 0] : step === 3 ? [99, 20, 30, 40, 50] : [10, 20, 30, 40, 50];
     const activeIndex = step === 2 ? 2 : step === 3 ? 0 : null;
 
+    const codeByStep = [
+        <>int[] numeros = new int[5];</>,
+        <>int[] numeros = {'{'} 10, 20, 30, 40, 50 {'}'};</>,
+        <>int valor = numeros[<span style={{ color: '#00d4ff', fontWeight: 'bold' }}>2</span>];</>,
+        <>numeros[<span style={{ color: '#e74c3c', fontWeight: 'bold' }}>0</span>] = <span style={{ color: '#e74c3c' }}>99</span>;</>,
+    ];
+
     return (
-        <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulación: Arreglos en Memoria</h3>
-            <p style={{ color: 'var(--text-grey)', marginBottom: '1.5rem', fontSize: '0.9rem', height: '40px' }}>
+        <div
+            style={{
+                padding: isCompact ? '1.35rem 1rem' : '2.5rem 2rem',
+                background: 'rgba(20,20,20,0.8)',
+                borderRadius: '12px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                textAlign: 'center',
+            }}
+        >
+            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulacion: Arreglos en memoria</h3>
+            <p
+                style={{
+                    color: 'var(--text-grey)',
+                    marginBottom: '1.4rem',
+                    fontSize: isCompact ? '0.84rem' : '0.9rem',
+                    minHeight: isCompact ? 'auto' : '40px',
+                }}
+            >
                 {steps[step].desc}
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', minHeight: '200px' }}>
-                
-                {/* Código */}
-                <div style={{ background: '#111', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', fontFamily: 'monospace', fontSize: '1.1rem', color: '#fff', minWidth: '350px' }}>
-                    {step === 0 && <><span style={{ color: '#67e8f9' }}>int</span><span style={{ color: '#e06c75' }}>[]</span> numeros = <span style={{ color: '#67e8f9' }}>new int</span>[<span style={{ color: '#d19a66' }}>5</span>];</>}
-                    {step === 1 && <><span style={{ color: '#67e8f9' }}>int</span><span style={{ color: '#e06c75' }}>[]</span> numeros = {'{'} <span style={{ color: '#d19a66' }}>10, 20, 30, 40, 50</span> {'}'};</>}
-                    {step === 2 && <><span style={{ color: '#67e8f9' }}>int</span> valor = numeros[<span style={{ color: '#00d4ff', fontWeight: 'bold' }}>2</span>]; // Extrae 30</>}
-                    {step === 3 && <>numeros[<span style={{ color: '#e74c3c', fontWeight: 'bold' }}>0</span>] = <span style={{ color: '#e74c3c' }}>99</span>;</>}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
+                <div
+                    style={{
+                        width: '100%',
+                        maxWidth: '560px',
+                        background: '#111',
+                        padding: isCompact ? '0.9rem' : '1rem',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        fontFamily: 'monospace',
+                        fontSize: isCompact ? '0.92rem' : '1.08rem',
+                        color: '#fff',
+                        overflowWrap: 'anywhere',
+                    }}
+                >
+                    <span style={{ color: '#67e8f9' }}>{codeByStep[step]}</span>
                 </div>
 
-                {/* Arreglo Visual (El Tren) */}
-                <div style={{ display: 'flex', gap: '0', background: 'rgba(0,0,0,0.4)', padding: '0.5rem', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.1)', position: 'relative' }}>
-                    {currentArray.map((val, idx) => {
-                        const isHighlight = activeIndex === idx;
-                        
+                <div
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: `repeat(${isCompact ? 3 : 5}, minmax(0, 1fr))`,
+                        gap: '0.55rem',
+                        width: '100%',
+                        maxWidth: isCompact ? '280px' : '420px',
+                        background: 'rgba(0,0,0,0.4)',
+                        padding: '0.7rem',
+                        borderRadius: '12px',
+                        border: '1px dashed rgba(255,255,255,0.1)',
+                    }}
+                >
+                    {currentArray.map((value, index) => {
+                        const isActive = activeIndex === index;
+
                         return (
-                            <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <motion.div 
-                                    initial={{ scale: 0.8, opacity: 0 }}
-                                    animate={{ 
-                                        scale: isHighlight ? 1.1 : 1, 
-                                        opacity: 1,
-                                        y: isHighlight ? -10 : 0,
-                                        background: isHighlight ? (step === 2 ? 'rgba(0, 212, 255, 0.2)' : 'rgba(231, 76, 60, 0.2)') : 'rgba(255,255,255,0.05)',
-                                        borderColor: isHighlight ? (step === 2 ? '#00d4ff' : '#e74c3c') : 'rgba(255,255,255,0.1)'
-                                    }}
-                                    transition={{ type: 'spring', stiffness: 300 }}
-                                    style={{ 
-                                        width: '60px', 
-                                        height: '60px', 
-                                        border: '2px solid',
-                                        borderRightWidth: idx < currentArray.length - 1 ? '1px' : '2px',
-                                        borderLeftWidth: idx > 0 ? '1px' : '2px',
-                                        display: 'flex', 
-                                        alignItems: 'center', 
-                                        justifyContent: 'center',
-                                        fontSize: '1.2rem',
-                                        fontWeight: 'bold',
-                                        color: val === null ? 'var(--text-grey)' : '#fff',
-                                        boxShadow: isHighlight ? `0 0 15px ${step === 2 ? 'rgba(0,212,255,0.3)' : 'rgba(231,76,60,0.3)'}` : 'none',
-                                        zIndex: isHighlight ? 10 : 1
+                            <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.45rem' }}>
+                                <div
+                                    style={{
+                                        fontSize: '0.72rem',
+                                        color: isActive ? (step === 2 ? '#00d4ff' : '#e74c3c') : 'var(--text-grey)',
+                                        fontWeight: isActive ? '700' : '500',
                                     }}
                                 >
-                                    {val === null ? '0' : val}
-                                </motion.div>
-                                <div style={{ 
-                                    marginTop: '0.5rem', 
-                                    fontSize: '0.8rem', 
-                                    color: isHighlight ? (step === 2 ? '#00d4ff' : '#e74c3c') : 'var(--text-grey)',
-                                    fontWeight: isHighlight ? 'bold' : 'normal',
-                                    transition: 'color 0.3s'
-                                }}>
-                                    idx [{idx}]
+                                    idx [{index}]
                                 </div>
+                                <motion.div
+                                    animate={{
+                                        scale: isActive ? 1.06 : 1,
+                                        y: isActive ? -4 : 0,
+                                        background: isActive
+                                            ? step === 2
+                                                ? 'rgba(0, 212, 255, 0.2)'
+                                                : 'rgba(231, 76, 60, 0.2)'
+                                            : 'rgba(255,255,255,0.05)',
+                                        borderColor: isActive
+                                            ? step === 2
+                                                ? '#00d4ff'
+                                                : '#e74c3c'
+                                            : 'rgba(255,255,255,0.1)',
+                                    }}
+                                    style={{
+                                        width: isCompact ? '64px' : '70px',
+                                        height: isCompact ? '56px' : '60px',
+                                        borderRadius: '10px',
+                                        border: '2px solid rgba(255,255,255,0.1)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: '#fff',
+                                        fontWeight: '800',
+                                        fontSize: isCompact ? '1rem' : '1.1rem',
+                                    }}
+                                >
+                                    {value}
+                                </motion.div>
                             </div>
                         );
                     })}
                 </div>
             </div>
 
-            <div style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                <button 
+            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <button
                     onClick={() => setStep(Math.max(0, step - 1))}
                     disabled={step === 0}
-                    style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === 0 ? 'not-allowed' : 'pointer', opacity: step === 0 ? 0.5 : 1 }}
+                    style={{
+                        background: 'rgba(255,255,255,0.1)',
+                        color: '#fff',
+                        border: 'none',
+                        padding: '0.58rem 0.95rem',
+                        borderRadius: '6px',
+                        cursor: step === 0 ? 'not-allowed' : 'pointer',
+                        opacity: step === 0 ? 0.5 : 1,
+                    }}
                 >
-                    Atrás
+                    Atras
                 </button>
-                <button 
+                <button
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
-                    style={{ background: '#00d4ff', color: '#000', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer', fontWeight: 'bold', opacity: step === steps.length - 1 ? 0.5 : 1 }}
+                    style={{
+                        background: '#00d4ff',
+                        color: '#000',
+                        border: 'none',
+                        padding: '0.62rem 1rem',
+                        borderRadius: '6px',
+                        cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer',
+                        fontWeight: 'bold',
+                        opacity: step === steps.length - 1 ? 0.5 : 1,
+                    }}
                 >
-                    Siguiente Etapa
+                    Siguiente etapa
                 </button>
-                
-                {step === steps.length - 1 && (
-                    <button 
-                        onClick={() => setStep(0)}
-                        style={{ background: 'transparent', color: '#00d4ff', border: '1px solid #00d4ff', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer' }}
-                    >
-                        Reiniciar
-                    </button>
-                )}
             </div>
         </div>
     );
 }
-

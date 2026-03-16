@@ -12,13 +12,35 @@ export default function ConceptSimulation({ type = 'client-server' }) {
     const showControls = !isAuto;
 
     useEffect(() => {
-        if (!isPlaying || !showControls) {
+        setIsPlaying(false);
+        setInstanceKey(0);
+    }, [type]);
+
+    useEffect(() => {
+        if (!isAuto) {
             return undefined;
         }
 
-        const timer = setTimeout(() => setIsPlaying(false), duration);
+        const timer = window.setTimeout(() => {
+            setInstanceKey(1);
+            setIsPlaying(true);
+        }, 80);
+
+        return () => window.clearTimeout(timer);
+    }, [isAuto, type]);
+
+    useEffect(() => {
+        if (!isPlaying) {
+            return undefined;
+        }
+
+        const timer = window.setTimeout(() => {
+            setIsPlaying(false);
+            setInstanceKey((value) => value + 1);
+        }, duration);
+
         return () => clearTimeout(timer);
-    }, [duration, isPlaying, showControls]);
+    }, [duration, isPlaying]);
 
     return (
         <div className="concept-sim">
@@ -33,29 +55,21 @@ export default function ConceptSimulation({ type = 'client-server' }) {
                     </p>
                 </div>
 
-                <div className="concept-sim__actions">
-                    {showControls && (
+                {showControls && (
+                    <div className="concept-sim__actions">
                         <button
                             className={`concept-sim__btn ${isPlaying ? 'concept-sim__btn--active' : ''}`}
-                            onClick={() => setIsPlaying(true)}
+                            onClick={() => {
+                                setInstanceKey((value) => value + 1);
+                                window.setTimeout(() => setIsPlaying(true), 40);
+                            }}
                             disabled={isPlaying}
                         >
                             {isPlaying ? t('sim.running') : t('sim.start')}
                             {!isPlaying && <Icon name="rocket" size={16} />}
                         </button>
-                    )}
-
-                    <button
-                        className="concept-sim__btn concept-sim__btn--ghost"
-                        onClick={() => {
-                            setIsPlaying(false);
-                            setInstanceKey((value) => value + 1);
-                        }}
-                    >
-                        {t('sim.restart', 'Repetir')}
-                        <Icon name="refresh-cw" size={16} />
-                    </button>
-                </div>
+                    </div>
+                )}
             </div>
 
             <div

@@ -65,9 +65,11 @@ export default function ScrumBoardSim({ isPlaying }) {
     return (
         <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: '0.5rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+            gap: '0.75rem',
             width: '100%',
+            maxWidth: '980px',
+            margin: '0 auto',
             padding: '1rem 0',
         }}>
             {COLUMNS.map((col, ci) => (

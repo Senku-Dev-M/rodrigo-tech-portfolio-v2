@@ -51,6 +51,11 @@
     max-width: 450px;
     aspect-ratio: 4/3;
     position: relative;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(240px, 34vw, 340px);
     background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
     border-radius: 50%;
 }
@@ -58,6 +63,7 @@
 .concept-sim__canvas--wide {
     max-width: 100%;
     aspect-ratio: 16/6;
+    min-height: clamp(240px, 32vw, 360px);
     border-radius: 12px;
     background: none;
 }
@@ -67,13 +73,20 @@
     max-width: 100%;
     height: auto;
     aspect-ratio: auto;
+    min-height: auto;
+    padding: 0.25rem 0;
     border-radius: 12px;
     background: none;
+    overflow: visible;
 }
 
 .sim-svg {
     width: 100%;
     height: 100%;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
     overflow: visible;
 }
 
@@ -174,9 +187,34 @@
     .concept-sim {
         padding: 1rem;
         border-radius: 18px;
+        gap: 1rem;
     }
 
     .concept-sim__toolbar {
         flex-direction: column;
+        gap: 0.85rem;
+    }
+
+    .concept-sim__canvas,
+    .concept-sim__canvas--wide {
+        min-height: 190px;
+    }
+
+    .concept-sim__canvas--auto {
+        padding: 0;
+    }
+
+    .concept-sim__hint {
+        font-size: 0.84rem;
+        line-height: 1.5;
+    }
+
+    .concept-sim__actions,
+    .concept-sim__btn {
+        width: 100%;
+    }
+
+    .concept-sim__btn {
+        justify-content: center;
     }
 }

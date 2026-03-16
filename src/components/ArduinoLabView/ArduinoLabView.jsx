@@ -65,6 +65,29 @@ const experiments = [
     { title: 'Controlar LED con botón',       desc: 'Conecta un pulsador al pin 2 (INPUT). Usa digitalRead() para encender el LED solo cuando se presione.', icon: 'target' },
 ];
 
+const debugNotes = [
+    {
+        icon: 'alertTriangle',
+        title: 'Si el LED no enciende',
+        desc: 'Revisa primero la polaridad del LED, la conexión a GND y que el pin del código coincida con el del circuito.',
+    },
+    {
+        icon: 'activity',
+        title: 'Si el parpadeo no coincide',
+        desc: 'Observa los valores de `delay()`. Dos pausas de 1000 ms generan un ciclo completo de 2 segundos, no de 1.',
+    },
+    {
+        icon: 'shield',
+        title: 'Si algo se calienta o falla',
+        desc: 'Nunca conectes un LED directo sin resistencia. La resistencia protege el componente limitando la corriente.',
+    },
+    {
+        icon: 'lightbulb',
+        title: 'Qué deberías poder explicar',
+        desc: 'Al finalizar, deberías relacionar `setup()`, `loop()`, `HIGH`, `LOW` y el comportamiento visible del LED.',
+    },
+];
+
 // ── Arduino Board (real photo + CSS hotspots) ────────────────────
 const hotspots = [
     { id: 'mcu',     top: '60%', left: '56%', label: 'Microcontrolador ATmega328P',  desc: 'El cerebro de Arduino. Un chip de 28 pines que ejecuta tu sketch a 16 MHz. Tiene 32 KB de Flash, 2 KB de RAM y 1 KB de EEPROM.' },
@@ -672,9 +695,33 @@ export default function ArduinoLabView({ lab }) {
                 <FlowDiagram />
             </section>
 
+            <section className="guide-section">
+                <h2 className="guide-section__title">7. Consejos y Errores Comunes</h2>
+                <p className="ard-section-desc">
+                    Antes de pasar a variantes más complejas, revisa estas comprobaciones rápidas. Te ayudan a
+                    conectar mejor el circuito con el código y a detectar fallos típicos sin probar a ciegas.
+                </p>
+                <div className="ard-intro-grid">
+                    {debugNotes.map((note, i) => (
+                        <motion.div
+                            key={note.title}
+                            className="ard-intro-card"
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.07 }}
+                        >
+                            <Icon name={note.icon} size={22} color={accentColor} />
+                            <h4>{note.title}</h4>
+                            <p>{note.desc}</p>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
             {/* ── EXPERIMENTOS ─────────────────────────────────────── */}
             <section className="guide-section">
-                <h2 className="guide-section__title">7. Experimentos Sugeridos</h2>
+                <h2 className="guide-section__title">8. Experimentos Sugeridos</h2>
                 <p className="ard-section-desc">Una vez que el LED parpadee, prueba estas variaciones:</p>
                 <div className="ard-experiments">
                     {experiments.map((exp, i) => (
@@ -709,7 +756,7 @@ export default function ArduinoLabView({ lab }) {
 
             {/* ── EJERCICIO PRÁCTICO ────────────────────────────────── */}
             <section className="guide-section">
-                <h2 className="guide-section__title">8. Ejercicio Práctico: Semáforo</h2>
+                <h2 className="guide-section__title">9. Ejercicio Práctico: Semáforo</h2>
                 <div className="ard-challenge">
                     <div className="ard-challenge-header">
                         <Icon name="trophy" size={22} color={accentColor} />

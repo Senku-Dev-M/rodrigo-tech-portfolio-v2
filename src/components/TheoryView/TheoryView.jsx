@@ -137,14 +137,21 @@ function FeatureCards({ items }) {
     return (
         <div className="theory-card-grid">
             {items.map((item, index) => (
-                <article key={`${item.title}-${index}`} className="theory-info-card">
+                <article
+                    key={`${item.title}-${index}`}
+                    className="theory-info-card"
+                    style={item.color ? { '--theory-card-accent': item.color } : undefined}
+                >
                     <div className="theory-info-card__header">
                         <span className="theory-info-card__icon">
                             <Icon name={item.icon || 'star'} size={22} />
                         </span>
                         <h3 className="theory-info-card__title">{item.title}</h3>
                     </div>
-                    <p className="theory-info-card__desc">{item.desc}</p>
+                    <div
+                        className="theory-info-card__desc"
+                        dangerouslySetInnerHTML={{ __html: item.desc || item.text || '' }}
+                    />
                 </article>
             ))}
         </div>
@@ -394,8 +401,8 @@ export default function TheoryView({ lab }) {
             );
         }
 
-        if (section.type === 'featureCards' || section.type === 'useCases') {
-            return <FeatureCards items={section.features || section.cases || []} />;
+        if (section.type === 'featureCards' || section.type === 'useCases' || section.type === 'grid-cards') {
+            return <FeatureCards items={section.features || section.cases || section.cards || []} />;
         }
 
         if (section.type === 'comparisonTable') {
@@ -492,6 +499,7 @@ export default function TheoryView({ lab }) {
                                 section={{
                                     steps: content.dhcpProcess.steps,
                                     simType: 'dhcp',
+                                    observe: content.dhcpProcess.observe,
                                 }}
                                 observeTitle={t('theory.observe', 'Qué debes observar')}
                             />
