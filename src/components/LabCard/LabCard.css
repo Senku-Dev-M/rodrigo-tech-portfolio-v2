@@ -20,6 +20,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 0.8rem;
+}
+
+.lab-card__top-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+}
+
+.lab-card__step {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 0.24rem 0.58rem;
 }
 
 .lab-card__type {
@@ -49,10 +69,21 @@
     margin: 0;
 }
 
+.lab-card__features,
 .lab-card__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+}
+
+.lab-card__feature {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
 }
 
 .lab-card__tag {

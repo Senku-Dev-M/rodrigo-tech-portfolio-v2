@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
@@ -6,36 +7,337 @@ import ConceptSimulation from '../ConceptSimulation/ConceptSimulation';
 import InteractiveCodeBlock from './InteractiveCodeBlock';
 import './TheoryView.css';
 
-// ── Section wrapper ─────────────────────────────────────────
-function Section({ title, desc, children }) {
+function toSectionId(title, index) {
+    const slug = title
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+    return `${slug || 'seccion'}-${index}`;
+}
+
+function renderHtmlParagraphs(content, className = 'theory-text') {
+    return content
+        .split('\n\n')
+        .filter(Boolean)
+        .map((paragraph, index) => (
+            <p
+                key={index}
+                className={className}
+                dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
+        ));
+}
+
+function Section({ id, title, desc, children }) {
     return (
-        <section className="theory-section">
-            <h2 className="theory-section__title">{title}</h2>
+        <motion.section
+            id={id}
+            className="theory-section"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.12 }}
+            transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+            {title && <h2 className="theory-section__title">{title}</h2>}
             {desc && <p className="theory-section__desc">{desc}</p>}
             {children}
+        </motion.section>
+    );
+}
+
+function SectionNav({ items, introLabel, conclusionLabel }) {
+    const navigateTo = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    return (
+        <section className="theory-compass">
+            <div className="theory-compass__intro">
+                <div className="theory-compass__eyebrow">Ruta de lectura</div>
+                <h2 className="theory-compass__title">Explora la mentoría como un mini curso</h2>
+                <p className="theory-compass__desc">
+                    Sigue la secuencia sugerida o entra directamente al bloque que necesites revisar.
+                </p>
+            </div>
+            <div className="theory-compass__chips">
+                <button type="button" className="theory-chip" onClick={() => navigateTo('theory-intro')}>
+                    {introLabel}
+                </button>
+                {items.map((item) => (
+                    <button
+                        key={item.id}
+                        type="button"
+                        className="theory-chip"
+                        onClick={() => navigateTo(item.id)}
+                    >
+                        {item.title}
+                    </button>
+                ))}
+                <button type="button" className="theory-chip" onClick={() => navigateTo('theory-conclusion')}>
+                    {conclusionLabel}
+                </button>
+            </div>
         </section>
     );
 }
 
-// ── Pros & Cons Card ───────────────────────────────────────
+function ObjectivesGrid({ objectives, title }) {
+    return (
+        <div className="theory-objectives-card">
+            <div className="theory-card__eyebrow">{title}</div>
+            <div className="theory-objectives-grid">
+                {objectives.map((objective, index) => (
+                    <div key={objective} className="theory-objective">
+                        <span className="theory-objective__index">{index + 1}</span>
+                        <p className="theory-objective__text">{objective}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function CalloutGroup({ title, items, variant = 'info' }) {
+    return (
+        <div className={`theory-callout-group theory-callout-group--${variant}`}>
+            {title && (
+                <div className="theory-card__eyebrow">
+                    {title}
+                </div>
+            )}
+            <div className="theory-callout-grid">
+                {items.map((item, index) => (
+                    <article key={`${item.title}-${index}`} className={`theory-callout theory-callout--${variant}`}>
+                        <div className="theory-callout__header">
+                            {item.icon && (
+                                <span className="theory-callout__icon">
+                                    <Icon name={item.icon} size={18} />
+                                </span>
+                            )}
+                            <h3 className="theory-callout__title">{item.title}</h3>
+                        </div>
+                        <div
+                            className="theory-callout__text"
+                            dangerouslySetInnerHTML={{ __html: item.text }}
+                        />
+                    </article>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function FeatureCards({ items }) {
+    return (
+        <div className="theory-card-grid">
+            {items.map((item, index) => (
+                <article key={`${item.title}-${index}`} className="theory-info-card">
+                    <div className="theory-info-card__header">
+                        <span className="theory-info-card__icon">
+                            <Icon name={item.icon || 'star'} size={22} />
+                        </span>
+                        <h3 className="theory-info-card__title">{item.title}</h3>
+                    </div>
+                    <p className="theory-info-card__desc">{item.desc}</p>
+                </article>
+            ))}
+        </div>
+    );
+}
+
+function Checklist({ items, ordered = false }) {
+    const Wrapper = ordered ? 'ol' : 'ul';
+
+    return (
+        <Wrapper className={`theory-checklist ${ordered ? 'theory-checklist--ordered' : ''}`}>
+            {items.map((item, index) => (
+                <li key={`${item}-${index}`} className="theory-checklist__item">
+                    <span className="theory-checklist__marker">
+                        {ordered ? index + 1 : <Icon name="checkCircle" size={16} />}
+                    </span>
+                    <span className="theory-checklist__text">{item}</span>
+                </li>
+            ))}
+        </Wrapper>
+    );
+}
+
+function Exercise({ section }) {
+    return (
+        <article className="theory-exercise">
+            <div className="theory-exercise__header">
+                <div>
+                    <div className="theory-card__eyebrow">Práctica guiada</div>
+                    <h3 className="theory-exercise__title">{section.title}</h3>
+                </div>
+                <span className="theory-exercise__icon">
+                    <Icon name="rocket" size={22} />
+                </span>
+            </div>
+            <p className="theory-exercise__prompt">{section.prompt}</p>
+
+            {section.starterCode && (
+                <pre className="theory-code-preview">
+                    <code>{section.starterCode}</code>
+                </pre>
+            )}
+
+            {section.hints?.length > 0 && (
+                <div className="theory-exercise__block">
+                    <h4 className="theory-subtitle">Pistas</h4>
+                    <Checklist items={section.hints} />
+                </div>
+            )}
+
+            {section.expectedOutput && (
+                <div className="theory-exercise__block">
+                    <h4 className="theory-subtitle">Resultado esperado</h4>
+                    <p className="theory-text">{section.expectedOutput}</p>
+                </div>
+            )}
+
+            {section.reflection && (
+                <div className="theory-reflection">
+                    <span className="theory-reflection__icon">
+                        <Icon name="lightbulb" size={18} />
+                    </span>
+                    <p>{section.reflection}</p>
+                </div>
+            )}
+        </article>
+    );
+}
+
+function ProcessBlock({ section, observeTitle }) {
+    return (
+        <div className={`theory-process ${section.simLayout === 'stacked' ? 'theory-process--stacked' : ''}`}>
+            <div className="theory-process__content">
+                {section.steps?.length > 0 && (
+                    <div className="theory-process__steps">
+                        {section.steps.map((step, index) => (
+                            <article key={`${step.name}-${index}`} className="theory-step">
+                                <span className="theory-step__num">{index + 1}</span>
+                                <div className="theory-step__body">
+                                    <h3 className="theory-step__title">
+                                        {step.name}
+                                        {step.sender && (
+                                            <span className="theory-step__sender">({step.sender})</span>
+                                        )}
+                                    </h3>
+                                    <p className="theory-step__text">{step.action}</p>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                )}
+
+                {section.observe?.length > 0 && (
+                    <aside className="theory-observe">
+                        <div className="theory-card__eyebrow">{observeTitle}</div>
+                        <Checklist items={section.observe} />
+                    </aside>
+                )}
+            </div>
+
+            <div className="theory-process__sim">
+                {section.simType && <ConceptSimulation type={section.simType} />}
+            </div>
+        </div>
+    );
+}
+
+function ComparisonTable({ section }) {
+    return (
+        <div className="theory-table-shell">
+            <table className="theory-table">
+                <thead>
+                    <tr>
+                        {section.headers.map((header) => (
+                            <th key={header}>{header}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {section.rows.map((row, rowIndex) => (
+                        <tr key={rowIndex}>
+                            {row.map((cell, cellIndex) => (
+                                <td
+                                    key={`${cellIndex}-${cell}`}
+                                    className={cellIndex === 0 ? 'theory-table__primary' : ''}
+                                >
+                                    {cell}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
 function ProsConsCard({ title, pros, cons, t }) {
     return (
-        <div className="theory-proscons">
+        <article className="theory-proscons">
             <h3 className="theory-proscons__title">{title}</h3>
             <div className="theory-proscons__grid">
-                <div className="theory-proscons__col theory-proscons__col--pros">
-                    <h4><Icon name="checkCircle" size={16} color="#00ff88" /> {t('theory.pros')}</h4>
-                    <ul>
-                        {pros.map((p, i) => <li key={i}>{p}</li>)}
-                    </ul>
+                <div className="theory-proscons__column theory-proscons__column--pros">
+                    <div className="theory-proscons__heading">
+                        <Icon name="checkCircle" size={18} />
+                        <span>{t('theory.pros', 'Ventajas')}</span>
+                    </div>
+                    <Checklist items={pros} />
                 </div>
-                <div className="theory-proscons__col theory-proscons__col--cons">
-                    <h4><Icon name="xCircle" size={16} color="#ff4444" /> {t('theory.cons')}</h4>
-                    <ul>
-                        {cons.map((c, i) => <li key={i}>{c}</li>)}
-                    </ul>
+                <div className="theory-proscons__column theory-proscons__column--cons">
+                    <div className="theory-proscons__heading">
+                        <Icon name="xCircle" size={18} />
+                        <span>{t('theory.cons', 'Desventajas')}</span>
+                    </div>
+                    <Checklist items={cons} />
                 </div>
             </div>
+        </article>
+    );
+}
+
+function ModelsSection({ section, t }) {
+    return (
+        <div className="theory-models-stack">
+            {section.models.map((model, index) => (
+                <article key={`${model.title}-${index}`} className="theory-model-card">
+                    <h3 className="theory-model-card__title">{model.title}</h3>
+                    <div className="theory-model-card__body">
+                        <div>
+                            <div className="theory-card__eyebrow">{t('theory.whatIs', '¿Qué es?')}</div>
+                            <p className="theory-text">{model.whatIs}</p>
+                        </div>
+                        <div>
+                            <div className="theory-card__eyebrow">{t('theory.howWorks', '¿Cómo funciona?')}</div>
+                            <p className="theory-text">{model.howWorks}</p>
+                        </div>
+                        {model.examples?.length > 0 && (
+                            <div>
+                                <div className="theory-card__eyebrow">{t('theory.examples', 'Ejemplos de uso')}</div>
+                                <Checklist items={model.examples} />
+                            </div>
+                        )}
+                    </div>
+                    {model.pros && model.cons && (
+                        <ProsConsCard
+                            title={`${t('theory.analysis', 'Análisis de')} ${model.title}`}
+                            pros={model.pros}
+                            cons={model.cons}
+                            t={t}
+                        />
+                    )}
+                </article>
+            ))}
         </div>
     );
 }
@@ -44,286 +346,216 @@ export default function TheoryView({ lab }) {
     const { t } = useI18n();
     const { content } = lab;
 
+    const sectionEntries = useMemo(
+        () =>
+            (content.sections || []).map((section, index) => ({
+                ...section,
+                _sectionId: toSectionId(section.title || section.type || 'section', index),
+            })),
+        [content.sections]
+    );
+
+    const sectionNavItems = useMemo(
+        () =>
+            sectionEntries
+                .filter((section) => Boolean(section.title))
+                .map((section) => ({ id: section._sectionId, title: section.title })),
+        [sectionEntries]
+    );
+
+    const renderSection = (section) => {
+        if (section.type === 'text') {
+            return renderHtmlParagraphs(section.content);
+        }
+
+        if (section.type === 'calloutGroup') {
+            return <CalloutGroup title={section.title} items={section.items} variant={section.variant} />;
+        }
+
+        if (section.type === 'checklist') {
+            return <Checklist items={section.items} ordered={section.ordered} />;
+        }
+
+        if (section.type === 'exercise') {
+            return <Exercise section={section} />;
+        }
+
+        if (section.type === 'process') {
+            return <ProcessBlock section={section} observeTitle={t('theory.observe', 'Qué debes observar')} />;
+        }
+
+        if (section.type === 'interactiveCode') {
+            return (
+                <InteractiveCodeBlock
+                    code={section.code}
+                    explanations={section.explanations}
+                    output={section.output}
+                />
+            );
+        }
+
+        if (section.type === 'featureCards' || section.type === 'useCases') {
+            return <FeatureCards items={section.features || section.cases || []} />;
+        }
+
+        if (section.type === 'comparisonTable') {
+            return <ComparisonTable section={section} />;
+        }
+
+        if (section.type === 'models') {
+            return <ModelsSection section={section} t={t} />;
+        }
+
+        if (section.type === 'proscons') {
+            return <ProsConsCard title={section.title} pros={section.pros} cons={section.cons} t={t} />;
+        }
+
+        return null;
+    };
+
     return (
         <div className="theory-view">
-            {/* ── HEADER ─────────────────────────────────────── */}
             <ContentHeader lab={lab} variant="theory" />
-
-            {/* ── INTRODUCCIÓN ───────────────────────────────── */}
-            <Section title={t('theory.intro', 'Introducción')}>
-                <p className="theory-text">{content.intro}</p>
-                {content.objectives && (
-                    <div style={{ marginTop: '1.5rem', background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <h3 style={{ color: '#00d4ff', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <Icon name="checkCircle" size={20} /> Objetivos de aprendizaje
-                        </h3>
-                        <ul className="theory-list theory-list--cyan">
-                            {content.objectives.map((obj, i) => <li key={i}>{obj}</li>)}
-                        </ul>
-                    </div>
-                )}
-            </Section>
-
-            {/* ── SECCIONES DINÁMICAS ────────────────────────────── */}
-
-            {/* Si existe la sección de Modelos (C/S vs P2P) */}
-            {content.models && Object.entries(content.models).map(([key, model], idx) => (
-                <Section key={key} title={model.title}>
-                    <div className="theory-model">
-                        <div className="theory-model__text">
-                            <h3>¿Qué es?</h3>
-                            <p>{model.whatIs}</p>
-
-                            <h3>¿Cómo funciona?</h3>
-                            <p>{model.howWorks}</p>
-
-                            <h3>Ejemplos de uso</h3>
-                            <ul className="theory-list theory-list--cyan">
-                                {model.examples.map((ex, i) => <li key={i}>{ex}</li>)}
-                            </ul>
-                        </div>
-
-                        {/* Simulación SVG */}
-                        <div className="theory-model__sim">
-                            {/* Renderizar simulaciones específicas según la key o type */}
-                            <ConceptSimulation type={key === 'clientServer' ? 'client-server' : (key === 'p2p' ? 'p2p' : 'dhcp')} />
-                        </div>
-                    </div>
-
-                    <ProsConsCard
-                        title={`${t('theory.analysis', 'Análisis de')} ${model.title}`}
-                        pros={model.pros}
-                        cons={model.cons}
-                        t={t}
+            <div className="theory-layout">
+                <aside className="theory-sidebar">
+                    <SectionNav
+                        items={sectionNavItems}
+                        introLabel={t('theory.intro', 'Introducción')}
+                        conclusionLabel={t('theory.conclusion', 'Conclusión')}
                     />
-                </Section>
-            ))}
+                </aside>
 
-            {/* Si existe un proceso por pasos (ej. DORA Handshake en DHCP) */}
-            {content.dhcpProcess && (
-                <Section title={content.dhcpProcess.title} desc={content.dhcpProcess.desc}>
-                    <div className="theory-process">
-                        <div className="theory-process__steps">
-                            {content.dhcpProcess.steps.map((step, idx) => (
-                                <div key={idx} className="theory-step">
-                                    <div className="theory-step__num">{idx + 1}</div>
-                                    <div className="theory-step__content">
-                                        <h4>{step.name} <span className="theory-step__sender">({step.sender})</span></h4>
-                                        <p>{step.action}</p>
+                <div className="theory-main">
+                    <Section id="theory-intro" title={t('theory.intro', 'Introducción')}>
+                        <div className="theory-hero-card">
+                            <div className="theory-card__eyebrow">Contexto del tema</div>
+                            {renderHtmlParagraphs(content.intro, 'theory-text theory-text--lead')}
+                        </div>
+                        {content.objectives?.length > 0 && (
+                            <ObjectivesGrid
+                                objectives={content.objectives}
+                                title={t('theory.learningObjectives', 'Objetivos de aprendizaje')}
+                            />
+                        )}
+                    </Section>
+
+                    {content.models &&
+                        Object.entries(content.models).map(([key, model], index) => (
+                            <Section key={key} id={`theory-model-${index}`} title={model.title}>
+                                <div className="theory-model-layout">
+                                    <div className="theory-model-layout__copy">
+                                        <div>
+                                            <div className="theory-card__eyebrow">{t('theory.whatIs', '¿Qué es?')}</div>
+                                            <p className="theory-text">{model.whatIs}</p>
+                                        </div>
+                                        <div>
+                                            <div className="theory-card__eyebrow">{t('theory.howWorks', '¿Cómo funciona?')}</div>
+                                            <p className="theory-text">{model.howWorks}</p>
+                                        </div>
+                                        {model.examples?.length > 0 && (
+                                            <div>
+                                                <div className="theory-card__eyebrow">{t('theory.examples', 'Ejemplos de uso')}</div>
+                                                <Checklist items={model.examples} />
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="theory-model-layout__sim">
+                                        <ConceptSimulation
+                                            type={
+                                                key === 'clientServer'
+                                                    ? 'client-server'
+                                                    : key === 'p2p'
+                                                        ? 'p2p'
+                                                        : 'dhcp'
+                                            }
+                                        />
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                        <div className="theory-process__sim">
-                            <ConceptSimulation type="dhcp" />
-                        </div>
-                    </div>
-                </Section>
-            )}
-
-            {/* Si existe lista de configuraciones / items (ej. DHCP config info) */}
-            {content.dhcpConfig && (
-                <Section title={content.dhcpConfig.title}>
-                    <ul className="theory-list theory-list--cyan theory-list--large">
-                        {content.dhcpConfig.items.map((item, i) => <li key={i}>{item}</li>)}
-                    </ul>
-                </Section>
-            )}
-
-            {/* ── TABLA COMPARATIVA (Opcional) ───────────────────── */}
-            {content.comparison && (
-                <Section title="Tabla Comparativa">
-                    <div className="theory-table-wrapper">
-                        <table className="theory-table">
-                            <thead>
-                                <tr>
-                                    <th>Aspecto</th>
-                                    <th>Cliente-Servidor</th>
-                                    <th>Peer-to-Peer (P2P)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {content.comparison.map((row, i) => (
-                                    <tr key={i}>
-                                        <td className="theory-table__aspect">{row.aspect}</td>
-                                        <td>{row.cs}</td>
-                                        <td>{row.p2p}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </Section>
-            )}
-
-            {/* ── SECCIONES GENÉRICAS (Escalabilidad) ─────────────── */}
-            {content.sections && content.sections.map((section, sectionIdx) => {
-                if (section.type === 'text') {
-                    return (
-                        <Section key={sectionIdx} title={section.title}>
-                            {section.content.split('\n').map((paragraph, i) => (
-                                <p 
-                                    key={i} 
-                                    className="theory-text" 
-                                    style={{ marginBottom: '1rem' }}
-                                    dangerouslySetInnerHTML={{ __html: paragraph }}
-                                />
-                            ))}
-                        </Section>
-                    );
-                }
-
-                if (section.type === 'process') {
-                    return (
-                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
-                            <div className={`theory-process ${section.simLayout === 'stacked' ? 'theory-process--stacked' : ''}`}>
-                                {section.steps && section.steps.length > 0 && (
-                                    <div className="theory-process__steps">
-                                        {section.steps.map((step, idx) => (
-                                            <div key={idx} className="theory-step">
-                                                <div className="theory-step__num">{idx + 1}</div>
-                                                <div className="theory-step__content">
-                                                    <h4>{step.name} <span className="theory-step__sender">({step.sender})</span></h4>
-                                                    <p>{step.action}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                {model.pros && model.cons && (
+                                    <ProsConsCard
+                                        title={`${t('theory.analysis', 'Análisis de')} ${model.title}`}
+                                        pros={model.pros}
+                                        cons={model.cons}
+                                        t={t}
+                                    />
                                 )}
-                                <div className="theory-process__sim">
-                                    {section.simType && <ConceptSimulation type={section.simType} />}
-                                </div>
-                            </div>
+                            </Section>
+                        ))}
+
+                    {content.dhcpProcess && (
+                        <Section
+                            id="theory-dhcp-process"
+                            title={content.dhcpProcess.title}
+                            desc={content.dhcpProcess.desc}
+                        >
+                            <ProcessBlock
+                                section={{
+                                    steps: content.dhcpProcess.steps,
+                                    simType: 'dhcp',
+                                }}
+                                observeTitle={t('theory.observe', 'Qué debes observar')}
+                            />
                         </Section>
-                    );
-                }
+                    )}
 
-                if (section.type === 'grid-cards') {
-                    return (
-                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
-                            <div className="theory-grid-cards">
-                                {section.cards.map((c, i) => (
-                                    <div key={i} className="theory-card">
-                                        <h3 style={{ color: c.color || '#00d4ff' }}>{c.title}</h3>
-                                        <p dangerouslySetInnerHTML={{ __html: c.text }} />
-                                    </div>
-                                ))}
-                            </div>
+                    {content.dhcpConfig && (
+                        <Section id="theory-dhcp-config" title={content.dhcpConfig.title}>
+                            <Checklist items={content.dhcpConfig.items} />
                         </Section>
-                    );
-                }
+                    )}
 
-                if (section.type === 'models') {
-                    return (
-                        <div key={sectionIdx}>
-                            <h2 className="theory-section__title" style={{ marginTop: '2.5rem', marginBottom: '1.5rem' }}>{section.title}</h2>
-                            {section.models.map((model, idx) => (
-                                <div key={idx} style={{ padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '1.5rem' }}>
-                                    <h3 style={{ color: '#00d4ff', fontSize: '1.25rem', marginBottom: '1rem' }}>{model.title}</h3>
-                                    
-                                    <div style={{ marginBottom: '1.25rem' }}>
-                                        <strong style={{ color: '#fff' }}>¿Qué es?</strong>
-                                        <p style={{ color: 'var(--text-grey)', marginTop: '0.25rem' }}>{model.whatIs}</p>
-                                    </div>
-
-                                    <div style={{ marginBottom: '1.25rem' }}>
-                                        <strong style={{ color: '#fff' }}>¿Cómo funciona?</strong>
-                                        <p style={{ color: 'var(--text-grey)', marginTop: '0.25rem' }}>{model.howWorks}</p>
-                                    </div>
-                                    
-                                    {model.examples && (
-                                        <div style={{ marginBottom: '1.25rem' }}>
-                                            <strong style={{ color: '#fff' }}>Ejemplos de uso</strong>
-                                            <ul className="theory-list theory-list--cyan" style={{ marginTop: '0.5rem' }}>
-                                                {model.examples.map((ex, i) => <li key={i}>{ex}</li>)}
-                                            </ul>
-                                        </div>
-                                    )}
-
-                                    {(model.pros && model.cons) && (
-                                        <ProsConsCard title={`${t('theory.analysis', 'Análisis de')} ${model.title}`} pros={model.pros} cons={model.cons} t={t} />
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    );
-                }
-
-                if (section.type === 'proscons') {
-                    return (
-                        <Section key={sectionIdx}>
-                            <ProsConsCard title={section.title} pros={section.pros} cons={section.cons} t={t} />
-                        </Section>
-                    );
-                }
-
-                if (section.type === 'interactiveCode') {
-                    return (
-                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
-                            <InteractiveCodeBlock code={section.code} explanations={section.explanations} />
-                        </Section>
-                    );
-                }
-
-                if (section.type === 'featureCards' || section.type === 'useCases') {
-                    const items = section.features || section.cases || [];
-                    return (
-                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
-                                {items.map((item, i) => (
-                                    <div key={i} className="theory-card" style={{ transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'default' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-                                            <div style={{ background: 'rgba(0,212,255,0.1)', padding: '0.75rem', borderRadius: '12px', color: '#00d4ff', display: 'flex' }}>
-                                                <Icon name={item.icon || 'star'} size={24} />
-                                            </div>
-                                            <h3 style={{ color: '#fff', fontSize: '1.1rem', margin: 0 }}>{item.title}</h3>
-                                        </div>
-                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.9rem', lineHeight: '1.6' }}>{item.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </Section>
-                    );
-                }
-
-                if (section.type === 'comparisonTable') {
-                    return (
-                        <Section key={sectionIdx} title={section.title} desc={section.desc}>
-                            <div style={{ overflowX: 'auto', marginTop: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.2)' }}>
-                                <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', textAlign: 'left' }}>
-                                    <thead style={{ background: 'rgba(0,212,255,0.1)', borderBottom: '1px solid rgba(0,212,255,0.2)' }}>
+                    {content.comparison && (
+                        <Section id="theory-comparison" title={t('theory.comparisonTitle', 'Tabla comparativa')}>
+                            <div className="theory-table-shell">
+                                <table className="theory-table">
+                                    <thead>
                                         <tr>
-                                            {section.headers.map((header, i) => (
-                                                <th key={i} style={{ padding: '1rem', color: '#00d4ff', fontWeight: 'bold' }}>{header}</th>
-                                            ))}
+                                            <th>{t('theory.aspect', 'Aspecto')}</th>
+                                            <th>Cliente-Servidor</th>
+                                            <th>Peer-to-Peer (P2P)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {section.rows.map((row, i) => (
-                                            <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s', cursor: 'default' }} onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
-                                                {row.map((cell, j) => (
-                                                    <td key={j} style={{ padding: '1rem', color: j === 0 ? '#fff' : 'var(--text-grey)', fontWeight: j === 0 ? '500' : 'normal' }}>
-                                                        {cell}
-                                                    </td>
-                                                ))}
+                                        {content.comparison.map((row) => (
+                                            <tr key={row.aspect}>
+                                                <td className="theory-table__primary">{row.aspect}</td>
+                                                <td>{row.cs}</td>
+                                                <td>{row.p2p}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                         </Section>
-                    );
-                }
+                    )}
 
-                return null;
-            })}
+                    {sectionEntries.map((section) => (
+                        <Section
+                            key={section._sectionId}
+                            id={section._sectionId}
+                            title={
+                                ['calloutGroup', 'exercise', 'proscons'].includes(section.type)
+                                    ? null
+                                    : section.title
+                            }
+                            desc={section.desc}
+                        >
+                            {renderSection(section)}
+                        </Section>
+                    ))}
 
-            {/* ── CONCLUSIÓN ─────────────────────────────────── */}
-            <section className="theory-section theory-conclusion">
-                <Icon name="book" size={36} color="#00d4ff" />
-                <h2>{t('theory.conclusion')}</h2>
-                <p>{content.conclusion}</p>
-            </section>
+                    <Section id="theory-conclusion" title={t('theory.conclusion', 'Conclusión')}>
+                        <article className="theory-conclusion">
+                            <span className="theory-conclusion__icon">
+                                <Icon name="book" size={26} />
+                            </span>
+                            <div className="theory-conclusion__content">
+                                {renderHtmlParagraphs(content.conclusion)}
+                            </div>
+                        </article>
+                    </Section>
+                </div>
+            </div>
         </div>
     );
 }

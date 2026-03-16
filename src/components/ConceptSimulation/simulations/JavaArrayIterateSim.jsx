@@ -97,7 +97,17 @@ export default function JavaArrayIterateSim() {
                         {array.map((val, idx) => {
                             const isActive = i === idx;
                             return (
-                                <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                                <div
+                                    key={idx}
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                        position: 'relative',
+                                        minWidth: '55px',
+                                    }}
+                                >
                                     <div style={{ fontSize: '0.75rem', color: isActive ? '#00d4ff' : 'var(--text-grey)' }}>idx [{idx}]</div>
                                     <motion.div 
                                         animate={{ 
@@ -122,7 +132,14 @@ export default function JavaArrayIterateSim() {
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, scale: 0 }}
-                                                style={{ position: 'absolute', bottom: '-25px', color: '#00d4ff', fontSize: '1.2rem' }}
+                                                style={{
+                                                    position: 'absolute',
+                                                    bottom: '-25px',
+                                                    left: '50%',
+                                                    transform: 'translateX(-50%)',
+                                                    color: '#00d4ff',
+                                                    fontSize: '1.2rem',
+                                                }}
                                             >
                                                 ↑
                                             </motion.div>

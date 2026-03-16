@@ -7,6 +7,7 @@ export default function LabCard({ lab, onClick, index = 0 }) {
     const { t } = useI18n();
     const color = LAB_DIFFICULTY_COLORS[lab.difficulty] || '#00d4ff';
     const typeColor = getLabTypeColor(lab.type);
+    const stepNumber = index + 1;
 
     return (
         <motion.div
@@ -20,9 +21,14 @@ export default function LabCard({ lab, onClick, index = 0 }) {
             whileHover={{ y: -3 }}
         >
             <div className="lab-card__top">
-                <span className="lab-card__type" style={{ color: typeColor }}>
-                    {lab.type}
-                </span>
+                <div className="lab-card__top-meta">
+                    {lab.learningFeatures?.length > 0 && (
+                        <span className="lab-card__step">Paso {stepNumber}</span>
+                    )}
+                    <span className="lab-card__type" style={{ color: typeColor }}>
+                        {lab.type}
+                    </span>
+                </div>
                 <span className="lab-card__difficulty" style={{ color }}>
                     {lab.difficulty}
                 </span>
@@ -30,6 +36,16 @@ export default function LabCard({ lab, onClick, index = 0 }) {
 
             <h3 className="lab-card__title">{lab.title}</h3>
             <p className="lab-card__subtitle">{lab.subtitle}</p>
+
+            {lab.learningFeatures?.length > 0 && (
+                <div className="lab-card__features">
+                    {lab.learningFeatures.map((feature) => (
+                        <span key={feature} className="lab-card__feature">
+                            {feature}
+                        </span>
+                    ))}
+                </div>
+            )}
 
             <div className="lab-card__tags">
                 {lab.tags.map((tag) => (

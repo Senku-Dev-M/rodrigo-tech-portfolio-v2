@@ -4,8 +4,9 @@
 // ─────────────────────────────────────────────────────────────
 
 import red1lab2img from '../assets/red1lab2.png';
+import programacion1Subject from './programacion1.js';
 
-export const subjects = [
+const rawSubjects = [
     {
         id: 'redes-computacionales-1',
         code: 'REDES-I',
@@ -1772,5 +1773,9 @@ Reply from 192.168.0.5: bytes=32 time=1ms TTL=128`,
         ],
     },
 ];
+
+export const subjects = rawSubjects.map((subject) =>
+    subject.id === 'programacion-1' ? programacion1Subject : subject
+);
 
 export default subjects;

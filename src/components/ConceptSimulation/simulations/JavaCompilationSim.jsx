@@ -1,144 +1,228 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function JavaCompilationSim() {
     const [step, setStep] = useState(0);
 
     const steps = [
-        { title: 'Source Code', desc: 'Escribes el código en HolaMundo.java' },
-        { title: 'Compiler (javac)', desc: 'javac compila el texto a Bytecode' },
-        { title: 'Bytecode', desc: 'Se genera HolaMundo.class (Instrucciones universales)' },
-        { title: 'JVM', desc: 'La Máquina Virtual de Java interpreta el Bytecode' },
-        { title: 'OS Execution', desc: 'Se ejecuta en Windows/Mac/Linux' }
+        {
+            title: 'Código fuente',
+            label: 'HolaMundo.java',
+            token: '.java',
+            accent: '#2563eb',
+            desc: 'Escribes instrucciones legibles por humanos dentro del archivo fuente.',
+        },
+        {
+            title: 'Compilador',
+            label: 'javac',
+            token: 'javac',
+            accent: '#0ea5e9',
+            desc: 'El compilador traduce ese texto a bytecode.',
+        },
+        {
+            title: 'Bytecode',
+            label: 'HolaMundo.class',
+            token: '.class',
+            accent: '#7c3aed',
+            desc: 'Se genera un archivo intermedio portable entre sistemas.',
+        },
+        {
+            title: 'JVM',
+            label: 'Java Virtual Machine',
+            token: 'JVM',
+            accent: '#dc2626',
+            desc: 'La máquina virtual interpreta el bytecode para la plataforma actual.',
+        },
+        {
+            title: 'Ejecución final',
+            label: 'Windows / Linux / macOS',
+            token: 'OS',
+            accent: '#16a34a',
+            desc: 'El programa corre sobre el sistema operativo disponible.',
+        },
     ];
 
     return (
-        <div style={{ padding: '2.5rem 3rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>El Ciclo de Vida del Código Java</h3>
+        <div
+            style={{
+                padding: '2.5rem 3rem',
+                background: 'rgba(20,20,20,0.8)',
+                borderRadius: '12px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                textAlign: 'center',
+            }}
+        >
+            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>El ciclo de vida del código Java</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem' }}>
                 {steps[step].desc}
             </p>
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1.5rem', flexWrap: 'nowrap', minHeight: '140px', width: '100%', overflowX: 'auto', padding: '1rem 0' }}>
-                <AnimatePresence mode="popLayout">
-                    {step >= 0 && (
-                        <motion.div
-                            key="source"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            style={{ width: '65px', height: '75px', background: '#2c3e50', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', border: step === 0 ? '2px solid #00d4ff' : '1px solid transparent', flexShrink: 0 }}
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.75rem',
+                    width: '100%',
+                    maxWidth: '560px',
+                    margin: '0 auto',
+                    padding: '0.5rem 0',
+                }}
+            >
+                {steps.map((item, index) => {
+                    const isVisible = step >= index;
+                    const isCurrent = step === index;
+                    const isCompleted = step > index;
+
+                    return (
+                        <div
+                            key={item.title}
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '0.75rem',
+                            }}
                         >
-                            <span style={{ fontSize: '1.7rem' }}>📄</span>
-                            <span style={{ fontSize: '0.8rem', color: '#fff', marginTop: '6px', fontWeight: 'bold' }}>.java</span>
-                        </motion.div>
-                    )}
+                            <motion.div
+                                initial={false}
+                                animate={{
+                                    opacity: isVisible ? 1 : 0.35,
+                                    scale: isCurrent ? 1.02 : 1,
+                                    borderColor: isCurrent ? '#00d4ff' : 'rgba(255,255,255,0.08)',
+                                    boxShadow: isCurrent ? '0 0 0 1px rgba(0,212,255,0.18)' : 'none',
+                                }}
+                                transition={{ duration: 0.2 }}
+                                style={{
+                                    width: '100%',
+                                    display: 'grid',
+                                    gridTemplateColumns: '88px 1fr 44px',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                    padding: '1rem 1.1rem',
+                                    borderRadius: '16px',
+                                    border: '1px solid rgba(255,255,255,0.08)',
+                                    background: isVisible ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.02)',
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        height: '64px',
+                                        borderRadius: '14px',
+                                        background: item.accent,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: '#fff',
+                                        fontWeight: '800',
+                                        letterSpacing: '0.02em',
+                                    }}
+                                >
+                                    {item.token}
+                                </div>
 
-                    {step >= 1 && (
-                        <motion.div
-                            key="arrow1"
-                            initial={{ width: 0, opacity: 0 }}
-                            animate={{ width: 60, opacity: 1 }}
-                            style={{ height: '3px', background: '#00d4ff', flexShrink: 0 }}
-                        />
-                    )}
+                                <div style={{ textAlign: 'left' }}>
+                                    <div style={{ color: '#fff', fontWeight: 700, marginBottom: '0.2rem' }}>{item.title}</div>
+                                    <div style={{ color: 'var(--text-grey)', fontSize: '0.88rem', lineHeight: 1.4 }}>
+                                        {item.label}
+                                    </div>
+                                </div>
 
-                    {step >= 1 && (
-                        <motion.div
-                            key="compiler"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            style={{ width: '65px', height: '75px', background: '#38bdf8', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', border: step === 1 ? '2px solid #00d4ff' : '1px solid transparent', flexShrink: 0 }}
-                        >
-                            <span style={{ fontSize: '1.7rem' }}>⚙️</span>
-                            <span style={{ fontSize: '0.8rem', color: '#fff', marginTop: '6px', fontWeight: 'bold' }}>javac</span>
-                        </motion.div>
-                    )}
+                                <div
+                                    style={{
+                                        width: '2.1rem',
+                                        height: '2.1rem',
+                                        borderRadius: '999px',
+                                        border: `1px solid ${isVisible ? item.accent : 'rgba(255,255,255,0.12)'}`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: isVisible ? item.accent : 'var(--text-grey)',
+                                        fontWeight: '700',
+                                    }}
+                                >
+                                    {index + 1}
+                                </div>
+                            </motion.div>
 
-                    {step >= 2 && (
-                        <motion.div
-                            key="arrow2"
-                            initial={{ width: 0, opacity: 0 }}
-                            animate={{ width: 60, opacity: 1 }}
-                            style={{ height: '3px', background: '#00d4ff', flexShrink: 0 }}
-                        />
-                    )}
-
-                    {step >= 2 && (
-                        <motion.div
-                            key="bytecode"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            style={{ width: '55px', height: '65px', background: '#8e44ad', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', border: step === 2 ? '2px solid #00d4ff' : '1px solid transparent', flexShrink: 0 }}
-                        >
-                            <span style={{ fontSize: '1.5rem' }}>🧩</span>
-                            <span style={{ fontSize: '0.8rem', color: '#fff', marginTop: '6px', fontWeight: 'bold' }}>.class</span>
-                        </motion.div>
-                    )}
-
-                    {step >= 3 && (
-                        <motion.div
-                            key="arrow3"
-                            initial={{ width: 0, opacity: 0 }}
-                            animate={{ width: 60, opacity: 1 }}
-                            style={{ height: '3px', background: '#00d4ff', flexShrink: 0 }}
-                        />
-                    )}
-
-                    {step >= 3 && (
-                        <motion.div
-                            key="jvm"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            style={{ width: '65px', height: '75px', background: '#c0392b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', border: step === 3 ? '2px solid #00d4ff' : '1px solid transparent', flexShrink: 0 }}
-                        >
-                            <span style={{ fontSize: '1.7rem' }}>☕</span>
-                            <span style={{ fontSize: '0.8rem', color: '#fff', marginTop: '6px', fontWeight: 'bold' }}>JVM</span>
-                        </motion.div>
-                    )}
-
-                    {step >= 4 && (
-                        <motion.div
-                            key="arrow4"
-                            initial={{ width: 0, opacity: 0 }}
-                            animate={{ width: 60, opacity: 1 }}
-                            style={{ height: '3px', background: '#00d4ff', flexShrink: 0 }}
-                        />
-                    )}
-
-                    {step >= 4 && (
-                        <motion.div
-                            key="os"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            style={{ width: '65px', height: '75px', background: '#27ae60', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', border: step === 4 ? '2px solid #00d4ff' : '1px solid transparent', flexShrink: 0 }}
-                        >
-                            <span style={{ fontSize: '1.7rem' }}>💻</span>
-                            <span style={{ fontSize: '0.8rem', color: '#fff', marginTop: '6px', fontWeight: 'bold' }}>OS</span>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                            {index < steps.length - 1 && (
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: '0.3rem',
+                                        minHeight: '28px',
+                                    }}
+                                >
+                                    <motion.div
+                                        initial={false}
+                                        animate={{
+                                            background: isCompleted ? '#00d4ff' : 'rgba(255,255,255,0.16)',
+                                            opacity: isVisible ? 1 : 0.4,
+                                        }}
+                                        style={{ width: '2px', height: '18px', borderRadius: '999px' }}
+                                    />
+                                    <motion.div
+                                        initial={false}
+                                        animate={{ opacity: isCompleted ? 1 : 0.35 }}
+                                        style={{
+                                            width: '8px',
+                                            height: '8px',
+                                            borderRadius: '999px',
+                                            background: isCompleted ? '#00d4ff' : 'rgba(255,255,255,0.16)',
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
             </div>
 
-            <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+            <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <button
                     onClick={() => setStep(Math.max(0, step - 1))}
                     disabled={step === 0}
-                    style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === 0 ? 'not-allowed' : 'pointer', opacity: step === 0 ? 0.5 : 1 }}
+                    style={{
+                        background: 'rgba(255,255,255,0.1)',
+                        color: '#fff',
+                        border: 'none',
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        cursor: step === 0 ? 'not-allowed' : 'pointer',
+                        opacity: step === 0 ? 0.5 : 1,
+                    }}
                 >
                     Atrás
                 </button>
                 <button
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
-                    style={{ background: '#00d4ff', color: '#000', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer', fontWeight: 'bold', opacity: step === steps.length - 1 ? 0.5 : 1 }}
+                    style={{
+                        background: '#00d4ff',
+                        color: '#000',
+                        border: 'none',
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer',
+                        fontWeight: 'bold',
+                        opacity: step === steps.length - 1 ? 0.5 : 1,
+                    }}
                 >
-                    Siguiente Paso
+                    Siguiente paso
                 </button>
 
                 {step === steps.length - 1 && (
                     <button
                         onClick={() => setStep(0)}
-                        style={{ background: 'transparent', color: '#00d4ff', border: '1px solid #00d4ff', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer' }}
+                        style={{
+                            background: 'transparent',
+                            color: '#00d4ff',
+                            border: '1px solid #00d4ff',
+                            padding: '0.5rem 1rem',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                        }}
                     >
                         Reiniciar
                     </button>
@@ -147,4 +231,3 @@ export default function JavaCompilationSim() {
         </div>
     );
 }
-

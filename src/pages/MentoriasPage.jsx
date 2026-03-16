@@ -77,6 +77,52 @@ function SubjectDetailHeader({ subject, t }) {
     );
 }
 
+function SubjectLearningPath({ subject }) {
+    if (!subject.learningPath) {
+        return null;
+    }
+
+    return (
+        <section className="subject-learning-path">
+            <div className="subject-learning-path__top">
+                <div>
+                    <span className="subject-learning-path__eyebrow">{subject.learningPath.title}</span>
+                    <h3 className="subject-learning-path__title">Recorrido recomendado</h3>
+                    <p className="subject-learning-path__summary">{subject.learningPath.summary}</p>
+                </div>
+                <div className="subject-learning-path__stats">
+                    <span className="subject-learning-path__stat">
+                        <Icon name="calendar" size={16} />
+                        {subject.learningPath.estimatedDuration}
+                    </span>
+                    <span className="subject-learning-path__stat">
+                        <Icon name="book" size={16} />
+                        {subject.labs.length} mentorías
+                    </span>
+                </div>
+            </div>
+
+            <div className="subject-learning-path__outcomes">
+                {subject.learningPath.outcomes.map((outcome) => (
+                    <div key={outcome} className="subject-learning-path__outcome">
+                        <Icon name="checkCircle" size={16} />
+                        <span>{outcome}</span>
+                    </div>
+                ))}
+            </div>
+
+            <div className="subject-learning-path__stages">
+                {subject.learningPath.stages.map((stage) => (
+                    <article key={stage.title} className="subject-learning-stage">
+                        <h4 className="subject-learning-stage__title">{stage.title}</h4>
+                        <p className="subject-learning-stage__desc">{stage.desc}</p>
+                    </article>
+                ))}
+            </div>
+        </section>
+    );
+}
+
 function LabContent({ lab }) {
     if (lab.isArduinoLab) {
         return <ArduinoLabView lab={lab} />;
@@ -143,6 +189,7 @@ export default function MentoriasPage() {
                     {view === MENTORING_VIEWS.labs && subject && (
                         <motion.div key="labs" variants={slideVariants} initial="initial" animate="animate" exit="exit">
                             <SubjectDetailHeader subject={subject} t={t} />
+                            <SubjectLearningPath subject={subject} />
 
                             <section className="mentorias-section">
                                 <h3 className="section-heading">{t('mentoring.labs')}</h3>

@@ -1,149 +1,322 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const cpuDotStyle = {
+    position: 'absolute',
+    left: '0.35rem',
+    top: '0.42rem',
+    width: '10px',
+    height: '10px',
+    borderRadius: '999px',
+    background: '#67e8f9',
+    boxShadow: '0 0 10px rgba(103, 232, 249, 0.8)',
+};
+
+function CodeLine({ active, children, tone = '#67e8f9' }) {
+    return (
+        <div
+            style={{
+                position: 'relative',
+                padding: '0.35rem 0.75rem 0.35rem 1.65rem',
+                borderRadius: '8px',
+                background: active ? 'rgba(34, 211, 238, 0.12)' : 'transparent',
+                color: '#e5e7eb',
+            }}
+        >
+            {active && <motion.div layoutId="method-flow-dot" style={cpuDotStyle} />}
+            <span style={{ color: tone }}>{children}</span>
+        </div>
+    );
+}
 
 export default function JavaMethodFlowSim() {
     const [step, setStep] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
-    // Sequence of steps:
-    // 0: start at main line 1
-    // 1: main line 2 (call method)
-    // 2: jump to method line 1
-    // 3: method line 2 (return)
-    // 4: back to main line 2 (assign value)
-    // 5: main line 3 (print)
-    // 6: end
-
     useEffect(() => {
         let interval;
+
         if (isPlaying) {
             interval = setInterval(() => {
-                setStep(prev => {
+                setStep((prev) => {
                     if (prev >= 6) {
                         setIsPlaying(false);
                         return prev;
                     }
+
                     return prev + 1;
                 });
             }, 1800);
         }
+
         return () => clearInterval(interval);
     }, [isPlaying]);
 
+    const descriptions = useMemo(
+        () => [
+            'La ejecucion comienza en main y avanza linea por linea.',
+            'main encuentra la llamada a duplicar(a) y transfiere el control.',
+            'La ejecucion baja al metodo auxiliar para calcular el resultado.',
+            'El metodo prepara su respuesta con return.',
+            'El valor 10 regresa al punto exacto donde se invoco duplicar(a).',
+            'main retoma el flujo normal y usa el valor devuelto.',
+            'El programa termina despues de imprimir el resultado.',
+        ],
+        []
+    );
+
+    const connector = useMemo(() => {
+        if (step >= 1 && step <= 3) {
+            return {
+                label: 'Llamada a duplicar(a)',
+                accent: '#22c55e',
+                pillBackground: 'rgba(34, 197, 94, 0.14)',
+                lineBackground: 'rgba(34, 197, 94, 0.3)',
+                start: 6,
+                end: 54,
+            };
+        }
+
+        if (step === 4) {
+            return {
+                label: 'return 10',
+                accent: '#38bdf8',
+                pillBackground: 'rgba(56, 189, 248, 0.14)',
+                lineBackground: 'rgba(56, 189, 248, 0.3)',
+                start: 54,
+                end: 6,
+            };
+        }
+
+        return {
+            label: 'main controla el flujo',
+            accent: 'rgba(255,255,255,0.55)',
+            pillBackground: 'rgba(255,255,255,0.06)',
+            lineBackground: 'rgba(255,255,255,0.18)',
+            start: 30,
+            end: 30,
+        };
+    }, [step]);
+
     return (
-        <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>El Salto de Ejecución</h3>
-            <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem', height: '40px' }}>
-                {step === 0 && 'Iniciando en el bloque principal (main).'}
-                {step === 1 && 'El código encuentra una llamada a un Método. ¡Prepárate para saltar!'}
-                {step === 2 && 'El hilo de CPU viaja en memoria hacia la ubicación del Método asilado.'}
-                {step === 3 && 'El Método hace su trabajo y prepara un valor de Retorno (return).'}
-                {step === 4 && 'El CPU "regresa en el tiempo" a la línea original, depositando allí la respuesta.'}
-                {step === 5 && 'El código principal reanuda su bajada vertical estándar hacia el final.'}
-                {step === 6 && 'El hilo de ejecución ha finalizado exitosamente.'}
+        <div
+            style={{
+                padding: '2.5rem 2rem',
+                background: 'rgba(20,20,20,0.8)',
+                borderRadius: '12px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                textAlign: 'center',
+            }}
+        >
+            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>El salto de ejecucion</h3>
+            <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.92rem', minHeight: '44px' }}>
+                {descriptions[step]}
             </p>
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', minHeight: '300px' }}>
-                
-                {/* Main Method Panel */}
-                <div style={{ position: 'relative', background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1rem', color: '#e5e7eb', width: '320px', zIndex: 2 }}>
-                    <div style={{ color: '#5c6370', marginBottom: '0.5rem' }}>// Archivo Principal</div>
-                    <div style={{ color: '#67e8f9', marginBottom: '1rem' }}>public static void main(...) {'{'}</div>
-                    
-                    <div style={{ position: 'relative', paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
-                        {step === 0 && <motion.div layoutId="cpu-thread" style={{ position: 'absolute', left: 0, top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#00d4ff', boxShadow: '0 0 10px #00d4ff' }} />}
-                        <span style={{ color: '#67e8f9' }}>int</span> a = <span style={{ color: '#d19a66' }}>5</span>;
-                    </div>
-
-                    <div style={{ position: 'relative', paddingLeft: '1.5rem', margin: '0.5rem 0', background: (step === 1 || step === 4) ? 'rgba(0, 212, 255, 0.1)' : 'transparent', borderRadius: '4px' }}>
-                        {(step === 1 || step === 4) && <motion.div layoutId="cpu-thread" style={{ position: 'absolute', left: 0, top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#00d4ff', boxShadow: '0 0 10px #00d4ff' }} />}
-                        <span style={{ color: '#67e8f9' }}>int</span> b = <span style={{ color: '#61afef', fontWeight: step === 1 ? 'bold' : 'normal' }}>duplicar</span>(a);
-                        
-                        <AnimatePresence>
-                            {step === 4 && (
-                                <motion.span initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} style={{ position: 'absolute', right: '10px', color: '#38bdf8', fontWeight: 'bold' }}>
-                                    ← Recibe: 10
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
-                    </div>
-
-                    <div style={{ position: 'relative', paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
-                        {step === 5 && <motion.div layoutId="cpu-thread" style={{ position: 'absolute', left: 0, top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#00d4ff', boxShadow: '0 0 10px #00d4ff' }} />}
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.85rem',
+                    minHeight: '520px',
+                }}
+            >
+                <div
+                    style={{
+                        width: '100%',
+                        maxWidth: '430px',
+                        background: '#111',
+                        padding: '1.35rem 1.25rem',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        textAlign: 'left',
+                        fontFamily: 'monospace',
+                        color: '#e5e7eb',
+                    }}
+                >
+                    <div style={{ color: '#94a3b8', marginBottom: '0.55rem', fontSize: '0.92rem' }}>// Archivo principal</div>
+                    <div style={{ color: '#67e8f9', marginBottom: '0.7rem' }}>public static void main(...) {'{'}</div>
+                    <CodeLine active={step === 0 || step === 6}>
+                        <span>int</span> a = <span style={{ color: '#d19a66' }}>5</span>;
+                    </CodeLine>
+                    <CodeLine active={step === 1 || step === 4} tone="#e5e7eb">
+                        <span style={{ color: '#67e8f9' }}>int</span> b = <span style={{ color: '#61afef' }}>duplicar</span>(a);
+                    </CodeLine>
+                    <CodeLine active={step === 5} tone="#e5e7eb">
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println(b);
-                    </div>
+                    </CodeLine>
 
-                    <div style={{ position: 'relative', paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
-                        {step === 6 && <motion.div layoutId="cpu-thread" style={{ position: 'absolute', left: 0, top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#e74c3c', boxShadow: '0 0 10px #e74c3c' }} />}
-                        <span style={{ color: '#5c6370' }}>// Fin del programa</span>
-                    </div>
-
-                    <div style={{ color: '#67e8f9', marginTop: '1rem' }}>{'}'}</div>
-                </div>
-
-                {/* Arrow / Connector */}
-                <div style={{ width: '60px', height: '100px', position: 'relative' }}>
                     <AnimatePresence>
-                        {step >= 2 && step <= 3 && (
-                            <motion.svg initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} width="100%" height="100%" style={{ position: 'absolute', top: '-15px', left: 0, zIndex: 1 }}>
-                                <path d="M 0 50 Q 30 20 60 50" fill="none" stroke="#27ae60" strokeWidth="3" strokeDasharray="5,5" />
-                                <polygon points="60 50, 50 45, 50 55" fill="#27ae60" />
-                            </motion.svg>
-                        )}
                         {step === 4 && (
-                            <motion.svg initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
-                                <path d="M 60 50 Q 30 80 0 50" fill="none" stroke="#38bdf8" strokeWidth="3" strokeDasharray="5,5" />
-                                <polygon points="0 50, 10 45, 10 55" fill="#38bdf8" />
-                            </motion.svg>
+                            <motion.div
+                                initial={{ opacity: 0, y: -8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -8 }}
+                                style={{
+                                    marginTop: '0.7rem',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.45rem',
+                                    padding: '0.35rem 0.7rem',
+                                    borderRadius: '999px',
+                                    border: '1px solid rgba(56, 189, 248, 0.35)',
+                                    background: 'rgba(56, 189, 248, 0.1)',
+                                    color: '#38bdf8',
+                                    fontSize: '0.82rem',
+                                    fontWeight: '700',
+                                }}
+                            >
+                                Valor recibido: 10
+                            </motion.div>
                         )}
                     </AnimatePresence>
+
+                    <div style={{ color: '#67e8f9', marginTop: '0.75rem' }}>{'}'}</div>
                 </div>
 
-                {/* External Method Panel */}
-                <div style={{ position: 'relative', background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1rem', color: '#e5e7eb', width: '320px', opacity: (step >= 2 && step <= 4) ? 1 : 0.4, transition: 'opacity 0.3s', zIndex: 2 }}>
-                    <div style={{ color: '#27ae60', marginBottom: '0.5rem' }}>// Módulo Externo</div>
-                    <div style={{ color: '#67e8f9', marginBottom: '1rem' }}>
+                <div
+                    style={{
+                        position: 'relative',
+                        width: '100%',
+                        maxWidth: '160px',
+                        minHeight: '96px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: '10px',
+                            bottom: '10px',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
+                            width: '2px',
+                            borderRadius: '999px',
+                            background: connector.lineBackground,
+                        }}
+                    />
+                    <motion.div
+                        key={connector.label}
+                        initial={false}
+                        animate={{
+                            background: connector.pillBackground,
+                            borderColor: connector.accent,
+                            color: connector.accent,
+                        }}
+                        style={{
+                            position: 'absolute',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
+                            padding: '0.45rem 0.9rem',
+                            borderRadius: '999px',
+                            border: '1px dashed rgba(255,255,255,0.25)',
+                            fontSize: '0.82rem',
+                            fontWeight: '700',
+                            whiteSpace: 'nowrap',
+                        }}
+                    >
+                        {connector.label}
+                    </motion.div>
+
+                    {(step >= 1 && step <= 4) && (
+                        <motion.div
+                            initial={false}
+                            animate={{ top: `${connector.end}px` }}
+                            transition={{ duration: 1.1, ease: 'easeInOut' }}
+                            style={{
+                                position: 'absolute',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '14px',
+                                height: '14px',
+                                borderRadius: '999px',
+                                background: connector.accent,
+                                boxShadow: `0 0 16px ${connector.accent}`,
+                            }}
+                        />
+                    )}
+                </div>
+
+                <div
+                    style={{
+                        width: '100%',
+                        maxWidth: '430px',
+                        background: '#111',
+                        padding: '1.35rem 1.25rem',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        textAlign: 'left',
+                        fontFamily: 'monospace',
+                        color: '#e5e7eb',
+                        opacity: step >= 2 && step <= 4 ? 1 : 0.5,
+                        transition: 'opacity 0.25s ease',
+                    }}
+                >
+                    <div style={{ color: '#4ade80', marginBottom: '0.55rem', fontSize: '0.92rem' }}>// Metodo auxiliar</div>
+                    <div style={{ color: '#67e8f9', marginBottom: '0.7rem' }}>
                         public static <span style={{ color: '#e06c75' }}>int</span> <span style={{ color: '#61afef' }}>duplicar</span>(<span style={{ color: '#e06c75' }}>int</span> <span style={{ color: '#d19a66' }}>num</span>) {'{'}
                     </div>
-                    
-                    <div style={{ position: 'relative', paddingLeft: '1.5rem', margin: '0.5rem 0', background: step === 2 ? 'rgba(39, 174, 96, 0.1)' : 'transparent', borderRadius: '4px' }}>
-                        {step === 2 && <motion.div layoutId="cpu-thread" style={{ position: 'absolute', left: 0, top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#27ae60', boxShadow: '0 0 10px #27ae60' }} />}
+                    <CodeLine active={step === 2} tone="#e5e7eb">
                         <span style={{ color: '#67e8f9' }}>int</span> calc = num * <span style={{ color: '#d19a66' }}>2</span>;
-                    </div>
-
-                    <div style={{ position: 'relative', paddingLeft: '1.5rem', margin: '0.5rem 0', background: step === 3 ? 'rgba(56, 189, 248, 0.1)' : 'transparent', borderRadius: '4px' }}>
-                        {step === 3 && <motion.div layoutId="cpu-thread" style={{ position: 'absolute', left: 0, top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#38bdf8', boxShadow: '0 0 10px #38bdf8' }} />}
+                    </CodeLine>
+                    <CodeLine active={step === 3} tone="#e5e7eb">
                         <span style={{ color: '#67e8f9' }}>return</span> calc;
-                    </div>
-
-                    <div style={{ color: '#67e8f9', marginTop: '1rem' }}>{'}'}</div>
+                    </CodeLine>
+                    <div style={{ color: '#67e8f9', marginTop: '0.75rem' }}>{'}'}</div>
                 </div>
-
             </div>
 
-            <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+            <div style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 {!isPlaying && step < 6 && (
-                    <button 
+                    <button
                         onClick={() => setIsPlaying(true)}
-                        style={{ background: '#00d4ff', color: '#000', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}
+                        style={{
+                            background: '#00d4ff',
+                            color: '#000',
+                            border: 'none',
+                            padding: '0.6rem 1.2rem',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                        }}
                     >
-                        {step === 0 ? 'Iniciar Animación' : 'Continuar Flujo'}
+                        {step === 0 ? 'Iniciar animacion' : 'Continuar flujo'}
                     </button>
                 )}
-                
+
                 {isPlaying && (
-                    <button 
+                    <button
                         onClick={() => setIsPlaying(false)}
-                        style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer' }}
+                        style={{
+                            background: 'rgba(255,255,255,0.1)',
+                            color: '#fff',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            padding: '0.6rem 1.2rem',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                        }}
                     >
                         Pausar
                     </button>
                 )}
 
                 {(step > 0 || isPlaying) && (
-                    <button 
-                        onClick={() => { setIsPlaying(false); setStep(0); }}
-                        style={{ background: 'transparent', color: '#e74c3c', border: '1px solid #e74c3c', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer' }}
+                    <button
+                        onClick={() => {
+                            setIsPlaying(false);
+                            setStep(0);
+                        }}
+                        style={{
+                            background: 'transparent',
+                            color: '#ff8a65',
+                            border: '1px solid #ff8a65',
+                            padding: '0.6rem 1.2rem',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                        }}
                     >
                         Reiniciar
                     </button>
@@ -152,4 +325,3 @@ export default function JavaMethodFlowSim() {
         </div>
     );
 }
-

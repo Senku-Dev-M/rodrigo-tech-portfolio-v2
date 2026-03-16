@@ -330,6 +330,107 @@
     padding: 0.28rem 0.75rem;
 }
 
+.subject-learning-path {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.08), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(14, 165, 233, 0.16);
+    border-radius: 18px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.subject-learning-path__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.subject-learning-path__eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #67e8f9;
+    margin-bottom: 0.4rem;
+}
+
+.subject-learning-path__title {
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 0.45rem;
+}
+
+.subject-learning-path__summary {
+    max-width: 720px;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.7;
+}
+
+.subject-learning-path__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.subject-learning-path__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: #d8f6ff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.42rem 0.8rem;
+    border-radius: 999px;
+}
+
+.subject-learning-path__outcomes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+}
+
+.subject-learning-path__outcome,
+.subject-learning-stage {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 0.95rem 1rem;
+}
+
+.subject-learning-path__outcome {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+}
+
+.subject-learning-path__stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+}
+
+.subject-learning-stage__title {
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 0.45rem;
+}
+
+.subject-learning-stage__desc {
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.6;
+}
+
 @media (max-width: 600px) {
     .subject-detail-header {
         flex-direction: column;
@@ -393,5 +494,9 @@
 
     .subject-detail-header {
         padding: 1.2rem;
+    }
+
+    .subject-learning-path {
+        padding: 1.15rem;
     }
 }
