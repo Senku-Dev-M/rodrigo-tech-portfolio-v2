@@ -2,6 +2,8 @@ import ClientServerSim from './simulations/ClientServerSim';
 import DHCPSim from './simulations/DHCPSim';
 import DNSSim from './simulations/DNSSim';
 import GitFlowSim from './simulations/GitFlowSim';
+import HybridLayersSim from './simulations/HybridLayersSim';
+import HybridWebRequestSim from './simulations/HybridWebRequestSim';
 import ICMPSim from './simulations/ICMPSim';
 import JavaArrayIterateSim from './simulations/JavaArrayIterateSim';
 import JavaArrayMemorySim from './simulations/JavaArrayMemorySim';
@@ -15,6 +17,7 @@ import JavaMatrixSim from './simulations/JavaMatrixSim';
 import JavaMemorySim from './simulations/JavaMemorySim';
 import JavaMethodFlowSim from './simulations/JavaMethodFlowSim';
 import JavaMethodSignatureSim from './simulations/JavaMethodSignatureSim';
+import JavaOOPPillarsSim from './simulations/JavaOOPPillarsSim';
 import JavaParamPassSim from './simulations/JavaParamPassSim';
 import JavaReferenceSim from './simulations/JavaReferenceSim';
 import JavaScopeSim from './simulations/JavaScopeSim';
@@ -31,6 +34,8 @@ const simulationRegistry = {
     icmp: { Component: ICMPSim, duration: 4000 },
     dns: { Component: DNSSim, duration: 4000 },
     'tcp-http': { Component: TCPHTTPSim, duration: 10000 },
+    'hybrid-layers': { Component: HybridLayersSim, isAuto: true, isWide: true, duration: 7600 },
+    'hybrid-web-request': { Component: HybridWebRequestSim, isWide: true, hasInternalControls: true },
     sdlc: { Component: SDLCSim, duration: 8500, isWide: true },
     'git-flow': { Component: GitFlowSim, duration: 7000, isWide: true },
     'scrum-flow': { Component: ScrumFlowSim, duration: 9000, isWide: true },
@@ -47,6 +52,7 @@ const simulationRegistry = {
     'java-deskcheck': { Component: JavaDeskcheckSim, isAuto: true, isWide: true },
     'java-method-flow': { Component: JavaMethodFlowSim, isAuto: true, isWide: true },
     'java-method-signature': { Component: JavaMethodSignatureSim, isAuto: true, isWide: true },
+    'java-oop-pillars': { Component: JavaOOPPillarsSim, isAuto: true, isWide: true, duration: 7600 },
     'java-scope': { Component: JavaScopeSim, isAuto: true, isWide: true },
     'java-param-pass': { Component: JavaParamPassSim, isAuto: true, isWide: true },
     'java-command-line': { Component: JavaCommandLineArgsSim, isAuto: true, isWide: true },

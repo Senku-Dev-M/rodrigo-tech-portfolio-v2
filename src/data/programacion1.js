@@ -10,11 +10,12 @@ const programacion1Subject = {
     learningPath: {
         title: 'Ruta de aprendizaje sugerida',
         summary:
-            'Esta materia está organizada como una secuencia progresiva: primero entiendes qué es Java y cómo se ejecuta, luego aprendes a guardar datos, tomar decisiones, recorrer colecciones y modularizar soluciones.',
-        estimatedDuration: '2 h 15 min – 3 h 5 min',
+            'Esta materia está organizada como una secuencia progresiva: primero entiendes qué es Java y cómo se ejecuta, luego aprendes a guardar datos, tomar decisiones, recorrer colecciones y modularizar soluciones; finalmente cierras el recorrido con una introducción a la POO y sus cuatro pilares.',
+        estimatedDuration: '2 h 45 min – 3 h 40 min',
         outcomes: [
             'Dominar la sintaxis básica de Java y su modelo de ejecución.',
             'Comprender memoria, variables, condicionales, ciclos, arreglos y métodos.',
+            'Distinguir clase, objeto, atributos, métodos y los cuatro pilares de la POO.',
             'Leer código con intención, no solo copiarlo.',
         ],
         stages: [
@@ -37,6 +38,10 @@ const programacion1Subject = {
             {
                 title: '5. Modularidad',
                 desc: 'Separar soluciones en métodos reutilizables y entender paso de parámetros, scope y CLI.',
+            },
+            {
+                title: '6. POO esencial',
+                desc: 'Cerrar el módulo entendiendo cómo Java modela el mundo con clases, objetos y los cuatro pilares.',
             },
         ],
     },
@@ -282,6 +287,319 @@ programacion1Subject.labs.push({
         ],
         conclusion:
             'En esta materia no solo aprenderás a escribir sentencias sueltas, sino a pensar estructuralmente. Dominar Java desde estas bases te dará una forma ordenada de razonar programas, sistemas y problemas. Esa disciplina te facilitará aprender otros lenguajes en el futuro porque ya habrás construido el andamiaje mental correcto.',
+    },
+});
+
+programacion1Subject.labs.push({
+    id: 'intro-poo',
+    title: 'Introducción a POO y sus 4 pilares',
+    subtitle: 'Clases, objetos y la lógica de diseño orientado a objetos en Java',
+    type: 'Teoría',
+    difficulty: 'Principiante',
+    duration: '25–35 min',
+    tags: ['Java', 'POO', 'Clases', 'Objetos', 'Encapsulamiento', 'Herencia', 'Polimorfismo', 'Programación 1'],
+    learningFeatures: ['Simulación', 'Código interactivo', 'Resumen', 'Ejercicio'],
+    content: {
+        intro:
+            'Cuando empiezas a programar, es normal pensar en instrucciones sueltas. La <strong>programación orientada a objetos</strong> cambia ese enfoque: invita a modelar el problema como entidades con datos y comportamientos. En Java esto no es opcional ni decorativo, porque el lenguaje fue diseñado alrededor de clases y objetos. Por eso, antes de avanzar mucho más, conviene entender qué representa una clase, qué diferencia hay con un objeto y por qué <strong>encapsulamiento, abstracción, herencia y polimorfismo</strong> se consideran los cuatro pilares de la POO.',
+        objectives: [
+            'Comprender qué es la programación orientada a objetos y por qué Java la adopta desde su base.',
+            'Diferenciar con claridad clase, objeto, atributo y método.',
+            'Entender los cuatro pilares de la POO con ejemplos simples.',
+            'Leer una clase Java básica identificando constructor, estado y comportamiento.',
+            'Relacionar la POO con problemas del mundo real y con código que ya empezarás a escribir.',
+        ],
+        sections: [
+            {
+                type: 'calloutGroup',
+                title: 'Antes de entrar a los pilares',
+                variant: 'info',
+                items: [
+                    {
+                        icon: 'layers',
+                        title: 'Idea central',
+                        text: 'POO no significa “usar palabras difíciles”, sino organizar el programa en piezas que representen cosas del problema con datos y acciones asociadas.',
+                    },
+                    {
+                        icon: 'box',
+                        title: 'Analogía rápida',
+                        text: 'Una <strong>clase</strong> se parece a un plano o molde. Un <strong>objeto</strong> es una instancia real creada a partir de ese molde.',
+                    },
+                    {
+                        icon: 'target',
+                        title: 'Meta de esta mentoría',
+                        text: 'Al terminar, deberías poder explicar con tus palabras por qué `CuentaBancaria cuenta = new CuentaBancaria(...)` ya expresa una idea orientada a objetos.',
+                    },
+                ],
+            },
+            {
+                type: 'text',
+                title: '1. ¿Qué cambia cuando piensas en objetos?',
+                content:
+                    'En programación estructurada solemos pensar en pasos, variables y funciones. En POO seguimos usando todo eso, pero damos un paso más: agrupamos datos y comportamientos dentro de entidades con identidad propia.\n\nPor ejemplo, en vez de tener variables sueltas como `nombre`, `saldo` y funciones separadas que las modifican, puedes tener un objeto `CuentaBancaria` que conoce su titular, su saldo y las operaciones que se pueden realizar sobre él. Esa forma de modelar mejora la legibilidad y reduce el riesgo de mezclar responsabilidades.\n\nDicho de manera simple: <strong>POO busca que el código se parezca más al problema que intentas representar</strong>.',
+            },
+            {
+                type: 'process',
+                title: '2. De clase a objeto y pilares',
+                desc: 'Observa cómo una clase define una plantilla, cómo aparece un objeto concreto y cómo esa misma idea se conecta con los cuatro pilares de la POO.',
+                simType: 'java-oop-pillars',
+                observe: [
+                    'Primero existe el molde: la clase define qué datos y acciones tendrá el objeto.',
+                    'Después aparece la instancia concreta, con valores reales en memoria.',
+                    'Los cuatro pilares explican cómo proteger, simplificar, reutilizar y flexibilizar ese diseño.',
+                ],
+            },
+            {
+                type: 'featureCards',
+                title: '3. Piezas básicas del modelo orientado a objetos',
+                features: [
+                    {
+                        icon: 'layers',
+                        title: 'Clase',
+                        desc: 'Es la plantilla que define estructura y comportamiento. Indica qué atributos y métodos tendrán los objetos creados a partir de ella.',
+                    },
+                    {
+                        icon: 'box',
+                        title: 'Objeto',
+                        desc: 'Es una instancia concreta de una clase. Tiene estado propio y puede ejecutar los métodos que la clase ofrece.',
+                    },
+                    {
+                        icon: 'database',
+                        title: 'Atributo',
+                        desc: 'Es un dato que forma parte del estado interno del objeto, por ejemplo `saldo`, `edad` o `marca`.',
+                    },
+                    {
+                        icon: 'tool',
+                        title: 'Método',
+                        desc: 'Es una acción que el objeto sabe realizar, como `depositar()`, `mover()` o `calcularTotal()`.',
+                    },
+                ],
+            },
+            {
+                type: 'interactiveCode',
+                title: '4. Código guiado: una clase sencilla con objeto real',
+                desc: 'Este ejemplo combina una clase con atributos privados, un constructor, un método público y una instancia creada desde `main` para usarla.',
+                code: `public class DemoCuenta {
+    public static void main(String[] args) {
+        CuentaBancaria cuenta = new CuentaBancaria("Ana", 100.0);
+        cuenta.depositar(50.0);
+        System.out.println(cuenta.obtenerSaldo());
+    }
+}
+
+class CuentaBancaria {
+    private String titular;
+    private double saldo;
+
+    public CuentaBancaria(String titular, double saldoInicial) {
+        this.titular = titular;
+        this.saldo = saldoInicial;
+    }
+
+    public void depositar(double monto) {
+        saldo += monto;
+    }
+
+    public double obtenerSaldo() {
+        return saldo;
+    }
+}`,
+                output: ['150.0'],
+                explanations: [
+                    {
+                        line: 1,
+                        title: 'Clase principal del ejemplo',
+                        what: 'Define la clase `DemoCuenta`, que contiene el método `main` desde donde arranca la ejecución.',
+                        why: 'Necesitamos un punto de entrada para crear y probar objetos en un programa real.',
+                        teaches: 'Separación entre clase de prueba y clase de dominio.',
+                    },
+                    {
+                        line: 2,
+                        title: 'Punto de entrada',
+                        what: 'El método `main` permite ejecutar el ejemplo y observar el comportamiento del objeto.',
+                        why: 'Sin `main`, esta clase no mostraría resultados por sí sola.',
+                        teaches: 'Arranque del programa en Java.',
+                    },
+                    {
+                        line: 3,
+                        title: 'Creación del objeto',
+                        what: 'Se crea un objeto `cuenta` a partir de la clase `CuentaBancaria` usando `new`.',
+                        why: 'Aquí ves la diferencia práctica entre clase y objeto: la clase es el molde, `cuenta` es una instancia concreta.',
+                        teaches: 'Instanciación de objetos y uso de constructores.',
+                    },
+                    {
+                        line: 4,
+                        title: 'Invocación de método',
+                        what: 'Se llama al método `depositar` para modificar el estado interno del objeto.',
+                        why: 'La operación ocurre a través de un método público, no tocando el saldo desde fuera.',
+                        teaches: 'Encapsulamiento y comportamiento del objeto.',
+                    },
+                    {
+                        line: 5,
+                        title: 'Lectura del resultado',
+                        what: 'Imprime el saldo actual consultándolo mediante `obtenerSaldo()`.',
+                        why: 'El objeto expone una forma controlada de acceder a su información.',
+                        teaches: 'Lectura de estado a través de métodos públicos.',
+                        output: 'La consola mostrará `150.0`.',
+                    },
+                    {
+                        line: 9,
+                        title: 'Clase del dominio',
+                        what: 'Aquí empieza la clase que modela una cuenta bancaria real dentro del problema.',
+                        why: 'Esta clase concentra los datos y operaciones propios de la cuenta.',
+                        teaches: 'Modelado del problema con clases.',
+                    },
+                    {
+                        line: 10,
+                        title: 'Atributo privado: titular',
+                        what: 'Declara el nombre del titular como dato interno del objeto.',
+                        why: 'Se marca como `private` para evitar accesos directos desde fuera de la clase.',
+                        teaches: 'Estado interno y control de acceso.',
+                    },
+                    {
+                        line: 11,
+                        title: 'Atributo privado: saldo',
+                        what: 'Guarda el saldo actual de la cuenta.',
+                        why: 'El saldo es un dato sensible que conviene proteger para mantener consistencia.',
+                        teaches: 'Encapsulamiento de información sensible.',
+                    },
+                    {
+                        line: 13,
+                        title: 'Constructor',
+                        what: 'El constructor inicializa el objeto en el momento de crearlo.',
+                        why: 'Permite que toda cuenta nazca con datos mínimos válidos desde el principio.',
+                        teaches: 'Inicialización de objetos.',
+                    },
+                    {
+                        line: 14,
+                        title: 'Asignación al atributo titular',
+                        what: 'Copia el valor recibido en el parámetro hacia el atributo del objeto usando `this`.',
+                        why: '`this` evita confusiones entre el atributo y el parámetro que tienen nombres relacionados.',
+                        teaches: 'Referencia al objeto actual.',
+                    },
+                    {
+                        line: 15,
+                        title: 'Asignación al atributo saldo',
+                        what: 'Guarda el saldo inicial dentro del objeto recién creado.',
+                        why: 'Así el estado queda listo antes de que otros métodos empiecen a trabajar con él.',
+                        teaches: 'Preparación del estado inicial.',
+                    },
+                    {
+                        line: 18,
+                        title: 'Método público de negocio',
+                        what: 'Declara un método que permite aumentar el saldo de la cuenta.',
+                        why: 'El cambio de estado pasa por reglas y operaciones definidas por la propia clase.',
+                        teaches: 'Comportamiento público del objeto.',
+                    },
+                    {
+                        line: 19,
+                        title: 'Actualización del saldo',
+                        what: 'Suma el monto recibido al saldo actual.',
+                        why: 'La modificación ocurre dentro de la clase, lo que protege la coherencia del objeto.',
+                        teaches: 'Cambio de estado encapsulado.',
+                    },
+                    {
+                        line: 22,
+                        title: 'Método de consulta',
+                        what: 'Declara un método que devuelve el saldo sin modificarlo.',
+                        why: 'No siempre quieres exponer el atributo directamente; a veces basta con ofrecer una lectura controlada.',
+                        teaches: 'Interfaz pública de lectura.',
+                    },
+                    {
+                        line: 23,
+                        title: 'Retorno del dato',
+                        what: 'Entrega el saldo al código que llamó al método.',
+                        why: 'Así el objeto comparte información sin romper su encapsulamiento.',
+                        teaches: 'Retorno de valores y acceso controlado a datos.',
+                    },
+                ],
+            },
+            {
+                type: 'calloutGroup',
+                title: '5. Los cuatro pilares de la POO',
+                variant: 'example',
+                items: [
+                    {
+                        icon: 'shield',
+                        title: 'Encapsulamiento',
+                        text: 'Consiste en <strong>proteger el estado interno</strong> del objeto y permitir acceso mediante métodos controlados. En el ejemplo, `saldo` es privado y se modifica con `depositar()`, no desde cualquier parte del programa.',
+                    },
+                    {
+                        icon: 'eye',
+                        title: 'Abstracción',
+                        text: 'Implica mostrar lo esencial y ocultar detalles innecesarios. Quien usa `cuenta.depositar(50.0)` no necesita saber cómo se guarda internamente el saldo para poder trabajar.',
+                    },
+                    {
+                        icon: 'layers',
+                        title: 'Herencia',
+                        text: 'Permite crear nuevas clases a partir de otras, reutilizando estructura y comportamiento. Por ejemplo, `CuentaAhorro` podría heredar de `CuentaBancaria` y agregar reglas propias.',
+                    },
+                    {
+                        icon: 'refreshCw',
+                        title: 'Polimorfismo',
+                        text: 'Hace posible que distintas clases respondan al mismo mensaje de maneras diferentes. Si varias clases implementan `calcularInteres()`, cada una puede resolverlo según su propia lógica.',
+                    },
+                ],
+            },
+            {
+                type: 'calloutGroup',
+                title: 'Errores comunes al empezar con POO',
+                variant: 'warning',
+                items: [
+                    {
+                        icon: 'xCircle',
+                        title: 'Confundir clase con objeto',
+                        text: 'La clase es la definición; el objeto es la instancia concreta creada en memoria. No son lo mismo.',
+                    },
+                    {
+                        icon: 'helpCircle',
+                        title: 'Pensar que `private` estorba',
+                        text: 'En realidad, `private` ayuda a proteger el estado del objeto y obliga a definir una interfaz más ordenada.',
+                    },
+                    {
+                        icon: 'helpCircle',
+                        title: 'Nombrar “pilares” sin entenderlos',
+                        text: 'No memorices solo cuatro palabras. Intenta relacionar cada pilar con una decisión de diseño dentro del código.',
+                    },
+                ],
+            },
+            {
+                type: 'checklist',
+                title: 'Resumen final',
+                items: [
+                    'Una clase actúa como molde y un objeto es una instancia concreta creada a partir de ella.',
+                    'Los atributos representan el estado; los métodos representan comportamiento.',
+                    'Encapsulamiento, abstracción, herencia y polimorfismo forman la base conceptual de la POO.',
+                    'En Java, entender POO temprano te ayuda a leer y diseñar clases con más intención.',
+                ],
+            },
+            {
+                type: 'exercise',
+                title: 'Ejercicio opcional',
+                prompt:
+                    'Crea una clase `Mascota` con dos atributos privados (`nombre` y `edad`), un constructor, un método `cumplirAnios()` que aumente la edad y un método `mostrarInfo()` que imprima los datos. Luego crea un objeto en `main` y úsalo.',
+                starterCode: `public class DemoMascota {
+    public static void main(String[] args) {
+        // Crea aquí el objeto y prueba sus métodos.
+    }
+}
+
+class Mascota {
+    // Completa la clase.
+}`,
+                hints: [
+                    'Declara los atributos como `private` para practicar encapsulamiento.',
+                    'El constructor debe recibir el nombre y la edad inicial.',
+                    'Después de llamar a `cumplirAnios()`, usa `mostrarInfo()` para verificar el cambio.',
+                ],
+                expectedOutput:
+                    'Debe verse en consola la información de la mascota antes o después de actualizar su edad, según cómo decidas probarla.',
+                reflection:
+                    'Si te trabas, revisa si estás diferenciando bien qué va en la clase `Mascota` y qué va en el `main` de prueba.',
+            },
+        ],
+        conclusion:
+            'POO no es una capa extra para complicar Java; es la forma en que el lenguaje organiza ideas, responsabilidades y comportamiento. Cuando comprendes clase, objeto y los cuatro pilares, empiezas a ver el código no como líneas aisladas, sino como un sistema de piezas que colaboran entre sí de manera ordenada.',
     },
 });
 
@@ -1376,5 +1694,18 @@ programacion1Subject.labs.push({
             'La modularidad es uno de los pilares de la ingeniería de software. Los métodos no son un lujo: son la herramienta que permite que un programa crezca sin volverse inmanejable. Cuando entiendes firma, scope, paso de parámetros y CLI, ya no solo escribes código que corre; empiezas a escribir código que se puede explicar, reutilizar y mantener.',
     },
 });
+
+const programacion1Order = [
+    'intro-java',
+    'java-variables',
+    'java-control-flow',
+    'java-arrays',
+    'java-methods',
+    'intro-poo',
+];
+
+programacion1Subject.labs.sort(
+    (a, b) => programacion1Order.indexOf(a.id) - programacion1Order.indexOf(b.id)
+);
 
 export default programacion1Subject;

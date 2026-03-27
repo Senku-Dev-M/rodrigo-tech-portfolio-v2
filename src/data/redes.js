@@ -12,10 +12,10 @@ const redesSubject = {
     learningPath: {
         title: 'Ruta de aprendizaje sugerida',
         summary:
-            'Esta materia avanza desde los conceptos que permiten que una red funcione hasta laboratorios donde configuras servicios, observas paquetes y construyes topologías completas.',
-        estimatedDuration: '4 h 5 min – 5 h 55 min',
+            'Esta materia avanza desde los conceptos que permiten que una red funcione, pasando por modelos de comunicación y capas híbridas, hasta laboratorios donde configuras servicios, observas paquetes y construyes topologías completas.',
+        estimatedDuration: '4 h 25 min – 6 h 20 min',
         outcomes: [
-            'Entender cómo se asignan direcciones, se organizan roles y circulan los paquetes.',
+            'Entender cómo se asignan direcciones, se organizan roles y circulan los paquetes a través de las capas.',
             'Configurar servicios reales en Linux y validarlos con criterio técnico.',
             'Analizar tráfico y topologías con Wireshark y Packet Tracer sin quedarse solo en la interfaz.',
         ],
@@ -25,8 +25,8 @@ const redesSubject = {
                 desc: 'Comprender DHCP y la información mínima que un host necesita para entrar a la red.',
             },
             {
-                title: '2. Modelos de comunicación',
-                desc: 'Distinguir cuándo conviene una arquitectura cliente-servidor y cuándo una P2P.',
+                title: '2. Modelos y capas de comunicación',
+                desc: 'Distinguir cuándo conviene una arquitectura cliente-servidor o P2P y ubicar protocolos dentro del modelo híbrido.',
             },
             {
                 title: '3. Configuración guiada',
@@ -332,6 +332,173 @@ const redesSubject = {
                 ],
                 conclusion:
                     'La elección entre Cliente-Servidor y P2P depende del caso de uso. El modelo Cliente-Servidor es el estándar de facto para aplicaciones web modernas, bases de datos y sistemas corporativos porque garantiza control y seguridad sobre los datos. Por otro lado, el modelo P2P brilla en aplicaciones donde la resistencia a la censura, la distribución masiva de archivos pesados y la reducción de costos de transferencia son las prioridades absolutas.',
+            },
+        },
+        {
+            id: 'modelo-capas-hibrido',
+            title: 'Modelo de Capas Híbrido',
+            subtitle: 'Puente práctico entre OSI y TCP/IP para interpretar tráfico real',
+            type: 'Teoría',
+            difficulty: 'Básico',
+            duration: '20–30 min',
+            tags: ['Redes 1', 'Modelo híbrido', 'OSI', 'TCP/IP', 'Capas', 'HTTP', 'TCP', 'IP'],
+            learningFeatures: ['Simulación', 'Mapa por capas', 'Ejercicio'],
+            content: {
+                intro:
+                    'Cuando estudias redes, pronto aparecen dos modelos de referencia muy conocidos: <strong>OSI</strong> y <strong>TCP/IP</strong>. El problema es que uno suele enseñarse con mucho detalle teórico y el otro se usa más en la práctica operativa. El <strong>modelo de capas híbrido</strong> nace precisamente para unir ambos enfoques: conserva la claridad pedagógica del OSI, pero organiza las capas de una forma más cercana a cómo se describen realmente los protocolos en redes modernas. Para un estudiante de Redes 1, este modelo es especialmente útil porque permite ubicar con rapidez dónde trabajan protocolos como HTTP, TCP, IP o Ethernet sin perderse entre demasiadas subdivisiones.',
+                objectives: [
+                    'Comprender qué es el modelo híbrido y por qué se usa como puente entre teoría y práctica.',
+                    'Relacionar las capas del modelo OSI con las del modelo TCP/IP de forma ordenada.',
+                    'Identificar las cinco capas del modelo híbrido y el rol principal de cada una.',
+                    'Ubicar protocolos, dispositivos y conceptos clave dentro de la capa que les corresponde.',
+                    'Aplicar el modelo híbrido al análisis de escenarios reales como navegación web y envío de datos.',
+                ],
+                sections: [
+                    {
+                        type: 'calloutGroup',
+                        title: 'Antes de entrar capa por capa',
+                        variant: 'info',
+                        items: [
+                            {
+                                icon: 'layers',
+                                title: 'Idea central',
+                                text: 'El modelo híbrido no intenta reemplazar a OSI o TCP/IP, sino darte una <strong>herramienta mental más práctica</strong> para estudiar protocolos y tráfico real.',
+                            },
+                            {
+                                icon: 'target',
+                                title: 'Qué debes lograr',
+                                text: 'Al terminar, deberías poder explicar por qué <strong>HTTP</strong> vive en Aplicación, <strong>TCP</strong> en Transporte e <strong>IP</strong> en Red sin dudar.',
+                            },
+                            {
+                                icon: 'box',
+                                title: 'Analogía útil',
+                                text: 'Piensa en el modelo híbrido como un mapa simplificado del viaje de un dato: primero se genera el mensaje, luego se segmenta, se direcciona, se encapsula localmente y finalmente se convierte en señal física.',
+                            },
+                        ],
+                    },
+                    {
+                        type: 'text',
+                        title: '1. ¿Qué es el modelo híbrido y por qué se usa?',
+                        content:
+                            'El modelo híbrido es una forma de estudiar redes usando <strong>cinco capas</strong> que combinan la precisión conceptual del modelo OSI con la lógica operativa del modelo TCP/IP. Su valor está en que reduce complejidad sin perder sentido técnico.\n\nOSI fue creado como modelo de referencia y divide la comunicación en siete capas. TCP/IP, en cambio, describe la pila real usada en Internet y suele resumirse en cuatro capas. El modelo híbrido toma lo mejor de ambos: fusiona algunas capas del OSI cuando, en la práctica, suelen analizarse juntas, y mantiene una estructura lo bastante clara como para ubicar protocolos, dispositivos y problemas.\n\nPor eso se utiliza mucho en clases introductorias, análisis de tráfico y documentación técnica: <strong>te permite ver la red como una secuencia ordenada de responsabilidades</strong> en lugar de como una lista aislada de protocolos.',
+                    },
+                    {
+                        type: 'comparisonTable',
+                        title: '2. Relación entre OSI, TCP/IP y el modelo híbrido',
+                        headers: ['Capa híbrida', 'Equivalencia en OSI', 'Equivalencia en TCP/IP', 'Ejemplos típicos'],
+                        rows: [
+                            ['Aplicación', 'Aplicación + Presentación + Sesión', 'Aplicación', 'HTTP, HTTPS, DNS, SMTP, FTP'],
+                            ['Transporte', 'Transporte', 'Transporte', 'TCP, UDP, puertos'],
+                            ['Red', 'Red', 'Internet', 'IP, ICMP, routers'],
+                            ['Enlace de Datos', 'Enlace de Datos', 'Acceso a la red', 'Ethernet, Wi-Fi, ARP, switches, MAC'],
+                            ['Física', 'Física', 'Acceso a la red (medio físico)', 'UTP, fibra óptica, señales eléctricas, ópticas o de radio'],
+                        ],
+                    },
+                    {
+                        type: 'process',
+                        title: '3. Simulación: viaje de una solicitud por las 5 capas',
+                        desc: 'Observa cómo un dato de aplicación se transforma a medida que desciende por la pila hasta convertirse en señal física, y cómo cada capa agrega su propia función.',
+                        simType: 'hybrid-layers',
+                        observe: [
+                            'La Aplicación genera el mensaje útil para el usuario o la app.',
+                            'Transporte segmenta y controla la comunicación extremo a extremo.',
+                            'Red direcciona el paquete entre redes distintas usando IP.',
+                            'Enlace y Física se ocupan del salto local y del medio real por donde viajan los bits.',
+                        ],
+                    },
+                    {
+                        type: 'featureCards',
+                        title: '4. Las 5 capas del modelo híbrido',
+                        features: [
+                            {
+                                icon: 'activity',
+                                title: 'Física',
+                                desc: '<strong>Qué hace:</strong> transporta bits como señales eléctricas, ópticas o de radio.<br/><strong>Ejemplos:</strong> cable UTP, fibra óptica, Wi-Fi, repetidores, conectores, modulación.<br/><strong>Idea clave:</strong> aquí todavía no hablamos de direcciones IP ni puertos; solo del medio y la señal.',
+                            },
+                            {
+                                icon: 'network',
+                                title: 'Enlace de Datos',
+                                desc: '<strong>Qué hace:</strong> organiza el envío local en tramas y usa direcciones MAC para la comunicación dentro del mismo segmento.<br/><strong>Ejemplos:</strong> Ethernet, Wi-Fi, ARP, switches, control de acceso al medio.<br/><strong>Idea clave:</strong> esta capa permite que dos nodos vecinos se entiendan en la red local.',
+                            },
+                            {
+                                icon: 'globe',
+                                title: 'Red',
+                                desc: '<strong>Qué hace:</strong> decide cómo enrutar paquetes entre redes diferentes usando direccionamiento lógico.<br/><strong>Ejemplos:</strong> IP, ICMP, routers, subredes, gateway predeterminado.<br/><strong>Idea clave:</strong> aquí importa la dirección IP y el camino hacia el destino.',
+                            },
+                            {
+                                icon: 'server',
+                                title: 'Transporte',
+                                desc: '<strong>Qué hace:</strong> administra la comunicación extremo a extremo entre procesos de origen y destino.<br/><strong>Ejemplos:</strong> TCP, UDP, puertos, control de flujo, confiabilidad, retransmisión.<br/><strong>Idea clave:</strong> esta capa responde a preguntas como “¿llegó completo?” y “¿a qué aplicación va?”.',
+                            },
+                            {
+                                icon: 'package',
+                                title: 'Aplicación',
+                                desc: '<strong>Qué hace:</strong> ofrece servicios de red directamente utilizables por programas y usuarios.<br/><strong>Ejemplos:</strong> HTTP, HTTPS, DNS, SMTP, POP3, FTP, DHCP.<br/><strong>Idea clave:</strong> aquí viven los protocolos que el usuario percibe como servicios concretos.',
+                            },
+                        ],
+                    },
+                    {
+                        type: 'process',
+                        title: '5. Ejemplo práctico: abrir una página web',
+                        desc: 'Usa esta escena para conectar la teoría con una situación real: la solicitud HTTP baja por las cinco capas en el cliente, cruza el medio físico y luego sube por las cinco capas en el servidor hasta llegar al servicio web.',
+                        simType: 'hybrid-web-request',
+                        observe: [
+                            'La solicitud nace como mensaje de Aplicación y se va encapsulando al bajar capa por capa.',
+                            'TCP, IP y Ethernet/Wi-Fi no compiten entre sí: cada uno agrega información distinta sobre el mismo dato.',
+                            'El medio físico no “entiende” HTTP; solo transporta bits o señales.',
+                            'En el servidor ocurre el recorrido inverso: desencapsulación hasta entregar el mensaje a la Aplicación.',
+                        ],
+                    },
+                    {
+                        type: 'calloutGroup',
+                        title: 'Errores comunes al estudiar el modelo híbrido',
+                        variant: 'warning',
+                        items: [
+                            {
+                                icon: 'alertTriangle',
+                                title: 'Memorizar protocolos sin ubicarlos',
+                                text: 'No basta con saber que existe TCP o DNS. Lo importante es entender <strong>qué responsabilidad cumple cada uno</strong> y en qué capa trabaja.',
+                            },
+                            {
+                                icon: 'alertTriangle',
+                                title: 'Confundir “capa” con “dispositivo”',
+                                text: 'Un router no “es” la capa de red; más bien es un dispositivo cuya función principal trabaja sobre esa capa.',
+                            },
+                            {
+                                icon: 'helpCircle',
+                                title: 'Pensar que el modelo híbrido contradice a OSI',
+                                text: 'En realidad, el modelo híbrido es una simplificación pedagógica. Sigue siendo compatible con la idea de encapsulación y separación por funciones.',
+                            },
+                        ],
+                    },
+                    {
+                        type: 'checklist',
+                        title: 'Resumen final',
+                        items: [
+                            'El modelo híbrido combina claridad teórica y utilidad práctica para estudiar redes.',
+                            'OSI ofrece más detalle conceptual; TCP/IP describe la pila real de Internet; el híbrido conecta ambos mundos.',
+                            'Las cinco capas del modelo híbrido son Física, Enlace de Datos, Red, Transporte y Aplicación.',
+                            'HTTP, TCP, IP, Ethernet y el medio físico pueden entenderse mejor cuando los ubicas dentro de esta secuencia.',
+                        ],
+                    },
+                    {
+                        type: 'exercise',
+                        title: 'Ejercicio opcional: ubica cada elemento en su capa',
+                        prompt:
+                            'Imagina que un estudiante abre un navegador, escribe una URL, el equipo resuelve el nombre por DNS y luego descarga una página web. Explica qué papel cumplen HTTP, TCP, IP, la MAC del adaptador y el medio físico dentro del modelo híbrido.',
+                        hints: [
+                            'Empieza por la Aplicación y baja capa por capa.',
+                            'Distingue entre direccionamiento lógico (IP) y direccionamiento físico/local (MAC).',
+                            'No olvides mencionar qué capa ve el usuario y cuáles trabajan “por debajo”.',
+                        ],
+                        expectedOutput:
+                            'La respuesta debería ubicar cada protocolo o concepto dentro de la capa correcta y explicar brevemente qué aporta al proceso de comunicación.',
+                        reflection:
+                            'Si puedes reconstruir ese recorrido con orden, ya no estás memorizando protocolos: estás entendiendo cómo coopera la pila de red.',
+                    },
+                ],
+                conclusion:
+                    'El modelo de capas híbrido es especialmente valioso en Redes 1 porque convierte una lista abstracta de protocolos en un mapa lógico del viaje de los datos. Cuando lo dominas, analizar paquetes en Wireshark, entender una configuración IP o diagnosticar una navegación web deja de ser un conjunto de hechos sueltos y pasa a convertirse en una historia coherente capa por capa.',
             },
         },
         {

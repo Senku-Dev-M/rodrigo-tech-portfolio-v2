@@ -112,8 +112,8 @@ const es = {
         examples: 'Ejemplos de uso',
         comparisonTitle: 'Tabla Comparativa',
         aspect: 'Aspecto',
-        pros: '✅ Ventajas',
-        cons: '⚠️ Desventajas',
+        pros: 'Ventajas',
+        cons: 'Desventajas',
     },
 
     // ── Subject Card ──

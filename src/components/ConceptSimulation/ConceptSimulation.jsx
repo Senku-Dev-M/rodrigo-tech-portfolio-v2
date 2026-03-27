@@ -8,16 +8,18 @@ export default function ConceptSimulation({ type = 'client-server' }) {
     const { t } = useI18n();
     const [isPlaying, setIsPlaying] = useState(false);
     const [instanceKey, setInstanceKey] = useState(0);
-    const { Component, duration = 4000, isAuto = false, isWide = false } = getSimulationConfig(type);
-    const showControls = !isAuto;
+    const { Component, duration = 4000, isAuto = false, isWide = false, hasInternalControls = false } = getSimulationConfig(type);
+    const showControls = !isAuto && !hasInternalControls;
+    const simulationIsPlaying = hasInternalControls ? true : isPlaying;
+    const usesFlexibleCanvas = isAuto || hasInternalControls;
 
     useEffect(() => {
-        setIsPlaying(false);
+        setIsPlaying(hasInternalControls);
         setInstanceKey(0);
-    }, [type]);
+    }, [hasInternalControls, type]);
 
     useEffect(() => {
-        if (!isAuto) {
+        if (!isAuto || hasInternalControls) {
             return undefined;
         }
 
@@ -27,10 +29,10 @@ export default function ConceptSimulation({ type = 'client-server' }) {
         }, 80);
 
         return () => window.clearTimeout(timer);
-    }, [isAuto, type]);
+    }, [hasInternalControls, isAuto, type]);
 
     useEffect(() => {
-        if (!isPlaying) {
+        if (!isPlaying || hasInternalControls) {
             return undefined;
         }
 
@@ -40,7 +42,7 @@ export default function ConceptSimulation({ type = 'client-server' }) {
         }, duration);
 
         return () => clearTimeout(timer);
-    }, [duration, isPlaying]);
+    }, [duration, hasInternalControls, isPlaying]);
 
     return (
         <div className="concept-sim">
@@ -76,10 +78,10 @@ export default function ConceptSimulation({ type = 'client-server' }) {
                 className={[
                     'concept-sim__canvas',
                     isWide ? 'concept-sim__canvas--wide' : '',
-                    isAuto ? 'concept-sim__canvas--auto' : '',
+                    usesFlexibleCanvas ? 'concept-sim__canvas--auto' : '',
                 ].filter(Boolean).join(' ')}
             >
-                <Component key={instanceKey} isPlaying={isPlaying} />
+                <Component key={instanceKey} isPlaying={simulationIsPlaying} />
             </div>
         </div>
     );
