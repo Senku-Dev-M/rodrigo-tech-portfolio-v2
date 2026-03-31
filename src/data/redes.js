@@ -8,12 +8,12 @@ const redesSubject = {
         'Fundamentos de redes, servicios de red, protocolos de comunicación, laboratorios prácticos en Linux e infraestructura básica de servidores.',
     icon: 'network',
     color: '#00d4ff',
-    topics: ['TCP/IP', 'Protocolos', 'Linux', 'Servidores', 'Networking'],
+    topics: ['TCP/IP', 'Protocolos', 'Subneteo', 'Linux', 'Servidores', 'Networking'],
     learningPath: {
         title: 'Ruta de aprendizaje sugerida',
         summary:
-            'Esta materia avanza desde los conceptos que permiten que una red funcione, pasando por modelos de comunicación y capas híbridas, hasta laboratorios donde configuras servicios, observas paquetes y construyes topologías completas.',
-        estimatedDuration: '4 h 25 min – 6 h 20 min',
+            'Esta materia avanza desde los conceptos que permiten que una red funcione, incluyendo direccionamiento y subneteo, pasando por modelos de comunicación y capas híbridas, hasta laboratorios donde configuras servicios, observas paquetes y construyes topologías completas.',
+        estimatedDuration: '4 h 55 min – 6 h 55 min',
         outcomes: [
             'Entender cómo se asignan direcciones, se organizan roles y circulan los paquetes a través de las capas.',
             'Configurar servicios reales en Linux y validarlos con criterio técnico.',
@@ -22,7 +22,7 @@ const redesSubject = {
         stages: [
             {
                 title: '1. Fundamentos de direccionamiento',
-                desc: 'Comprender DHCP y la información mínima que un host necesita para entrar a la red.',
+                desc: 'Comprender DHCP, el direccionamiento IPv4 y el subneteo básico que un host necesita para entrar a la red.',
             },
             {
                 title: '2. Modelos y capas de comunicación',
@@ -191,6 +191,262 @@ const redesSubject = {
                 ],
                 conclusion:
                     'DHCP es un pilar fundamental e invisible en la administración de redes modernas. Al automatizar la configuración del direccionamiento, permite que millones de dispositivos —desde smartphones hasta servidores cloud— se conecten a redes complejas de forma casi instantánea mediante el rápido proceso DORA (Discover, Offer, Request, Acknowledge).',
+            },
+        },
+        {
+            id: 'subneteo-vlsm-flsm',
+            title: 'Subneteo VLSM y FLSM',
+            subtitle: 'Guía práctica para calcular subredes, rangos y máscaras IPv4',
+            type: 'Teoría',
+            difficulty: 'Intermedio',
+            duration: '30–40 min',
+            tags: ['Redes 1', 'Subneteo', 'VLSM', 'FLSM', 'CIDR', 'IPv4'],
+            learningFeatures: ['Guía paso a paso', 'Ejemplo resuelto', 'Práctica'],
+            content: {
+                intro:
+                    'El <strong>subneteo</strong> permite dividir una red en subredes más pequeñas para organizar mejor los dispositivos, reducir desperdicio de direcciones y hacer más clara la administración. Dentro de ese tema aparecen dos enfoques muy usados en Redes 1: <strong>VLSM</strong> (máscaras de longitud variable), que ajusta el tamaño de cada subred según sus hosts reales, y <strong>FLSM</strong> (máscaras de longitud fija), que crea subredes del mismo tamaño cuando todos los segmentos tienen requerimientos similares.\n\nDominar ambos enfoques cambia por completo la forma en que lees una dirección con máscara: ya no ves solo números, sino rangos, saltos, hosts útiles, direcciones de red y broadcasts que responden a una lógica precisa.',
+                objectives: [
+                    'Entender cuándo conviene aplicar VLSM y cuándo conviene aplicar FLSM.',
+                    'Resolver subneteo VLSM ordenando requerimientos y calculando bits de host, CIDR y salto.',
+                    'Identificar dirección de red, primer host, último host y broadcast en cada subred.',
+                    'Calcular máscaras FLSM a partir de requisitos por hosts o por cantidad de subredes.',
+                    'Practicar con ejercicios típicos de clase B y clase C sin depender de una plantilla mecánica.',
+                ],
+                sections: [
+                    {
+                        type: 'calloutGroup',
+                        title: 'Antes de empezar a subnetear',
+                        variant: 'info',
+                        items: [
+                            {
+                                icon: 'lightbulb',
+                                title: 'Idea central',
+                                text: 'Subnetear no es memorizar máscaras aisladas: es <strong>repartir espacio de direcciones con criterio</strong> para que cada red tenga exactamente lo que necesita.',
+                            },
+                            {
+                                icon: 'layers',
+                                title: 'Regla mental útil',
+                                text: 'En <strong>VLSM</strong> las subredes no tienen por qué medir lo mismo. En <strong>FLSM</strong> todas miden igual. Esa diferencia define casi todo el procedimiento.',
+                            },
+                            {
+                                icon: 'target',
+                                title: 'Qué debes poder explicar',
+                                text: 'Al terminar, deberías poder justificar de dónde sale un <strong>/26</strong>, por qué existe un <strong>broadcast</strong> y cómo encontrar la siguiente subred usando el <strong>salto</strong>.',
+                            },
+                        ],
+                    },
+                    {
+                        type: 'text',
+                        title: '1. ¿Qué resuelve el subneteo y cuándo usar VLSM o FLSM?',
+                        content:
+                            'Subnetear significa dividir una red mayor en partes menores con límites claros. Eso permite separar departamentos, laboratorios o servicios, controlar mejor el tráfico y evitar usar una red enorme cuando en realidad se necesitan varios segmentos pequeños.\n\n<strong>VLSM</strong> se usa cuando cada subred necesita un tamaño diferente. Por ejemplo, una oficina con 50 hosts no debería consumir el mismo bloque que una sala con 5 hosts. VLSM optimiza el espacio porque asigna a cada subred una máscara ajustada a su necesidad real.\n\n<strong>FLSM</strong>, en cambio, se usa cuando todas las subredes deben tener el mismo tamaño. Es más simple de calcular y administrar, aunque sacrifica eficiencia si los requerimientos son desiguales. Por eso suele aparecer en ejercicios introductorios o en escenarios donde todos los segmentos fueron diseñados para ser equivalentes.',
+                    },
+                    {
+                        type: 'checklist',
+                        title: '2. Guía paso a paso para resolver VLSM',
+                        ordered: true,
+                        items: [
+                            'Ordena las subredes de mayor a menor cantidad de hosts requeridos.',
+                            'Calcula los bits de host N con la regla 2^N - 2 >= hosts requeridos.',
+                            'Obtén la nueva máscara CIDR usando /32 - N.',
+                            'Toma la primera dirección disponible como red inicial; cada subred siguiente empieza en broadcast anterior + 1.',
+                            'Calcula el salto con 2^N para saber cuántas direcciones consume la subred.',
+                            'Deriva el rango completo: primer host = red + 1, broadcast = red + salto - 1 y último host = broadcast - 1.',
+                        ],
+                    },
+                    {
+                        type: 'featureCards',
+                        title: '3. Ejemplo resuelto VLSM sobre 192.168.0.0/24',
+                        features: [
+                            {
+                                icon: 'network',
+                                title: 'Subred A',
+                                desc: '<strong>50 hosts</strong><br/><strong>N:</strong> 6 porque 2^6 - 2 = 62.<br/><strong>CIDR:</strong> /26.<br/><strong>Salto:</strong> 64.<br/><strong>Rango:</strong> red 192.168.0.0, primer host 192.168.0.1, último host 192.168.0.62, broadcast 192.168.0.63.',
+                            },
+                            {
+                                icon: 'network',
+                                title: 'Subred B',
+                                desc: '<strong>30 hosts</strong><br/><strong>N:</strong> 5 porque 2^5 - 2 = 30.<br/><strong>CIDR:</strong> /27.<br/><strong>Salto:</strong> 32.<br/><strong>Inicio:</strong> 192.168.0.64.<br/><strong>Rango:</strong> primer host 192.168.0.65, último host 192.168.0.94, broadcast 192.168.0.95.',
+                            },
+                            {
+                                icon: 'network',
+                                title: 'Subred C',
+                                desc: '<strong>10 hosts</strong><br/><strong>N:</strong> 4 porque 2^4 - 2 = 14.<br/><strong>CIDR:</strong> /28.<br/><strong>Salto:</strong> 16.<br/><strong>Inicio:</strong> 192.168.0.96.<br/><strong>Rango:</strong> primer host 192.168.0.97, último host 192.168.0.110, broadcast 192.168.0.111.',
+                            },
+                            {
+                                icon: 'network',
+                                title: 'Subred D',
+                                desc: '<strong>5 hosts</strong><br/><strong>N:</strong> 3 porque 2^3 - 2 = 6.<br/><strong>CIDR:</strong> /29.<br/><strong>Salto:</strong> 8.<br/><strong>Inicio:</strong> 192.168.0.112.<br/><strong>Rango:</strong> primer host 192.168.0.113, último host 192.168.0.118, broadcast 192.168.0.119.',
+                            },
+                        ],
+                    },
+                    {
+                        type: 'comparisonTable',
+                        title: '4. Tabla resumen del VLSM resuelto',
+                        headers: ['Subred', 'Red (/CIDR)', 'Máscara', 'Primer host', 'Último host', 'Broadcast'],
+                        rows: [
+                            ['A (50 H)', '192.168.0.0 /26', '255.255.255.192', '192.168.0.1', '192.168.0.62', '192.168.0.63'],
+                            ['B (30 H)', '192.168.0.64 /27', '255.255.255.224', '192.168.0.65', '192.168.0.94', '192.168.0.95'],
+                            ['C (10 H)', '192.168.0.96 /28', '255.255.255.240', '192.168.0.97', '192.168.0.110', '192.168.0.111'],
+                            ['D (5 H)', '192.168.0.112 /29', '255.255.255.248', '192.168.0.113', '192.168.0.118', '192.168.0.119'],
+                        ],
+                    },
+                    {
+                        type: 'calloutGroup',
+                        title: '5. Guía teórica de FLSM',
+                        variant: 'info',
+                        items: [
+                            {
+                                icon: 'box',
+                                title: 'Cálculo por subredes',
+                                text: 'Si te piden una cantidad fija de subredes, debes prestar bits <strong>s</strong> desde la porción de host hasta cumplir <strong>2^s >= subredes requeridas</strong>.',
+                            },
+                            {
+                                icon: 'activity',
+                                title: 'Cálculo por hosts',
+                                text: 'Si te piden una cantidad de hosts por subred, debes dejar bits <strong>h</strong> para host hasta que se cumpla <strong>2^h - 2 >= hosts requeridos</strong>.',
+                            },
+                            {
+                                icon: 'target',
+                                title: 'Máscara resultante',
+                                text: 'Si prestaste bits para subredes, el nuevo CIDR es <strong>CIDR original + s</strong>. Si partiste de hosts requeridos, puedes obtenerlo como <strong>32 - h</strong>.',
+                            },
+                        ],
+                    },
+                    {
+                        type: 'text',
+                        title: '6. Cómo resolver FLSM paso a paso',
+                        content:
+                            'En <strong>FLSM</strong> todas las subredes deben quedar con <strong>la misma máscara y el mismo tamaño</strong>. Eso significa que no estás optimizando cada bloque por separado como en VLSM, sino definiendo un patrón uniforme que se repetirá en toda la red.\n\nLa lógica general es simple: primero identificas si el ejercicio te condiciona por <strong>cantidad de subredes</strong>, por <strong>cantidad de hosts</strong> o por ambas cosas al mismo tiempo. Luego eliges la máscara que satisfaga el requisito más exigente y finalmente verificas si también cumple la otra condición.\n\nPor eso, cuando te den una red base como /16 o /24, no basta con encontrar una máscara que sirva para hosts. En FLSM también debes comprobar cuántas subredes aparecen desde la red original, porque todas las subredes creadas tendrán exactamente ese mismo tamaño.',
+                    },
+                    {
+                        type: 'checklist',
+                        title: '7. Procedimiento recomendado para ejercicios FLSM',
+                        ordered: true,
+                        items: [
+                            'Identifica el CIDR original de la red base, porque desde ahí calcularás cuántos bits puedes prestar.',
+                            'Si el ejercicio pide subredes, busca el menor valor s que cumpla 2^s >= subredes requeridas.',
+                            'Si el ejercicio pide hosts por subred, busca el menor valor h que cumpla 2^h - 2 >= hosts requeridos.',
+                            'Calcula la nueva máscara: CIDR nuevo = CIDR original + s o, de forma equivalente para hosts, CIDR nuevo = 32 - h.',
+                            'Si el problema mezcla hosts y subredes, valida ambas condiciones con la misma máscara antes de dar la respuesta final.',
+                            'Expresa el resultado en ambos formatos cuando sea posible: notación CIDR y máscara decimal.',
+                        ],
+                    },
+                    {
+                        type: 'comparisonTable',
+                        title: '8. Atajo de verificación para FLSM',
+                        headers: ['Escenario', 'Qué calculas', 'Fórmula clave', 'Qué debes confirmar'],
+                        rows: [
+                            ['Piden subredes', 'Bits prestados para subred', '2^s >= subredes', 'Que el nuevo CIDR no deje muy pocos hosts'],
+                            ['Piden hosts', 'Bits reservados para host', '2^h - 2 >= hosts', 'Que la máscara resultante siga generando suficientes subredes'],
+                            ['Piden ambas condiciones', 'Hosts primero y luego subredes', '32 - h y comparación con CIDR original', 'Que una sola máscara cumpla simultáneamente hosts y subredes'],
+                        ],
+                    },
+                    {
+                        type: 'calloutGroup',
+                        title: '9. Errores comunes al subnetear',
+                        variant: 'warning',
+                        items: [
+                            {
+                                icon: 'alertTriangle',
+                                title: 'No ordenar requerimientos en VLSM',
+                                text: 'Si asignas primero una subred pequeña y luego una grande, puedes fragmentar el espacio y quedarte sin un bloque continuo adecuado.',
+                            },
+                            {
+                                icon: 'xCircle',
+                                title: 'Confundir salto con hosts útiles',
+                                text: 'El salto indica cuántas direcciones contiene el bloque completo, no cuántos hosts útiles tendrá. Siempre recuerda descontar red y broadcast.',
+                            },
+                            {
+                                icon: 'shield',
+                                title: 'Olvidar los límites del bloque',
+                                text: 'Una respuesta incompleta suele mezclar primer host, último host y broadcast. El examen normalmente evalúa si distingues esos cuatro valores sin confundirlos.',
+                            },
+                        ],
+                    },
+                    {
+                        type: 'checklist',
+                        title: '10. Resumen operativo',
+                        items: [
+                            'VLSM optimiza espacio porque asigna distintas máscaras según cada necesidad.',
+                            'FLSM simplifica diseño porque todas las subredes mantienen la misma máscara.',
+                            'La fórmula 2^N - 2 sirve para calcular hosts útiles; el salto sale de 2^N.',
+                            'En FLSM la máscara final no se acepta hasta comprobar que cumple tanto hosts como subredes si el ejercicio pide ambas cosas.',
+                            'El broadcast de una subred marca el inicio lógico de la siguiente cuando trabajas en VLSM.',
+                        ],
+                    },
+                    {
+                        type: 'exercise',
+                        title: 'Práctica 1: requerimientos combinados en clase B',
+                        prompt:
+                            'La red 172.30.0.0/16 debe soportar 55 subredes en total con al menos 1000 hosts por subred. Determina qué máscara de subred cumple ambos requisitos y justifica brevemente el resultado.',
+                        hints: [
+                            'Primero resuelve hosts: busca el menor h que permita al menos 1000 hosts útiles.',
+                            'Si llegas a /22, verifica cuántas subredes aparecen al partir desde /16.',
+                            'No respondas solo con el CIDR: expresa también la máscara decimal.',
+                        ],
+                        expectedOutput:
+                            'La respuesta correcta es /22, equivalente a 255.255.252.0, porque deja 10 bits de host y genera 64 subredes desde una red clase B /16.',
+                        reflection:
+                            'Este ejercicio obliga a validar simultáneamente hosts y subredes, que es donde muchos estudiantes eligen una máscara correcta para una condición pero fallan en la otra.',
+                    },
+                    {
+                        type: 'exercise',
+                        title: 'Práctica 2: subneteo por bloques en clase C',
+                        prompt:
+                            'A partir de 192.168.16.0/24, se requieren 10 subredes con 10 hosts cada una. Determina la máscara correcta y explica por qué no basta con pensar solo en el número de hosts.',
+                        hints: [
+                            'Con 10 hosts útiles necesitas h = 4.',
+                            'Comprueba cuántas subredes genera /28 al partir desde /24.',
+                            'Verifica que el resultado cumpla simultáneamente el requisito de subredes y el de hosts.',
+                        ],
+                        expectedOutput:
+                            'La máscara correcta es 255.255.255.240 (/28), porque cada bloque entrega 14 hosts útiles y aparecen 16 subredes desde la red /24 original.',
+                    },
+                    {
+                        type: 'exercise',
+                        title: 'Práctica 3: contar subredes y hosts desde una máscara /23',
+                        prompt:
+                            'Se tiene la red 172.17.111.0 con máscara 255.255.254.0 (/23). Calcula cuántas subredes existen respecto a una clase B /16 y cuántos hosts válidos hay por subred.',
+                        hints: [
+                            'Los bits de host salen de 32 - 23.',
+                            'Los bits prestados para subredes salen de 23 - 16.',
+                            'Recuerda restar 2 solo en el cálculo de hosts útiles, no en el conteo de subredes.',
+                        ],
+                        expectedOutput:
+                            'El resultado correcto es 128 subredes y 510 hosts válidos por subred.',
+                    },
+                    {
+                        type: 'exercise',
+                        title: 'Práctica 4: identificar red y broadcast de un host /26',
+                        prompt:
+                            'El host 192.168.85.129 tiene máscara 255.255.255.192 (/26). Determina la dirección de red y la dirección de broadcast del bloque al que pertenece.',
+                        hints: [
+                            'Con /26 quedan 6 bits de host, así que el salto es 64.',
+                            'En el último octeto, los bloques empiezan en 0, 64, 128 y 192.',
+                            'Ubica el 129 dentro del bloque correcto y luego calcula sus extremos.',
+                        ],
+                        expectedOutput:
+                            'La red es 192.168.85.128 y el broadcast es 192.168.85.191.',
+                    },
+                    {
+                        type: 'exercise',
+                        title: 'Práctica 5: VLSM guiado sobre 172.16.0.0/16',
+                        prompt:
+                            'Resuelve VLSM para la red 172.16.0.0/16 con estos requerimientos ya ordenados: Red X con 1000 hosts, Red Y con 500 hosts y Red Z con 100 hosts. Calcula red, máscara, primer host, último host y broadcast para cada subred.',
+                        hints: [
+                            'Red X necesita /22; Red Y necesita /23; Red Z necesita /25.',
+                            'La Red Y empieza inmediatamente después del broadcast de la Red X.',
+                            'La Red Z empieza inmediatamente después del broadcast de la Red Y.',
+                        ],
+                        expectedOutput:
+                            'Red X: 172.16.0.0/22, máscara 255.255.252.0, hosts 172.16.0.1 a 172.16.3.254, broadcast 172.16.3.255. Red Y: 172.16.4.0/23, máscara 255.255.254.0, hosts 172.16.4.1 a 172.16.5.254, broadcast 172.16.5.255. Red Z: 172.16.6.0/25, máscara 255.255.255.128, hosts 172.16.6.1 a 172.16.6.126, broadcast 172.16.6.127.',
+                        reflection:
+                            'Si puedes reconstruir esta práctica completa sin mirar una tabla, ya estás razonando subneteo en lugar de recitar fórmulas de memoria.',
+                    },
+                ],
+                conclusion:
+                    'El subneteo deja de ser confuso cuando entiendes que todas sus fórmulas responden a la misma pregunta: <strong>cómo repartir direcciones sin desperdiciar espacio ni romper los límites de la red</strong>. VLSM te da precisión cuando cada segmento crece distinto; FLSM te da uniformidad cuando todos deben medir igual. En ambos casos, lo importante no es recordar una máscara suelta, sino poder justificar el tamaño del bloque, sus hosts útiles y el lugar exacto donde empieza la siguiente subred.',
             },
         },
         {
