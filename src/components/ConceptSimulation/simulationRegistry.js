@@ -26,6 +26,14 @@ import ScrumBoardSim from './simulations/ScrumBoardSim';
 import ScrumFlowSim from './simulations/ScrumFlowSim';
 import SDLCSim from './simulations/SDLCSim';
 import TCPHTTPSim from './simulations/TCPHTTPSim';
+import QABoundaryValuesSim from './simulations/QABoundaryValuesSim';
+import QABugTriageSim from './simulations/QABugTriageSim';
+import QAEquivalenceSim from './simulations/QAEquivalenceSim';
+import QAFaultToleranceSim from './simulations/QAFaultToleranceSim';
+import QAPairwiseSim from './simulations/QAPairwiseSim';
+import QARiskMatrixSim from './simulations/QARiskMatrixSim';
+import QASessionCharterSim from './simulations/QASessionCharterSim';
+import QATourBasedSim from './simulations/QATourBasedSim';
 
 const simulationRegistry = {
     'client-server': { Component: ClientServerSim, duration: 4000 },
@@ -56,6 +64,62 @@ const simulationRegistry = {
     'java-scope': { Component: JavaScopeSim, isAuto: true, isWide: true },
     'java-param-pass': { Component: JavaParamPassSim, isAuto: true, isWide: true },
     'java-command-line': { Component: JavaCommandLineArgsSim, isAuto: true, isWide: true },
+    'qa-tour-based': {
+        Component: QATourBasedSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en una card para revisar el estado que quieras, las veces que necesites.',
+    },
+    'qa-session-charter': {
+        Component: QASessionCharterSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en una card para revisar el estado que quieras, las veces que necesites.',
+    },
+    'qa-risk-matrix': {
+        Component: QARiskMatrixSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en una card para revisar el estado que quieras, las veces que necesites.',
+    },
+    'qa-fault-tolerance': {
+        Component: QAFaultToleranceSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en una etapa para revisar el flujo y volver a cualquier estado sin autoplay.',
+    },
+    'qa-equivalence': {
+        Component: QAEquivalenceSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en una partición para revisar su ejemplo y el comportamiento esperado.',
+    },
+    'qa-boundary-values': {
+        Component: QABoundaryValuesSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en cada valor para comparar bordes y adyacencias a tu ritmo.',
+    },
+    'qa-pairwise': {
+        Component: QAPairwiseSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en un caso para ver qué cobertura aporta sin ejecutar una rotación automática.',
+    },
+    'qa-bug-triage': {
+        Component: QABugTriageSim,
+        isWide: true,
+        hasInternalControls: true,
+        hintKey: 'sim.manualSelectionHint',
+        hintText: 'Haz clic en cada fase para revisar el flujo operativo del bug cuando lo necesites.',
+    },
 };
 
 export function getSimulationConfig(type) {

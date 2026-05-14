@@ -8,15 +8,18 @@ export default function ConceptSimulation({ type = 'client-server' }) {
     const { t } = useI18n();
     const [isPlaying, setIsPlaying] = useState(false);
     const [instanceKey, setInstanceKey] = useState(0);
-    const { Component, duration = 4000, isAuto = false, isWide = false, hasInternalControls = false } = getSimulationConfig(type);
+    const {
+        Component,
+        duration = 4000,
+        isAuto = false,
+        isWide = false,
+        hasInternalControls = false,
+        hintKey,
+        hintText,
+    } = getSimulationConfig(type);
     const showControls = !isAuto && !hasInternalControls;
     const simulationIsPlaying = hasInternalControls ? true : isPlaying;
     const usesFlexibleCanvas = isAuto || hasInternalControls;
-
-    useEffect(() => {
-        setIsPlaying(hasInternalControls);
-        setInstanceKey(0);
-    }, [hasInternalControls, type]);
 
     useEffect(() => {
         if (!isAuto || hasInternalControls) {
@@ -51,8 +54,8 @@ export default function ConceptSimulation({ type = 'client-server' }) {
                     <span className="concept-sim__eyebrow">{t('sim.visualGuide', 'Simulación visual')}</span>
                     <p className="concept-sim__hint">
                         {t(
-                            'sim.visualHint',
-                            'Úsala para observar el concepto en movimiento y luego vuelve al texto para reforzar la idea.'
+                            hintKey || 'sim.visualHint',
+                            hintText || 'Úsala para observar el concepto en movimiento y luego vuelve al texto para reforzar la idea.'
                         )}
                     </p>
                 </div>
