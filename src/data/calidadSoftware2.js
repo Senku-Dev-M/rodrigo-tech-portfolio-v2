@@ -824,7 +824,7 @@ const calidadSoftware2Subject = {
                             {
                                 title: 'Titulo',
                                 color: '#67e8f9',
-                                text: 'Debe ser breve, especifico y entendible. Idealmente comunica accion, objeto y condicion relevante.'
+                                text: 'Debe ser breve, especifico y entendible. En esta materia se recomienda que <strong>empiece con un verbo</strong>, por ejemplo verificar, validar o comprobar, y luego comunique objeto y condicion relevante.'
                             },
                             {
                                 title: 'Descripcion',
@@ -908,17 +908,39 @@ const calidadSoftware2Subject = {
                         title: 'Titulos de test case: mal titulo vs titulo aceptable vs buen titulo',
                         headers: ['Nivel', 'Ejemplo', 'Por que'],
                         rows: [
-                            ['Malo', 'Probar login', 'No aclara condicion, resultado esperado ni variante relevante del comportamiento'],
-                            ['Aceptable', 'Validar login con credenciales validas', 'Ya menciona accion y condicion, pero aun puede ser demasiado amplio'],
-                            ['Bueno', 'Login: usuario activo accede al dashboard con correo y contrasena validos', 'Expresa modulo, condicion relevante y resultado dominante'],
-                            ['Bueno', 'Carrito: recalcula total al eliminar item con cupon aplicado', 'Permite entender que se valida antes de leer los pasos'],
+                            ['Malo', 'Login', 'No empieza con verbo y no aclara que comportamiento concreto se valida'],
+                            ['Aceptable', 'Validar login con credenciales validas', 'Ya empieza con verbo y menciona accion y condicion, pero aun puede ser demasiado amplio'],
+                            ['Bueno', 'Verificar que el usuario activo acceda al dashboard con correo y contrasena validos', 'Empieza con verbo y deja claro condicion y resultado dominante'],
+                            ['Bueno', 'Comprobar que el carrito recalcule el total al eliminar un item con cupon aplicado', 'Empieza con verbo y permite entender exactamente que se valida antes de leer los pasos'],
+                        ],
+                    },
+                    {
+                        type: 'calloutGroup',
+                        title: 'Regla practica para nombrar test cases',
+                        variant: 'example',
+                        items: [
+                            {
+                                icon: 'checkCircle',
+                                title: 'Empieza con verbo',
+                                text: 'Para mantener consistencia con la metodologia de la materia, el titulo debe arrancar con un verbo de accion como <strong>verificar</strong>, <strong>validar</strong> o <strong>comprobar</strong>.',
+                            },
+                            {
+                                icon: 'target',
+                                title: 'Luego describe el comportamiento',
+                                text: 'Despues del verbo, nombra que comportamiento esperas validar y bajo que condicion importante.',
+                            },
+                            {
+                                icon: 'xCircle',
+                                title: 'Evita verbos vagos o titulos nominales',
+                                text: 'Titulos como <em>Login</em>, <em>Carrito</em> o <em>Probar modulo X</em> no ayudan porque no expresan una validacion precisa.',
+                            },
                         ],
                     },
                     {
                         type: 'text',
                         title: 'Ejemplos guiados de test cases bien escritos',
                         content:
-                            '<strong>Login:</strong> titulo, <em>Login: usuario activo accede al dashboard con credenciales validas</em>; precondicion, usuario activo existente; pasos, ingresar correo y contrasena validos y presionar iniciar sesion; esperado, redireccion al dashboard, sesion creada y nombre visible en header.\n\n<strong>Validacion:</strong> titulo, <em>Registro: rechaza telefono con menos de 8 digitos</em>; esperado, mensaje especifico y bloqueo del envio.\n\n<strong>Regla de negocio:</strong> titulo, <em>Checkout: aplica cupon del 10 por ciento solo a productos elegibles</em>; esperado, descuento parcial correcto y total actualizado.\n\n<strong>Error handling:</strong> titulo, <em>Transferencia: conserva formulario cuando API de confirmacion responde timeout</em>; esperado, mensaje claro, sin duplicar debito y con opcion de reintento.\n\n<strong>Flujo multiestado:</strong> titulo, <em>Solicitud: pasa de borrador a enviada solo cuando adjuntos requeridos estan presentes</em>; esperado, cambio de estado, registro en historial y bloqueo si falta evidencia.',
+                            '<strong>Login:</strong> titulo, <em>Verificar que el usuario activo acceda al dashboard con credenciales validas</em>; precondicion, usuario activo existente; pasos, ingresar correo y contrasena validos y presionar iniciar sesion; esperado, redireccion al dashboard, sesion creada y nombre visible en header.\n\n<strong>Validacion:</strong> titulo, <em>Validar que el registro rechace telefonos con menos de 8 digitos</em>; esperado, mensaje especifico y bloqueo del envio.\n\n<strong>Regla de negocio:</strong> titulo, <em>Comprobar que el checkout aplique el cupon del 10 por ciento solo a productos elegibles</em>; esperado, descuento parcial correcto y total actualizado.\n\n<strong>Error handling:</strong> titulo, <em>Verificar que la transferencia conserve el formulario cuando la API de confirmacion responde timeout</em>; esperado, mensaje claro, sin duplicar debito y con opcion de reintento.\n\n<strong>Flujo multiestado:</strong> titulo, <em>Validar que la solicitud pase de borrador a enviada solo cuando los adjuntos requeridos estan presentes</em>; esperado, cambio de estado, registro en historial y bloqueo si falta evidencia.',
                     },
                     {
                         type: 'checklist',
@@ -941,7 +963,7 @@ const calidadSoftware2Subject = {
                             {
                                 icon: 'xCircle',
                                 title: 'Titulo pobre',
-                                text: '<em>Verificar que el carrito funciona</em> no delimita que comportamiento se esta evaluando.',
+                                text: '<em>Verificar que el carrito funciona</em> empieza con verbo, pero sigue siendo pobre porque no delimita que comportamiento se esta evaluando.',
                             },
                             {
                                 icon: 'helpCircle',
@@ -951,7 +973,7 @@ const calidadSoftware2Subject = {
                             {
                                 icon: 'checkCircle',
                                 title: 'Version mejorada',
-                                text: 'Mejor seria: <em>Carrito: actualiza total al eliminar un item con cupon activo</em>, con pasos breves y esperado que indique total anterior, nuevo total y persistencia del cupon.',
+                                text: 'Mejor seria: <em>Comprobar que el carrito actualice el total al eliminar un item con cupon activo</em>, con pasos breves y esperado que indique total anterior, nuevo total y persistencia del cupon.',
                             },
                         ],
                     },
@@ -963,7 +985,7 @@ const calidadSoftware2Subject = {
                             {
                                 icon: 'xCircle',
                                 title: 'Titulos genericos',
-                                text: '“Probar login” no comunica nada suficiente. El titulo debe apuntar al comportamiento concreto.',
+                                text: '“Probar login” cumple la regla de empezar con verbo, pero sigue siendo demasiado generico. El titulo debe arrancar con verbo y ademas apuntar al comportamiento concreto.',
                             },
                             {
                                 icon: 'helpCircle',
@@ -987,7 +1009,7 @@ const calidadSoftware2Subject = {
                             'No mezcles varias validaciones grandes en el mismo caso.',
                         ],
                         expectedOutput:
-                            'Una solucion modelo podria ser: titulo, Carrito: actualiza total al eliminar un item con cupon activo; pasos, agregar dos productos, aplicar cupon, eliminar uno; esperado, el total se recalcula manteniendo el descuento valido y sin eliminar el item restante. La clave es convertir una frase vaga en un comportamiento puntual y verificable.',
+                            'Una solucion modelo podria ser: titulo, Comprobar que el carrito actualice el total al eliminar un item con cupon activo; pasos, agregar dos productos, aplicar cupon, eliminar uno; esperado, el total se recalcula manteniendo el descuento valido y sin eliminar el item restante. La clave es convertir una frase vaga en un comportamiento puntual y verificable, empezando por un verbo claro.',
                         reflection:
                             'Si tu version mejorada todavia obliga al lector a adivinar que observar, el caso aun no esta listo para una suite profesional.',
                     },
