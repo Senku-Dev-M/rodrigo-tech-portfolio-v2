@@ -130,7 +130,7 @@ function GuideExercise({ exercise }) {
     );
 }
 
-export default function GuideView({ lab }) {
+export default function GuideView({ lab, showHeader = true, showSidebar = true }) {
     const { guide } = lab;
     const introCards = useMemo(() => resolveIntroCards(guide), [guide]);
     const introText = typeof guide.intro === 'string' ? guide.intro : null;
@@ -154,12 +154,14 @@ export default function GuideView({ lab }) {
 
     return (
         <div className="guide-view">
-            <ContentHeader lab={lab} variant="guide" />
+            {showHeader && <ContentHeader lab={lab} variant="guide" />}
 
-            <div className="guide-layout">
-                <aside className="guide-sidebar">
-                    <GuideCompass items={sectionItems} />
-                </aside>
+            <div className={`guide-layout ${!showSidebar ? 'guide-layout--single' : ''}`}>
+                {showSidebar && (
+                    <aside className="guide-sidebar">
+                        <GuideCompass items={sectionItems} />
+                    </aside>
+                )}
 
                 <div className="guide-main">
                     <Section id="guide-intro" title="Introducción">

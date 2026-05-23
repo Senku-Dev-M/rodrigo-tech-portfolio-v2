@@ -156,22 +156,10 @@ function ArduinoBoardPhoto() {
 // ── Circuit SVG — Fritzing-style compact diagram ──────────────────
 function CircuitSVG() {
     // Grid helpers: 10 active columns, 5 rows per half
-    const ox = 195, oy = 60;      // breadboard origin
-    const cp = 32, rp = 24;       // col-pitch, row-pitch
-    const cols = 10, halfRows = 5;
-    const bw = (cols - 1) * cp + 44;
-    const gap = 18;                // center gap height
-    const bh = halfRows * rp + gap + halfRows * rp + 16;
 
     // Convert grid position to SVG pixel
-    const hx = (c) => ox + 22 + c * cp;
-    const hy = (r) => r < halfRows
-        ? oy + 16 + r * rp
-        : oy + 16 + halfRows * rp + gap + (r - halfRows) * rp;
 
     // Resistor band colors for 220Ω (Red-Red-Brown-Gold)
-    const bands = ['#cc2929', '#cc2929', '#6b3a1f', '#d4a800'];
-
     return (
         <div className="ard-circuit-wrap">
             <svg viewBox="0 0 560 310" className="ard-circuit-svg" aria-label="Circuito LED con Arduino">
@@ -518,7 +506,7 @@ function FlowDiagram() {
 }
 
 // ── Main Component ───────────────────────────────────────────────
-export default function ArduinoLabView({ lab }) {
+export default function ArduinoLabView({ lab, showHeader = true }) {
     const [selectedLine, setSelectedLine] = useState(null);
     const [openExp, setOpenExp] = useState(null);
     const [showSolution, setShowSolution] = useState(false);
@@ -529,7 +517,7 @@ export default function ArduinoLabView({ lab }) {
         <div className="ard-view">
 
             {/* ── HEADER ─────────────────────────────────────────── */}
-            <ContentHeader lab={lab} variant="guide" difficultyStyle={{ color: accentStrong }} />
+            {showHeader && <ContentHeader lab={lab} variant="guide" difficultyStyle={{ color: accentStrong }} />}
 
             {/* ── INTRODUCCIÓN ────────────────────────────────────── */}
             <section className="guide-section">

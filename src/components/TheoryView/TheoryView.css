@@ -13,6 +13,10 @@
     align-items: start;
 }
 
+.theory-layout--single {
+    grid-template-columns: 1fr;
+}
+
 .theory-sidebar {
     position: sticky;
     top: 5rem;

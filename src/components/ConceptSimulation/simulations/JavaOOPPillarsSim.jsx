@@ -292,7 +292,7 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
                         gap: '0.7rem',
                     }}
                 >
-                    {pillars.map((pillar, index) => {
+                    {pillars.map((pillar) => {
                         const isActive = phase >= 2 && detail.id === pillar.id;
 
                         return (

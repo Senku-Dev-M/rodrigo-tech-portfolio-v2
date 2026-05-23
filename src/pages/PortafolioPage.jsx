@@ -1,7 +1,7 @@
 import PageHero from '../components/PageShell/PageHero';
 import PageLayout from '../components/PageShell/PageLayout';
 import GithubCTA from '../components/Portafolio/GithubCTA';
-import PortafolioProjectCard from '../components/Portafolio/PortafolioProjectCard';
+import ProjectShowcaseCard from '../components/Portafolio/ProjectShowcaseCard';
 import { useI18n } from '../i18n/i18n';
 import { projects } from '../data/portfolio';
 import './PortafolioPage.css';
@@ -20,7 +20,7 @@ export default function PortafolioPage() {
             <div className="page-container">
                 <div className="projects-list">
                     {projects.map((project, index) => (
-                        <PortafolioProjectCard key={project.name} project={project} index={index} />
+                        <ProjectShowcaseCard key={project.name} project={project} index={index} />
                     ))}
                 </div>
 

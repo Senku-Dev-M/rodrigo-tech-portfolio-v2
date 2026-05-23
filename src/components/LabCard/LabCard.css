@@ -1,4 +1,8 @@
 .lab-card {
+    width: 100%;
+    color: inherit;
+    font: inherit;
+    text-align: left;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-left: 3px solid var(--accent, #00d4ff);
@@ -21,6 +25,11 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.8rem;
+}
+
+.lab-card:focus-visible {
+    outline: 2px solid var(--accent, #00d4ff);
+    outline-offset: 4px;
 }
 
 .lab-card__top-meta {

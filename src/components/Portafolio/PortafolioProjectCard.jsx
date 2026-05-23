@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ArrowUpRight, Link2 } from 'lucide-react';
 import { pick, useI18n } from '../../i18n/i18n';
 
 const fadeUp = {
@@ -13,6 +14,7 @@ export default function PortafolioProjectCard({ project, index }) {
     const { t, lang } = useI18n();
 
     const highlights = pick(project, 'highlights', lang) || [];
+    const links = project.links || [];
 
     return (
         <motion.div
@@ -60,6 +62,31 @@ export default function PortafolioProjectCard({ project, index }) {
                     </span>
                 ))}
             </div>
+
+            {links.length > 0 && (
+                <div className="project-links">
+                    <span className="project-links__label">
+                        <Link2 size={14} />
+                        {t('portfolio.liveLinks')}
+                    </span>
+
+                    <div className="project-links__actions">
+                        {links.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`project-link-btn ${link.tone === 'primary' ? 'project-link-btn--primary' : ''}`}
+                                style={{ '--accent': project.accent }}
+                            >
+                                {pick(link, 'label', lang)}
+                                <ArrowUpRight size={15} />
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            )}
         </motion.div>
     );
 }

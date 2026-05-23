@@ -1,3 +1,6 @@
+import gymflowPreview from '../assets/portfolio/gymflow-preview.png';
+import tetocaPreview from '../assets/portfolio/tetoca-preview.png';
+
 export const projects = [
     {
         name: 'GymFlow AI',
@@ -5,6 +8,29 @@ export const projects = [
         type: 'Freelance',
         icon: '🏋️',
         accent: '#a78bfa',
+        links: [
+            {
+                label: { es: 'Abrir demo', en: 'Open demo' },
+                href: 'https://gymflow-frontend-three.vercel.app/login',
+                tone: 'primary',
+            },
+        ],
+        impact: {
+            es: 'Panel operativo para gimnasios con IA, roles, pagos y rutinas personalizadas en un solo flujo.',
+            en: 'Operational gym platform with AI, roles, payments and personalized routines in one workflow.',
+        },
+        preview: {
+            type: 'image',
+            image: gymflowPreview,
+            alt: {
+                es: 'Vista de login administrativo de GymFlow AI',
+                en: 'GymFlow AI administrative login screen',
+            },
+            caption: {
+                es: 'Acceso administrativo del sistema',
+                en: 'Administrative access screen',
+            },
+        },
         desc: {
             es: 'Sistema integral de gestión para gimnasios con IA generativa. Incluye gestión de clientes, membresías, rutinas, pagos, check-in con QR y panel de administración con analíticas.',
             en: 'Comprehensive gym management system with generative AI. Includes client management, memberships, routines, payments, QR check-in, and admin dashboard with analytics.',
@@ -33,6 +59,18 @@ export const projects = [
         type: 'Jala University',
         icon: '🖼️',
         accent: '#38bdf8',
+        impact: {
+            es: 'Arquitectura distribuida para procesar, optimizar y entregar imágenes con servicios desacoplados.',
+            en: 'Distributed architecture for processing, optimizing and delivering images through decoupled services.',
+        },
+        preview: {
+            type: 'architecture',
+            caption: {
+                es: 'Mapa técnico de servicios',
+                en: 'Technical services map',
+            },
+            nodes: ['Angular UI', 'Node API', 'Python worker', 'RabbitMQ', 'MySQL', 'Supabase'],
+        },
         desc: {
             es: 'Plataforma integral de gestión de imágenes con arquitectura distribuida y microservicios. Sistema completo de procesamiento, optimización y despliegue automatizado.',
             en: 'Comprehensive image management platform with distributed architecture and microservices. Full processing, optimization, and automated deployment system.',
@@ -61,6 +99,29 @@ export const projects = [
         type: 'Jala University',
         icon: '🤝',
         accent: '#ec4899',
+        links: [
+            {
+                label: { es: 'Ver landing page', en: 'View landing page' },
+                href: 'https://tetoca-landingpage.vercel.app/',
+                tone: 'primary',
+            },
+        ],
+        impact: {
+            es: 'Landing formal para presentar una API de marketplace lista para equipos de producto.',
+            en: 'Formal landing page for presenting a marketplace API ready for product teams.',
+        },
+        preview: {
+            type: 'image',
+            image: tetocaPreview,
+            alt: {
+                es: 'Vista principal de la landing page de TeToca',
+                en: 'Main view of the TeToca landing page',
+            },
+            caption: {
+                es: 'Landing page pública',
+                en: 'Public landing page',
+            },
+        },
         desc: {
             es: 'App móvil de intercambio de servicios entre personas. Diseño UX completo basado en Design Thinking, con prototipo de alta fidelidad en Figma listo para desarrollo.',
             en: 'Mobile service exchange app. Complete UX design based on Design Thinking, with a high-fidelity Figma prototype ready for development.',

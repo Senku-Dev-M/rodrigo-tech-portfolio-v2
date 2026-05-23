@@ -1,240 +1,133 @@
-import { useCallback, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import ArduinoLabView from '../components/ArduinoLabView/ArduinoLabView';
-import GuideView from '../components/GuideView/GuideView';
-import Icon from '../components/Icon/Icon';
-import LabCard from '../components/LabCard/LabCard';
-import LabsToolbar from '../components/LabsToolbar/LabsToolbar';
-import Breadcrumb from '../components/Mentorias/Breadcrumb';
+import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Link, Navigate, useParams } from 'react-router-dom';
+import { BookOpen, CheckCircle2, Filter, GraduationCap, Search, Sparkles } from 'lucide-react';
+import CourseCard from '../components/CourseExperience/CourseCard';
+import CourseDashboard from '../components/CourseExperience/CourseDashboard';
+import LessonPlayer from '../components/CourseExperience/LessonPlayer';
+import ModuleTimeline from '../components/CourseExperience/ModuleTimeline';
 import MentoringApproach from '../components/Mentorias/MentoringApproach';
 import MentoringCertifications from '../components/Mentorias/MentoringCertifications';
 import MentoringStats from '../components/Mentorias/MentoringStats';
-import PacketTracerLabView from '../components/PacketTracerLabView/PacketTracerLabView';
 import PageHero from '../components/PageShell/PageHero';
 import PageLayout from '../components/PageShell/PageLayout';
-import SubjectCard from '../components/SubjectCard/SubjectCard';
-import TheoryView from '../components/TheoryView/TheoryView';
-import { MENTORING_VIEWS } from '../constants/mentoring';
+import { MENTORING_ROUTE } from '../constants/routes';
 import { subjects } from '../data/mentoring';
-import useMentoringPageState from '../hooks/useMentoringPageState';
+import useLearningProgress from '../hooks/useLearningProgress';
 import { useI18n } from '../i18n/i18n';
+import {
+    buildCourses,
+    getCourseById,
+    getLessonById,
+    lessonMatches,
+} from '../utils/mentoringCourse';
 import './MentoriasPage.css';
 
-const slideVariants = {
-    initial: { opacity: 0, x: 32 },
-    animate: {
-        opacity: 1,
-        x: 0,
-        transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
-    },
-    exit: { opacity: 0, x: -20, transition: { duration: 0.2 } },
+const enterVariants = {
+    initial: { opacity: 0, y: 18 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
-function LabsEmptyState({ t }) {
+const MotionDiv = motion.div;
+
+function AcademySummary({ courses }) {
+    const totals = courses.reduce(
+        (acc, course) => ({
+            lessons: acc.lessons + course.stats.lessons,
+            simulations: acc.simulations + course.stats.simulations,
+            exercises: acc.exercises + course.stats.exercises,
+            labs: acc.labs + course.stats.labs,
+        }),
+        { lessons: 0, simulations: 0, exercises: 0, labs: 0 }
+    );
+
     return (
-        <motion.div
-            className="labs-empty"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-        >
-            <span className="labs-empty__icon">{'🔍'}</span>
-            <p className="labs-empty__title">{t('mentoring.emptyTitle')}</p>
-            <p className="labs-empty__desc">
-                {t('mentoring.emptyDesc')}
-                <br />
-                {t('mentoring.emptyHint')}
-            </p>
-        </motion.div>
+        <section className="academy-summary" aria-label="Resumen de contenido educativo">
+            <div className="academy-summary__copy">
+                <span><GraduationCap size={16} /> Academia interactiva</span>
+                <h2>Cursos diseñados como rutas de aprendizaje, no como una lista de apuntes.</h2>
+            </div>
+            <div className="academy-summary__metrics">
+                <strong>{courses.length}</strong><span>materias</span>
+                <strong>{totals.lessons}</strong><span>lecciones</span>
+                <strong>{totals.simulations}</strong><span>simulaciones</span>
+                <strong>{totals.labs}</strong><span>labs</span>
+            </div>
+        </section>
     );
 }
 
-function SubjectDetailHeader({ subject, t }) {
+function CourseBreadcrumb({ course, lesson }) {
     return (
-        <div className="subject-detail-header">
-            <div className="subject-detail-icon">
-                <Icon name={subject.icon} size={30} color={subject.color} />
-            </div>
-            <div>
-                <span className="subject-detail-code">{subject.code}</span>
-                <h2 className="subject-detail-title">{subject.title}</h2>
-                <p className="subject-detail-desc">{subject.description}</p>
-                <div className="subject-detail-meta">
-                    <span className="subject-detail-count">
-                        {subject.labs.length}{' '}
-                        {subject.labs.length !== 1 ? t('subjectCard.labs') : t('subjectCard.lab')}
-                    </span>
+        <nav className="course-breadcrumb" aria-label="Navegación de mentorías">
+            <Link to={MENTORING_ROUTE}>Mentorías</Link>
+            {course && (
+                <>
+                    <span>/</span>
+                    <Link to={`${MENTORING_ROUTE}/${course.id}`}>{course.title}</Link>
+                </>
+            )}
+            {lesson && (
+                <>
+                    <span>/</span>
+                    <span>{lesson.title}</span>
+                </>
+            )}
+        </nav>
+    );
+}
+
+function CourseFilters({ query, setQuery, type, setType, difficulty, setDifficulty, lessons }) {
+    const types = ['__all__', ...Array.from(new Set(lessons.map((lesson) => lesson.type)))];
+    const difficulties = ['__all__', ...Array.from(new Set(lessons.map((lesson) => lesson.difficulty)))];
+
+    return (
+        <section className="course-filters" aria-label="Filtros del curso">
+            <label className="course-filters__search">
+                <Search size={17} />
+                <input
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="Buscar por tema, tag, práctica o simulación..."
+                    aria-label="Buscar lecciones"
+                />
+            </label>
+
+            <div className="course-filters__groups">
+                <div className="course-filter-group">
+                    <span><Filter size={14} /> Tipo</span>
+                    {types.map((item) => (
+                        <button
+                            key={item}
+                            type="button"
+                            className={type === item ? 'is-active' : ''}
+                            onClick={() => setType(item)}
+                        >
+                            {item === '__all__' ? 'Todos' : item}
+                        </button>
+                    ))}
                 </div>
-                <div className="subject-detail-topics">
-                    {subject.topics.map((topic) => (
-                        <span key={topic} className="subject-detail-topic">
-                            {topic}
-                        </span>
+                <div className="course-filter-group">
+                    <span><Sparkles size={14} /> Nivel</span>
+                    {difficulties.map((item) => (
+                        <button
+                            key={item}
+                            type="button"
+                            className={difficulty === item ? 'is-active' : ''}
+                            onClick={() => setDifficulty(item)}
+                        >
+                            {item === '__all__' ? 'Todos' : item}
+                        </button>
                     ))}
                 </div>
             </div>
-        </div>
-    );
-}
-
-function SubjectLearningPathLegacy({ subject }) {
-    if (!subject.learningPath) {
-        return null;
-    }
-
-    return (
-        <section className="subject-learning-path">
-            <div className="subject-learning-path__intro">
-                <div className="subject-learning-path__heading-row">
-                    <span className="subject-learning-path__eyebrow">{subject.learningPath.title}</span>
-                    <div className="subject-learning-path__heading-main">
-                        <h3 className="subject-learning-path__title">Recorrido recomendado</h3>
-                    </div>
-                </div>
-                <div className="subject-learning-path__stats">
-                    <span className="subject-learning-path__stat">
-                        <Icon name="calendar" size={14} />
-                        {subject.learningPath.estimatedDuration}
-                    </span>
-                    <span
-                        className="subject-learning-path__stat subject-learning-path__stat--count"
-                        data-count={subject.labs.length}
-                    >
-                        <Icon name="book" size={14} />
-                        {subject.labs.length} mentorías
-                    </span>
-                </div>
-                <p className="subject-learning-path__summary">{subject.learningPath.summary}</p>
-            </div>
-
-            <div className="subject-learning-path__outcomes">
-                {subject.learningPath.outcomes.map((outcome) => (
-                    <div key={outcome} className="subject-learning-path__outcome">
-                        <Icon name="checkCircle" size={16} />
-                        <span>{outcome}</span>
-                    </div>
-                ))}
-            </div>
-
-            <div className="subject-learning-path__stages">
-                {subject.learningPath.stages.map((stage) => (
-                    <article key={stage.title} className="subject-learning-stage">
-                        <h4 className="subject-learning-stage__title">{stage.title}</h4>
-                        <p className="subject-learning-stage__desc">{stage.desc}</p>
-                    </article>
-                ))}
-            </div>
         </section>
     );
 }
 
-function SubjectLearningPath({ subject }) {
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    if (!subject.learningPath) {
-        return null;
-    }
-
+function CoursesOverview({ courses, progressApi, t }) {
     return (
-        <section className={`subject-learning-path ${isExpanded ? 'subject-learning-path--expanded' : ''}`}>
-            <div className="subject-learning-path__bar">
-                <div className="subject-learning-path__copy">
-                    <span className="subject-learning-path__eyebrow">{subject.learningPath.title}</span>
-                    <h3 className="subject-learning-path__title">Recorrido recomendado</h3>
-                    <p className="subject-learning-path__summary">{subject.learningPath.summary}</p>
-                </div>
-
-                <div className="subject-learning-path__meta">
-                    <div className="subject-learning-path__stats">
-                        <span className="subject-learning-path__stat">
-                            <Icon name="calendar" size={14} />
-                            {subject.learningPath.estimatedDuration}
-                        </span>
-                        <span className="subject-learning-path__stat">
-                            <Icon name="book" size={14} />
-                            {subject.labs.length} mentorias
-                        </span>
-                    </div>
-
-                    <button
-                        type="button"
-                        className="subject-learning-path__toggle"
-                        onClick={() => setIsExpanded((value) => !value)}
-                        aria-expanded={isExpanded}
-                    >
-                        <span>{isExpanded ? 'Ocultar detalle' : 'Ver detalle'}</span>
-                        <span
-                            className={`subject-learning-path__toggle-icon ${
-                                isExpanded ? 'subject-learning-path__toggle-icon--open' : ''
-                            }`}
-                            aria-hidden="true"
-                        >
-                            <Icon name="chevronRight" size={14} />
-                        </span>
-                    </button>
-                </div>
-            </div>
-
-            <AnimatePresence initial={false}>
-                {isExpanded && (
-                    <motion.div
-                        className="subject-learning-path__body"
-                        initial={{ opacity: 0, height: 0, y: -6 }}
-                        animate={{ opacity: 1, height: 'auto', y: 0 }}
-                        exit={{ opacity: 0, height: 0, y: -6 }}
-                        transition={{ duration: 0.22, ease: 'easeOut' }}
-                    >
-                        <div className="subject-learning-path__stages">
-                            {subject.learningPath.stages.map((stage, index) => (
-                                <article key={stage.title} className="subject-learning-stage">
-                                    <div className="subject-learning-stage__top">
-                                        <span className="subject-learning-stage__index">{index + 1}</span>
-                                        <h4 className="subject-learning-stage__title">{stage.title}</h4>
-                                    </div>
-                                    <p className="subject-learning-stage__desc">{stage.desc}</p>
-                                </article>
-                            ))}
-                        </div>
-
-                        <div className="subject-learning-path__outcomes">
-                            <h4 className="subject-learning-path__outcomes-title">Que te llevas</h4>
-                            {subject.learningPath.outcomes.map((outcome) => (
-                                <div key={outcome} className="subject-learning-path__outcome">
-                                    <Icon name="checkCircle" size={15} />
-                                    <span>{outcome}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </section>
-    );
-}
-
-function LabContent({ lab }) {
-    if (lab.isArduinoLab) {
-        return <ArduinoLabView lab={lab} />;
-    }
-
-    if (lab.isPacketTracerLab) {
-        return <PacketTracerLabView lab={lab} />;
-    }
-
-    if (lab.content) {
-        return <TheoryView lab={lab} />;
-    }
-
-    return <GuideView lab={lab} />;
-}
-
-export default function MentoriasPage() {
-    const { t } = useI18n();
-    const { filteredLabs, lab, navigate, setFilteredLabs, subject, view } = useMentoringPageState();
-    const handleFilterChange = useCallback((result) => setFilteredLabs(result), [setFilteredLabs]);
-
-    return (
-        <PageLayout mainClassName="mentorias-page">
+        <>
             <PageHero
                 backLabel={t('mentoring.backHome')}
                 title={t('mentoring.title')}
@@ -242,74 +135,106 @@ export default function MentoriasPage() {
                 subtitleIsHtml
             />
 
-            <div className="page-container">
-                {view !== MENTORING_VIEWS.subjects && (
-                    <Breadcrumb
-                        view={view}
-                        subject={subject}
-                        lab={lab}
-                        onNavigate={(nextView) => navigate(nextView)}
-                    />
-                )}
+            <div className="page-container page-container--academy">
+                <MotionDiv variants={enterVariants} initial="initial" animate="animate">
+                    <MentoringStats />
+                    <AcademySummary courses={courses} />
 
-                <AnimatePresence mode="wait">
-                    {view === MENTORING_VIEWS.subjects && (
-                        <motion.div key="subjects" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-                            <MentoringStats />
+                    <section className="mentorias-section">
+                        <div className="section-heading-row">
+                            <div>
+                                <span className="section-kicker"><BookOpen size={15} /> Catálogo guiado</span>
+                                <h2 className="section-heading">Cursos disponibles</h2>
+                            </div>
+                            <p>Elige una materia y continúa desde tu último avance. Todo el progreso se guarda localmente en este navegador.</p>
+                        </div>
 
-                            <section className="mentorias-section">
-                                <h2 className="section-heading">{t('mentoring.subjects')}</h2>
-                                <div className="subjects-grid">
-                                    {subjects.map((currentSubject) => (
-                                        <SubjectCard
-                                            key={currentSubject.id}
-                                            subject={currentSubject}
-                                            onClick={(selectedSubject) => navigate(MENTORING_VIEWS.labs, selectedSubject)}
-                                        />
-                                    ))}
-                                </div>
-                            </section>
+                        <div className="course-grid">
+                            {courses.map((course) => (
+                                <CourseCard
+                                    key={course.id}
+                                    course={course}
+                                    progress={progressApi.getSubjectProgress(course)}
+                                />
+                            ))}
+                        </div>
+                    </section>
 
-                            <MentoringApproach />
-                            <MentoringCertifications />
-                        </motion.div>
-                    )}
-
-                    {view === MENTORING_VIEWS.labs && subject && (
-                        <motion.div key="labs" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-                            <SubjectDetailHeader subject={subject} t={t} />
-                            <SubjectLearningPath subject={subject} />
-
-                            <section className="mentorias-section">
-                                <h3 className="section-heading">{t('mentoring.labs')}</h3>
-
-                                <LabsToolbar labs={subject.labs} onChange={handleFilterChange} />
-
-                                {filteredLabs.length > 0 ? (
-                                    <div className="labs-grid">
-                                        {filteredLabs.map((currentLab, index) => (
-                                            <LabCard
-                                                key={currentLab.id}
-                                                lab={currentLab}
-                                                index={index}
-                                                onClick={(selectedLab) => navigate(MENTORING_VIEWS.guide, subject, selectedLab)}
-                                            />
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <LabsEmptyState t={t} />
-                                )}
-                            </section>
-                        </motion.div>
-                    )}
-
-                    {view === MENTORING_VIEWS.guide && lab && (
-                        <motion.div key="guide" variants={slideVariants} initial="initial" animate="animate" exit="exit">
-                            <LabContent lab={lab} />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                    <MentoringApproach />
+                    <MentoringCertifications />
+                </MotionDiv>
             </div>
+        </>
+    );
+}
+
+function CourseDetail({ course, progressApi }) {
+    const [query, setQuery] = useState('');
+    const [type, setType] = useState('__all__');
+    const [difficulty, setDifficulty] = useState('__all__');
+    const progress = progressApi.getSubjectProgress(course);
+    const lastLesson = progress.lastLessonId ? getLessonById(course, progress.lastLessonId) : null;
+    const filteredLessons = course.lessons.filter((lesson) => lessonMatches(lesson, query, type, difficulty));
+
+    return (
+        <div className="page-container page-container--academy page-container--course">
+            <MotionDiv variants={enterVariants} initial="initial" animate="animate">
+                <CourseBreadcrumb course={course} />
+                <CourseDashboard
+                    course={course}
+                    progress={progress}
+                    lastLesson={lastLesson}
+                    onReset={() => progressApi.resetSubject(course.id)}
+                />
+
+                <CourseFilters
+                    query={query}
+                    setQuery={setQuery}
+                    type={type}
+                    setType={setType}
+                    difficulty={difficulty}
+                    setDifficulty={setDifficulty}
+                    lessons={course.lessons}
+                />
+
+                <ModuleTimeline course={course} lessons={filteredLessons} progressApi={progressApi} />
+            </MotionDiv>
+        </div>
+    );
+}
+
+function LessonDetail({ course, lesson, progressApi }) {
+    return (
+        <div className="page-container page-container--academy page-container--lesson">
+            <MotionDiv variants={enterVariants} initial="initial" animate="animate">
+                <CourseBreadcrumb course={course} lesson={lesson} />
+                <LessonPlayer course={course} lesson={lesson} progressApi={progressApi} />
+            </MotionDiv>
+        </div>
+    );
+}
+
+export default function MentoriasPage() {
+    const { t } = useI18n();
+    const { subjectId, lessonId } = useParams();
+    const courses = useMemo(() => buildCourses(subjects), []);
+    const progressApi = useLearningProgress();
+    const course = subjectId ? getCourseById(courses, subjectId) : null;
+    const lesson = course && lessonId ? getLessonById(course, lessonId) : null;
+
+    if (subjectId && !course) {
+        return <Navigate to={MENTORING_ROUTE} replace />;
+    }
+
+    if (course && lessonId && !lesson) {
+        return <Navigate to={`${MENTORING_ROUTE}/${course.id}`} replace />;
+    }
+
+    return (
+        <PageLayout mainClassName={`mentorias-page ${subjectId ? 'mentorias-page--focused' : ''}`}>
+            {!subjectId && <CoursesOverview courses={courses} progressApi={progressApi} t={t} />}
+            {course && !lessonId && <CourseDetail course={course} progressApi={progressApi} />}
+            {course && lesson && <LessonDetail course={course} lesson={lesson} progressApi={progressApi} />}
         </PageLayout>
     );
 }

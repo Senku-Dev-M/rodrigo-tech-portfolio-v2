@@ -3,14 +3,18 @@ import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 import './SubjectCard.css';
 
+const MotionButton = motion.button;
+
 export default function SubjectCard({ subject, onClick }) {
     const { t } = useI18n();
 
     return (
-        <motion.div
+        <MotionButton
+            type="button"
             className="subject-card"
             style={{ '--accent': subject.color }}
             onClick={() => onClick(subject)}
+            aria-label={`Abrir materia ${subject.title}`}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -37,6 +41,6 @@ export default function SubjectCard({ subject, onClick }) {
                 </span>
                 <span className="subject-card__arrow">→</span>
             </div>
-        </motion.div>
+        </MotionButton>
     );
 }

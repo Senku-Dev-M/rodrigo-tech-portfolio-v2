@@ -48,6 +48,7 @@ const es = {
         subtitle: 'Proyectos reales con impacto — desde APIs con IA hasta apps móviles con UX de alta fidelidad.',
         backHome: '← Volver al inicio',
         highlights: 'Tecnologías destacadas',
+        liveLinks: 'Enlaces del proyecto',
         githubTitle: 'Más proyectos en GitHub',
         githubDesc: 'Explora mi código, contribuciones y repos públicos.',
         githubCta: 'Ver GitHub →',

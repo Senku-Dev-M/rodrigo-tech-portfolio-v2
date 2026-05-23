@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 export default function JavaDeskcheckSim() {
-    const numeros = [10, 20, 30, 40, 50];
     const [step, setStep] = useState(0);
 
     // Manual DeskCheck table logic steps

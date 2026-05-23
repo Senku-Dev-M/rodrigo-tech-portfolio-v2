@@ -3,6 +3,8 @@ import { getLabTypeColor, LAB_DIFFICULTY_COLORS, LAB_THEORY_TYPE } from '../../c
 import { useI18n } from '../../i18n/i18n';
 import './LabCard.css';
 
+const MotionButton = motion.button;
+
 export default function LabCard({ lab, onClick, index = 0 }) {
     const { t } = useI18n();
     const color = LAB_DIFFICULTY_COLORS[lab.difficulty] || '#00d4ff';
@@ -10,10 +12,12 @@ export default function LabCard({ lab, onClick, index = 0 }) {
     const stepNumber = index + 1;
 
     return (
-        <motion.div
+        <MotionButton
+            type="button"
             className="lab-card"
             style={{ '--accent': color }}
             onClick={() => onClick(lab)}
+            aria-label={`Abrir ${lab.type.toLowerCase()} ${lab.title}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -61,6 +65,6 @@ export default function LabCard({ lab, onClick, index = 0 }) {
                     {lab.type === LAB_THEORY_TYPE ? t('lab.viewTheory') : t('lab.viewLab')}
                 </span>
             </div>
-        </motion.div>
+        </MotionButton>
     );
 }

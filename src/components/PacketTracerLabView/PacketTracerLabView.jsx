@@ -15,15 +15,17 @@ const sectionStyle = {
     border: '1px solid rgba(0, 212, 255, 0.08)',
 };
 
-export default function PacketTracerLabView({ lab }) {
+export default function PacketTracerLabView({ lab, showHeader = true }) {
     return (
         <div className="theory-view">
             {/* ── HEADER ─────────────────────────────────────── */}
-            <ContentHeader
-                lab={lab}
-                variant="theory"
-                typeBadgeClassName="theory-type-badge--lab"
-            />
+            {showHeader && (
+                <ContentHeader
+                    lab={lab}
+                    variant="theory"
+                    typeBadgeClassName="theory-type-badge--lab"
+                />
+            )}
 
             <div className="theory-content">
                 {/* Intro & Objectives */}

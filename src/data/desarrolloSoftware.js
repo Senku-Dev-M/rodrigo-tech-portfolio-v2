@@ -12,7 +12,7 @@ const desarrolloSoftwareSubject =
             title: 'Ruta de aprendizaje sugerida',
             summary:
                 'Esta materia conecta proceso, colaboración y entrega: primero entiendes cómo nace un producto de software, luego cómo se controla el cambio y finalmente cómo trabajan los equipos ágiles para moverlo.',
-            estimatedDuration: '1 h 5 min � 1 h 35 min',
+            estimatedDuration: '1 h 5 min – 1 h 35 min',
             outcomes: [
                 'Entender el SDLC como un marco de ingeniería y no solo como una lista de fases.',
                 'Dominar el flujo esencial de Git para trabajo individual y colaborativo.',
@@ -36,11 +36,11 @@ const desarrolloSoftwareSubject =
         labs: [
             {
                 id: 'intro-sdlc',
-                title: 'Introducción al SDLC � Software Development Life Cycle',
+                title: 'Introducción al SDLC — Software Development Life Cycle',
                 subtitle: 'El proceso detrás de la creación de software profesional',
                 type: 'Teoría',
                 difficulty: 'Introductorio',
-                duration: '15�20 min',
+                duration: '15–20 min',
                 tags: ['Software Engineering', 'SDLC', 'Programming', 'Software Design'],
                 learningFeatures: ['Simulación', 'Resumen', 'Ejercicio'],
                 content: {
@@ -86,7 +86,7 @@ const desarrolloSoftwareSubject =
                             simType: 'sdlc',
                             observe: [
                                 'Las fases no son departamentos aislados: una decisión temprana mala encarece todo lo que viene después.',
-                                'Mantenimiento no es un �Sextra⬝; suele ser la fase más larga del producto.',
+                                'Mantenimiento no es un extra; suele ser la fase más larga del producto.',
                                 'Agile no elimina estas preguntas, solo cambia cómo se recorren.',
                             ],
                             steps: [
@@ -215,7 +215,7 @@ const desarrolloSoftwareSubject =
                             title: 'Ejercicio opcional: analiza un sistema cotidiano',
                             prompt: 'Toma una app conocida (por ejemplo banca móvil, delivery o streaming) y describe qué entregable esperas ver en al menos cuatro fases del SDLC.',
                             hints: [
-                                'No describas solo �Scódigo⬝: incluye requerimientos, diseño, pruebas o despliegue.',
+                                'No describas solo código: incluye requerimientos, diseño, pruebas o despliegue.',
                                 'Piensa quién participaría en cada fase.',
                             ],
                         },
@@ -223,14 +223,14 @@ const desarrolloSoftwareSubject =
                     conclusion: 'El SDLC es el pilar de la ingeniería de software profesional. Conocer los fundamentos teóricos sobre cómo planificar, construir, probar y entregar sistemas diferencia a los programadores solitarios de los ingenieros de software capaces de operar en equipos de élite desarrollando sistemas de gran escala e impacto real.',
                 },
             },
-            // ���� Git Guide ������������������������������������������������������������������������������������
+            // Git Guide
             {
                 id: 'intro-git',
                 title: 'Introducción a Git y Control de Versiones',
                 subtitle: 'Domina el sistema de control de versiones más utilizado del mundo',
                 type: 'Guía',
                 difficulty: 'Básico / Intermedio',
-                duration: '30�45 min',
+                duration: '30–45 min',
                 tags: ['Git', 'Version Control', 'Software Development', 'GitHub'],
                 learningFeatures: ['Simulación', 'Paso a paso', 'Comandos'],
                 guide: {
@@ -263,7 +263,7 @@ const desarrolloSoftwareSubject =
                         'Entender qué es el control de versiones y por qué es esencial en el trabajo en equipo.',
                         'Comprender los conceptos clave de Git: repositorio, commit, branch, merge y remote.',
                         'Instalar y configurar Git en un entorno Linux.',
-                        'Ejecutar el flujo básico de trabajo: editar �  staging �  commit.',
+                        'Ejecutar el flujo básico de trabajo: editar → staging → commit.',
                         'Trabajar con ramas para aislar funcionalidades.',
                         'Conectar un repositorio local con GitHub y sincronizar cambios.',
                     ],
@@ -283,8 +283,8 @@ const desarrolloSoftwareSubject =
                             title: '¿Qué es Git?',
                             text: 'Git es un sistema de control de versiones distribuido creado por Linus Torvalds en 2005. A diferencia de sistemas centralizados, cada desarrollador tiene una copia completa del historial del repositorio en su propia máquina.',
                             steps: [
-                                'Git �0� GitHub: Git es la herramienta local; GitHub es una plataforma web para alojar repositorios Git remotos.',
-                                'Distribuido: no depende de un servidor central para funcionar � puedes hacer commits offline.',
+                                'Git != GitHub: Git es la herramienta local; GitHub es una plataforma web para alojar repositorios Git remotos.',
+                                'Distribuido: no depende de un servidor central para funcionar; puedes hacer commits offline.',
                                 'Historial completo: cada repositorio contiene toda la historia de cambios del proyecto.',
                                 'Ramas (branches): permiten desarrollar funcionalidades en paralelo sin interferir entre sí.',
                             ],
@@ -337,17 +337,17 @@ const desarrolloSoftwareSubject =
                                 { cmd: 'git init', desc: 'Inicializa un repositorio Git vacío. Crea una carpeta oculta .git que almacena toda la historia.' },
                             ],
                             expectedOutput: 'Initialized empty Git repository in /home/usuario/mi-proyecto/.git/',
-                            outputExplanation: 'El repositorio está listo. Todavía no tiene commits � es una pizarra en blanco.',
+                            outputExplanation: 'El repositorio está listo. Todavía no tiene commits; es una pizarra en blanco.',
                         },
                         {
                             id: '06',
-                            title: 'El flujo básico: editar �  add �  commit',
+                            title: 'El flujo básico: editar → add → commit',
                             text: 'El flujo de trabajo diario en Git siempre sigue este patrón de tres pasos:',
                             commands: [
-                                { cmd: 'echo "# Mi Proyecto" > README.md', desc: 'Paso 1 � Editar: Crea un archivo README.md con contenido básico.' },
+                                { cmd: 'echo "# Mi Proyecto" > README.md', desc: 'Paso 1 — Editar: Crea un archivo README.md con contenido básico.' },
                                 { cmd: 'git status', desc: 'Inspecciona el estado. Git mostrará README.md como un archivo sin rastrear (untracked).' },
-                                { cmd: 'git add README.md', desc: 'Paso 2 � Staging: Agrega el archivo al área de preparación (staging area).' },
-                                { cmd: 'git commit -m "Agrega README inicial"', desc: 'Paso 3 � Commit: Guarda la instantánea con un mensaje descriptivo.' },
+                                { cmd: 'git add README.md', desc: 'Paso 2 — Staging: Agrega el archivo al área de preparación (staging area).' },
+                                { cmd: 'git commit -m "Agrega README inicial"', desc: 'Paso 3 — Commit: Guarda la instantánea con un mensaje descriptivo.' },
                             ],
                             expectedOutput: '[main (root-commit) 1a2b3c4] Agrega README inicial\n 1 file changed, 1 insertion(+)',
                             outputExplanation: 'El commit fue creado exitosamente. El hash (1a2b3c4) es el identificador único de este punto en la historia del proyecto.',
@@ -398,7 +398,7 @@ const desarrolloSoftwareSubject =
                             title: 'Actualizar desde el repositorio remoto',
                             text: 'Cuando trabajas en equipo, otros desarrolladores hacen push de sus cambios. Necesitas descargarlos a tu máquina local:',
                             commands: [
-                                { cmd: 'git fetch origin', desc: 'Descarga los cambios del remoto PERO no los aplica todavía. �atil para revisar antes de integrar.' },
+                                { cmd: 'git fetch origin', desc: 'Descarga los cambios del remoto PERO no los aplica todavía. Útil para revisar antes de integrar.' },
                                 { cmd: 'git pull origin main', desc: 'Descarga los cambios de main en el servidor Y los fusiona automáticamente con tu rama local.' },
                             ],
                         },
@@ -430,19 +430,19 @@ const desarrolloSoftwareSubject =
                     ],
                     learnings: [
                         { concept: 'Control de versiones distribuido', desc: 'Cada desarrollador tiene una copia completa del historial del proyecto.' },
-                        { concept: 'Flujo Working Directory �  Staging �  Repository', desc: 'Tres zonas que permiten preparar y revisar cambios antes de confirmarlos.' },
+                        { concept: 'Flujo Working Directory → Staging → Repository', desc: 'Tres zonas que permiten preparar y revisar cambios antes de confirmarlos.' },
                         { concept: 'Ramas (branches)', desc: 'Permiten desarrollar funcionalidades en paralelo sin interferir con el código estable.' },
                         { concept: 'Sincronización con remoto', desc: 'git push y git pull sincronizan el repositorio local con GitHub.' },
                         { concept: 'Historial de commits', desc: 'git log proporciona una traza completa de todos los cambios del proyecto a lo largo del tiempo.' },
                     ],
                     extensions: [
                         {
-                            title: '.gitignore � Ignorar archivos confidenciales',
+                            title: '.gitignore — Ignorar archivos confidenciales',
                             desc: 'Crea un archivo .gitignore para excluir archivos que no deben subirse a GitHub (node_modules, .env, credenciales, etc.).',
                             command: 'echo "node_modules/\\n.env\\n*.log" > .gitignore && git add .gitignore && git commit -m "Agrega .gitignore"',
                         },
                         {
-                            title: 'git stash � Guardar trabajo en progreso',
+                            title: 'git stash — Guardar trabajo en progreso',
                             desc: 'Guarda temporalmente los cambios sin commitear cuando necesitas cambiar de rama urgentemente.',
                             command: 'git stash        # Guarda cambios\ngit stash pop    # Recupera los cambios guardados',
                         },
@@ -463,14 +463,14 @@ const desarrolloSoftwareSubject =
                     conclusion: 'Git deja de ser una lista de comandos cuando entiendes el flujo que protege: cambios locales, preparación, confirmación, ramas y sincronización. Dominar esa secuencia te vuelve mucho más confiable trabajando solo o en equipo.',
                 },
             },
-            // ���� Scrum Theory ��������������������������������������������������������������������������������
+            // Scrum Theory
             {
                 id: 'intro-scrum',
-                title: 'Scrum � Metodología Ágil para el Desarrollo de Software',
+                title: 'Scrum — Metodología Ágil para el Desarrollo de Software',
                 subtitle: 'Framework ágil para desarrollar productos complejos mediante iteraciones cortas y colaboración continua',
                 type: 'Teoría',
                 difficulty: 'Básico / Intermedio',
-                duration: '20�30 min',
+                duration: '20–30 min',
                 tags: ['Scrum', 'Agile', 'Software Development', 'Project Management'],
                 learningFeatures: ['Simulación', 'Tablero', 'Ejercicio'],
                 content: {
@@ -532,7 +532,7 @@ const desarrolloSoftwareSubject =
                             simType: 'scrum-flow',
                             simLayout: 'stacked',
                             observe: [
-                                'El Sprint agrupa planificación, ejecución, revisión y mejora; no es solo �Sprogramar dos semanas⬝.',
+                                'El Sprint agrupa planificación, ejecución, revisión y mejora; no es solo programar dos semanas.',
                                 'El feedback de Review y Retrospective alimenta el siguiente ciclo.',
                             ],
                             steps: [
@@ -596,7 +596,7 @@ const desarrolloSoftwareSubject =
                         },
                         {
                             type: 'process',
-                            title: 'Tablero Scrum � Simulación de un Sprint',
+                            title: 'Tablero Scrum — Simulación de un Sprint',
                             desc: 'Observa cómo las tareas avanzan desde el Backlog hasta Done durante el Sprint. Pulsa "Iniciar simulación" para verlo en acción.',
                             simType: 'scrum-board',
                             simLayout: 'stacked',
@@ -634,7 +634,7 @@ const desarrolloSoftwareSubject =
                         },
                         {
                             type: 'proscons',
-                            title: 'Scrum � Ventajas y Desafíos',
+                            title: 'Scrum — Ventajas y Desafíos',
                             pros: [
                                 'Entrega rápida de valor: el cliente recibe software funcional desde el primer Sprint.',
                                 'Adaptación al cambio: el Backlog puede reordenarse antes de cada Sprint.',
@@ -651,8 +651,8 @@ const desarrolloSoftwareSubject =
                         },
                         {
                             type: 'text',
-                            title: 'Ejemplo Práctico � Sprint de una App Web',
-                            content: 'Imagina un equipo de 5 personas construyendo una aplicación de gestión de tareas. El <strong>Product Backlog</strong> incluye: Sistema de login, Registro de usuarios, Panel de usuario y Sistema de notificaciones.\n\nEn el <strong>Sprint Planning</strong>, el equipo selecciona "Sistema de login" y "Registro de usuarios" como objetivo del Sprint de 2 semanas. Durante el <strong>Sprint</strong>, cada día el equipo se sincroniza en el Daily Scrum (15 min). A mitad del Sprint, el PO sugiere agregar autenticación con Google � el equipo lo anota en el Backlog pero no lo agrega al Sprint actual.\n\nEn el <strong>Sprint Review</strong>, el equipo demuestra el login funcionando con usuarios reales. Los stakeholders dan feedback positivo y piden que el email de bienvenida sea más personalizado. En la <strong>Retrospectiva</strong>, el equipo identifica que los code reviews tardaban mucho � acordaron hacerlos en menos de 24 horas. El siguiente Sprint comienza con el Backlog actualizado.',
+                            title: 'Ejemplo práctico — Sprint de una App Web',
+                            content: 'Imagina un equipo de 5 personas construyendo una aplicación de gestión de tareas. El <strong>Product Backlog</strong> incluye: Sistema de login, Registro de usuarios, Panel de usuario y Sistema de notificaciones.\n\nEn el <strong>Sprint Planning</strong>, el equipo selecciona "Sistema de login" y "Registro de usuarios" como objetivo del Sprint de 2 semanas. Durante el <strong>Sprint</strong>, cada día el equipo se sincroniza en el Daily Scrum (15 min). A mitad del Sprint, el PO sugiere agregar autenticación con Google; el equipo lo anota en el Backlog pero no lo agrega al Sprint actual.\n\nEn el <strong>Sprint Review</strong>, el equipo demuestra el login funcionando con usuarios reales. Los stakeholders dan feedback positivo y piden que el email de bienvenida sea más personalizado. En la <strong>Retrospectiva</strong>, el equipo identifica que los code reviews tardaban mucho; acordaron hacerlos en menos de 24 horas. El siguiente Sprint comienza con el Backlog actualizado.',
                         },
                         {
                             type: 'calloutGroup',

@@ -349,7 +349,7 @@ function ModelsSection({ section, t }) {
     );
 }
 
-export default function TheoryView({ lab }) {
+export default function TheoryView({ lab, showHeader = true, showSidebar = true }) {
     const { t } = useI18n();
     const { content } = lab;
 
@@ -422,15 +422,17 @@ export default function TheoryView({ lab }) {
 
     return (
         <div className="theory-view">
-            <ContentHeader lab={lab} variant="theory" />
-            <div className="theory-layout">
-                <aside className="theory-sidebar">
-                    <SectionNav
-                        items={sectionNavItems}
-                        introLabel={t('theory.intro', 'Introducción')}
-                        conclusionLabel={t('theory.conclusion', 'Conclusión')}
-                    />
-                </aside>
+            {showHeader && <ContentHeader lab={lab} variant="theory" />}
+            <div className={`theory-layout ${!showSidebar ? 'theory-layout--single' : ''}`}>
+                {showSidebar && (
+                    <aside className="theory-sidebar">
+                        <SectionNav
+                            items={sectionNavItems}
+                            introLabel={t('theory.intro', 'Introducción')}
+                            conclusionLabel={t('theory.conclusion', 'Conclusión')}
+                        />
+                    </aside>
+                )}
 
                 <div className="theory-main">
                     <Section id="theory-intro" title={t('theory.intro', 'Introducción')}>

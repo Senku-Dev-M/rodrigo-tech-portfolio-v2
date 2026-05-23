@@ -1,22 +1,22 @@
 const calidadSoftware2Subject = {
     id: 'ingenieria-calidad-software-2',
     code: 'SQE-II',
-    title: 'Ingenieria de Calidad de Software 2',
+    title: 'Ingeniería de Calidad de Software 2',
     description:
-        'Diseno de pruebas, testing exploratorio y guiado, analisis de riesgo, domain testing, combinatoria y gestion profesional de defectos en equipos QA.',
+        'Diseño de pruebas, testing exploratorio y guiado, análisis de riesgo, domain testing, combinatoria y gestión profesional de defectos en equipos QA.',
     icon: 'shield',
     color: '#f59e0b',
     topics: ['QA', 'Software Testing', 'Exploratory Testing', 'Domain Testing', 'Bug Reporting'],
     learningPath: {
         title: 'Ruta de aprendizaje sugerida',
         summary:
-            'La materia avanza desde la observacion exploratoria hasta la gestion operacional de calidad. Primero aprendes a investigar un producto, luego a formalizar evidencia, despues a elegir tecnicas segun riesgo y entradas, y finalmente a comunicar defectos y operar el trabajo de QA con criterio profesional.',
+            'La materia avanza desde la observación exploratoria hasta la gestión operacional de calidad. Primero aprendes a investigar un producto, luego a formalizar evidencia, después a elegir técnicas según riesgo y entradas, y finalmente a comunicar defectos y operar el trabajo de QA con criterio profesional.',
         estimatedDuration: '5 h 20 min - 7 h 10 min',
         outcomes: [
-            'Distinguir con criterio cuando conviene explorar, cuando conviene guiar y cuando conviene formalizar.',
-            'Diseñar casos de prueba, particiones, limites y combinaciones sin depender de intuiciones vagas.',
-            'Priorizar el esfuerzo de prueba segun riesgo, robustez esperada y relevancia de negocio.',
-            'Reportar, validar y gestionar defectos de forma util para desarrollo, producto y stakeholders.',
+            'Distinguir con criterio cuándo conviene explorar, cuándo conviene guiar y cuándo conviene formalizar.',
+            'Diseñar casos de prueba, particiones, límites y combinaciones sin depender de intuiciones vagas.',
+            'Priorizar el esfuerzo de prueba según riesgo, robustez esperada y relevancia de negocio.',
+            'Reportar, validar y gestionar defectos de forma útil para desarrollo, producto y stakeholders.',
         ],
         stages: [
             {
@@ -28,8 +28,8 @@ const calidadSoftware2Subject = {
                 desc: 'Convertir hallazgos y escenarios en casos de prueba repetibles, trazables y revisables.',
             },
             {
-                title: '3. Elegir tecnica adecuada',
-                desc: 'Entender taxonomias, riesgo y robustez para decidir que probar primero y con que enfoque.',
+                title: '3. Elegir técnica adecuada',
+                desc: 'Entender taxonomías, riesgo y robustez para decidir qué probar primero y con qué enfoque.',
             },
             {
                 title: '4. Diseñar entradas con criterio',
@@ -41,28 +41,28 @@ const calidadSoftware2Subject = {
             },
             {
                 title: '6. Integrar y repasar',
-                desc: 'Cerrar el recorrido conectando tecnicas, artefactos y decisiones operativas en una estrategia unica.',
+                desc: 'Cerrar el recorrido conectando técnicas, artefactos y decisiones operativas en una estrategia única.',
             },
         ],
     },
     labs: [
         {
             id: 'sqe2-exploratory-fundamentos',
-            title: 'Exploratory Testing: fundamentos y proposito',
-            subtitle: 'Mentalidad investigativa para descubrir informacion util antes de formalizar pruebas',
+            title: 'Exploratory Testing: fundamentos y propósito',
+            subtitle: 'Mentalidad investigativa para descubrir información útil antes de formalizar pruebas',
             type: 'Teoría',
             difficulty: 'Básico',
             duration: '20-30 min',
             tags: ['QA', 'Exploratory Testing', 'Semana 1', 'Software Testing'],
-            learningFeatures: ['Comparativa', 'Buenas practicas', 'Ejercicio'],
+            learningFeatures: ['Comparativa', 'Buenas prácticas', 'Ejercicio'],
             content: {
                 intro:
-                    'Cuando un equipo todavia no entiende del todo el comportamiento de un producto, intentar escribir primero una bateria exhaustiva de test cases suele producir papeles correctos pero pruebas pobres. <strong>Exploratory testing</strong> nace para resolver ese problema: combina aprendizaje, diseno y ejecucion en una misma actividad para que el tester observe el sistema, formule hipotesis, siga pistas y produzca informacion valiosa con rapidez. No es improvisacion sin criterio; es un enfoque disciplinado para descubrir donde conviene profundizar.',
+                    'Cuando un equipo todavía no entiende del todo el comportamiento de un producto, intentar escribir primero una batería exhaustiva de test cases suele producir papeles correctos pero pruebas pobres. <strong>Exploratory testing</strong> nace para resolver ese problema: combina aprendizaje, diseño y ejecución en una misma actividad para que el tester observe el sistema, formule hipótesis, siga pistas y produzca información valiosa con rapidez. No es improvisación sin criterio; es un enfoque disciplinado para descubrir dónde conviene profundizar.',
                 objectives: [
-                    'Comprender que problema resuelve exploratory testing dentro del proceso de QA.',
-                    'Distinguir aprendizaje, diseno de prueba y ejecucion como actividades que en este enfoque ocurren en paralelo.',
-                    'Reconocer situaciones en las que explorar agrega mas valor que ejecutar guiones rigidos.',
-                    'Identificar limites reales del enfoque y errores frecuentes al aplicarlo.',
+                    'Comprender qué problema resuelve exploratory testing dentro del proceso de QA.',
+                    'Distinguir aprendizaje, diseño de prueba y ejecución como actividades que en este enfoque ocurren en paralelo.',
+                    'Reconocer situaciones en las que explorar agrega más valor que ejecutar guiones rígidos.',
+                    'Identificar límites reales del enfoque y errores frecuentes al aplicarlo.',
                 ],
                 sections: [
                     {

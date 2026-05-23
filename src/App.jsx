@@ -13,6 +13,8 @@ function App() {
         <Routes>
           <Route path={HOME_ROUTE} element={<HomePage />} />
           <Route path={MENTORING_ROUTE} element={<MentoriasPage />} />
+          <Route path={`${MENTORING_ROUTE}/:subjectId`} element={<MentoriasPage />} />
+          <Route path={`${MENTORING_ROUTE}/:subjectId/:lessonId`} element={<MentoriasPage />} />
           <Route path={PORTFOLIO_ROUTE} element={<PortafolioPage />} />
         </Routes>
         <WhatsAppButton />

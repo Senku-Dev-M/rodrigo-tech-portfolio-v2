@@ -22,8 +22,15 @@ export default function LabsToolbar({ labs, onChange }) {
     useEffect(() => {
         const q = query.trim().toLowerCase();
         const filtered = labs.filter(l => {
+            const searchable = [
+                l.title,
+                l.subtitle,
+                l.difficulty,
+                ...(l.tags || []),
+                ...(l.learningFeatures || []),
+            ].join(' ').toLowerCase();
             const matchesType  = active === '__all__' || l.type === active;
-            const matchesQuery = !q || l.title.toLowerCase().includes(q);
+            const matchesQuery = !q || searchable.includes(q);
             return matchesType && matchesQuery;
         });
         onChange(filtered);

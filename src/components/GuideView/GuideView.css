@@ -11,6 +11,10 @@
     align-items: start;
 }
 
+.guide-layout--single {
+    grid-template-columns: 1fr;
+}
+
 .guide-sidebar {
     position: sticky;
     top: 5rem;

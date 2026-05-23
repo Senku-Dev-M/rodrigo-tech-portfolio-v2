@@ -47,6 +47,7 @@ const en = {
         subtitle: 'Real projects with impact — from AI-powered APIs to mobile apps with high-fidelity UX.',
         backHome: '← Back to home',
         highlights: 'Key technologies',
+        liveLinks: 'Project links',
         githubTitle: 'More projects on GitHub',
         githubDesc: 'Explore my code, contributions and public repos.',
         githubCta: 'View GitHub →',

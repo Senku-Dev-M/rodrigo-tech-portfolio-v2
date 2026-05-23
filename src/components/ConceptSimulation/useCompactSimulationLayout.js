@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function useCompactSimulationLayout(breakpoint = 680) {
-    const getIsCompact = () => {
+    const getIsCompact = useCallback(() => {
         if (typeof window === 'undefined') {
             return false;
         }
 
         return window.innerWidth <= breakpoint;
-    };
+    }, [breakpoint]);
 
     const [isCompact, setIsCompact] = useState(getIsCompact);
 
@@ -18,7 +18,7 @@ export default function useCompactSimulationLayout(breakpoint = 680) {
         window.addEventListener('resize', update);
 
         return () => window.removeEventListener('resize', update);
-    }, [breakpoint]);
+    }, [getIsCompact]);
 
     return isCompact;
 }
