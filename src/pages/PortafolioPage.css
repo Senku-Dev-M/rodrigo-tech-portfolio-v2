@@ -16,6 +16,9 @@
     --accent: var(--mentor-accent);
     position: relative;
     display: grid;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
     gap: clamp(1.2rem, 3vw, 2.4rem);
     align-items: center;
@@ -58,7 +61,9 @@
 .project-preview {
     position: relative;
     z-index: 1;
+    width: 100%;
     min-width: 0;
+    max-width: 100%;
 }
 
 .project-showcase__content {
@@ -126,6 +131,8 @@
     font-size: 1rem;
     font-weight: 700;
     line-height: 1.55;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .project-showcase__impact svg {
@@ -134,12 +141,18 @@
     color: color-mix(in srgb, var(--accent) 78%, white);
 }
 
+.project-showcase__impact span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 .project-showcase__desc {
     max-width: 70ch;
     color: rgba(190, 225, 245, 0.72);
     font-size: 0.95rem;
     line-height: 1.7;
     margin: 0;
+    overflow-wrap: anywhere;
 }
 
 .project-showcase__highlights {
@@ -174,6 +187,7 @@
     color: rgba(226, 232, 240, 0.74);
     font-size: 0.9rem;
     line-height: 1.5;
+    overflow-wrap: anywhere;
 }
 
 .project-showcase__highlights li::before {
@@ -242,6 +256,9 @@
 }
 
 .project-window {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     height: 100%;
     overflow: hidden;
     border: 1px solid color-mix(in srgb, var(--accent) 28%, rgba(255, 255, 255, 0.14));
@@ -286,6 +303,10 @@
 
 .project-window__bar strong {
     margin-left: auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -410,12 +431,22 @@
 }
 
 @media (max-width: 720px) {
+    .portafolio-page .page-container {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
     .projects-list {
         gap: 1.5rem;
+        align-items: center;
     }
 
     .project-showcase {
+        width: calc(100vw - 2rem);
+        max-width: calc(100vw - 2rem);
         padding: 1rem;
+        overflow: hidden;
     }
 
     .project-showcase h2 {

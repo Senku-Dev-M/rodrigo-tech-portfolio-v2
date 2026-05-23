@@ -92,7 +92,7 @@ export default function ProjectShowcaseCard({ project, index }) {
 
                 <p className="project-showcase__impact">
                     <Sparkles size={16} />
-                    {pick(project, 'impact', lang)}
+                    <span>{pick(project, 'impact', lang)}</span>
                 </p>
 
                 <p className="project-showcase__desc">{pick(project, 'desc', lang)}</p>
