@@ -19,14 +19,24 @@ export default function GithubCTA() {
                     <h3>{t('portfolio.githubTitle')}</h3>
                     <p>{t('portfolio.githubDesc')}</p>
                 </div>
-                <a
-                    href={EXTERNAL_LINKS.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary"
-                >
-                    {t('portfolio.githubCta')}
-                </a>
+                <div className="github-cta-actions">
+                    <a
+                        href={EXTERNAL_LINKS.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="github-cta-button github-cta-button--primary"
+                    >
+                        {t('portfolio.githubCta')}
+                    </a>
+                    <a
+                        href={EXTERNAL_LINKS.gitlab}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="github-cta-button github-cta-button--secondary"
+                    >
+                        {t('portfolio.gitlabCta')}
+                    </a>
+                </div>
             </div>
         </motion.div>
     );

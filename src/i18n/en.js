@@ -48,9 +48,10 @@ const en = {
         backHome: '← Back to home',
         highlights: 'Key technologies',
         liveLinks: 'Project links',
-        githubTitle: 'More projects on GitHub',
-        githubDesc: 'Explore my code, contributions and public repos.',
+        githubTitle: 'More projects on GitHub and GitLab',
+        githubDesc: 'Explore my code, contributions and public repos on both platforms.',
         githubCta: 'View GitHub →',
+        gitlabCta: 'View GitLab →',
     },
 
     // ── Mentoring ──

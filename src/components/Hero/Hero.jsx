@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
-import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Github, Gitlab, Linkedin, Instagram, Mail } from 'lucide-react';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
 import { scrollToSelector } from '../../utils/scroll';
@@ -10,6 +10,7 @@ import './Hero.css';
 
 const socialLinks = [
     { label: 'GitHub', href: EXTERNAL_LINKS.github, icon: <Github size={24} /> },
+    { label: 'GitLab', href: EXTERNAL_LINKS.gitlab, icon: <Gitlab size={24} /> },
     { label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin, icon: <Linkedin size={24} /> },
     { label: 'Instagram', href: EXTERNAL_LINKS.instagram, icon: <Instagram size={24} /> },
     { label: 'Email', href: EXTERNAL_LINKS.email, icon: <Mail size={24} /> },
@@ -98,6 +99,9 @@ export default function Hero() {
                     </a>
                     <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="btn-ghost">
                         GitHub →
+                    </a>
+                    <a href={EXTERNAL_LINKS.gitlab} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                        GitLab →
                     </a>
                 </motion.div>
 

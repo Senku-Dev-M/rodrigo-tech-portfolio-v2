@@ -1,10 +1,11 @@
 import { useI18n } from '../../i18n/i18n';
-import { Github, Linkedin, Instagram, Mail, Award } from 'lucide-react';
+import { Github, Gitlab, Linkedin, Instagram, Mail, Award } from 'lucide-react';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import './Footer.css';
 
 const footerLinks = [
     { labelKey: null, label: 'GitHub', href: EXTERNAL_LINKS.github, icon: <Github size={18} /> },
+    { labelKey: null, label: 'GitLab', href: EXTERNAL_LINKS.gitlab, icon: <Gitlab size={18} /> },
     { labelKey: null, label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin, icon: <Linkedin size={18} /> },
     { labelKey: null, label: 'Instagram', href: EXTERNAL_LINKS.instagram, icon: <Instagram size={18} /> },
     { labelKey: null, label: 'Email', href: EXTERNAL_LINKS.email, icon: <Mail size={18} /> },
