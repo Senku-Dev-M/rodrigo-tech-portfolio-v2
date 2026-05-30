@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import { educationEntries } from '../../data/about';
-import ProjectIcon from '../Icon/ProjectIcon';
 
 export default function EducationSection() {
     const { t } = useI18n();
@@ -20,7 +19,7 @@ export default function EducationSection() {
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
                         <div className="edu-icon">
-                            <ProjectIcon name={entry.icon} size={22} />
+                            <img src={entry.icon} alt={t(entry.schoolKey)} className="edu-logo-img" />
                         </div>
                         <div>
                             <h4>{t(entry.titleKey)}</h4>

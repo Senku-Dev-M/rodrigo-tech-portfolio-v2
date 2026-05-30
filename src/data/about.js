@@ -72,15 +72,18 @@ export const experiences = [
     },
 ];
 
+import jalaIcon from '../assets/jala_icon.jpg';
+import eispmdIcon from '../assets/eispmd_icon.jpg';
+
 export const educationEntries = [
     {
-        icon: 'graduation-cap',
+        icon: jalaIcon,
         titleKey: 'about.edu1Title',
         schoolKey: 'about.edu1School',
         descriptionKey: 'about.edu1Desc',
     },
     {
-        icon: 'cpu',
+        icon: eispmdIcon,
         titleKey: 'about.edu2Title',
         schoolKey: 'about.edu2School',
         descriptionKey: 'about.edu2Desc',

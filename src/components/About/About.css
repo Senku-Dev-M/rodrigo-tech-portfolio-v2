@@ -310,10 +310,16 @@
     width: 42px;
     height: 42px;
     border-radius: 10px;
-    background: rgba(0, 212, 255, 0.08);
-    border: 1px solid rgba(0, 212, 255, 0.15);
-    color: #00d4ff;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.edu-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .education-card h4 {
