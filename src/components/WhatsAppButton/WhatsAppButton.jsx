@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useCallback, useRef, useMemo } from 'react';
-import profileImg from '../../assets/profile.jpg';
+import profileImg from '../../assets/Profile2.png';
 import { reducer } from './reducer';
 import { WhatsappSVG, CloseSVG, CheckSVG, SendSVG } from './Icons';
 import css from './styles.module.css';

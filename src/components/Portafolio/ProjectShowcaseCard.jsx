@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Layers3, Link2, ServerCog, Sparkles } from 'lucide-react';
 import { pick, useI18n } from '../../i18n/i18n';
+import ProjectIcon from '../Icon/ProjectIcon';
 
 const reveal = {
     hidden: { opacity: 0, y: 34 },
@@ -83,7 +84,7 @@ export default function ProjectShowcaseCard({ project, index }) {
         >
             <div className="project-showcase__content">
                 <div className="project-showcase__topline">
-                    <span className="project-showcase__icon">{project.icon}</span>
+                    <span className="project-showcase__icon"><ProjectIcon name={project.icon} size={22} /></span>
                     <span className="project-showcase__type">{project.type}</span>
                     <span className="project-showcase__period">{pick(project, 'period', lang)}</span>
                 </div>

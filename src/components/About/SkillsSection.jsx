@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import { skills, categoryColors } from '../../data/about';
+import techIconMap from '../Icon/techIcons';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -14,23 +15,27 @@ export default function SkillsSection({ skillsRef, skillsInView }) {
         <div ref={skillsRef} className="skills-section">
             <h3 className="subsection-title">{t('about.skills')}</h3>
             <div className="skills-grid">
-                {skills.map((skill, i) => (
-                    <motion.div
-                        key={skill.name}
-                        className="skill-chip"
-                        style={{
-                            '--accent': categoryColors[skill.category],
-                            borderColor: `${categoryColors[skill.category]}40`,
-                        }}
-                        variants={fadeUp}
-                        initial="hidden"
-                        animate={skillsInView ? 'visible' : 'hidden'}
-                        custom={i * 0.5}
-                        whileHover={{ scale: 1.06, borderColor: categoryColors[skill.category] }}
-                    >
-                        {skill.name}
-                    </motion.div>
-                ))}
+                {skills.map((skill, i) => {
+                    const TechSvg = techIconMap[skill.name];
+                    return (
+                        <motion.div
+                            key={skill.name}
+                            className="skill-chip"
+                            style={{
+                                '--accent': categoryColors[skill.category],
+                                borderColor: `${categoryColors[skill.category]}40`,
+                            }}
+                            variants={fadeUp}
+                            initial="hidden"
+                            animate={skillsInView ? 'visible' : 'hidden'}
+                            custom={i * 0.5}
+                            whileHover={{ scale: 1.06, borderColor: categoryColors[skill.category] }}
+                        >
+                            {TechSvg && <TechSvg size={14} />}
+                            {skill.name}
+                        </motion.div>
+                    );
+                })}
             </div>
             <div className="skills-legend">
                 {Object.entries(categoryColors).map(([cat, color]) => (

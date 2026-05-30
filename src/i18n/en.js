@@ -25,9 +25,9 @@ const en = {
         title: 'About Me',
         subtitle: 'Full Stack Developer · La Paz, Bolivia',
         desc: 'Final-year Commercial Software Engineering student and Higher Technician in Industrial Informatics. Backend-focused with real experience in distributed systems, Clean Architecture and DevOps. Passionate about teaching, mentoring and engineering best practices.',
-        badge1: '🎓 Outstanding Student × 3',
-        badge2: '🧑‍🏫 Academic Mentor',
-        badge3: '📍 La Paz, Bolivia',
+        badge1: 'Outstanding Student × 3',
+        badge2: 'Academic Mentor',
+        badge3: 'La Paz, Bolivia',
         experience: 'Work Experience',
         skills: 'Technical Skills',
         education: 'Education',
@@ -39,6 +39,8 @@ const en = {
         edu2Title: 'Higher Technician in Industrial Informatics',
         edu2School: 'Escuela Industrial Superior Pedro Domingo Murillo · 2020 – 2024',
         edu2Desc: 'Technical training in industrial informatics, programming and computer systems.',
+        cvEs: 'CV (Spanish)',
+        cvEn: 'Resume (English)',
     },
 
     // ── Portfolio ──
@@ -113,8 +115,8 @@ const en = {
         examples: 'Usage examples',
         comparisonTitle: 'Comparison Table',
         aspect: 'Aspect',
-        pros: '✅ Advantages',
-        cons: '⚠️ Disadvantages',
+        pros: 'Advantages',
+        cons: 'Disadvantages',
     },
 
     // ── Subject Card ──

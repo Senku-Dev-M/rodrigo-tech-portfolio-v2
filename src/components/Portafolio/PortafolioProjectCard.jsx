@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Link2 } from 'lucide-react';
 import { pick, useI18n } from '../../i18n/i18n';
+import ProjectIcon from '../Icon/ProjectIcon';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -28,7 +29,7 @@ export default function PortafolioProjectCard({ project, index }) {
         >
             <div className="project-detail-header">
                 <div className="project-detail-meta">
-                    <span className="project-detail-icon">{project.icon}</span>
+                    <span className="project-detail-icon"><ProjectIcon name={project.icon} size={28} /></span>
                     <div>
                         <h2 className="project-detail-name">{project.name}</h2>
                         <div className="project-detail-badges">

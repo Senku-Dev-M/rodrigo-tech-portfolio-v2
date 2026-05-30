@@ -126,6 +126,9 @@
 }
 
 .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     background: rgba(0, 212, 255, 0.06);
     border: 1px solid rgba(0, 212, 255, 0.2);
     color: rgba(180, 240, 255, 0.85);
@@ -133,6 +136,11 @@
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: 500;
+}
+
+.badge svg {
+    color: #00d4ff;
+    opacity: 0.8;
 }
 
 /* ── Timeline ── */
@@ -218,6 +226,9 @@
 }
 
 .skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--accent, rgba(0, 212, 255, 0.2));
     border-radius: 6px;
@@ -227,6 +238,15 @@
     color: rgba(255, 255, 255, 0.7);
     cursor: default;
     transition: transform 0.15s, background 0.15s;
+}
+
+.skill-chip svg {
+    color: var(--accent, #00d4ff);
+    opacity: 0.7;
+}
+
+.skill-chip:hover svg {
+    opacity: 1;
 }
 
 .skill-chip:hover {
@@ -284,7 +304,15 @@
 }
 
 .edu-icon {
-    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
     flex-shrink: 0;
 }
 
@@ -340,7 +368,10 @@
 }
 
 .cert-icon {
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f59e0b;
     flex-shrink: 0;
 }
 

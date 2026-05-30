@@ -26,9 +26,9 @@ const es = {
         title: 'Sobre Mí',
         subtitle: 'Full Stack Developer · La Paz, Bolivia',
         desc: 'Estudiante de último año de Ingeniería en Software Comercial y Técnico Superior en Informática Industrial. Orientado al backend con experiencia real en sistemas distribuidos, Clean Architecture y DevOps. Apasionado por la enseñanza, la mentoría y las buenas prácticas de ingeniería.',
-        badge1: '🎓 Estudiante Destacado × 3',
-        badge2: '🧑‍🏫 Mentor Académico',
-        badge3: '📍 La Paz, Bolivia',
+        badge1: 'Estudiante Destacado × 3',
+        badge2: 'Mentor Académico',
+        badge3: 'La Paz, Bolivia',
         experience: 'Experiencia Laboral',
         skills: 'Habilidades Técnicas',
         education: 'Formación',
@@ -40,6 +40,8 @@ const es = {
         edu2Title: 'Técnico Superior en Informática Industrial',
         edu2School: 'Escuela Industrial Superior Pedro Domingo Murillo · 2020 – 2024',
         edu2Desc: 'Formación técnica en informática industrial, programación y sistemas computacionales.',
+        cvEs: 'Currículum (Español)',
+        cvEn: 'Resume (English)',
     },
 
     // ── Portfolio ──

@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
-import { Github, Gitlab, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Github, Gitlab, Linkedin, Instagram, Mail, Download, FileText } from 'lucide-react';
+import cvEs from '../../assets/CV BEIMAR RODRIGO MACHACA ARUQUIPA 2026.pdf';
+import cvEn from '../../assets/CV_BEIMAR_RODRIGO_MACHACA_ARUQUIPA_2026_EN.pdf';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
 import { scrollToSelector } from '../../utils/scroll';
@@ -97,12 +99,19 @@ export default function Hero() {
                     >
                         {t('hero.cta')}
                     </a>
-                    <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                        GitHub →
-                    </a>
-                    <a href={EXTERNAL_LINKS.gitlab} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                        GitLab →
-                    </a>
+                    
+                    <div className="hero-cv-actions">
+                        <a href={cvEs} download="CV_Beimar_Rodrigo_Machaca_ES.pdf" className="btn-cv-hero" title="Download Spanish CV">
+                            <FileText size={16} />
+                            <span>{t('about.cvEs')}</span>
+                            <Download size={14} className="download-icon" />
+                        </a>
+                        <a href={cvEn} download="CV_Beimar_Rodrigo_Machaca_EN.pdf" className="btn-cv-hero btn-cv-hero--en" title="Download English CV">
+                            <FileText size={16} />
+                            <span>{t('about.cvEn')}</span>
+                            <Download size={14} className="download-icon" />
+                        </a>
+                    </div>
                 </motion.div>
 
                 <motion.div className="hero-socials" variants={fadeUp} initial="hidden" animate="visible" custom={5}>

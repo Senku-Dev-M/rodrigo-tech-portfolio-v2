@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Award } from 'lucide-react';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import { certificationEntries } from '../../data/about';
 import { useI18n } from '../../i18n/i18n';
@@ -20,7 +21,9 @@ export default function CertificationsSection() {
                         transition={{ delay: index * 0.07 }}
                         whileHover={{ y: -4 }}
                     >
-                        <span className="cert-icon">🏆</span>
+                        <span className="cert-icon">
+                            <Award size={18} />
+                        </span>
                         <div>
                             <p className="cert-name">{certification.name}</p>
                             <p className="cert-meta">

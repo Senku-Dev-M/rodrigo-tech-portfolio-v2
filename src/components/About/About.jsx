@@ -2,9 +2,10 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
+import { GraduationCap, Users, MapPin } from 'lucide-react';
 import GradientText from '../GradientText/GradientText';
 import Antigravity from '../Antigravity/Antigravity';
-import profileImg from '../../assets/profile.jpg';
+import profileImg from '../../assets/Profile2.png';
 import ExperienceSection from './ExperienceSection';
 import SkillsSection from './SkillsSection';
 import EducationSection from './EducationSection';
@@ -72,9 +73,9 @@ export default function About() {
                         <p className="profile-subtitle">{t('about.subtitle')}</p>
                         <p className="profile-desc">{t('about.desc')}</p>
                         <div className="profile-badges">
-                            <span className="badge">{t('about.badge1')}</span>
-                            <span className="badge">{t('about.badge2')}</span>
-                            <span className="badge">{t('about.badge3')}</span>
+                            <span className="badge"><GraduationCap size={14} /> {t('about.badge1')}</span>
+                            <span className="badge"><Users size={14} /> {t('about.badge2')}</span>
+                            <span className="badge"><MapPin size={14} /> {t('about.badge3')}</span>
                         </div>
                     </div>
                 </motion.div>

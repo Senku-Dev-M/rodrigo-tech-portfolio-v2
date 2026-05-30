@@ -94,9 +94,61 @@
 /* CTA buttons */
 .hero-actions {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.hero-cv-actions {
+    display: flex;
     gap: 0.9rem;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 0.2rem;
+    width: 100%;
+}
+
+.btn-cv-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(8, 8, 8, 0.45);
+    backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    padding: 0.72rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.btn-cv-hero .download-icon {
+    opacity: 0.6;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-cv-hero:hover {
+    border-color: rgba(0, 212, 255, 0.45);
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+}
+
+.btn-cv-hero:hover .download-icon {
+    opacity: 1;
+    transform: translateY(1px);
+}
+
+.btn-cv-hero.btn-cv-hero--en:hover {
+    border-color: rgba(167, 139, 250, 0.45);
+    color: #a78bfa;
+    background: rgba(167, 139, 250, 0.06);
+    box-shadow: 0 4px 20px rgba(167, 139, 250, 0.1);
 }
 
 .btn-primary {
@@ -212,7 +264,12 @@
         gap: 0.8rem;
     }
 
-    .btn-primary, .btn-ghost {
+    .hero-cv-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .btn-primary, .btn-ghost, .btn-cv-hero {
         width: 100%;
         justify-content: center;
         padding: 0.9rem 1.5rem;

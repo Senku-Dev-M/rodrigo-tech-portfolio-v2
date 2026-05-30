@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Code2 } from 'lucide-react';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import { useI18n } from '../../i18n/i18n';
 
@@ -14,7 +15,7 @@ export default function GithubCTA() {
             transition={{ delay: 0.3 }}
         >
             <div className="github-cta-inner">
-                <span className="github-icon">⌨</span>
+                <span className="github-icon"><Code2 size={28} /></span>
                 <div>
                     <h3>{t('portfolio.githubTitle')}</h3>
                     <p>{t('portfolio.githubDesc')}</p>

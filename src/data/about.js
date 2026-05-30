@@ -23,10 +23,10 @@ export const skills = [
 
 export const categoryColors = {
     backend: '#00d4ff',
-    frontend: '#0ea5e9',
-    database: '#06b6d4',
-    devops: '#22d3ee',
-    design: '#67e8f9',
+    frontend: '#a78bfa',
+    database: '#f59e0b',
+    devops: '#10b981',
+    design: '#ec4899',
 };
 
 export const experiences = [
@@ -74,13 +74,13 @@ export const experiences = [
 
 export const educationEntries = [
     {
-        icon: '🎓',
+        icon: 'graduation-cap',
         titleKey: 'about.edu1Title',
         schoolKey: 'about.edu1School',
         descriptionKey: 'about.edu1Desc',
     },
     {
-        icon: '🏭',
+        icon: 'cpu',
         titleKey: 'about.edu2Title',
         schoolKey: 'about.edu2School',
         descriptionKey: 'about.edu2Desc',

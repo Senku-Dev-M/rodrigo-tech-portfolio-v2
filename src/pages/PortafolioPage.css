@@ -87,7 +87,7 @@
     border: 1px solid color-mix(in srgb, var(--accent) 40%, rgba(255, 255, 255, 0.12));
     border-radius: 8px;
     background: color-mix(in srgb, var(--accent) 12%, rgba(255, 255, 255, 0.04));
-    font-size: 1.45rem;
+    color: var(--accent);
 }
 
 .project-showcase__type,
@@ -515,7 +515,15 @@
 }
 
 .project-detail-icon {
-    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent, #00d4ff) 10%, rgba(255, 255, 255, 0.03));
+    border: 1px solid color-mix(in srgb, var(--accent, #00d4ff) 30%, rgba(255, 255, 255, 0.08));
+    color: var(--accent, #00d4ff);
     flex-shrink: 0;
 }
 
@@ -684,7 +692,15 @@
 }
 
 .github-icon {
-    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
     flex-shrink: 0;
 }
 

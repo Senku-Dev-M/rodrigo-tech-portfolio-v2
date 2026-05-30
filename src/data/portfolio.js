@@ -6,7 +6,7 @@ export const projects = [
         name: 'GymFlow AI',
         period: { es: 'Nov. 2025 – Feb. 2026', en: 'Nov 2025 – Feb 2026' },
         type: 'Freelance',
-        icon: '🏋️',
+        icon: 'dumbbell',
         accent: '#a78bfa',
         links: [
             {
@@ -57,7 +57,7 @@ export const projects = [
         name: 'PixPro',
         period: { es: 'Jul. 2025 – Sep. 2025', en: 'Jul 2025 – Sep 2025' },
         type: 'Jala University',
-        icon: '🖼️',
+        icon: 'image',
         accent: '#38bdf8',
         impact: {
             es: 'Arquitectura distribuida para procesar, optimizar y entregar imágenes con servicios desacoplados.',
@@ -97,7 +97,7 @@ export const projects = [
         name: 'TeToca',
         period: { es: 'Abr. 2025 – Jun. 2025', en: 'Apr 2025 – Jun 2025' },
         type: 'Jala University',
-        icon: '🤝',
+        icon: 'handshake',
         accent: '#ec4899',
         links: [
             {
