@@ -91,10 +91,68 @@ export const educationEntries = [
 ];
 
 export const certificationEntries = [
-    { name: "Dean's List Recognition", issuer: 'Jala University', years: '2024 – 2025' },
-    { name: 'Programación 1 & 2 – Mentor U', issuer: 'Jala University', years: '2025' },
-    { name: 'Curso Profesional de Java', issuer: 'Código Facilito', years: '2023' },
-    { name: 'Java Spring Boot + JPA', issuer: 'Platzi', years: '2023' },
-    { name: 'Patrones de Diseño con Java', issuer: 'Código Facilito', years: '2023' },
-    { name: 'Python Essentials 1', issuer: 'Cisco Networking Academy', years: '2023' },
+    // --- Otros Logros Académicos ---
+    { name: "Dean's List Certificate (Term 1-2024, Term I-2025, Term 2-2025)", issuer: 'Jala University', years: '2024 – 2025', category: 'jala' },
+
+    // --- Jala University (Mentorías) ---
+    { name: 'Redes Computacionales 1 (Mentorías)', issuer: 'Jala University', years: '2026', category: 'jala' },
+    { name: 'Desarrollo de Software 2 (Mentorías)', issuer: 'Jala University', years: '2026', category: 'jala' },
+    { name: 'Programación 1 (Mentorías)', issuer: 'Jala University', years: '2026', category: 'jala' },
+    { name: 'Computer Networks 1 (Mentorías)', issuer: 'Jala University', years: '2025', category: 'jala' },
+    { name: 'Programación 3 (Mentorías)', issuer: 'Jala University', years: '2025', category: 'jala' },
+    { name: 'Desarrollo de Software I (Mentorías)', issuer: 'Jala University', years: '2025', category: 'jala' },
+    { name: 'Base de Datos 2 (Mentorías)', issuer: 'Jala University', years: '2025', category: 'jala' },
+    { name: 'Programación 1 (Mentorías)', issuer: 'Jala University', years: '2025', category: 'jala' },
+    { name: 'Programación 2 (Mentorías)', issuer: 'Jala University', years: '2025', category: 'jala' },
+    { name: 'Programación 1 (Mentorías)', issuer: 'Jala University', years: '2024', category: 'jala' },
+
+    // --- Universidad Salesiana de Bolivia ---
+    { name: 'Robótica Básica I (Facilitador)', issuer: 'Universidad Salesiana de Bolivia', years: '2024', category: 'salesiana' },
+    { name: 'Robótica Vacacional (Facilitador)', issuer: 'Universidad Salesiana de Bolivia', years: '2024', category: 'salesiana' },
+
+    // --- Fe y Alegría ---
+    { name: 'Robótica Básica (Facilitador)', issuer: 'Fe y Alegría', years: '2024', category: 'feyalegria' },
+    { name: 'Robótica Básica I (Facilitador)', issuer: 'Fe y Alegría', years: '2024', category: 'feyalegria' },
+    { name: 'Robótica (Facilitador)', issuer: 'Fe y Alegría', years: '2023', category: 'feyalegria' },
+    { name: 'Jurado Calificador (Defensa de Proyectos)', issuer: 'Fe y Alegría', years: '2023', category: 'feyalegria' },
+
+    // --- Platzi ---
+    { name: 'Reto de 21 días de Python', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Introducción a la Ingeniería Social', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso Práctico de PHP', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de SQL y MySQL', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Java SE: SQL y Bases de Datos', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Fundamentos de Python', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Java Spring', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso Avanzado de Java SE', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Negociación con Clientes Corporativos', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Programación Orientada a Objetos con C#', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Scrum Master', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso Básico de Diseño de Interfaces con Android Studio', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso Práctico de SQL', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Java Spring Data JPA: Bases de Datos', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Java SE Orientado a Objetos', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Fundamentos de Desarrollo de Hardware con Arduino', issuer: 'Platzi', years: '2023', category: 'platzi' },
+    { name: 'Curso de Java SE Persistencia de Datos', issuer: 'Platzi', years: '2023', category: 'platzi' },
+
+    // --- Código Facilito ---
+    { name: 'Curso Profesional de Base de Datos', issuer: 'Código Facilito', years: '2023', category: 'codefacilito' },
+    { name: 'Curso de Arduino Premium', issuer: 'Código Facilito', years: '2023', category: 'codefacilito' },
+    { name: 'Curso de Programación Orientada a Objetos', issuer: 'Código Facilito', years: '2023', category: 'codefacilito' },
+    { name: 'Curso de Patrones de Diseño con JAVA', issuer: 'Código Facilito', years: '2023', category: 'codefacilito' },
+    { name: 'Curso Profesional de JAVA', issuer: 'Código Facilito', years: '2023', category: 'codefacilito' },
+
+    // --- Udemy ---
+    { name: 'Visual Studio 2022 C# - Nivel Básico', issuer: 'Udemy', years: '2024', category: 'udemy' },
+    { name: 'Curso de Java - Nivel Básico', issuer: 'Udemy', years: '2023', category: 'udemy' },
+    { name: 'Aprende HTML5 de CERO a EXPERTO', issuer: 'Udemy', years: '2023', category: 'udemy' },
+
+    // --- Universidad Pública de El Alto (UPEA) ---
+    { name: 'Seguridad de la Información', issuer: 'UPEA', years: '2022', category: 'others' },
+    { name: 'Programación Orientado a Objetos con Java', issuer: 'UPEA', years: '2022', category: 'others' },
+
+    // --- I.T. Pedro Domingo Murillo ---
+    { name: 'Compresores de Aire a Tornillo, Neumática y Electroneumática', issuer: 'Escuela Industrial Superior Pedro Domingo Murillo', years: '2022', category: 'others' },
+    { name: 'Telecontrol y Fibra Óptica', issuer: 'Escuela Industrial Superior Pedro Domingo Murillo', years: '2022', category: 'others' },
+    { name: 'Estándares de Calidad en los Servicios de Telecomunicaciones', issuer: 'Escuela Industrial Superior Pedro Domingo Murillo', years: '2021', category: 'others' }
 ];

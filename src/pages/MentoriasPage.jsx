@@ -45,7 +45,7 @@ function AcademySummary({ courses }) {
         <section className="academy-summary" aria-label="Resumen de contenido educativo">
             <div className="academy-summary__copy">
                 <span><GraduationCap size={16} /> Academia interactiva</span>
-                <h2>Cursos diseñados como rutas de aprendizaje, no como una lista de apuntes.</h2>
+                <h2>Rutas de aprendizaje interactivas y material de estudio</h2>
             </div>
             <div className="academy-summary__metrics">
                 <strong>{courses.length}</strong><span>materias</span>
