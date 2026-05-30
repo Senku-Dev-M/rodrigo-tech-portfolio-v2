@@ -1,5 +1,6 @@
 import { useI18n } from '../../i18n/i18n';
 import { Github, Gitlab, Linkedin, Instagram, Mail, Award } from 'lucide-react';
+import Tiktok from '../Icons/Tiktok';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import './Footer.css';
 
@@ -8,6 +9,7 @@ const footerLinks = [
     { labelKey: null, label: 'GitLab', href: EXTERNAL_LINKS.gitlab, icon: <Gitlab size={18} /> },
     { labelKey: null, label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin, icon: <Linkedin size={18} /> },
     { labelKey: null, label: 'Instagram', href: EXTERNAL_LINKS.instagram, icon: <Instagram size={18} /> },
+    { labelKey: null, label: 'TikTok', href: EXTERNAL_LINKS.tiktok, icon: <Tiktok size={18} /> },
     { labelKey: null, label: 'Email', href: EXTERNAL_LINKS.email, icon: <Mail size={18} /> },
     { labelKey: 'footer.certificates', label: null, href: EXTERNAL_LINKS.certifications, icon: <Award size={18} /> },
 ];

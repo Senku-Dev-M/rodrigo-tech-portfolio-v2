@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import { Github, Gitlab, Linkedin, Instagram, Mail, Download, FileText } from 'lucide-react';
+import Tiktok from '../Icons/Tiktok';
 import cvEs from '../../assets/CV BEIMAR RODRIGO MACHACA ARUQUIPA 2026.pdf';
 import cvEn from '../../assets/CV_BEIMAR_RODRIGO_MACHACA_ARUQUIPA_2026_EN.pdf';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
@@ -15,6 +16,7 @@ const socialLinks = [
     { label: 'GitLab', href: EXTERNAL_LINKS.gitlab, icon: <Gitlab size={24} /> },
     { label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin, icon: <Linkedin size={24} /> },
     { label: 'Instagram', href: EXTERNAL_LINKS.instagram, icon: <Instagram size={24} /> },
+    { label: 'TikTok', href: EXTERNAL_LINKS.tiktok, icon: <Tiktok size={24} /> },
     { label: 'Email', href: EXTERNAL_LINKS.email, icon: <Mail size={24} /> },
 ];
 
