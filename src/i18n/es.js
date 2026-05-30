@@ -55,7 +55,7 @@ const es = {
     // ── Portfolio ──
     portfolio: {
         title: 'Portafolio',
-        subtitle: 'Proyectos reales con impacto — desde APIs con IA hasta apps móviles con UX de alta fidelidad.',
+        subtitle: '',
         backHome: '← Volver al inicio',
         highlights: 'Tecnologías destacadas',
         liveLinks: 'Enlaces del proyecto',

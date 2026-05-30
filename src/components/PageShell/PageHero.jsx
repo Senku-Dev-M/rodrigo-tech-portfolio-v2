@@ -34,7 +34,7 @@ export default function PageHero({
                 </GradientText>
             </motion.h1>
 
-            {subtitleIsHtml ? (
+            {subtitle && (subtitleIsHtml ? (
                 <motion.p
                     className="page-subtitle"
                     initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function PageHero({
                 >
                     {subtitle}
                 </motion.p>
-            )}
+            ))}
         </header>
     );
 }

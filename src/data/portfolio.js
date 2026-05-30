@@ -1,5 +1,5 @@
 import gymflowPreview from '../assets/portfolio/gymflow-preview.png';
-import tetocaPreview from '../assets/portfolio/tetoca-preview.png';
+import tetocaPreview from '../assets/portfolio/te-toca-on-boarding.jpeg';
 
 export const projects = [
     {
@@ -114,12 +114,12 @@ export const projects = [
             type: 'image',
             image: tetocaPreview,
             alt: {
-                es: 'Vista principal de la landing page de TeToca',
-                en: 'Main view of the TeToca landing page',
+                es: 'Vista de onboarding de la app móvil TeToca',
+                en: 'Onboarding screen of the TeToca mobile app',
             },
             caption: {
-                es: 'Landing page pública',
-                en: 'Public landing page',
+                es: 'Flujo de Onboarding',
+                en: 'Onboarding Flow',
             },
         },
         desc: {

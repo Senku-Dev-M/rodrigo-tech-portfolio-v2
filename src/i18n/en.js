@@ -54,7 +54,7 @@ const en = {
     // ── Portfolio ──
     portfolio: {
         title: 'Portfolio',
-        subtitle: 'Real projects with impact — from AI-powered APIs to mobile apps with high-fidelity UX.',
+        subtitle: '',
         backHome: '← Back to home',
         highlights: 'Key technologies',
         liveLinks: 'Project links',
