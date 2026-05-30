@@ -1382,3 +1382,90 @@
     .github-cta-actions { margin-left: 0; width: 100%; flex-direction: column; }
     .github-cta-button { width: 100%; }
 }
+
+/* ── Portfolio Dynamic Filters ── */
+.portfolio-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.portfolio-filter-btn {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.52rem 1.3rem;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.portfolio-filter-btn:hover {
+    color: #fff;
+    border-color: rgba(0, 212, 255, 0.25);
+    background: rgba(0, 212, 255, 0.04);
+}
+
+.portfolio-filter-btn.active {
+    color: #00d4ff;
+    border-color: rgba(0, 212, 255, 0.35);
+    background: rgba(0, 212, 255, 0.06);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.08);
+}
+
+/* ── Featured Projects Home Page Section ── */
+.featured-projects {
+    position: relative;
+    padding: 6rem 2rem 5rem;
+    background: #080808;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.featured-projects-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.featured-projects-header .subsection-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+}
+
+.featured-projects-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 0.5rem;
+    background: linear-gradient(to right, #ffffff, #a5f3fc, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.featured-projects-subtitle {
+    font-size: 1.05rem;
+    color: rgba(226, 232, 240, 0.6);
+    margin-top: 0.8rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featured-projects-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.5rem;
+}
+

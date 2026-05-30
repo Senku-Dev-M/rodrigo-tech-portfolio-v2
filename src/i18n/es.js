@@ -17,7 +17,7 @@ const es = {
         role1: 'Full Stack Developer',
         role2: 'Mentor Académico',
         role3: 'Backend · La Paz, Bolivia',
-        bio: 'Estudiante de Ingeniería en Software Comercial. Apasionado por la arquitectura limpia, el backend y la automatización. Construyo sistemas escalables y experiencias de usuario memorables.',
+        bio: 'Estudiante de Ingeniería de Software Comercial. Desarrollador Full Stack enfocado en el backend. Apasionado por la automatización y el diseño de sistemas escalables aplicando arquitecturas de software avanzadas (Hexagonal, Clean, Onion) y el desarrollo frontend.',
         cta: 'Conoce mi trabajo',
     },
 
@@ -25,7 +25,7 @@ const es = {
     about: {
         title: 'Sobre Mí',
         subtitle: 'Full Stack Developer · La Paz, Bolivia',
-        desc: 'Estudiante de último año de Ingeniería en Software Comercial y Técnico Superior en Informática Industrial. Orientado al backend con experiencia real en sistemas distribuidos, Clean Architecture y DevOps. Apasionado por la enseñanza, la mentoría y las buenas prácticas de ingeniería.',
+        desc: 'Estudiante de último año de Ingeniería en Software Comercial y Técnico Superior en Informática Industrial. Desarrollador Full Stack con conocimientos de frontend, aunque enfocado y especializado en el desarrollo backend. Cuento con experiencia real en sistemas distribuidos, automatización DevOps y el diseño de sistemas escalables aplicando diversas arquitecturas de software (Hexagonal, Onion, Clean Architecture, etc.). Apasionado por la enseñanza, la mentoría y las buenas prácticas de ingeniería.',
         badge1: 'Estudiante Destacado × 3',
         badge2: 'Mentor Académico',
         badge3: 'La Paz, Bolivia',
@@ -63,6 +63,13 @@ const es = {
         githubDesc: 'Explora mi código, contribuciones y repos públicos en ambas plataformas.',
         githubCta: 'Ver GitHub →',
         gitlabCta: 'Ver GitLab →',
+        filterAll: 'Todas',
+        filterFullstack: 'Full Stack',
+        filterBackend: 'Backend',
+        filterUiUx: 'UI/UX',
+        featuredTitle: 'Proyectos Destacados',
+        featuredSubtitle: 'Una selección curada de mis últimos y más complejos desarrollos.',
+        featuredCta: 'Ver portafolio completo →',
     },
 
     // ── Mentoring ──

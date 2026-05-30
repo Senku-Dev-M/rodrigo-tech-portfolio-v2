@@ -4,6 +4,7 @@ import tetocaPreview from '../assets/portfolio/te-toca-on-boarding.jpeg';
 export const projects = [
     {
         name: 'GymFlow AI',
+        categories: ['fullstack', 'backend'],
         period: { es: 'Nov. 2025 – Feb. 2026', en: 'Nov 2025 – Feb 2026' },
         type: 'Freelance',
         icon: 'dumbbell',
@@ -55,6 +56,7 @@ export const projects = [
     },
     {
         name: 'PixPro',
+        categories: ['fullstack', 'backend'],
         period: { es: 'Jul. 2025 – Sep. 2025', en: 'Jul 2025 – Sep 2025' },
         type: 'Jala University',
         icon: 'image',
@@ -95,6 +97,7 @@ export const projects = [
     },
     {
         name: 'TeToca',
+        categories: ['uiux'],
         period: { es: 'Abr. 2025 – Jun. 2025', en: 'Apr 2025 – Jun 2025' },
         type: 'Jala University',
         icon: 'handshake',

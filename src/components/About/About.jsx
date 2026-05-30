@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
 import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
@@ -10,6 +11,9 @@ import ExperienceSection from './ExperienceSection';
 import SkillsSection from './SkillsSection';
 import EducationSection from './EducationSection';
 import CertificationsSection from './CertificationsSection';
+import MinimalProjectCard from '../Portafolio/MinimalProjectCard';
+import { projects } from '../../data/portfolio';
+import { PORTFOLIO_ROUTE } from '../../constants/routes';
 import './About.css';
 
 function SectionTitle({ children }) {
@@ -33,6 +37,7 @@ function SectionTitle({ children }) {
 
 export default function About() {
     const { t } = useI18n();
+    const navigate = useNavigate();
     const skillsRef = useRef(null);
     const expRef = useRef(null);
     const skillsInView = useInView(skillsRef, { once: true, margin: '-60px' });
@@ -83,6 +88,26 @@ export default function About() {
                 <ExperienceSection expRef={expRef} expInView={expInView} />
                 <SkillsSection skillsRef={skillsRef} skillsInView={skillsInView} />
                 <EducationSection />
+
+                {/* Highlighted Projects Grid */}
+                <div className="about-featured-projects">
+                    <h3 className="subsection-title">{t('portfolio.featuredTitle')}</h3>
+                    <div className="about-projects-grid">
+                        {projects.slice(0, 2).map((project, index) => (
+                            <MinimalProjectCard
+                                key={project.name}
+                                project={project}
+                                index={index}
+                            />
+                        ))}
+                    </div>
+                    <div className="about-projects-cta">
+                        <button onClick={() => navigate(PORTFOLIO_ROUTE)} className="btn-primary" style={{ border: 'none', cursor: 'pointer' }}>
+                            {t('portfolio.featuredCta')}
+                        </button>
+                    </div>
+                </div>
+
                 <CertificationsSection />
             </div>
         </section>

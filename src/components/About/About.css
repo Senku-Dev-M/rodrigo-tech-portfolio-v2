@@ -609,3 +609,26 @@
         background: transparent;
     }
 }
+
+/* ── About Featured Projects ── */
+.about-featured-projects {
+    margin-bottom: 5rem;
+}
+
+.about-projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.about-projects-cta {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .about-projects-grid {
+        grid-template-columns: 1fr;
+    }
+}

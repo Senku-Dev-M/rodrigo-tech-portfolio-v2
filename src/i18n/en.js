@@ -16,7 +16,7 @@ const en = {
         role1: 'Full Stack Developer',
         role2: 'Academic Mentor',
         role3: 'Backend · La Paz, Bolivia',
-        bio: 'Commercial Software Engineering student. Passionate about clean architecture, backend development and automation. I build scalable systems and memorable user experiences.',
+        bio: 'Commercial Software Engineering student. Full Stack Developer focused on the backend. Passionate about automation, designing scalable systems applying advanced software architectures (Hexagonal, Clean, Onion), and frontend development.',
         cta: 'See my work',
     },
 
@@ -24,7 +24,7 @@ const en = {
     about: {
         title: 'About Me',
         subtitle: 'Full Stack Developer · La Paz, Bolivia',
-        desc: 'Final-year Commercial Software Engineering student and Higher Technician in Industrial Informatics. Backend-focused with real experience in distributed systems, Clean Architecture and DevOps. Passionate about teaching, mentoring and engineering best practices.',
+        desc: 'Final-year Commercial Software Engineering student and Higher Technician in Industrial Informatics. Full Stack Developer with frontend knowledge, though focused and specialized in backend development. I have real experience in distributed systems, DevOps automation, and designing scalable systems applying various software architectures (Hexagonal, Onion, Clean Architecture, etc.). Passionate about teaching, mentoring, and engineering best practices.',
         badge1: 'Outstanding Student × 3',
         badge2: 'Academic Mentor',
         badge3: 'La Paz, Bolivia',
@@ -62,6 +62,13 @@ const en = {
         githubDesc: 'Explore my code, contributions and public repos on both platforms.',
         githubCta: 'View GitHub →',
         gitlabCta: 'View GitLab →',
+        filterAll: 'All',
+        filterFullstack: 'Full Stack',
+        filterBackend: 'Backend',
+        filterUiUx: 'UI/UX',
+        featuredTitle: 'Featured Projects',
+        featuredSubtitle: 'A curated selection of my latest and most complex developments.',
+        featuredCta: 'View full portfolio →',
     },
 
     // ── Mentoring ──
