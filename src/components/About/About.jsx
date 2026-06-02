@@ -2,18 +2,14 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
-import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
-import { GraduationCap, Users, MapPin } from 'lucide-react';
+import { GraduationCap, Users, MapPin, BookOpen } from 'lucide-react';
 import GradientText from '../GradientText/GradientText';
-import Antigravity from '../Antigravity/Antigravity';
 import profileImg from '../../assets/Profile2.png';
 import ExperienceSection from './ExperienceSection';
 import SkillsSection from './SkillsSection';
-import EducationSection from './EducationSection';
-import CertificationsSection from './CertificationsSection';
 import MinimalProjectCard from '../Portafolio/MinimalProjectCard';
 import { projects } from '../../data/portfolio';
-import { PORTFOLIO_ROUTE } from '../../constants/routes';
+import { PORTFOLIO_ROUTE, FORMACION_ROUTE } from '../../constants/routes';
 import './About.css';
 
 function SectionTitle({ children }) {
@@ -42,22 +38,8 @@ export default function About() {
     const expRef = useRef(null);
     const skillsInView = useInView(skillsRef, { once: true, margin: '-60px' });
     const expInView = useInView(expRef, { once: true, margin: '-60px' });
-    const isMobile = useWindowWidthBelow(768);
-    const particleCount = isMobile ? 60 : 140;
-
     return (
         <section id="about" className="about">
-            <div className="about-antigravity">
-                <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
-                    <Antigravity
-                        count={particleCount} magnetRadius={8} ringRadius={9} waveSpeed={0.3}
-                        waveAmplitude={0.8} particleSize={0.45} lerpSpeed={0.04}
-                        color="#00d4ff" autoAnimate={true} particleVariance={0.8}
-                        rotationSpeed={0.05} depthFactor={0.6} pulseSpeed={2}
-                        particleShape="tetrahedron" fieldStrength={12}
-                    />
-                </div>
-            </div>
             <div className="section-container">
                 <SectionTitle>{t('about.title')}</SectionTitle>
 
@@ -87,10 +69,15 @@ export default function About() {
 
                 <ExperienceSection expRef={expRef} expInView={expInView} />
                 <SkillsSection skillsRef={skillsRef} skillsInView={skillsInView} />
-                <EducationSection />
 
                 {/* Highlighted Projects Grid */}
-                <div className="about-featured-projects">
+                <motion.div
+                    className="about-featured-projects"
+                    initial={{ opacity: 0, y: 36 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <h3 className="subsection-title">{t('portfolio.featuredTitle')}</h3>
                     <div className="about-projects-grid">
                         {projects.slice(0, 2).map((project, index) => (
@@ -102,13 +89,36 @@ export default function About() {
                         ))}
                     </div>
                     <div className="about-projects-cta">
-                        <button onClick={() => navigate(PORTFOLIO_ROUTE)} className="btn-primary" style={{ border: 'none', cursor: 'pointer' }}>
+                        <button onClick={() => navigate(PORTFOLIO_ROUTE)} className="btn-primary">
                             {t('portfolio.featuredCta')}
                         </button>
                     </div>
-                </div>
+                </motion.div>
 
-                <CertificationsSection />
+                {/* Formación CTA */}
+                <motion.div
+                    className="about-formacion-cta"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <div className="formacion-cta-card">
+                        <span className="formacion-cta-icon" aria-hidden="true">
+                            <BookOpen size={22} />
+                        </span>
+                        <div className="formacion-cta-text">
+                            <p className="formacion-cta-label">{t('formacion.title')}</p>
+                            <p className="formacion-cta-desc">{t('formacion.subtitle')}</p>
+                        </div>
+                        <button
+                            className="btn-formacion-link"
+                            onClick={() => navigate(FORMACION_ROUTE)}
+                        >
+                            {t('formacion.ctaLabel')}
+                        </button>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

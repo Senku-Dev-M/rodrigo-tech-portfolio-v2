@@ -167,20 +167,26 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #0284c7, #00d4ff);
-    color: #fff;
+    background: var(--color-primary);
+    color: #0A0B0F;
     text-decoration: none;
     padding: 0.82rem 2rem;
-    border-radius: 50px;
+    border-radius: var(--radius-full);
     font-weight: 700;
     font-size: 0.93rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 24px rgba(0, 212, 255, 0.28);
+    transition: transform var(--dur-normal) var(--ease-out),
+                box-shadow var(--dur-normal),
+                background var(--dur-normal);
+    box-shadow: 0 4px 24px rgba(var(--color-primary-rgb), 0.3);
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.48);
+    background: var(--color-primary-strong);
+    box-shadow: 0 8px 32px rgba(var(--color-primary-rgb), 0.5);
 }
 
 @media (max-width: 768px) {

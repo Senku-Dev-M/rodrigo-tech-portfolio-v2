@@ -37,7 +37,13 @@ export default function CertificationsSection() {
         : certificationEntries.filter(c => c.category === selectedCategory);
 
     return (
-        <div className="certs-section">
+        <motion.div
+            className="certs-section"
+            initial={{ opacity: 0, y: 34 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-90px' }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
             <h3 className="subsection-title">{t('about.certifications')}</h3>
             
             {/* dynamic interactive filter tabs */}
@@ -69,11 +75,11 @@ export default function CertificationsSection() {
                     {filteredCerts.map((certification, index) => (
                         <motion.div
                             layout
-                            key={`${certification.name}-${certification.years}`}
+                            key={`${certification.name}-${certification.issuer}-${certification.years}-${index}`}
                             className="cert-card"
                             initial={{ opacity: 0, scale: 0.9, y: 15 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                            animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                            exit={{ opacity: 0, scale: 0.82, y: -12, rotate: -2 }}
                             transition={{ 
                                 duration: 0.35, 
                                 delay: index * 0.04,
@@ -81,6 +87,7 @@ export default function CertificationsSection() {
                             }}
                             whileHover={{ 
                                 y: -5,
+                                x: 3,
                                 borderColor: 'rgba(0, 212, 255, 0.4)',
                                 boxShadow: '0 8px 24px rgba(0, 212, 255, 0.08)'
                             }}
@@ -111,6 +118,6 @@ export default function CertificationsSection() {
                     {t('about.viewAllCerts')}
                 </a>
             </div>
-        </div>
+        </motion.div>
     );
 }

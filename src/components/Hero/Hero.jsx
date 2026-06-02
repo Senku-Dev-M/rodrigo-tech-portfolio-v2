@@ -63,7 +63,10 @@ export default function Hero() {
                     {t('hero.greeting')}
                 </motion.span>
 
-                <motion.div className="hero-fuzzy-wrapper" variants={fadeUp} initial="hidden" animate="visible" custom={1}>
+                {/* Accessible h1 — visually hidden; FuzzyText canvas is aria-hidden */}
+                <h1 className="sr-only">Rodrigo Machaca</h1>
+
+                <motion.div aria-hidden="true" className="hero-fuzzy-wrapper" variants={fadeUp} initial="hidden" animate="visible" custom={1}>
                     <FuzzyText
                         fontSize="clamp(3rem, 8vw, 7rem)"
                         fontWeight={900}
@@ -103,23 +106,23 @@ export default function Hero() {
                     </a>
                     
                     <div className="hero-cv-actions">
-                        <a href={cvEs} download="CV_Beimar_Rodrigo_Machaca_ES.pdf" className="btn-cv-hero" title="Download Spanish CV">
-                            <FileText size={16} />
+                        <a href={cvEs} download="CV_Beimar_Rodrigo_Machaca_ES.pdf" className="btn-cv-hero" aria-label="Descargar CV en español">
+                            <FileText size={16} aria-hidden="true" />
                             <span>{t('about.cvEs')}</span>
-                            <Download size={14} className="download-icon" />
+                            <Download size={14} className="download-icon" aria-hidden="true" />
                         </a>
-                        <a href={cvEn} download="CV_Beimar_Rodrigo_Machaca_EN.pdf" className="btn-cv-hero btn-cv-hero--en" title="Download English CV">
-                            <FileText size={16} />
+                        <a href={cvEn} download="CV_Beimar_Rodrigo_Machaca_EN.pdf" className="btn-cv-hero btn-cv-hero--en" aria-label="Download English resume">
+                            <FileText size={16} aria-hidden="true" />
                             <span>{t('about.cvEn')}</span>
-                            <Download size={14} className="download-icon" />
+                            <Download size={14} className="download-icon" aria-hidden="true" />
                         </a>
                     </div>
                 </motion.div>
 
                 <motion.div className="hero-socials" variants={fadeUp} initial="hidden" animate="visible" custom={5}>
                     {socialLinks.map(s => (
-                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="social-dot" title={s.label}>
-                            {s.icon}
+                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="social-dot" aria-label={s.label}>
+                            <span aria-hidden="true">{s.icon}</span>
                         </a>
                     ))}
                 </motion.div>

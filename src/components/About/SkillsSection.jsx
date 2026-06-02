@@ -5,8 +5,14 @@ import techIconMap from '../Icon/techIcons';
 import TechSphere3D from '../TechSphere3D/TechSphere3D';
 
 const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.04, duration: 0.5, ease: 'easeOut' } }),
+    hidden: { opacity: 0, y: 28, scale: 0.82, rotate: -3 },
+    visible: (i = 0) => ({
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        transition: { delay: i * 0.035, duration: 0.58, ease: [0.22, 1, 0.36, 1] }
+    }),
 };
 
 export default function SkillsSection({ skillsRef, skillsInView }) {
@@ -25,7 +31,7 @@ export default function SkillsSection({ skillsRef, skillsInView }) {
                             return (
                                 <motion.div
                                     key={skill.name}
-                                    className="skill-chip"
+                                    className={`skill-chip skill-chip-${skill.category}`}
                                     style={{
                                         '--accent': categoryColors[skill.category],
                                         borderColor: `${categoryColors[skill.category]}40`,
@@ -34,8 +40,15 @@ export default function SkillsSection({ skillsRef, skillsInView }) {
                                     initial="hidden"
                                     animate={skillsInView ? 'visible' : 'hidden'}
                                     custom={i * 0.4}
-                                    whileHover={{ scale: 1.05, borderColor: categoryColors[skill.category] }}
+                                    whileHover={{
+                                        scale: 1.08,
+                                        y: -6,
+                                        rotate: 1.5,
+                                        borderColor: categoryColors[skill.category],
+                                        boxShadow: `0 10px 24px ${categoryColors[skill.category]}24`
+                                    }}
                                 >
+                                    <span className="skill-chip-spark" />
                                     {TechSvg && <TechSvg size={14} />}
                                     {skill.name}
                                 </motion.div>

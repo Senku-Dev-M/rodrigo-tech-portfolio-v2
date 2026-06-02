@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useI18n } from '../../i18n/i18n';
-import { HOME_ROUTE, MENTORING_ROUTE, PORTFOLIO_ROUTE } from '../../constants/routes';
+import { HOME_ROUTE, MENTORING_ROUTE, PORTFOLIO_ROUTE, FORMACION_ROUTE } from '../../constants/routes';
 import { scrollToSelector, scrollToTop } from '../../utils/scroll';
 import LangSwitch from './LangSwitch';
 import './Navbar.css';
@@ -17,6 +17,8 @@ export default function Navbar() {
         { label: t('nav.about'), href: '#about', route: HOME_ROUTE, section: '#about' },
         { label: t('nav.mentoring'), href: MENTORING_ROUTE, route: MENTORING_ROUTE, section: null },
         { label: t('nav.portfolio'), href: PORTFOLIO_ROUTE, route: PORTFOLIO_ROUTE, section: null },
+        { label: t('nav.formacion'), href: FORMACION_ROUTE, route: FORMACION_ROUTE, section: null },
+        { label: t('nav.contact'), href: '#contact', route: HOME_ROUTE, section: '#contact' },
     ];
 
     useEffect(() => {
@@ -60,7 +62,7 @@ export default function Navbar() {
                     <span className="logo-bracket">/&gt;</span>
                 </a>
 
-                <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+                <ul id="navbar-menu" className={`navbar-links ${menuOpen ? 'open' : ''}`}>
                     {navLinks.map(link => (
                         <li key={link.href}>
                             <a
@@ -84,6 +86,8 @@ export default function Navbar() {
                         className={`hamburger ${menuOpen ? 'active' : ''}`}
                         onClick={() => setMenuOpen(v => !v)}
                         aria-label="Toggle menu"
+                        aria-expanded={menuOpen}
+                        aria-controls="navbar-menu"
                     >
                         <span /><span /><span />
                     </button>

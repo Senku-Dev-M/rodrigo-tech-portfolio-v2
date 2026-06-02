@@ -9,6 +9,8 @@ const es = {
         mentoring: 'Mentorías',
         portfolio: 'Portafolio',
         certificates: 'Certificados',
+        contact: 'Contacto',
+        formacion: 'Formación',
     },
 
     // ── Hero ──
@@ -144,6 +146,51 @@ const es = {
     // ── Footer ──
     footer: {
         certificates: 'Certificados',
+        backTop: 'Volver arriba',
+        nav: 'Navegación',
+        connect: 'Conectar',
+    },
+
+    // ── Formación ──
+    formacion: {
+        title: 'Formación y Credenciales',
+        subtitle: 'Mi trayectoria académica y certificaciones profesionales.',
+        backHome: '← Volver al inicio',
+        ctaLabel: 'Ver formación y credenciales →',
+    },
+
+    // ── Contact ──
+    contact: {
+        title: 'Hablemos',
+        subtitle: '¿Tienes un proyecto en mente, quieres mentoría o simplemente saludar? Respondo en menos de 24 h.',
+        namePlaceholder: 'Tu nombre',
+        emailPlaceholder: 'tu@email.com',
+        messagePlaceholder: '¿En qué puedo ayudarte?',
+        send: 'Enviar mensaje',
+        sending: 'Enviando…',
+        successTitle: '¡Mensaje enviado!',
+        successDesc: 'Gracias por escribir. Te responderé lo antes posible.',
+        errorDesc: 'Algo salió mal. Prueba escribiéndome directamente.',
+        availableLabel: 'Disponible para',
+        available1: 'Proyectos freelance',
+        available2: 'Mentorías académicas',
+        available3: 'Colaboraciones open source',
+        responseTime: 'Tiempo de respuesta: menos de 24 h',
+        orEmail: 'o escríbeme directamente',
+    },
+
+    // ── Mentoring Teaser ──
+    mentoringTeaser: {
+        tag: 'Diferenciador',
+        title: 'No solo construyo. También enseño.',
+        desc: 'Desde 2024 formo parte del programa Mentor U de Jala University, guiando a estudiantes de ingeniería con simulaciones interactivas, revisiones de código y sesiones personalizadas.',
+        stat1Value: '2+',
+        stat1Label: 'Años mentoreando',
+        stat2Value: '50+',
+        stat2Label: 'Estudiantes apoyados',
+        stat3Value: '6+',
+        stat3Label: 'Cursos impartidos',
+        cta: 'Ver plataforma de mentorías',
     },
 
     // ── Common ──

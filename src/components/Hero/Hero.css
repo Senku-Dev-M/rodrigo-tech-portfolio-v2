@@ -86,7 +86,7 @@
 .hero-bio {
     font-size: 1.04rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.58);
+    color: var(--text-secondary);
     max-width: 540px;
     text-shadow: 0 2px 16px rgba(8, 8, 8, 0.9);
 }
@@ -155,22 +155,24 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #00d4ff;
-    color: #080808;
+    background: var(--color-primary);
+    color: #0A0B0F;
     text-decoration: none;
     padding: 0.82rem 2.2rem;
-    border-radius: 50px;
+    border-radius: var(--radius-full);
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 0.03em;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    box-shadow: 0 0 28px rgba(0, 212, 255, 0.4);
+    transition: transform var(--dur-normal) var(--ease-out),
+                box-shadow var(--dur-normal) var(--ease-out),
+                background var(--dur-normal);
+    box-shadow: 0 0 28px rgba(var(--color-primary-rgb), 0.35);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 46px rgba(0, 212, 255, 0.6);
-    background: #22d3ee;
+    box-shadow: 0 0 46px rgba(var(--color-primary-rgb), 0.55);
+    background: var(--color-primary-strong);
 }
 
 .btn-ghost {

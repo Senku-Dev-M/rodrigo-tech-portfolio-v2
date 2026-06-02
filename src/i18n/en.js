@@ -8,6 +8,8 @@ const en = {
         mentoring: 'Mentoring',
         portfolio: 'Portfolio',
         certificates: 'Certificates',
+        contact: 'Contact',
+        formacion: 'Education',
     },
 
     // ── Hero ──
@@ -143,6 +145,51 @@ const en = {
     // ── Footer ──
     footer: {
         certificates: 'Certificates',
+        backTop: 'Back to top',
+        nav: 'Navigation',
+        connect: 'Connect',
+    },
+
+    // ── Formación ──
+    formacion: {
+        title: 'Education & Credentials',
+        subtitle: 'My academic background and professional certifications.',
+        backHome: '← Back to home',
+        ctaLabel: 'View education & credentials →',
+    },
+
+    // ── Contact ──
+    contact: {
+        title: "Let's Talk",
+        subtitle: 'Have a project in mind, want mentoring, or just want to say hi? I reply within 24 h.',
+        namePlaceholder: 'Your name',
+        emailPlaceholder: 'you@email.com',
+        messagePlaceholder: 'How can I help you?',
+        send: 'Send message',
+        sending: 'Sending…',
+        successTitle: 'Message sent!',
+        successDesc: 'Thanks for reaching out. I will get back to you as soon as possible.',
+        errorDesc: 'Something went wrong. Try writing to me directly.',
+        availableLabel: 'Available for',
+        available1: 'Freelance projects',
+        available2: 'Academic mentoring',
+        available3: 'Open source collaborations',
+        responseTime: 'Response time: under 24 h',
+        orEmail: 'or write to me directly',
+    },
+
+    // ── Mentoring Teaser ──
+    mentoringTeaser: {
+        tag: 'Differentiator',
+        title: "I don't just build. I also teach.",
+        desc: "Since 2024 I've been part of the Mentor U program at Jala University, guiding engineering students with interactive simulations, code reviews and personalized sessions.",
+        stat1Value: '2+',
+        stat1Label: 'Years mentoring',
+        stat2Value: '50+',
+        stat2Label: 'Students supported',
+        stat3Value: '6+',
+        stat3Label: 'Courses taught',
+        cta: 'Explore the mentoring platform',
     },
 
     // ── Common ──

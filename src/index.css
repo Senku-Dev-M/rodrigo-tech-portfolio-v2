@@ -1,14 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --mentor-accent: #00d4ff;
-  --mentor-accent-strong: #0ea5e9;
-  --mentor-accent-soft: #67e8f9;
-  --mentor-accent-deep: #0369a1;
-  --mentor-accent-rgb: 0, 212, 255;
+  /* ── Brand colours ── */
+  --color-primary: #22D3EE;
+  --color-primary-strong: #0ea5e9;
+  --color-primary-soft: #67e8f9;
+  --color-primary-deep: #0369a1;
+  --color-primary-rgb: 34, 211, 238;
+
+  --color-secondary: #7C5CFF;
+  --color-secondary-rgb: 124, 92, 255;
+
+  --color-accent: #FF7A45;
+  --color-accent-hover: #ff6330;
+  --color-accent-rgb: 255, 122, 69;
+
+  /* ── Surfaces ── */
+  --color-bg: #0A0B0F;
+  --color-surface-1: #12141A;
+  --color-surface-2: #1B1E26;
+  --color-border: #2A2E38;
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+
+  /* ── Text (WCAG AA compliant) ── */
+  --text-primary: #F4F6FB;
+  --text-secondary: #B4BCCC;
+  --text-muted: #7E8696;
+
+  /* ── States ── */
+  --color-success: #34D399;
+  --color-error: #F87171;
+  --color-warning: #FBBF24;
+  --color-info: #60A5FA;
+
+  /* ── Spacing (4 px scale) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Radii ── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Motion ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-normal: 250ms;
+  --dur-slow: 400ms;
+
+  /* ── Legacy aliases (keeps existing components working) ── */
+  --mentor-accent: var(--color-primary);
+  --mentor-accent-strong: var(--color-primary-strong);
+  --mentor-accent-soft: var(--color-primary-soft);
+  --mentor-accent-deep: var(--color-primary-deep);
+  --mentor-accent-rgb: var(--color-primary-rgb);
   --mentor-accent-strong-rgb: 14, 165, 233;
   --mentor-accent-soft-rgb: 103, 232, 249;
-  --text-grey: rgba(226, 232, 240, 0.72);
+  --text-grey: var(--text-secondary);
 }
 
 *,
@@ -25,8 +84,8 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #080808;
-  color: #fff;
+  background: var(--color-bg);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -38,7 +97,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -53,4 +112,51 @@ body {
 
 a {
   text-decoration: none;
+}
+
+/* ── Home content wrapper with shared Antigravity background ── */
+.home-content-wrapper {
+  position: relative;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.home-antigravity {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.22;
+}
+
+/* ── Accessibility: visually hidden but readable by screen readers ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Focus visible: keyboard navigation ring ── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Reduced motion: respect user preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
