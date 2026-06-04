@@ -17,6 +17,48 @@ const reveal = {
 function ProjectPreview({ project, lang }) {
     const preview = project.preview;
 
+    if (project.name === 'DevEnglish') {
+        return (
+            <div className="project-preview project-preview--browser">
+                <div className="browser-mockup">
+                    <div className="browser-mockup__bar">
+                        <div className="browser-mockup__dots">
+                            <span className="dot dot--red" />
+                            <span className="dot dot--yellow" />
+                            <span className="dot dot--green" />
+                        </div>
+                        <div className="browser-mockup__tab">
+                            <span className="tab-icon">💻</span>
+                            <span className="tab-title">DevEnglish</span>
+                        </div>
+                        <div className="browser-mockup__address">
+                            <span className="address-lock">🔒</span>
+                            <span className="address-url">dev-english-bootcamp.vercel.app</span>
+                        </div>
+                    </div>
+                    <div className="browser-mockup__screen">
+                        <div className="browser-mockup__screen-scroll">
+                            <img src={preview.image} alt={pick(preview, 'alt', lang)} loading="lazy" />
+                        </div>
+                        <div className="browser-mockup__glare" />
+                        
+                        {/* Interactive floating badges for dashboard realism */}
+                        <div className="browser-float-badge browser-float-badge--accuracy" style={{ right: 'auto', left: '16px' }}>
+                            <span className="pulse-green-dot" />
+                            <strong>35 DAYS</strong>
+                            <span>Bootcamp</span>
+                        </div>
+                        <div className="browser-float-badge browser-float-badge--status">
+                            <span className="badge-bg-glow" />
+                            <strong>AI TUTOR</strong>
+                            <span>OpenRouter API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     if (project.name === 'GymFlow AI') {
         return (
             <div className="project-preview project-preview--browser">

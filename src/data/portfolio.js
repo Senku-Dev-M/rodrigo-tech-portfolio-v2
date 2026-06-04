@@ -1,7 +1,65 @@
 import gymflowPreview from '../assets/portfolio/gymflow-preview.png';
 import tetocaPreview from '../assets/portfolio/te-toca-on-boarding.jpeg';
+import devenglishPreview from '../assets/portfolio/devenglish-preview.png';
 
 export const projects = [
+    {
+        name: 'DevEnglish',
+        categories: ['fullstack'],
+        period: { es: 'Jun. 2026', en: 'Jun 2026' },
+        type: 'Personal',
+        icon: 'terminal',
+        accent: '#6366f1',
+        links: [
+            {
+                label: { es: 'Abrir demo', en: 'Open demo' },
+                href: 'https://dev-english-bootcamp.vercel.app/',
+                tone: 'primary',
+            },
+            {
+                label: { es: 'Ver código', en: 'View code' },
+                href: 'https://github.com/Senku-Dev-M/dev-english-bootcamp',
+                tone: 'secondary',
+            },
+        ],
+        impact: {
+            es: 'Bootcamp interactivo de 35 días para que desarrolladores dominen el inglés técnico asistidos por Inteligencia Artificial.',
+            en: 'Interactive 35-day bootcamp for developers to master technical English assisted by Artificial Intelligence.',
+        },
+        preview: {
+            type: 'image',
+            image: devenglishPreview,
+            alt: {
+                es: 'Vista del panel de control de DevEnglish',
+                en: 'DevEnglish dashboard view',
+            },
+            caption: {
+                es: 'Panel principal del bootcamp de 35 días',
+                en: '35-day bootcamp main dashboard',
+            },
+        },
+        desc: {
+            es: 'Plataforma web educativa para que programadores hispanohablantes aprendan inglés técnico aplicado. Ofrece lecciones progresivas de 35 días, vocabulario con pronunciación interactiva, minijuegos y un evaluador de escritura impulsado por IA.',
+            en: 'Educational web platform for Spanish-speaking programmers to learn applied technical English. Features a progressive 35-day curriculum, vocabulary lists with interactive pronunciation, mini-games, and an AI-powered writing evaluator.',
+        },
+        highlights: {
+            es: [
+                'Frontend Next.js 14 (App Router) + TypeScript y estilos responsivos con Tailwind CSS',
+                'Integración de OpenRouter API para evaluación inteligente de textos de código',
+                'Motor de síntesis de voz (Web Speech API) para pronunciación de vocabulario técnico',
+                '3 minijuegos interactivos: Match the Cards, Bug Hunter y Tech Wordle',
+                'Gestión de estado global y persistencia del progreso local con Zustand',
+            ],
+            en: [
+                'Next.js 14 Frontend (App Router) + TypeScript and responsive styling with Tailwind CSS',
+                'OpenRouter API integration for intelligent code writing evaluations',
+                'Text-to-speech engine (Web Speech API) for technical vocabulary pronunciation',
+                '3 interactive mini-games: Match the Cards, Bug Hunter, and Tech Wordle',
+                'Global state management and local progress persistence with Zustand',
+            ],
+        },
+        tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Zustand', 'OpenRouter API', 'Web Speech API', 'Framer Motion'],
+    },
     {
         name: 'GymFlow AI',
         categories: ['fullstack', 'backend'],
