@@ -16,11 +16,6 @@ export const projects = [
                 href: 'https://dev-english-bootcamp.vercel.app/',
                 tone: 'primary',
             },
-            {
-                label: { es: 'Ver código', en: 'View code' },
-                href: 'https://github.com/Senku-Dev-M/dev-english-bootcamp',
-                tone: 'secondary',
-            },
         ],
         impact: {
             es: 'Bootcamp interactivo de 35 días para que desarrolladores dominen el inglés técnico asistidos por Inteligencia Artificial.',
