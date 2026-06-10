@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import GradientText from '../GradientText/GradientText';
-import { PAGE_TITLE_GRADIENT } from '../../constants/page';
+import { ArrowLeft } from 'lucide-react';
 import { HOME_ROUTE } from '../../constants/routes';
 
 export default function PageHero({
@@ -18,7 +17,8 @@ export default function PageHero({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
             >
-                <Link to={HOME_ROUTE} className="back-link">
+                <Link to={HOME_ROUTE} className="back-home-link">
+                    <ArrowLeft size={14} aria-hidden="true" />
                     {backLabel}
                 </Link>
             </motion.div>
@@ -29,9 +29,7 @@ export default function PageHero({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
             >
-                <GradientText colors={PAGE_TITLE_GRADIENT} animationSpeed={7}>
-                    {title}
-                </GradientText>
+                {title}
             </motion.h1>
 
             {subtitle && (subtitleIsHtml ? (

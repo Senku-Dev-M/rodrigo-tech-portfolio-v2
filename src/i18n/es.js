@@ -21,6 +21,8 @@ const es = {
         role3: 'Backend · La Paz, Bolivia',
         bio: 'Estudiante de Ingeniería de Software Comercial. Desarrollador Full Stack enfocado en el backend. Apasionado por la automatización y el diseño de sistemas escalables aplicando arquitecturas de software avanzadas (Hexagonal, Clean, Onion) y el desarrollo frontend.',
         cta: 'Conoce mi trabajo',
+        ctaContact: 'Hablemos',
+        availability: 'Disponible para proyectos',
     },
 
     // ── About ──
@@ -58,7 +60,7 @@ const es = {
     portfolio: {
         title: 'Portafolio',
         subtitle: '',
-        backHome: '← Volver al inicio',
+        backHome: 'Volver al inicio',
         highlights: 'Tecnologías destacadas',
         liveLinks: 'Enlaces del proyecto',
         githubTitle: 'Más proyectos en GitHub y GitLab',
@@ -78,7 +80,7 @@ const es = {
     mentoring: {
         title: 'Mentorías',
         subtitle: 'Desde enero de 2024 formo parte del programa <strong>Mentor U</strong> de Jala University, brindando mentoría académica a estudiantes de ingeniería en software.',
-        backHome: '← Volver al inicio',
+        backHome: 'Volver al inicio',
         subjects: 'Materias',
         labs: 'Laboratorios',
         breadcrumbRoot: 'Mentoría',
@@ -155,7 +157,7 @@ const es = {
     formacion: {
         title: 'Formación y Credenciales',
         subtitle: 'Mi trayectoria académica y certificaciones profesionales.',
-        backHome: '← Volver al inicio',
+        backHome: 'Volver al inicio',
         ctaLabel: 'Ver formación y credenciales →',
     },
 
@@ -163,6 +165,9 @@ const es = {
     contact: {
         title: 'Hablemos',
         subtitle: '¿Tienes un proyecto en mente, quieres mentoría o simplemente saludar? Respondo en menos de 24 h.',
+        nameLabel: 'Nombre',
+        emailLabel: 'Email',
+        messageLabel: 'Mensaje',
         namePlaceholder: 'Tu nombre',
         emailPlaceholder: 'tu@email.com',
         messagePlaceholder: '¿En qué puedo ayudarte?',
@@ -195,7 +200,7 @@ const es = {
 
     // ── Common ──
     common: {
-        backHome: '← Volver al inicio',
+        backHome: 'Volver al inicio',
     },
 };
 

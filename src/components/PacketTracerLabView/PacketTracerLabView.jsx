@@ -4,15 +4,15 @@ import Step from '../GuideView/Step';
 import '../TheoryView/TheoryView.css'; // Reusing some base styles
 import red1lab3img from '../../assets/red1lab3.png';
 
-const accent = '#00d4ff';
-const accentStrong = '#38bdf8';
-const accentSoft = '#67e8f9';
+const accent = '#FF5A1F';
+const accentStrong = '#FF8A5C';
+const accentSoft = '#FF8A5C';
 const sectionStyle = {
     background: 'rgba(255,255,255,0.02)',
     padding: 'clamp(1rem, 4vw, 2rem)',
     borderRadius: '12px',
     marginBottom: '2rem',
-    border: '1px solid rgba(0, 212, 255, 0.08)',
+    border: '1px solid rgba(255, 90, 31, 0.08)',
 };
 
 export default function PacketTracerLabView({ lab, showHeader = true }) {
@@ -38,7 +38,7 @@ export default function PacketTracerLabView({ lab, showHeader = true }) {
                     <h4 style={{ color: '#fff', marginBottom: '1rem' }}>Objetivos de Aprendizaje</h4>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '1rem' }}>
                         {lab.labData.objectives.map((obj, i) => (
-                            <div key={i} style={{ padding: '1rem', background: 'rgba(0, 212, 255, 0.05)', borderRadius: '8px', borderLeft: `4px solid ${accent}`, display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <div key={i} style={{ padding: '1rem', background: 'rgba(255, 90, 31, 0.05)', borderRadius: '8px', borderLeft: `4px solid ${accent}`, display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                 <Icon name="check-circle" size={20} color={accent} />
                                 <span style={{ fontSize: '0.9rem', color: '#e5e7eb' }}>{obj}</span>
                             </div>
@@ -47,7 +47,7 @@ export default function PacketTracerLabView({ lab, showHeader = true }) {
                 </div>
 
                 {/* Topology Map */}
-                <div style={{ ...sectionStyle, background: '#0a0a0a', border: '1px solid rgba(0,212,255,0.12)' }}>
+                <div style={{ ...sectionStyle, background: '#0a0a0a', border: '1px solid rgba(255,90,31,0.12)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.5rem' }}>
                         <Icon name="git-merge" size={24} color={accentStrong} />
                         <h3 style={{ margin: 0, color: accentStrong }}>Topología de Red</h3>
@@ -105,7 +105,7 @@ export default function PacketTracerLabView({ lab, showHeader = true }) {
                             <h4 style={{ color: '#fff', marginBottom: '1rem' }}>4.3 Cableado Físico Requerido</h4>
                             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                                 {lab.labData.wiring.map((w, i) => (
-                                    <div key={i} style={{ flex: 1, minWidth: '200px', background: 'rgba(56, 189, 248, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.24)' }}>
+                                    <div key={i} style={{ flex: 1, minWidth: '200px', background: 'rgba(255, 138, 92, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255, 138, 92, 0.24)' }}>
                                         <div style={{ color: accentStrong, fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '0.3rem' }}>{w.from}</div>
                                         <div style={{ color: '#fff', fontSize: '0.95rem' }}>{w.cable}</div>
                                     </div>

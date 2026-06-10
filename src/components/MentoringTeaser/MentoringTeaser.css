@@ -5,16 +5,15 @@
     overflow: hidden;
 }
 
-/* Ambient glow */
+/* top hairline — section divider */
 .mentoring-teaser::before {
     content: '';
     position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 70%);
+    top: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 1px;
+    background: var(--color-border);
     pointer-events: none;
 }
 
@@ -30,20 +29,22 @@
 /* ── Text content ── */
 .teaser-tag {
     display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-primary);
+    color: var(--color-accent);
     margin-bottom: var(--space-4);
-    padding: 0.3rem 0.8rem;
-    border: 1px solid rgba(var(--color-primary-rgb), 0.3);
-    border-radius: var(--radius-full);
-    background: rgba(var(--color-primary-rgb), 0.06);
+}
+
+.teaser-tag::before {
+    content: '02 — ';
+    color: var(--text-muted);
 }
 
 .teaser-title {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     font-weight: 800;
     color: var(--text-primary);
@@ -76,13 +77,12 @@
 }
 
 .teaser-stat-icon {
-    color: var(--color-primary);
-    opacity: 0.8;
+    color: var(--color-accent);
     margin-bottom: var(--space-1);
 }
 
 .teaser-stat-value {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.8rem;
     font-weight: 800;
     color: var(--text-primary);
@@ -95,29 +95,29 @@
     font-weight: 500;
 }
 
-/* CTA button */
+/* CTA button — flat signal block */
 .btn-teaser-cta {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background: var(--color-primary);
-    color: #0A0B0F;
-    border: none;
-    border-radius: var(--radius-full);
-    padding: 0.82rem 1.8rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
+    background: var(--color-accent);
+    color: #0C0D0F;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background var(--dur-normal), transform var(--dur-normal) var(--ease-out),
-                box-shadow var(--dur-normal);
-    box-shadow: 0 0 24px rgba(var(--color-primary-rgb), 0.3);
+    transition: background var(--dur-fast), transform var(--dur-fast) var(--ease-out);
 }
 
 .btn-teaser-cta:hover {
-    background: var(--color-primary-strong);
-    transform: translateY(-2px);
-    box-shadow: 0 0 40px rgba(var(--color-primary-rgb), 0.45);
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    transform: translateY(-1px);
 }
 
 .btn-teaser-cta svg {
@@ -138,14 +138,10 @@
 .teaser-code-card {
     width: 100%;
     max-width: 380px;
-    background: #0D0F14;
+    background: var(--color-surface-1);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(124, 92, 255, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .code-card-header {
@@ -167,7 +163,7 @@
 .dot--green  { background: #28C840; }
 
 .code-card-title {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.75rem;
     color: var(--text-muted);
     margin-left: var(--space-2);
@@ -175,7 +171,7 @@
 
 .code-card-body {
     padding: 1.4rem 1.6rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
     line-height: 1.7;
     color: var(--text-secondary);

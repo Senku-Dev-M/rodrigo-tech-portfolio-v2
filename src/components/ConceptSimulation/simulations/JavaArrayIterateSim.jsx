@@ -29,7 +29,7 @@ export default function JavaArrayIterateSim() {
 
     return (
         <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Recorriendo con un Ciclo FOR</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Recorriendo con un Ciclo FOR</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem', height: '40px' }}>
                 El ciclo inicializa matemáticamente <code>i = 0</code>. Por cada repetición se lee el arreglo usando ese índice dinámico <code>datos[i]</code>.
             </p>
@@ -39,11 +39,11 @@ export default function JavaArrayIterateSim() {
                 {/* Código */}
                 <div style={{ background: '#111', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1rem', color: '#e5e7eb' }}>
                     <div>
-                        <span style={{ color: '#67e8f9' }}>int[]</span> <span style={{ color: '#e06c75' }}>datos</span> = {'{'}8, 16, 32, 64{'}'};
+                        <span style={{ color: '#FF8A5C' }}>int[]</span> <span style={{ color: '#e06c75' }}>datos</span> = {'{'}8, 16, 32, 64{'}'};
                     </div>
                     <div style={{ marginTop: '1rem' }}>
-                        <span style={{ color: '#67e8f9' }}>for</span> (
-                        <span style={{ color: '#00d4ff' }}>int i = 0</span>; 
+                        <span style={{ color: '#FF8A5C' }}>for</span> (
+                        <span style={{ color: '#FF5A1F' }}>int i = 0</span>; 
                         <span style={{ color: i < array.length ? '#27ae60' : '#e74c3c' }}> i &lt; datos.length</span>; 
                         <span style={{ color: '#e06c75' }}> i++</span>) {'{'}
                     </div>
@@ -51,8 +51,8 @@ export default function JavaArrayIterateSim() {
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println( <span style={{ color: '#e06c75' }}>datos[</span>
                         <motion.span 
                             key={`code-${i}`} 
-                            initial={i >= 0 && i < array.length ? { scale: 1.5, color: '#38bdf8' } : false} 
-                            animate={{ scale: 1, color: '#00d4ff' }} 
+                            initial={i >= 0 && i < array.length ? { scale: 1.5, color: '#FF8A5C' } : false} 
+                            animate={{ scale: 1, color: '#FF5A1F' }} 
                             style={{ display: 'inline-block', fontWeight: 'bold' }}
                         >
                             {i >= 0 && i < array.length ? i : 'i'}
@@ -87,7 +87,7 @@ export default function JavaArrayIterateSim() {
                     {/* Medidor variable i */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <span style={{ color: 'var(--text-grey)', letterSpacing: '1px', fontSize: '0.85rem' }}>Iterador 'i':</span>
-                        <div style={{ background: '#00d4ff', color: '#000', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 'bold', fontSize: '1.5rem', minWidth: '60px', textAlign: 'center' }}>
+                        <div style={{ background: '#FF5A1F', color: '#000', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 'bold', fontSize: '1.5rem', minWidth: '60px', textAlign: 'center' }}>
                             {i < 0 ? '?' : i}
                         </div>
                     </div>
@@ -108,18 +108,18 @@ export default function JavaArrayIterateSim() {
                                         minWidth: '55px',
                                     }}
                                 >
-                                    <div style={{ fontSize: '0.75rem', color: isActive ? '#00d4ff' : 'var(--text-grey)' }}>idx [{idx}]</div>
+                                    <div style={{ fontSize: '0.75rem', color: isActive ? '#FF5A1F' : 'var(--text-grey)' }}>idx [{idx}]</div>
                                     <motion.div 
                                         animate={{ 
-                                            background: isActive ? 'rgba(0, 212, 255, 0.2)' : 'rgba(255,255,255,0.05)',
-                                            borderColor: isActive ? '#00d4ff' : 'rgba(255,255,255,0.1)',
+                                            background: isActive ? 'rgba(255, 90, 31, 0.2)' : 'rgba(255,255,255,0.05)',
+                                            borderColor: isActive ? '#FF5A1F' : 'rgba(255,255,255,0.1)',
                                             scale: isActive ? 1.1 : 1
                                         }}
                                         style={{ 
                                             width: '55px', height: '55px', borderRadius: '8px', border: '2px solid',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                                             fontSize: '1.1rem', fontWeight: 'bold', color: '#fff',
-                                            boxShadow: isActive ? '0 0 15px rgba(0,212,255,0.3)' : 'none'
+                                            boxShadow: isActive ? '0 0 15px rgba(255,90,31,0.3)' : 'none'
                                         }}
                                     >
                                         {val}
@@ -137,7 +137,7 @@ export default function JavaArrayIterateSim() {
                                                     bottom: '-25px',
                                                     left: '50%',
                                                     transform: 'translateX(-50%)',
-                                                    color: '#00d4ff',
+                                                    color: '#FF5A1F',
                                                     fontSize: '1.2rem',
                                                 }}
                                             >
@@ -157,7 +157,7 @@ export default function JavaArrayIterateSim() {
                 {!isPlaying && i < array.length && (
                     <button 
                         onClick={() => setIsPlaying(true)}
-                        style={{ background: '#00d4ff', color: '#000', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}
+                        style={{ background: '#FF5A1F', color: '#000', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}
                     >
                         {i === -1 ? 'Iniciar FOR' : 'Continuar Loop'}
                     </button>

@@ -3,7 +3,7 @@ import { useState } from 'react';
 const PHASES = [
     {
         name: 'Registro',
-        color: '#67e8f9',
+        color: '#FF8A5C',
         note: 'Bug creado con evidencia, entorno, pasos y resultado actual/esperado.',
     },
     {
@@ -13,12 +13,12 @@ const PHASES = [
     },
     {
         name: 'Fix',
-        color: '#38bdf8',
+        color: '#FF8A5C',
         note: 'Desarrollo implementa correccion o define workaround / diferimiento.',
     },
     {
         name: 'Validacion',
-        color: '#22d3ee',
+        color: '#FF5A1F',
         note: 'QA hace test around, valida el fix y deja nota de validacion.',
     },
     {

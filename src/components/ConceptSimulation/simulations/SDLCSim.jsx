@@ -74,7 +74,7 @@ export default function SDLCSim({ isPlaying }) {
             {isPlaying && (
                 <motion.circle
                     r="6"
-                    fill="#00d4ff"
+                    fill="#FF5A1F"
                     filter="url(#glow)"
                     initial={{ cx: phases[0].x, cy: phases[0].y, opacity: 0 }}
                     animate={{
@@ -97,14 +97,14 @@ export default function SDLCSim({ isPlaying }) {
                         cy={phase.y}
                         r="25"
                         fill="#151515"
-                        stroke={isPlaying ? 'rgba(0, 212, 255, 0.3)' : 'rgba(255,255,255,0.1)'}
+                        stroke={isPlaying ? 'rgba(255, 90, 31, 0.3)' : 'rgba(255,255,255,0.1)'}
                         strokeWidth="2"
                         initial={{ scale: 1 }}
                         animate={
                             isPlaying
                                 ? {
                                       scale: [1, 1.2, 1],
-                                      stroke: ['rgba(0, 212, 255, 0.3)', '#00d4ff', 'rgba(0, 212, 255, 0.3)'],
+                                      stroke: ['rgba(255, 90, 31, 0.3)', '#FF5A1F', 'rgba(255, 90, 31, 0.3)'],
                                   }
                                 : {}
                         }
@@ -124,7 +124,7 @@ export default function SDLCSim({ isPlaying }) {
                     >
                         {phase.text}
                     </text>
-                    <text x={phase.x} y={phase.y + 4} textAnchor="middle" fill="#00d4ff" fontSize="12" fontWeight="bold">
+                    <text x={phase.x} y={phase.y + 4} textAnchor="middle" fill="#FF5A1F" fontSize="12" fontWeight="bold">
                         {index + 1}
                     </text>
                 </g>
@@ -136,14 +136,14 @@ export default function SDLCSim({ isPlaying }) {
                     cy={maintenance.y}
                     r="30"
                     fill="#151515"
-                    stroke={isPlaying ? 'rgba(56, 189, 248, 0.3)' : 'rgba(255,255,255,0.1)'}
+                    stroke={isPlaying ? 'rgba(255, 138, 92, 0.3)' : 'rgba(255,255,255,0.1)'}
                     strokeWidth="2"
                     initial={{ scale: 1 }}
                     animate={
                         isPlaying
                             ? {
                                   scale: [1, 1.2, 1],
-                                  stroke: ['rgba(56, 189, 248, 0.3)', '#7dd3fc', 'rgba(56, 189, 248, 0.3)'],
+                                  stroke: ['rgba(255, 138, 92, 0.3)', '#7dd3fc', 'rgba(255, 138, 92, 0.3)'],
                               }
                             : {}
                     }

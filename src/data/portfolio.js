@@ -9,7 +9,7 @@ export const projects = [
         period: { es: 'Jun. 2026', en: 'Jun 2026' },
         type: 'Personal',
         icon: 'terminal',
-        accent: '#6366f1',
+        accent: '#FF5A1F',
         links: [
             {
                 label: { es: 'Abrir demo', en: 'Open demo' },
@@ -61,7 +61,7 @@ export const projects = [
         period: { es: 'Nov. 2025 – Feb. 2026', en: 'Nov 2025 – Feb 2026' },
         type: 'Freelance',
         icon: 'dumbbell',
-        accent: '#a78bfa',
+        accent: '#FF5A1F',
         links: [
             {
                 label: { es: 'Abrir demo', en: 'Open demo' },
@@ -113,7 +113,7 @@ export const projects = [
         period: { es: 'Jul. 2025 – Sep. 2025', en: 'Jul 2025 – Sep 2025' },
         type: 'Jala University',
         icon: 'image',
-        accent: '#38bdf8',
+        accent: '#FF5A1F',
         impact: {
             es: 'Arquitectura distribuida para procesar, optimizar y entregar imágenes con servicios desacoplados.',
             en: 'Distributed architecture for processing, optimizing and delivering images through decoupled services.',
@@ -154,7 +154,7 @@ export const projects = [
         period: { es: 'Abr. 2025 – Jun. 2025', en: 'Apr 2025 – Jun 2025' },
         type: 'Jala University',
         icon: 'handshake',
-        accent: '#ec4899',
+        accent: '#FF5A1F',
         links: [
             {
                 label: { es: 'Ver landing page', en: 'View landing page' },

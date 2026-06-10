@@ -29,7 +29,7 @@ export default function JavaForEachSim() {
 
     return (
         <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Iterando con For-Each</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Iterando con For-Each</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem', height: '40px' }}>
                 En cada repetición, la variable <code>num</code> toma mágicamente el valor del siguiente elemento del arreglo, de izquierda a derecha sin necesidad de usar un contador manual.
             </p>
@@ -39,17 +39,17 @@ export default function JavaForEachSim() {
                 {/* Código */}
                 <div style={{ background: '#111', padding: '1rem 2rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left', fontFamily: 'monospace', fontSize: '1.1rem', color: '#e5e7eb' }}>
                     <div>
-                        <span style={{ color: '#67e8f9' }}>int[]</span> <span style={{ color: '#e06c75' }}>numeros</span> = {'{'}10, 25, 50, 80, 100{'}'};
+                        <span style={{ color: '#FF8A5C' }}>int[]</span> <span style={{ color: '#e06c75' }}>numeros</span> = {'{'}10, 25, 50, 80, 100{'}'};
                     </div>
                     <div style={{ marginTop: '1rem' }}>
-                        <span style={{ color: '#67e8f9' }}>for</span> (<span style={{ color: '#67e8f9' }}>int</span> <span style={{ color: '#00d4ff' }}>num</span> : <span style={{ color: '#e06c75' }}>numeros</span>) {'{'}
+                        <span style={{ color: '#FF8A5C' }}>for</span> (<span style={{ color: '#FF8A5C' }}>int</span> <span style={{ color: '#FF5A1F' }}>num</span> : <span style={{ color: '#e06c75' }}>numeros</span>) {'{'}
                     </div>
                     <div style={{ paddingLeft: '2rem', margin: '0.5rem 0' }}>
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println(
                         <motion.span 
                             key={currentIndex} 
-                            initial={currentIndex >= 0 && currentIndex < array.length ? { scale: 1.5, color: '#38bdf8' } : false} 
-                            animate={{ scale: 1, color: '#00d4ff' }} 
+                            initial={currentIndex >= 0 && currentIndex < array.length ? { scale: 1.5, color: '#FF8A5C' } : false} 
+                            animate={{ scale: 1, color: '#FF5A1F' }} 
                             style={{ display: 'inline-block' }}
                         >
                             num
@@ -70,8 +70,8 @@ export default function JavaForEachSim() {
                                 <motion.div 
                                     animate={{ 
                                         y: isActive ? -10 : 0,
-                                        background: isActive ? 'rgba(0, 212, 255, 0.2)' : isPast ? 'rgba(39, 174, 96, 0.1)' : 'rgba(255,255,255,0.05)',
-                                        borderColor: isActive ? '#00d4ff' : isPast ? '#27ae60' : 'rgba(255,255,255,0.1)',
+                                        background: isActive ? 'rgba(255, 90, 31, 0.2)' : isPast ? 'rgba(39, 174, 96, 0.1)' : 'rgba(255,255,255,0.05)',
+                                        borderColor: isActive ? '#FF5A1F' : isPast ? '#27ae60' : 'rgba(255,255,255,0.1)',
                                         scale: isActive ? 1.1 : 1
                                     }}
                                     style={{ 
@@ -84,8 +84,8 @@ export default function JavaForEachSim() {
                                         justifyContent: 'center',
                                         fontSize: '1.2rem',
                                         fontWeight: 'bold',
-                                        color: isActive ? '#00d4ff' : isPast ? '#27ae60' : '#fff',
-                                        boxShadow: isActive ? '0 0 15px rgba(0,212,255,0.3)' : 'none'
+                                        color: isActive ? '#FF5A1F' : isPast ? '#27ae60' : '#fff',
+                                        boxShadow: isActive ? '0 0 15px rgba(255,90,31,0.3)' : 'none'
                                     }}
                                 >
                                     {val}
@@ -99,7 +99,7 @@ export default function JavaForEachSim() {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -10 }}
-                                            style={{ position: 'absolute', bottom: '-30px', color: '#00d4ff', fontSize: '0.8rem', fontWeight: 'bold' }}
+                                            style={{ position: 'absolute', bottom: '-30px', color: '#FF5A1F', fontSize: '0.8rem', fontWeight: 'bold' }}
                                         >
                                             num = {val}
                                         </motion.div>
@@ -116,7 +116,7 @@ export default function JavaForEachSim() {
                 {!isPlaying && currentIndex < array.length && (
                     <button 
                         onClick={() => setIsPlaying(true)}
-                        style={{ background: '#00d4ff', color: '#000', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}
+                        style={{ background: '#FF5A1F', color: '#000', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}
                     >
                         {currentIndex === -1 ? 'Iniciar Recorrido' : 'Continuar Recorrido'}
                     </button>

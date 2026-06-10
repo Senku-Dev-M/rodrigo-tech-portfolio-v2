@@ -20,6 +20,8 @@ const en = {
         role3: 'Backend · La Paz, Bolivia',
         bio: 'Commercial Software Engineering student. Full Stack Developer focused on the backend. Passionate about automation, designing scalable systems applying advanced software architectures (Hexagonal, Clean, Onion), and frontend development.',
         cta: 'See my work',
+        ctaContact: "Let's talk",
+        availability: 'Available for projects',
     },
 
     // ── About ──
@@ -57,7 +59,7 @@ const en = {
     portfolio: {
         title: 'Portfolio',
         subtitle: '',
-        backHome: '← Back to home',
+        backHome: 'Back to home',
         highlights: 'Key technologies',
         liveLinks: 'Project links',
         githubTitle: 'More projects on GitHub and GitLab',
@@ -77,7 +79,7 @@ const en = {
     mentoring: {
         title: 'Mentoring',
         subtitle: 'Since January 2024 I have been part of the <strong>Mentor U</strong> program at Jala University, providing academic mentoring to software engineering students.',
-        backHome: '← Back to home',
+        backHome: 'Back to home',
         subjects: 'Courses',
         labs: 'Labs',
         breadcrumbRoot: 'Mentoring',
@@ -154,7 +156,7 @@ const en = {
     formacion: {
         title: 'Education & Credentials',
         subtitle: 'My academic background and professional certifications.',
-        backHome: '← Back to home',
+        backHome: 'Back to home',
         ctaLabel: 'View education & credentials →',
     },
 
@@ -162,6 +164,9 @@ const en = {
     contact: {
         title: "Let's Talk",
         subtitle: 'Have a project in mind, want mentoring, or just want to say hi? I reply within 24 h.',
+        nameLabel: 'Name',
+        emailLabel: 'Email',
+        messageLabel: 'Message',
         namePlaceholder: 'Your name',
         emailPlaceholder: 'you@email.com',
         messagePlaceholder: 'How can I help you?',
@@ -194,7 +199,7 @@ const en = {
 
     // ── Common ──
     common: {
-        backHome: '← Back to home',
+        backHome: 'Back to home',
     },
 };
 

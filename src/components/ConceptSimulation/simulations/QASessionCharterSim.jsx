@@ -5,19 +5,19 @@ const STAGES = [
         name: 'Charter',
         note: 'Mision, alcance y riesgo sospechado',
         artifact: 'Objetivo: explorar login con tokens expirados y reenvio de correo',
-        color: '#67e8f9',
+        color: '#FF8A5C',
     },
     {
         name: 'Sesion',
         note: 'Exploracion focalizada y adaptativa',
         artifact: 'Variacion de navegador, expiracion, reintentos y links viejos',
-        color: '#38bdf8',
+        color: '#FF8A5C',
     },
     {
         name: 'Notas',
         note: 'Datos, pasos, preguntas y evidencias',
         artifact: 'Build v2.8.1 - token vencido no informa causa y redirige al dashboard',
-        color: '#22d3ee',
+        color: '#FF5A1F',
     },
     {
         name: 'Hallazgos',

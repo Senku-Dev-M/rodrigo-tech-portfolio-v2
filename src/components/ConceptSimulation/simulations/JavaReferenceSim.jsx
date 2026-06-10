@@ -12,7 +12,7 @@ export default function JavaReferenceSim() {
 
     return (
         <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Primitivos vs Referencias</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Primitivos vs Referencias</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem', height: '40px' }}>
                 {steps[step].desc}
             </p>
@@ -29,8 +29,8 @@ export default function JavaReferenceSim() {
                         <motion.div 
                             initial={false}
                             animate={{ 
-                                borderColor: step === 0 ? '#00d4ff' : 'rgba(255,255,255,0.2)',
-                                boxShadow: step === 0 ? '0 0 15px rgba(0,212,255,0.3)' : 'none'
+                                borderColor: step === 0 ? '#FF5A1F' : 'rgba(255,255,255,0.2)',
+                                boxShadow: step === 0 ? '0 0 15px rgba(255,90,31,0.3)' : 'none'
                             }}
                             style={{ padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', border: '2px solid', color: '#d19a66', fontWeight: 'bold' }}
                         >
@@ -44,7 +44,7 @@ export default function JavaReferenceSim() {
                         <motion.div 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: step >= 1 ? 1 : 0.3 }}
-                            style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', border: step >= 1 ? '2px solid #67e8f9' : '2px solid rgba(255,255,255,0.2)', color: '#67e8f9', fontSize: '0.8rem', width: '70px', textAlign: 'center' }}
+                            style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', border: step >= 1 ? '2px solid #FF8A5C' : '2px solid rgba(255,255,255,0.2)', color: '#FF8A5C', fontSize: '0.8rem', width: '70px', textAlign: 'center' }}
                         >
                             {step >= 2 ? '0x1A4' : '(ref)'}
                         </motion.div>
@@ -59,13 +59,13 @@ export default function JavaReferenceSim() {
                             >
                                 <defs>
                                     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                        <polygon points="0 0, 10 3.5, 0 7" fill="#67e8f9" />
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#FF8A5C" />
                                     </marker>
                                 </defs>
                                 <motion.path 
                                     d="M 0 0 Q 60 0, 100 40" 
                                     fill="transparent" 
-                                    stroke="#67e8f9" 
+                                    stroke="#FF8A5C" 
                                     strokeWidth="3" 
                                     strokeDasharray="5,5"
                                     markerEnd="url(#arrowhead)" 
@@ -82,9 +82,9 @@ export default function JavaReferenceSim() {
                     <motion.div 
                         initial={{ scale: 0 }}
                         animate={{ scale: step >= 1 ? 1 : 0 }}
-                        style={{ marginTop: '2.5rem', padding: '1rem', background: 'rgba(103, 232, 249, 0.1)', borderRadius: '8px', border: '2px dashed #67e8f9', textAlign: 'center' }}
+                        style={{ marginTop: '2.5rem', padding: '1rem', background: 'rgba(255, 138, 92, 0.1)', borderRadius: '8px', border: '2px dashed #FF8A5C', textAlign: 'center' }}
                     >
-                        <span style={{ fontSize: '0.7rem', color: '#67e8f9', display: 'block', marginBottom: '0.5rem' }}>Dir: 0x1A4</span>
+                        <span style={{ fontSize: '0.7rem', color: '#FF8A5C', display: 'block', marginBottom: '0.5rem' }}>Dir: 0x1A4</span>
                         <span style={{ color: '#98c379', fontSize: '1.2rem', fontWeight: 'bold' }}>"Hola"</span>
                     </motion.div>
                 </div>
@@ -102,7 +102,7 @@ export default function JavaReferenceSim() {
                 <button 
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
-                    style={{ background: '#00d4ff', color: '#000', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer', fontWeight: 'bold', opacity: step === steps.length - 1 ? 0.5 : 1 }}
+                    style={{ background: '#FF5A1F', color: '#000', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer', fontWeight: 'bold', opacity: step === steps.length - 1 ? 0.5 : 1 }}
                 >
                     Siguiente Paso
                 </button>
@@ -110,7 +110,7 @@ export default function JavaReferenceSim() {
                 {step === steps.length - 1 && (
                     <button 
                         onClick={() => setStep(0)}
-                        style={{ background: 'transparent', color: '#00d4ff', border: '1px solid #00d4ff', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer' }}
+                        style={{ background: 'transparent', color: '#FF5A1F', border: '1px solid #FF5A1F', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer' }}
                     >
                         Reiniciar
                     </button>

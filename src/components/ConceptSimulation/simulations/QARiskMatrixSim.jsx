@@ -23,7 +23,7 @@ const RISKS = [
         probability: 2,
         impact: 2,
         action: 'Cobertura ligera o diferida',
-        color: '#67e8f9',
+        color: '#FF8A5C',
     },
 ];
 

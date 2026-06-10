@@ -6,7 +6,7 @@ const layers = [
     {
         id: 'aplicacion',
         title: 'Aplicación',
-        color: '#67e8f9',
+        color: '#FF8A5C',
         protocols: 'HTTP, HTTPS, DNS, SMTP',
         pdu: 'Datos de aplicación',
         devices: 'Navegador, servidor web, cliente de correo',
@@ -33,7 +33,7 @@ const layers = [
     {
         id: 'enlace',
         title: 'Enlace de Datos',
-        color: '#a78bfa',
+        color: '#8A8F98',
         protocols: 'Ethernet, Wi-Fi, ARP',
         pdu: 'Trama',
         devices: 'Switches, MAC, NIC',
@@ -84,7 +84,7 @@ export default function HybridLayersSim({ isPlaying }) {
         >
             <h3
                 style={{
-                    color: '#00d4ff',
+                    color: '#FF5A1F',
                     margin: '0 0 0.45rem',
                     textAlign: 'center',
                     fontSize: isCompact ? '1.25rem' : '1.55rem',

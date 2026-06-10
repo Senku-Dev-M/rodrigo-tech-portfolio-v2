@@ -13,7 +13,7 @@ const PARTITIONS = [
         rule: '5 a 20 caracteres alfabeticos',
         sample: 'Mariana',
         expected: 'Aceptar y continuar con el registro',
-        color: '#22d3ee',
+        color: '#FF5A1F',
     },
     {
         label: 'Invalida',
@@ -27,7 +27,7 @@ const PARTITIONS = [
         rule: 'Numericos o especiales',
         sample: 'Juan99',
         expected: 'Rechazar por formato no permitido',
-        color: '#a78bfa',
+        color: '#8A8F98',
     },
 ];
 

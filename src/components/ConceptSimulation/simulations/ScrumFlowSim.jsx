@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 
 const STAGES = [
-    { id: 'backlog', label: 'Product\nBacklog', color: '#38bdf8', icon: '📋' },
+    { id: 'backlog', label: 'Product\nBacklog', color: '#FF8A5C', icon: '📋' },
     { id: 'planning', label: 'Sprint\nPlanning', color: '#7dd3fc', icon: '🗓' },
-    { id: 'sprint', label: 'Sprint\n(1-4 sem)', color: '#00d4ff', icon: '⚡' },
+    { id: 'sprint', label: 'Sprint\n(1-4 sem)', color: '#FF5A1F', icon: '⚡' },
     { id: 'review', label: 'Sprint\nReview', color: '#00ff88', icon: '✅' },
     { id: 'retro', label: 'Retro-\nspectiva', color: '#fb7185', icon: '🔄' },
 ];

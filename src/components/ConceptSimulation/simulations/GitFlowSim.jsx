@@ -2,15 +2,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // ── Zone config ────────────────────────────────────────────────
 const ZONES = [
-    { id: 'wd',    label: 'Working\nDirectory', icon: '📁', color: '#38bdf8', desc: 'Editas archivos' },
+    { id: 'wd',    label: 'Working\nDirectory', icon: '📁', color: '#FF8A5C', desc: 'Editas archivos' },
     { id: 'stage', label: 'Staging\nArea',       icon: '📋', color: '#7dd3fc', desc: 'git add' },
-    { id: 'local', label: 'Local\nRepository',   icon: '💾', color: '#00d4ff', desc: 'git commit' },
+    { id: 'local', label: 'Local\nRepository',   icon: '💾', color: '#FF5A1F', desc: 'git commit' },
     { id: 'remote',label: 'Remote\n(GitHub)',     icon: '☁️', color: '#00ff88', desc: 'git push' },
 ];
 
 const ARROWS = [
     { from: 'wd',    to: 'stage', label: 'git add',    color: '#7dd3fc', delay: 0 },
-    { from: 'stage', to: 'local', label: 'git commit', color: '#00d4ff', delay: 1.8 },
+    { from: 'stage', to: 'local', label: 'git commit', color: '#FF5A1F', delay: 1.8 },
     { from: 'local', to: 'remote',label: 'git push',   color: '#00ff88', delay: 3.6 },
 ];
 

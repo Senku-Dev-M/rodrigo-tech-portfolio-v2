@@ -15,7 +15,7 @@ export default function MentoringStats() {
         <div className="stats-row">
             {stats.map((s, i) => (
                 <div key={i} className="stat-card">
-                    <Icon name={s.iconName} size={20} color="rgba(0,212,255,0.5)" />
+                    <Icon name={s.iconName} size={20} color="rgba(255,90,31,0.5)" />
                     <span className="stat-value">{s.value}</span>
                     <span className="stat-label">{s.label}</span>
                 </div>

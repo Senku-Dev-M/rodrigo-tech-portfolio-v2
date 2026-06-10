@@ -96,7 +96,7 @@ function GuideExercise({ exercise }) {
                     <h3 className="guide-exercise__title">{exercise.title}</h3>
                 </div>
                 <span className="guide-exercise__icon">
-                    <Icon name="rocket" size={22} color="#00d4ff" />
+                    <Icon name="rocket" size={22} color="#FF5A1F" />
                 </span>
             </div>
 
@@ -122,7 +122,7 @@ function GuideExercise({ exercise }) {
 
             {exercise.reflection && (
                 <div className="guide-reflection">
-                    <Icon name="lightbulb" size={18} color="#00d4ff" />
+                    <Icon name="lightbulb" size={18} color="#FF5A1F" />
                     <p>{exercise.reflection}</p>
                 </div>
             )}
@@ -171,7 +171,7 @@ export default function GuideView({ lab, showHeader = true, showSidebar = true }
                             <div className="guide-intro-grid">
                                 {introCards.map((card, index) => (
                                     <article key={`${card.title}-${index}`} className="guide-intro-card">
-                                        <Icon name={card.icon || 'book'} size={22} color="#00d4ff" />
+                                        <Icon name={card.icon || 'book'} size={22} color="#FF5A1F" />
                                         <h3>{card.title}</h3>
                                         <p style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: card.text }} />
                                     </article>
@@ -185,7 +185,7 @@ export default function GuideView({ lab, showHeader = true, showSidebar = true }
                                     <article key={`${note.title}-${index}`} className="guide-callout">
                                         <div className="guide-callout__header">
                                             <span className="guide-callout__icon">
-                                                <Icon name={note.icon || 'lightbulb'} size={18} color="#00d4ff" />
+                                                <Icon name={note.icon || 'lightbulb'} size={18} color="#FF5A1F" />
                                             </span>
                                             <h3 className="guide-callout__title">{note.title}</h3>
                                         </div>
@@ -216,7 +216,7 @@ export default function GuideView({ lab, showHeader = true, showSidebar = true }
                                     <div key={vm.name} className="guide-vm-card">
                                         <div className="guide-vm-card__header">
                                             <div className="guide-vm-card__left">
-                                                <Icon name={index === 0 ? 'monitor' : 'server'} size={18} color="#00d4ff" />
+                                                <Icon name={index === 0 ? 'monitor' : 'server'} size={18} color="#FF5A1F" />
                                                 <span className="guide-vm-card__name">{vm.name}</span>
                                             </div>
                                             <span className="guide-vm-card__ip">{vm.ip}</span>
@@ -243,7 +243,7 @@ export default function GuideView({ lab, showHeader = true, showSidebar = true }
                                     <>
                                         <div className="guide-arch-node guide-arch-node--client">
                                             <div className="guide-arch-node__icon">
-                                                <Icon name="monitor" size={24} color="#00d4ff" />
+                                                <Icon name="monitor" size={24} color="#FF5A1F" />
                                             </div>
                                             <div className="guide-arch-node__body">
                                                 <span className="guide-arch-node__label">Cliente</span>
@@ -270,7 +270,7 @@ export default function GuideView({ lab, showHeader = true, showSidebar = true }
 
                                         <div className="guide-arch-node guide-arch-node--server">
                                             <div className="guide-arch-node__icon">
-                                                <Icon name="server" size={24} color="#00d4ff" />
+                                                <Icon name="server" size={24} color="#FF5A1F" />
                                             </div>
                                             <div className="guide-arch-node__body">
                                                 <span className="guide-arch-node__label">Servidor</span>
@@ -359,7 +359,7 @@ export default function GuideView({ lab, showHeader = true, showSidebar = true }
                                         transition={{ delay: index * 0.08 }}
                                     >
                                         <div className="guide-verify-header">
-                                            <Icon name="checkCircle" size={16} color="#00d4ff" />
+                                            <Icon name="checkCircle" size={16} color="#FF5A1F" />
                                             <h3 className="guide-verify-title">{item.title}</h3>
                                             {item.vm && <span className="guide-step__vm">{item.vm}</span>}
                                         </div>
@@ -480,7 +480,7 @@ export default function GuideView({ lab, showHeader = true, showSidebar = true }
 
                     <Section id="guide-conclusion" title="Cierre">
                         <section className="guide-section guide-conclusion">
-                            <Icon name="checkCircle" size={36} color="#00d4ff" />
+                            <Icon name="checkCircle" size={36} color="#FF5A1F" />
                             <h2>Mentoría completada</h2>
                             <p>
                                 {guide.conclusion ||

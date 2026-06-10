@@ -6,7 +6,7 @@ const desarrolloSoftwareSubject =
         description:
             'Fundamentos del desarrollo de software, metodologías, ciclo de vida del software, arquitectura de sistemas y buenas prácticas de ingeniería.',
         icon: 'code',
-        color: '#38bdf8',
+        color: '#FF8A5C',
         topics: ['Software Engineering', 'SDLC', 'Programming', 'Software Design'],
         learningPath: {
             title: 'Ruta de aprendizaje sugerida',
@@ -510,17 +510,17 @@ const desarrolloSoftwareSubject =
                             cards: [
                                 {
                                     title: 'Product Owner (PO)',
-                                    color: '#67e8f9',
+                                    color: '#FF8A5C',
                                     text: 'Es el responsable de <strong>maximizar el valor</strong> del producto. Define qué se va a construir y en qué orden. Gestiona el <em>Product Backlog</em>. Trabaja de puente entre el negocio y el equipo de desarrollo. No es jefe del equipo.'
                                 },
                                 {
                                     title: 'Scrum Master',
-                                    color: '#38bdf8',
+                                    color: '#FF8A5C',
                                     text: 'Es el <strong>guardián del proceso</strong> Scrum. Se asegura de que el equipo entienda y aplique correctamente Scrum. Elimina impedimentos, facilita los eventos y protege al equipo de interrupciones externas. Es un <em>servant leader</em>.'
                                 },
                                 {
                                     title: 'Development Team',
-                                    color: '#00d4ff',
+                                    color: '#FF5A1F',
                                     text: 'El equipo que construye el producto. Es <strong>auto-organizado</strong> (decide cómo hacer el trabajo) y <strong>multifuncional</strong> (cuenta con todas las habilidades necesarias como diseño, desarrollo y QA). El tamaño ideal es de 3 a 9 personas.'
                                 }
                             ]
@@ -569,12 +569,12 @@ const desarrolloSoftwareSubject =
                             cards: [
                                 {
                                     title: 'Sprint',
-                                    color: '#00d4ff',
+                                    color: '#FF5A1F',
                                     text: 'El <strong>corazón de Scrum</strong>. Un ciclo de trabajo de duración fija (1 a 4 semanas, generalmente 2). Al terminar, debe existir un incremento de producto potencialmente entregable.'
                                 },
                                 {
                                     title: 'Sprint Planning',
-                                    color: '#38bdf8',
+                                    color: '#FF8A5C',
                                     text: 'Primera reunión del Sprint. El equipo define el <strong>Sprint Goal</strong> y selecciona del Backlog los ítems que completará. Responden: ¿Qué entregaremos? y ¿Cómo lo haremos?'
                                 },
                                 {
@@ -584,12 +584,12 @@ const desarrolloSoftwareSubject =
                                 },
                                 {
                                     title: 'Sprint Review',
-                                    color: '#0ea5e9',
+                                    color: '#E84D14',
                                     text: 'Al final del Sprint, el equipo <strong>muestra el trabajo completado</strong> a los stakeholders. El objetivo es obtener feedback e inspeccionar el producto. El Backlog se adapta según lo aprendido.'
                                 },
                                 {
                                     title: 'Sprint Retrospective',
-                                    color: '#67e8f9',
+                                    color: '#FF8A5C',
                                     text: 'Al final del Sprint, el equipo <strong>reflexiona sobre sí mismo</strong>: el proceso, las herramientas, las relaciones. Identifica mejoras concretas y procesables para el siguiente Sprint.'
                                 }
                             ]

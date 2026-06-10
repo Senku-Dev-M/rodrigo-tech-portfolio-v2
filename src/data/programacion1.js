@@ -5,7 +5,7 @@ const programacion1Subject = {
     description:
         'Fundamentos de programación, lógica algorítmica y sintaxis inicial usando el lenguaje Java.',
     icon: 'terminal',
-    color: '#0ea5e9',
+    color: '#E84D14',
     topics: ['Java', 'Algoritmos', 'Lógica', 'POO Básica'],
     learningPath: {
         title: 'Ruta de aprendizaje sugerida',

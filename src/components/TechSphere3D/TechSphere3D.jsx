@@ -37,7 +37,7 @@ function TechTagSprite({ name, category, position, index, total, hoverScale = 1.
         const ctx = canvas.getContext('2d');
         if (!ctx) return new THREE.Texture();
 
-        const color = categoryColors[category] || '#00d4ff';
+        const color = categoryColors[category] || '#8A8F98';
         
         // Draw glassy background pill
         ctx.fillStyle = 'rgba(10, 10, 10, 0.85)';
@@ -201,7 +201,7 @@ function TechSphereGroup({ radius = 10, speed = 0.25 }) {
             <mesh>
                 <sphereGeometry args={[radius * 0.85, 12, 12]} />
                 <meshBasicMaterial 
-                    color="#00d4ff" 
+                    color="#8A8F98" 
                     wireframe={true} 
                     transparent={true} 
                     opacity={0.03}
@@ -212,7 +212,7 @@ function TechSphereGroup({ radius = 10, speed = 0.25 }) {
             <points>
                 <sphereGeometry args={[radius * 0.4, 20, 20]} />
                 <pointsMaterial 
-                    color="#00d4ff" 
+                    color="#8A8F98" 
                     size={0.12} 
                     transparent={true} 
                     opacity={0.2}

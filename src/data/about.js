@@ -21,12 +21,13 @@ export const skills = [
     { name: 'Git', category: 'devops' },
 ];
 
+/* Monochrome system — one neutral for all categories (no rainbow chips) */
 export const categoryColors = {
-    backend: '#00d4ff',
-    frontend: '#a78bfa',
-    database: '#f59e0b',
-    devops: '#10b981',
-    design: '#ec4899',
+    backend: '#8A8F98',
+    frontend: '#8A8F98',
+    database: '#8A8F98',
+    devops: '#8A8F98',
+    design: '#8A8F98',
 };
 
 export const experiences = [
@@ -38,7 +39,7 @@ export const experiences = [
             es: 'Desarrollé GymFlow AI — sistema de gestión para gimnasios con Python + FastAPI Onion Architecture, React 18 + TypeScript, JWT/RBAC, IA generativa para rutinas con OpenRouter, contenedorizado con Docker.',
             en: 'Developed GymFlow AI — gym management system with Python + FastAPI Onion Architecture, React 18 + TypeScript, JWT/RBAC, generative AI for routines via OpenRouter, containerized with Docker.',
         },
-        accent: '#00d4ff',
+        accent: '#FF5A1F',
     },
     {
         period: { es: 'Jul. 2025 – Sep. 2025', en: 'Jul 2025 – Sep 2025' },
@@ -48,7 +49,7 @@ export const experiences = [
             es: 'Participé en PixPro, plataforma de gestión de imágenes con arquitectura distribuida. Backend en Node.js/TypeScript (Clean Architecture), microservicio Python para imágenes, Docker, GitLab CI/CD, MySQL, RabbitMQ, Supabase, frontend Angular.',
             en: 'Contributed to PixPro, an image management platform with distributed architecture. Backend in Node.js/TypeScript (Clean Architecture), Python microservice for images, Docker, GitLab CI/CD, MySQL, RabbitMQ, Supabase, Angular frontend.',
         },
-        accent: '#0ea5e9',
+        accent: '#FF5A1F',
     },
     {
         period: { es: 'Ene. 2024 – Actualidad', en: 'Jan 2024 – Present' },
@@ -58,7 +59,7 @@ export const experiences = [
             es: 'Mentoría académica en Programación I y II, Bases de Datos y Desarrollo de Software. Guía de APIs con Java/Spring Boot, revisiones de código y acompañamiento técnico en proyectos.',
             en: 'Academic mentoring in Programming I & II, Databases, and Software Development. API guidance with Java/Spring Boot, code reviews, and technical project support.',
         },
-        accent: '#06b6d4',
+        accent: '#FF5A1F',
     },
     {
         period: { es: 'Abr. 2025 – Jun. 2025', en: 'Apr 2025 – Jun 2025' },
@@ -68,7 +69,7 @@ export const experiences = [
             es: 'Diseñé TeToca, app móvil de intercambio de servicios. Prototipo completo en Figma con Design Thinking, user flows, wireframes y prototipos de alta fidelidad.',
             en: 'Designed TeToca, a mobile app for service exchange. Complete Figma prototype using Design Thinking, user flows, wireframes, and high-fidelity prototypes.',
         },
-        accent: '#22d3ee',
+        accent: '#FF5A1F',
     },
 ];
 

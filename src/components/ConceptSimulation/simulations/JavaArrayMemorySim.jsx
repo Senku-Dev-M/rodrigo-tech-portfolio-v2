@@ -19,7 +19,7 @@ export default function JavaArrayMemorySim() {
     const codeByStep = [
         <>int[] numeros = new int[5];</>,
         <>int[] numeros = {'{'} 10, 20, 30, 40, 50 {'}'};</>,
-        <>int valor = numeros[<span style={{ color: '#00d4ff', fontWeight: 'bold' }}>2</span>];</>,
+        <>int valor = numeros[<span style={{ color: '#FF5A1F', fontWeight: 'bold' }}>2</span>];</>,
         <>numeros[<span style={{ color: '#e74c3c', fontWeight: 'bold' }}>0</span>] = <span style={{ color: '#e74c3c' }}>99</span>;</>,
     ];
 
@@ -33,7 +33,7 @@ export default function JavaArrayMemorySim() {
                 textAlign: 'center',
             }}
         >
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulacion: Arreglos en memoria</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Simulacion: Arreglos en memoria</h3>
             <p
                 style={{
                     color: 'var(--text-grey)',
@@ -60,7 +60,7 @@ export default function JavaArrayMemorySim() {
                         overflowWrap: 'anywhere',
                     }}
                 >
-                    <span style={{ color: '#67e8f9' }}>{codeByStep[step]}</span>
+                    <span style={{ color: '#FF8A5C' }}>{codeByStep[step]}</span>
                 </div>
 
                 <div
@@ -84,7 +84,7 @@ export default function JavaArrayMemorySim() {
                                 <div
                                     style={{
                                         fontSize: '0.72rem',
-                                        color: isActive ? (step === 2 ? '#00d4ff' : '#e74c3c') : 'var(--text-grey)',
+                                        color: isActive ? (step === 2 ? '#FF5A1F' : '#e74c3c') : 'var(--text-grey)',
                                         fontWeight: isActive ? '700' : '500',
                                     }}
                                 >
@@ -96,12 +96,12 @@ export default function JavaArrayMemorySim() {
                                         y: isActive ? -4 : 0,
                                         background: isActive
                                             ? step === 2
-                                                ? 'rgba(0, 212, 255, 0.2)'
+                                                ? 'rgba(255, 90, 31, 0.2)'
                                                 : 'rgba(231, 76, 60, 0.2)'
                                             : 'rgba(255,255,255,0.05)',
                                         borderColor: isActive
                                             ? step === 2
-                                                ? '#00d4ff'
+                                                ? '#FF5A1F'
                                                 : '#e74c3c'
                                             : 'rgba(255,255,255,0.1)',
                                     }}
@@ -146,7 +146,7 @@ export default function JavaArrayMemorySim() {
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
                     style={{
-                        background: '#00d4ff',
+                        background: '#FF5A1F',
                         color: '#000',
                         border: 'none',
                         padding: '0.62rem 1rem',

@@ -6,7 +6,7 @@ const pillars = [
     {
         id: 'encapsulamiento',
         title: 'Encapsulamiento',
-        color: '#67e8f9',
+        color: '#FF8A5C',
         desc: 'El objeto protege sus datos internos y obliga a interactuar con ellos mediante operaciones controladas.',
         example: 'Ejemplo: `saldo` privado + `depositar()`',
     },
@@ -71,7 +71,7 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
         if (!activePillarId) {
             return {
                 title: 'Mapa inicial',
-                color: '#67e8f9',
+                color: '#FF8A5C',
                 desc: 'Primero observa la relación entre una clase y el objeto concreto que nace a partir de ella. Después aparecen los cuatro pilares uno por uno.',
                 example: 'Clase → Objeto → Diseño orientado a objetos',
             };
@@ -91,7 +91,7 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
         >
             <h3
                 style={{
-                    color: '#00d4ff',
+                    color: '#FF5A1F',
                     margin: '0 0 0.5rem',
                     textAlign: 'center',
                     fontSize: isCompact ? '1.35rem' : '1.7rem',
@@ -155,7 +155,7 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
                                 padding: '0.28rem 0.65rem',
                                 borderRadius: '999px',
                                 background: 'rgba(103,232,249,0.14)',
-                                color: '#67e8f9',
+                                color: '#FF8A5C',
                                 fontSize: '0.78rem',
                                 fontWeight: 700,
                                 letterSpacing: '0.08em',
@@ -174,11 +174,11 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
                                 fontSize: isCompact ? '0.94rem' : '1rem',
                             }}
                         >
-                            <div style={{ color: '#67e8f9', fontWeight: 700 }}>class Vehiculo {'{'}</div>
+                            <div style={{ color: '#FF8A5C', fontWeight: 700 }}>class Vehiculo {'{'}</div>
                             <div style={{ paddingLeft: '1rem', color: '#f9a8d4' }}>private String marca;</div>
                             <div style={{ paddingLeft: '1rem', color: '#f9a8d4' }}>private int velocidad;</div>
                             <div style={{ paddingLeft: '1rem', color: '#93c5fd' }}>void acelerar() {'{'} ... {'}'}</div>
-                            <div style={{ color: '#67e8f9', fontWeight: 700 }}>{'}'}</div>
+                            <div style={{ color: '#FF8A5C', fontWeight: 700 }}>{'}'}</div>
                         </div>
                     </motion.div>
 
@@ -208,7 +208,7 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
                         animate={{
                             boxShadow:
                                 phase >= 1
-                                    ? '0 0 0 1px rgba(0,212,255,0.32), 0 18px 32px rgba(0, 0, 0, 0.24)'
+                                    ? '0 0 0 1px rgba(255,90,31,0.32), 0 18px 32px rgba(0, 0, 0, 0.24)'
                                     : '0 14px 28px rgba(0, 0, 0, 0.16)',
                             scale: phase >= 1 ? 1 : 0.96,
                             opacity: phase >= 1 ? 1 : 0.7,
@@ -228,8 +228,8 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
                                 display: 'inline-flex',
                                 padding: '0.28rem 0.65rem',
                                 borderRadius: '999px',
-                                background: 'rgba(0,212,255,0.14)',
-                                color: '#00d4ff',
+                                background: 'rgba(255,90,31,0.14)',
+                                color: '#FF5A1F',
                                 fontSize: '0.78rem',
                                 fontWeight: 700,
                                 letterSpacing: '0.08em',
@@ -249,7 +249,7 @@ export default function JavaOOPPillarsSim({ isPlaying }) {
                                 color: '#f8fafc',
                             }}
                         >
-                            <div style={{ color: '#00d4ff', fontWeight: 700 }}>Vehiculo miAuto</div>
+                            <div style={{ color: '#FF5A1F', fontWeight: 700 }}>Vehiculo miAuto</div>
                             <div
                                 style={{
                                     padding: '0.7rem 0.8rem',

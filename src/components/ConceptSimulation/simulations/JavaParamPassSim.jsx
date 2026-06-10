@@ -76,7 +76,7 @@ export default function JavaParamPassSim() {
     );
 
     const methodValue = step < 2 ? '?' : step < 3 ? '100' : '115';
-    const connectorAccent = step === 1 || step === 2 ? '#38bdf8' : step === 4 ? '#f97316' : 'rgba(255,255,255,0.35)';
+    const connectorAccent = step === 1 || step === 2 ? '#FF8A5C' : step === 4 ? '#f97316' : 'rgba(255,255,255,0.35)';
     const connectorLabel =
         step === 1
             ? 'Copia del 100 baja al metodo'
@@ -98,7 +98,7 @@ export default function JavaParamPassSim() {
                 textAlign: 'center',
             }}
         >
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Paso de parametros por valor</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Paso de parametros por valor</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.92rem', minHeight: '44px' }}>
                 {steps[step].desc}
             </p>
@@ -114,7 +114,7 @@ export default function JavaParamPassSim() {
             >
                 <MemoryCard
                     title="MAIN MEMORY"
-                    accent="#22d3ee"
+                    accent="#FF5A1F"
                     code="int precio;"
                     value="100"
                     footer={step === 4 ? 'La variable original sigue con 100.' : 'Caja original creada en main.'}
@@ -181,11 +181,11 @@ export default function JavaParamPassSim() {
                                 padding: '0.26rem 0.62rem',
                                 borderRadius: '999px',
                                 border: '1px solid rgba(255,255,255,0.4)',
-                                background: '#67e8f9',
+                                background: '#FF8A5C',
                                 color: '#06283d',
                                 fontSize: '0.76rem',
                                 fontWeight: '800',
-                                boxShadow: '0 0 18px rgba(103, 232, 249, 0.45)',
+                                boxShadow: '0 0 18px rgba(255, 138, 92, 0.45)',
                             }}
                         >
                             100
@@ -195,7 +195,7 @@ export default function JavaParamPassSim() {
 
                 <MemoryCard
                     title="METHOD MEMORY"
-                    accent="#38bdf8"
+                    accent="#FF8A5C"
                     code="int monto;"
                     value={methodValue}
                     footer={step >= 3 ? 'Esta caja local cambia sin tocar a precio.' : 'Aqui vive solo la copia recibida.'}
@@ -249,7 +249,7 @@ export default function JavaParamPassSim() {
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
                     style={{
-                        background: '#00d4ff',
+                        background: '#FF5A1F',
                         color: '#000',
                         border: 'none',
                         padding: '0.6rem 2rem',

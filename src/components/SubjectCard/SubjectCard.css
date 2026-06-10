@@ -5,7 +5,7 @@
     text-align: left;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.07);
-    border-top: 2px solid var(--accent, #00d4ff);
+    border-top: 2px solid var(--accent, #FF5A1F);
     border-radius: 16px;
     padding: 1.8rem;
     cursor: pointer;
@@ -16,8 +16,8 @@
 }
 
 .subject-card:hover {
-    background: rgba(0, 212, 255, 0.04);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 212, 255, 0.15);
+    background: rgba(255, 90, 31, 0.04);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 90, 31, 0.15);
 }
 
 .subject-card__header {
@@ -31,13 +31,13 @@
 }
 
 .subject-card__code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     font-weight: 700;
-    color: var(--accent, #00d4ff);
+    color: var(--accent, #FF5A1F);
     letter-spacing: 0.08em;
-    background: rgba(0, 212, 255, 0.08);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 90, 31, 0.2);
     padding: 0.2rem 0.6rem;
     border-radius: 4px;
 }
@@ -84,13 +84,13 @@
 
 .subject-card__labs {
     font-size: 0.78rem;
-    color: var(--accent, #00d4ff);
+    color: var(--accent, #FF5A1F);
     font-weight: 600;
     opacity: 0.75;
 }
 
 .subject-card__arrow {
-    color: var(--accent, #00d4ff);
+    color: var(--accent, #FF5A1F);
     font-size: 1.1rem;
     transition: transform 0.2s;
 }
@@ -100,6 +100,6 @@
 }
 
 .subject-card:focus-visible {
-    outline: 2px solid var(--accent, #00d4ff);
+    outline: 2px solid var(--accent, #FF5A1F);
     outline-offset: 4px;
 }

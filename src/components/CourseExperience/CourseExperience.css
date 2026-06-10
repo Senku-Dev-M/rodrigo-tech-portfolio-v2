@@ -6,12 +6,12 @@
 .lesson-player__footer,
 .lesson-side-panel,
 .module-empty {
-    font-family: 'Sora', 'Inter', system-ui, sans-serif;
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
 }
 
 .course-card {
-    --course-accent: #38bdf8;
-    --course-accent-2: #22d3ee;
+    --course-accent: #FF8A5C;
+    --course-accent-2: #FF5A1F;
     position: relative;
     display: grid;
     min-height: 430px;
@@ -532,8 +532,8 @@
 }
 
 .lesson-player {
-    --course-accent: #38bdf8;
-    --course-accent-2: #22d3ee;
+    --course-accent: #FF8A5C;
+    --course-accent-2: #FF5A1F;
     display: grid;
     gap: 1rem;
 }

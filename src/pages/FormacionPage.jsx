@@ -6,7 +6,6 @@ import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import EducationSection from '../components/About/EducationSection';
 import CertificationsSection from '../components/About/CertificationsSection';
-import GradientText from '../components/GradientText/GradientText';
 import { useI18n } from '../i18n/i18n';
 import { HOME_ROUTE } from '../constants/routes';
 import { scrollToTop } from '../utils/scroll';
@@ -33,18 +32,16 @@ export default function FormacionPage() {
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <button
-                            className="formacion-back"
+                            className="back-home-link formacion-back"
                             onClick={() => { navigate(HOME_ROUTE); }}
                             aria-label={t('formacion.backHome')}
                         >
-                            <ArrowLeft size={16} aria-hidden="true" />
+                            <ArrowLeft size={14} aria-hidden="true" />
                             <span>{t('formacion.backHome')}</span>
                         </button>
 
                         <h1 className="formacion-title">
-                            <GradientText colors={['#22D3EE', '#0ea5e9', '#67e8f9', '#22D3EE']} animationSpeed={8}>
-                                {t('formacion.title')}
-                            </GradientText>
+                            {t('formacion.title')}
                         </h1>
                         <p className="formacion-subtitle">{t('formacion.subtitle')}</p>
                     </motion.div>

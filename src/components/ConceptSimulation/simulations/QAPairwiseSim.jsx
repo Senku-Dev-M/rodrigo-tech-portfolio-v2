@@ -64,7 +64,7 @@ export default function QAPairwiseSim() {
                                 color: '#fff',
                             }}
                         >
-                            <strong style={{ color: current ? '#67e8f9' : '#fff' }}>{row.id}</strong>
+                            <strong style={{ color: current ? '#FF8A5C' : '#fff' }}>{row.id}</strong>
                             {row.values.map((cell) => (
                                 <span key={`${row.id}-${cell}`}>{cell}</span>
                             ))}
@@ -75,7 +75,7 @@ export default function QAPairwiseSim() {
 
             <div style={{ display: 'grid', gap: '0.8rem' }}>
                 <div style={{ borderRadius: '16px', background: 'rgba(255,255,255,0.04)', padding: '1rem', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    <div style={{ color: '#67e8f9', fontSize: '0.74rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    <div style={{ color: '#FF8A5C', fontSize: '0.74rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                         cobertura acumulada
                     </div>
                     <div style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 800, marginTop: '0.3rem' }}>{coveredPairs.length} pares</div>

@@ -7,7 +7,7 @@ const PHASES = [
         to: 'API principal',
         note: 'La solicitud entra por el camino esperado y el sistema responde normalmente.',
         highlight: 'primary',
-        color: '#67e8f9',
+        color: '#FF8A5C',
     },
     {
         name: 'Fallo detectado',
@@ -31,7 +31,7 @@ const PHASES = [
         to: 'Estado consistente',
         note: 'Se registran eventos, se informa al usuario y se prepara sincronizacion o retorno.',
         highlight: 'recover',
-        color: '#22d3ee',
+        color: '#FF5A1F',
     },
 ];
 
@@ -68,7 +68,7 @@ export default function QAFaultToleranceSim() {
                     type="button"
                     onClick={() => setPhaseIndex(0)}
                     aria-pressed={phaseIndex === 0}
-                    style={{ ...phaseButtonBase, ...nodeStyle(active.highlight === 'primary', '#67e8f9') }}
+                    style={{ ...phaseButtonBase, ...nodeStyle(active.highlight === 'primary', '#FF8A5C') }}
                 >
                     <strong>Cliente</strong>
                     <span style={{ color: 'rgba(255,255,255,0.62)', fontSize: '0.83rem' }}>Solicitud inicia</span>
@@ -95,7 +95,7 @@ export default function QAFaultToleranceSim() {
                     type="button"
                     onClick={() => setPhaseIndex(3)}
                     aria-pressed={phaseIndex === 3}
-                    style={{ ...phaseButtonBase, ...nodeStyle(active.highlight === 'recover', '#22d3ee') }}
+                    style={{ ...phaseButtonBase, ...nodeStyle(active.highlight === 'recover', '#FF5A1F') }}
                 >
                     <strong>Observabilidad</strong>
                     <span style={{ color: 'rgba(255,255,255,0.62)', fontSize: '0.83rem' }}>Logs, aviso y recuperacion</span>

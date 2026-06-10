@@ -7,7 +7,7 @@ const MotionButton = motion.button;
 
 export default function LabCard({ lab, onClick, index = 0 }) {
     const { t } = useI18n();
-    const color = LAB_DIFFICULTY_COLORS[lab.difficulty] || '#00d4ff';
+    const color = LAB_DIFFICULTY_COLORS[lab.difficulty] || '#FF5A1F';
     const typeColor = getLabTypeColor(lab.type);
     const stepNumber = index + 1;
 

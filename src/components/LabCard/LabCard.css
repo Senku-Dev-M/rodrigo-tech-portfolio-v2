@@ -5,7 +5,7 @@
     text-align: left;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    border-left: 3px solid var(--accent, #00d4ff);
+    border-left: 3px solid var(--accent, #FF5A1F);
     border-radius: 14px;
     padding: 1.6rem;
     cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 .lab-card:hover {
-    background: rgba(0, 212, 255, 0.04);
+    background: rgba(255, 90, 31, 0.04);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
@@ -28,7 +28,7 @@
 }
 
 .lab-card:focus-visible {
-    outline: 2px solid var(--accent, #00d4ff);
+    outline: 2px solid var(--accent, #FF5A1F);
     outline-offset: 4px;
 }
 
@@ -98,9 +98,9 @@
 .lab-card__tag {
     font-size: 0.73rem;
     font-weight: 500;
-    color: var(--accent, #00d4ff);
-    background: rgba(0, 212, 255, 0.07);
-    border: 1px solid rgba(0, 212, 255, 0.18);
+    color: var(--accent, #FF5A1F);
+    background: rgba(255, 90, 31, 0.07);
+    border: 1px solid rgba(255, 90, 31, 0.18);
     padding: 0.18rem 0.6rem;
     border-radius: 50px;
 }
@@ -121,7 +121,7 @@
 .lab-card__cta {
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--accent, #00d4ff);
+    color: var(--accent, #FF5A1F);
     transition: transform 0.2s;
 }
 

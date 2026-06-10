@@ -11,13 +11,13 @@ export default function P2PSim({ isPlaying }) {
             {isPlaying && (
                 <>
                     <AnimatedMotionGroup begin="0.2s" dur="0.95s" path="M 200 60 L 100 230">
-                        <circle cx="0" cy="0" r="5" fill="#00d4ff" className="sim-packet" />
+                        <circle cx="0" cy="0" r="5" fill="#FF5A1F" className="sim-packet" />
                     </AnimatedMotionGroup>
                     <AnimatedMotionGroup begin="1.1s" dur="0.95s" path="M 100 230 L 300 230">
                         <circle cx="0" cy="0" r="5" fill="#b4dcf0" className="sim-packet" />
                     </AnimatedMotionGroup>
                     <AnimatedMotionGroup begin="2s" dur="0.95s" path="M 300 230 L 200 60">
-                        <circle cx="0" cy="0" r="5" fill="#00d4ff" className="sim-packet" />
+                        <circle cx="0" cy="0" r="5" fill="#FF5A1F" className="sim-packet" />
                     </AnimatedMotionGroup>
                     <AnimatedMotionGroup begin="2.9s" dur="0.95s" path="M 100 230 L 200 60">
                         <circle cx="0" cy="0" r="5" fill="#b4dcf0" className="sim-packet" />

@@ -32,7 +32,7 @@ export default function ICMPSim({ isPlaying }) {
             <g transform="translate(380, 150)">
                 <circle cx="0" cy="0" r="30" className="sim-node sim-node--server" />
                 <foreignObject x="-12" y="-12" width="24" height="24">
-                    <div style={{ color: '#00d4ff' }}><Icon name="server" size={24} /></div>
+                    <div style={{ color: '#FF5A1F' }}><Icon name="server" size={24} /></div>
                 </foreignObject>
                 <text x="0" y="50" className="sim-label">debian.org</text>
             </g>

@@ -32,7 +32,7 @@ export default function JavaMethodSignatureSim() {
     const signatureParts = {
         modifier: {
             label: 'Modificador de acceso',
-            color: '#67e8f9',
+            color: '#FF8A5C',
             desc: 'Define quien puede usar el metodo. `public` lo deja visible y `static` indica que pertenece a la clase.',
         },
         returnType: {
@@ -64,7 +64,7 @@ export default function JavaMethodSignatureSim() {
                 textAlign: 'center',
             }}
         >
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Anatomia de la Signature</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Anatomia de la Signature</h3>
             <p
                 style={{
                     color: 'var(--text-grey)',

@@ -5,14 +5,15 @@ import { EXTERNAL_LINKS } from '../../constants/externalLinks';
 import { certificationEntries } from '../../data/about';
 import { useI18n } from '../../i18n/i18n';
 
+/* Monochrome system — award icons all carry the single signal accent */
 const categoryIconColors = {
-    jala: '#00d4ff',
-    platzi: '#10b981',
-    codefacilito: '#f59e0b',
-    udemy: '#a78bfa',
-    salesiana: '#ec4899',
-    feyalegria: '#38bdf8',
-    others: '#94a3b8'
+    jala: '#FF5A1F',
+    platzi: '#FF5A1F',
+    codefacilito: '#FF5A1F',
+    udemy: '#FF5A1F',
+    salesiana: '#FF5A1F',
+    feyalegria: '#FF5A1F',
+    others: '#FF5A1F'
 };
 
 export default function CertificationsSection() {
@@ -85,15 +86,10 @@ export default function CertificationsSection() {
                                 delay: index * 0.04,
                                 ease: [0.25, 0.46, 0.45, 0.94]
                             }}
-                            whileHover={{ 
-                                y: -5,
-                                x: 3,
-                                borderColor: 'rgba(0, 212, 255, 0.4)',
-                                boxShadow: '0 8px 24px rgba(0, 212, 255, 0.08)'
-                            }}
+                            whileHover={{ y: -3 }}
                         >
                             <span className="cert-icon" style={{ 
-                                color: categoryIconColors[certification.category] || '#00d4ff'
+                                color: categoryIconColors[certification.category] || '#FF5A1F'
                             }}>
                                 <Award size={18} />
                             </span>
@@ -113,7 +109,7 @@ export default function CertificationsSection() {
                     href={EXTERNAL_LINKS.certifications}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary"
+                    className="btn-secondary"
                 >
                     {t('about.viewAllCerts')}
                 </a>

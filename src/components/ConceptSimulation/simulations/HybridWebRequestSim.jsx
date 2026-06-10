@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import useCompactSimulationLayout from '../useCompactSimulationLayout';
 
 const layers = [
-    { id: 'aplicacion', title: 'Aplicación', color: '#67e8f9', packet: 'HTTP GET /index.html' },
+    { id: 'aplicacion', title: 'Aplicación', color: '#FF8A5C', packet: 'HTTP GET /index.html' },
     { id: 'transporte', title: 'Transporte', color: '#d19a66', packet: 'TCP Segmento · puerto 80/443' },
     { id: 'red', title: 'Red', color: '#61afef', packet: 'IP Paquete · origen/destino' },
-    { id: 'enlace', title: 'Enlace', color: '#a78bfa', packet: 'Ethernet Trama · MAC origen/destino' },
+    { id: 'enlace', title: 'Enlace', color: '#8A8F98', packet: 'Ethernet Trama · MAC origen/destino' },
     { id: 'fisica', title: 'Física', color: '#98c379', packet: 'Bits / señales sobre el medio' },
 ];
 
@@ -95,7 +95,7 @@ function Stack({ title, activeLayerId, side, isCompact }) {
         >
             <div
                 style={{
-                    color: side === 'client' ? '#f8fafc' : '#00d4ff',
+                    color: side === 'client' ? '#f8fafc' : '#FF5A1F',
                     fontWeight: 700,
                     textAlign: 'center',
                     fontSize: isCompact ? '0.88rem' : '0.92rem',

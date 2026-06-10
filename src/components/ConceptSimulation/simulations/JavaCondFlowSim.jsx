@@ -16,7 +16,7 @@ export default function JavaCondFlowSim() {
 
     return (
         <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Estructura if-else</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Estructura if-else</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem', height: '40px' }}>
                 {steps[step].desc}
             </p>
@@ -27,7 +27,7 @@ export default function JavaCondFlowSim() {
                 <svg width="400" height="280" viewBox="0 0 400 280" style={{ overflow: 'visible' }}>
                     <defs>
                         <marker id="arrowCond" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff" />
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#FF5A1F" />
                         </marker>
                         <marker id="arrowCondOff" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                             <polygon points="0 0, 10 3.5, 0 7" fill="rgba(255,255,255,0.2)" />
@@ -35,14 +35,14 @@ export default function JavaCondFlowSim() {
                     </defs>
 
                     {/* Línea Principal Top */}
-                    <line x1="200" y1="0" x2="200" y2="50" stroke={step >= 0 ? '#00d4ff' : 'rgba(255,255,255,0.2)'} strokeWidth="3" markerEnd="url(#arrowCond)" />
+                    <line x1="200" y1="0" x2="200" y2="50" stroke={step >= 0 ? '#FF5A1F' : 'rgba(255,255,255,0.2)'} strokeWidth="3" markerEnd="url(#arrowCond)" />
 
                     {/* Rombo Condición */}
                     <motion.polygon 
                         initial={false}
                         animate={{ 
-                            fill: step === 1 ? 'rgba(0, 212, 255, 0.2)' : 'rgba(255,255,255,0.05)',
-                            stroke: step >= 1 ? '#00d4ff' : 'rgba(255,255,255,0.2)'
+                            fill: step === 1 ? 'rgba(255, 90, 31, 0.2)' : 'rgba(255,255,255,0.05)',
+                            stroke: step >= 1 ? '#FF5A1F' : 'rgba(255,255,255,0.2)'
                         }}
                         points="200,50 260,95 200,140 140,95" 
                         strokeWidth="3"
@@ -69,7 +69,7 @@ export default function JavaCondFlowSim() {
 
                         {/* Retorno al flujo principal */}
                         <motion.path 
-                            animate={{ stroke: isTruePath ? '#00d4ff' : 'rgba(255,255,255,0.2)' }}
+                            animate={{ stroke: isTruePath ? '#FF5A1F' : 'rgba(255,255,255,0.2)' }}
                             d="M 320 190 L 320 220 L 205 220" fill="none" strokeWidth="3" markerEnd={isTruePath ? "url(#arrowCond)" : "url(#arrowCondOff)"} 
                         />
                     </g>
@@ -84,16 +84,16 @@ export default function JavaCondFlowSim() {
                     </g>
 
                     {/* Línea Final Continuación */}
-                    <line x1="200" y1="220" x2="200" y2="270" stroke={step >= 2 ? '#00d4ff' : 'rgba(255,255,255,0.2)'} strokeWidth="3" markerEnd="url(#arrowCond)" />
+                    <line x1="200" y1="220" x2="200" y2="270" stroke={step >= 2 ? '#FF5A1F' : 'rgba(255,255,255,0.2)'} strokeWidth="3" markerEnd="url(#arrowCond)" />
                     <text x="235" y="265" fill={step >= 2 ? '#fff' : 'var(--text-grey)'} fontSize="12">Continuar...</text>
 
                     {/* Partícula Animada de Flujo (Pill) */}
                     <AnimatePresence>
                         {step === 0 && (
-                            <motion.circle initial={{ cy: 0 }} animate={{ cy: 45 }} transition={{ duration: 1, repeat: Infinity }} cx="200" r="6" fill="#00d4ff" />
+                            <motion.circle initial={{ cy: 0 }} animate={{ cy: 45 }} transition={{ duration: 1, repeat: Infinity }} cx="200" r="6" fill="#FF5A1F" />
                         )}
                         {step === 1 && (
-                            <motion.circle initial={{ scale: 0 }} animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 1, repeat: Infinity }} cx="200" cy="95" r="8" fill="#38bdf8" />
+                            <motion.circle initial={{ scale: 0 }} animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 1, repeat: Infinity }} cx="200" cy="95" r="8" fill="#FF8A5C" />
                         )}
                         {isTruePath && (
                             <motion.circle 
@@ -127,7 +127,7 @@ export default function JavaCondFlowSim() {
                 <button 
                     onClick={() => setStep(step === 1 ? 2 : step === 2 ? 3 : step + 1)}
                     disabled={step === 3}
-                    style={{ background: step === 1 ? '#27ae60' : step === 2 ? '#e74c3c' : '#00d4ff', color: step === 0 ? '#000' : '#fff', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === 3 ? 'not-allowed' : 'pointer', fontWeight: 'bold', opacity: step === 3 ? 0.5 : 1, transition: 'background 0.3s' }}
+                    style={{ background: step === 1 ? '#27ae60' : step === 2 ? '#e74c3c' : '#FF5A1F', color: step === 0 ? '#000' : '#fff', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: step === 3 ? 'not-allowed' : 'pointer', fontWeight: 'bold', opacity: step === 3 ? 0.5 : 1, transition: 'background 0.3s' }}
                 >
                     {step === 0 ? 'Evaluar Condición' : step === 1 ? 'Simular TRUE' : step === 2 ? 'Simular FALSE' : 'Completado'}
                 </button>
@@ -135,7 +135,7 @@ export default function JavaCondFlowSim() {
                 {step === 3 && (
                     <button 
                         onClick={() => setStep(0)}
-                        style={{ background: 'transparent', color: '#00d4ff', border: '1px solid #00d4ff', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer' }}
+                        style={{ background: 'transparent', color: '#FF5A1F', border: '1px solid #FF5A1F', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer' }}
                     >
                         Reiniciar
                     </button>

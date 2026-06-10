@@ -13,7 +13,7 @@ export default function JavaMatrixSim() {
 
     return (
         <div style={{ padding: '2.5rem 2rem', background: 'rgba(20,20,20,0.8)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulación: Matriz Bidimensional</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Simulación: Matriz Bidimensional</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem', height: '40px' }}>
                 Haz clic en cualquier celda para ver cómo acceder a ella programáticamente cruzando su fila y su columna.
             </p>
@@ -26,7 +26,7 @@ export default function JavaMatrixSim() {
                     {/* Headers de Columnas (j) */}
                     <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '50px' }}>
                         {matrix[0].map((_, colIdx) => (
-                            <div key={`header-col-${colIdx}`} style={{ width: '60px', textAlign: 'center', color: '#38bdf8', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                            <div key={`header-col-${colIdx}`} style={{ width: '60px', textAlign: 'center', color: '#FF8A5C', fontSize: '0.85rem', fontWeight: 'bold' }}>
                                 Col [{colIdx}]
                             </div>
                         ))}
@@ -35,7 +35,7 @@ export default function JavaMatrixSim() {
                     {matrix.map((row, rowIdx) => (
                         <div key={`row-${rowIdx}`} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                             {/* Header de Fila (i) */}
-                            <div style={{ width: '45px', textAlign: 'right', color: '#67e8f9', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                            <div style={{ width: '45px', textAlign: 'right', color: '#FF8A5C', fontSize: '0.85rem', fontWeight: 'bold' }}>
                                 Fila [{rowIdx}]
                             </div>
 
@@ -51,8 +51,8 @@ export default function JavaMatrixSim() {
                                         onClick={() => setSelectedCell([rowIdx, colIdx])}
                                         whileHover={{ scale: 1.05 }}
                                         animate={{ 
-                                            background: isSelected ? 'rgba(0, 212, 255, 0.3)' : (isSameRow || isSameCol) ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.05)',
-                                            borderColor: isSelected ? '#00d4ff' : (isSameRow || isSameCol) ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
+                                            background: isSelected ? 'rgba(255, 90, 31, 0.3)' : (isSameRow || isSameCol) ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.05)',
+                                            borderColor: isSelected ? '#FF5A1F' : (isSameRow || isSameCol) ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
                                             scale: isSelected ? 1.1 : 1
                                         }}
                                         style={{ 
@@ -66,7 +66,7 @@ export default function JavaMatrixSim() {
                                             fontSize: '1.2rem',
                                             fontWeight: 'bold',
                                             color: isSelected ? '#fff' : 'var(--text-grey)',
-                                            boxShadow: isSelected ? '0 0 15px rgba(0,212,255,0.4)' : 'none',
+                                            boxShadow: isSelected ? '0 0 15px rgba(255,90,31,0.4)' : 'none',
                                             cursor: 'pointer',
                                             zIndex: isSelected ? 10 : 1
                                         }}
@@ -90,13 +90,13 @@ export default function JavaMatrixSim() {
                     ) : (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <div>
-                                <span style={{ color: '#67e8f9' }}>int</span> valor = matriz[<span style={{ color: '#67e8f9', fontWeight: 'bold' }}>{selectedCell[0]}</span>][<span style={{ color: '#38bdf8', fontWeight: 'bold' }}>{selectedCell[1]}</span>];
+                                <span style={{ color: '#FF8A5C' }}>int</span> valor = matriz[<span style={{ color: '#FF8A5C', fontWeight: 'bold' }}>{selectedCell[0]}</span>][<span style={{ color: '#FF8A5C', fontWeight: 'bold' }}>{selectedCell[1]}</span>];
                             </div>
                             <div style={{ color: '#56b6c2' }}>
                                 System.out.println(valor);
                             </div>
                             <div style={{ borderTop: '1px dashed rgba(255,255,255,0.2)', paddingTop: '1rem', marginTop: '0.5rem' }}>
-                                &gt; Imprime: <span style={{ color: '#00d4ff', fontSize: '1.5rem', fontWeight: 'bold' }}>{matrix[selectedCell[0]][selectedCell[1]]}</span>
+                                &gt; Imprime: <span style={{ color: '#FF5A1F', fontSize: '1.5rem', fontWeight: 'bold' }}>{matrix[selectedCell[0]][selectedCell[1]]}</span>
                             </div>
                         </div>
                     )}

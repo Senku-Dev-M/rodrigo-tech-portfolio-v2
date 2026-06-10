@@ -118,7 +118,7 @@ export default function ContactSection() {
                             <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="contact-name" className="form-label">
-                                        {t('contact.namePlaceholder')}
+                                        {t('contact.nameLabel')}
                                     </label>
                                     <input
                                         id="contact-name"
@@ -134,7 +134,7 @@ export default function ContactSection() {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="contact-email" className="form-label">
-                                        {t('contact.emailPlaceholder')}
+                                        {t('contact.emailLabel')}
                                     </label>
                                     <input
                                         id="contact-email"
@@ -152,7 +152,7 @@ export default function ContactSection() {
 
                             <div className="form-group">
                                 <label htmlFor="contact-message" className="form-label">
-                                    {t('contact.messagePlaceholder')}
+                                    {t('contact.messageLabel')}
                                 </label>
                                 <textarea
                                     id="contact-message"

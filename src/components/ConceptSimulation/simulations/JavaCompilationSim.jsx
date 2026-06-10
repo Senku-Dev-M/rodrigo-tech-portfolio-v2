@@ -16,7 +16,7 @@ export default function JavaCompilationSim() {
             title: 'Compilador',
             label: 'javac',
             token: 'javac',
-            accent: '#0ea5e9',
+            accent: '#E84D14',
             desc: 'El compilador traduce ese texto a bytecode.',
         },
         {
@@ -52,7 +52,7 @@ export default function JavaCompilationSim() {
                 textAlign: 'center',
             }}
         >
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>El ciclo de vida del código Java</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>El ciclo de vida del código Java</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.9rem' }}>
                 {steps[step].desc}
             </p>
@@ -88,8 +88,8 @@ export default function JavaCompilationSim() {
                                 animate={{
                                     opacity: isVisible ? 1 : 0.35,
                                     scale: isCurrent ? 1.02 : 1,
-                                    borderColor: isCurrent ? '#00d4ff' : 'rgba(255,255,255,0.08)',
-                                    boxShadow: isCurrent ? '0 0 0 1px rgba(0,212,255,0.18)' : 'none',
+                                    borderColor: isCurrent ? '#FF5A1F' : 'rgba(255,255,255,0.08)',
+                                    boxShadow: isCurrent ? '0 0 0 1px rgba(255,90,31,0.18)' : 'none',
                                 }}
                                 transition={{ duration: 0.2 }}
                                 style={{
@@ -157,7 +157,7 @@ export default function JavaCompilationSim() {
                                     <motion.div
                                         initial={false}
                                         animate={{
-                                            background: isCompleted ? '#00d4ff' : 'rgba(255,255,255,0.16)',
+                                            background: isCompleted ? '#FF5A1F' : 'rgba(255,255,255,0.16)',
                                             opacity: isVisible ? 1 : 0.4,
                                         }}
                                         style={{ width: '2px', height: '18px', borderRadius: '999px' }}
@@ -169,7 +169,7 @@ export default function JavaCompilationSim() {
                                             width: '8px',
                                             height: '8px',
                                             borderRadius: '999px',
-                                            background: isCompleted ? '#00d4ff' : 'rgba(255,255,255,0.16)',
+                                            background: isCompleted ? '#FF5A1F' : 'rgba(255,255,255,0.16)',
                                         }}
                                     />
                                 </div>
@@ -199,7 +199,7 @@ export default function JavaCompilationSim() {
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
                     style={{
-                        background: '#00d4ff',
+                        background: '#FF5A1F',
                         color: '#000',
                         border: 'none',
                         padding: '0.5rem 1rem',
@@ -217,8 +217,8 @@ export default function JavaCompilationSim() {
                         onClick={() => setStep(0)}
                         style={{
                             background: 'transparent',
-                            color: '#00d4ff',
-                            border: '1px solid #00d4ff',
+                            color: '#FF5A1F',
+                            border: '1px solid #FF5A1F',
                             padding: '0.5rem 1rem',
                             borderRadius: '6px',
                             cursor: 'pointer',

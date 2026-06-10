@@ -7,7 +7,7 @@ const redesSubject = {
     description:
         'Fundamentos de redes, servicios de red, protocolos de comunicación, laboratorios prácticos en Linux e infraestructura básica de servidores.',
     icon: 'network',
-    color: '#00d4ff',
+    color: '#FF5A1F',
     topics: ['TCP/IP', 'Protocolos', 'Subneteo', 'Linux', 'Servidores', 'Networking'],
     learningPath: {
         title: 'Ruta de aprendizaje sugerida',

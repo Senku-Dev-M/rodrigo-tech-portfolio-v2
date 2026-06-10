@@ -21,7 +21,7 @@ export default function DHCPSim({ isPlaying }) {
             <defs>
                 <linearGradient id="dhcp-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="rgba(255,255,255,0.05)" />
-                    <stop offset="100%" stopColor="rgba(0, 212, 255, 0.1)" />
+                    <stop offset="100%" stopColor="rgba(255, 90, 31, 0.1)" />
                 </linearGradient>
             </defs>
 
@@ -67,7 +67,7 @@ export default function DHCPSim({ isPlaying }) {
             <g transform="translate(400, 150)">
                 <circle cx="0" cy="0" r="36" className="sim-node sim-node--server" />
                 <foreignObject x="-16" y="-16" width="32" height="32">
-                    <div style={{ color: '#00d4ff' }}><Icon name="server" size={32} /></div>
+                    <div style={{ color: '#FF5A1F' }}><Icon name="server" size={32} /></div>
                 </foreignObject>
                 <text x="0" y="55" className="sim-label">Servidor DHCP</text>
             </g>

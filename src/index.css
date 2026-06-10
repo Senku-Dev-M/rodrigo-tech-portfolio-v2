@@ -1,31 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* ── Brand colours ── */
-  --color-primary: #22D3EE;
-  --color-primary-strong: #0ea5e9;
-  --color-primary-soft: #67e8f9;
-  --color-primary-deep: #0369a1;
-  --color-primary-rgb: 34, 211, 238;
+  /* ════ "INK & SIGNAL" — Swiss engineering system ════
+     Monochrome ink scale + ONE solid signal accent.
+     No gradients, no glow, no glassmorphism on brand surfaces. */
 
-  --color-secondary: #7C5CFF;
-  --color-secondary-rgb: 124, 92, 255;
+  /* ── Ink scale (surfaces) ── */
+  --color-bg: #0C0D0F;
+  --color-surface-1: #131417;
+  --color-surface-2: #1A1B1F;
+  --color-border: #26282D;
+  --color-border-strong: #3A3D44;
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
 
-  --color-accent: #FF7A45;
-  --color-accent-hover: #ff6330;
-  --color-accent-rgb: 255, 122, 69;
-
-  /* ── Surfaces ── */
-  --color-bg: #0A0B0F;
-  --color-surface-1: #12141A;
-  --color-surface-2: #1B1E26;
-  --color-border: #2A2E38;
-  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  /* ── Signal accent (the only brand colour) ── */
+  --color-accent: #FF5A1F;
+  --color-accent-hover: #E84D14;
+  --color-accent-rgb: 255, 90, 31;
 
   /* ── Text (WCAG AA compliant) ── */
-  --text-primary: #F4F6FB;
-  --text-secondary: #B4BCCC;
-  --text-muted: #7E8696;
+  --text-primary: #F2F3F5;
+  --text-secondary: #A6ABB4;
+  --text-muted: #6E747E;
+
+  /* ── Typography ── */
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* ── Functional palette (learning platform / sims / states only) ── */
+  --color-primary: #FF5A1F;
+  --color-primary-strong: #E84D14;
+  --color-primary-soft: #FF8A5C;
+  --color-primary-deep: #C2410C;
+  --color-primary-rgb: 255, 90, 31;
+  --color-secondary: #8A8F98;
+  --color-secondary-soft: #8A8F98;
+  --color-secondary-rgb: 138, 143, 152;
 
   /* ── States ── */
   --color-success: #34D399;
@@ -45,11 +56,11 @@
   --space-12: 48px;
   --space-16: 64px;
 
-  /* ── Radii ── */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  /* ── Radii (tighter, more technical) ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
 
   /* ── Motion ── */
@@ -65,8 +76,8 @@
   --mentor-accent-soft: var(--color-primary-soft);
   --mentor-accent-deep: var(--color-primary-deep);
   --mentor-accent-rgb: var(--color-primary-rgb);
-  --mentor-accent-strong-rgb: 14, 165, 233;
-  --mentor-accent-soft-rgb: 103, 232, 249;
+  --mentor-accent-strong-rgb: 232, 77, 20;
+  --mentor-accent-soft-rgb: 255, 138, 92;
   --text-grey: var(--text-secondary);
 }
 
@@ -83,7 +94,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
@@ -92,8 +103,12 @@ body {
   max-width: 100vw;
 }
 
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -101,12 +116,17 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--mentor-accent);
-  border-radius: 4px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-strong);
 }
 
 ::selection {
-  background: rgba(var(--mentor-accent-rgb), 0.2);
+  background: rgba(var(--color-accent-rgb), 0.3);
   color: #fff;
 }
 
@@ -114,19 +134,121 @@ a {
   text-decoration: none;
 }
 
-/* ── Home content wrapper with shared Antigravity background ── */
+/* ══ Button system — flat, technical ══
+   primary   → solid signal accent, THE main action per view
+   secondary → hairline border, supporting actions
+   ghost     → text-only, tertiary actions */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--color-accent);
+  color: #0C0D0F;
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast) var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border-strong);
+  transition: border-color var(--dur-fast), background var(--dur-fast), transform var(--dur-fast) var(--ease-out);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: transparent;
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--color-border);
+}
+
+/* ── Standard "back to home" link — one style for every page ── */
+.back-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color var(--dur-fast);
+}
+
+.back-home-link svg {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.back-home-link:hover {
+  color: var(--color-accent);
+}
+
+.back-home-link:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── Home content wrapper ── */
 .home-content-wrapper {
   position: relative;
   background: var(--color-bg);
   overflow: hidden;
-}
-
-.home-antigravity {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.22;
 }
 
 /* ── Accessibility: visually hidden but readable by screen readers ── */
@@ -144,7 +266,7 @@ a {
 
 /* ── Focus visible: keyboard navigation ring ── */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 4px;
 }

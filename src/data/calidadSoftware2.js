@@ -328,12 +328,12 @@ const calidadSoftware2Subject = {
                             },
                             {
                                 title: 'Variable Tour',
-                                color: '#38bdf8',
+                                color: '#FF8A5C',
                                 text: 'Busca fallos provocados por cambios en inputs, perfiles, configuraciones, permisos, idioma, formato o volumen.'
                             },
                             {
                                 title: 'Transaction Tour',
-                                color: '#22d3ee',
+                                color: '#FF5A1F',
                                 text: 'Se enfoca en secuencias de negocio: crear, editar, confirmar, revertir, cancelar, pagar, notificar, sincronizar.'
                             },
                             {
@@ -511,12 +511,12 @@ const calidadSoftware2Subject = {
                         cards: [
                             {
                                 title: 'Mision',
-                                color: '#67e8f9',
+                                color: '#FF8A5C',
                                 text: 'Describe en una frase que se quiere investigar. Debe ser concreta y observable.'
                             },
                             {
                                 title: 'Alcance',
-                                color: '#38bdf8',
+                                color: '#FF8A5C',
                                 text: 'Aclara modulos, roles, navegadores, datos o restricciones que delimitan la sesion.'
                             },
                             {
@@ -526,7 +526,7 @@ const calidadSoftware2Subject = {
                             },
                             {
                                 title: 'Oraculos o referencias',
-                                color: '#22d3ee',
+                                color: '#FF5A1F',
                                 text: 'Indica contra que comparar el comportamiento: requisitos, reglas de negocio, versiones previas, criterio del PO.'
                             },
                             {
@@ -823,17 +823,17 @@ const calidadSoftware2Subject = {
                         cards: [
                             {
                                 title: 'Titulo',
-                                color: '#67e8f9',
+                                color: '#FF8A5C',
                                 text: 'Debe ser breve, especifico y entendible. En esta materia se recomienda que <strong>empiece con un verbo</strong>, por ejemplo verificar, validar o comprobar, y luego comunique objeto y condicion relevante.'
                             },
                             {
                                 title: 'Descripcion',
-                                color: '#38bdf8',
+                                color: '#FF8A5C',
                                 text: 'Aporta contexto y objetivo del caso. No repite el titulo; explica que pretende validar y por que importa.'
                             },
                             {
                                 title: 'Requerimientos',
-                                color: '#22d3ee',
+                                color: '#FF5A1F',
                                 text: 'Vinculan el caso con historias, reglas o criterios de aceptacion para sostener trazabilidad.'
                             },
                             {
@@ -848,7 +848,7 @@ const calidadSoftware2Subject = {
                             },
                             {
                                 title: 'Estado y notas',
-                                color: '#a78bfa',
+                                color: '#8A8F98',
                                 text: 'Permiten registrar ejecucion, validacion y contexto historico, especialmente en ciclos continuos.'
                             }
                         ],
@@ -2253,17 +2253,17 @@ const calidadSoftware2Subject = {
                         cards: [
                             {
                                 title: 'Issue Type',
-                                color: '#67e8f9',
+                                color: '#FF8A5C',
                                 text: 'Clasifica el problema: funcional, UI/UX, rendimiento, seguridad, datos, documentacion, cosmetico u otra taxonomia del equipo.'
                             },
                             {
                                 title: 'Title',
-                                color: '#38bdf8',
+                                color: '#FF8A5C',
                                 text: 'Debe ser breve, claro y sin ambiguedad. Idealmente menciona area impactada y comportamiento incorrecto.'
                             },
                             {
                                 title: 'Description',
-                                color: '#22d3ee',
+                                color: '#FF5A1F',
                                 text: 'Explica el problema, sintomas, contexto e impacto sin copiar el titulo ni especular de mas.'
                             },
                             {
@@ -2278,7 +2278,7 @@ const calidadSoftware2Subject = {
                             },
                             {
                                 title: 'Severity / Priority',
-                                color: '#a78bfa',
+                                color: '#8A8F98',
                                 text: 'Una mide impacto tecnico; la otra orden de resolucion. No son lo mismo aunque esten relacionadas.'
                             }
                         ],

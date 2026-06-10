@@ -1,139 +1,125 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { ArrowDownRight, ArrowUpRight, Download } from 'lucide-react';
 import { useI18n } from '../../i18n/i18n';
-import { Github, Gitlab, Linkedin, Instagram, Mail, Download, FileText } from 'lucide-react';
-import Tiktok from '../Icons/Tiktok';
 import cvEs from '../../assets/CV BEIMAR RODRIGO MACHACA ARUQUIPA 2026.pdf';
 import cvEn from '../../assets/CV_BEIMAR_RODRIGO_MACHACA_ARUQUIPA_2026_EN.pdf';
 import { EXTERNAL_LINKS } from '../../constants/externalLinks';
-import useWindowWidthBelow from '../../hooks/useWindowWidthBelow';
-import { scrollToSelector } from '../../utils/scroll';
-import Prism from '../Prism/Prism';
-import FuzzyText from '../FuzzyText/FuzzyText';
+import { MENTORING_ROUTE, PORTFOLIO_ROUTE } from '../../constants/routes';
+import { scrollToSelector, scrollToTop } from '../../utils/scroll';
 import './Hero.css';
 
-const socialLinks = [
-    { label: 'GitHub', href: EXTERNAL_LINKS.github, icon: <Github size={24} /> },
-    { label: 'GitLab', href: EXTERNAL_LINKS.gitlab, icon: <Gitlab size={24} /> },
-    { label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin, icon: <Linkedin size={24} /> },
-    { label: 'Instagram', href: EXTERNAL_LINKS.instagram, icon: <Instagram size={24} /> },
-    { label: 'TikTok', href: EXTERNAL_LINKS.tiktok, icon: <Tiktok size={24} /> },
-    { label: 'Email', href: EXTERNAL_LINKS.email, icon: <Mail size={24} /> },
+const textLinks = [
+    { label: 'GitHub', href: EXTERNAL_LINKS.github },
+    { label: 'GitLab', href: EXTERNAL_LINKS.gitlab },
+    { label: 'LinkedIn', href: EXTERNAL_LINKS.linkedin },
+    { label: 'Instagram', href: EXTERNAL_LINKS.instagram },
+    { label: 'TikTok', href: EXTERNAL_LINKS.tiktok },
 ];
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 36 },
+const reveal = {
+    hidden: { y: '110%' },
+    visible: (i = 0) => ({
+        y: 0,
+        transition: { delay: 0.1 + i * 0.12, duration: 0.85, ease: [0.22, 1, 0.36, 1] }
+    }),
+};
+
+const fade = {
+    hidden: { opacity: 0, y: 18 },
     visible: (i = 0) => ({
         opacity: 1, y: 0,
-        transition: { delay: i * 0.11, duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }
+        transition: { delay: 0.45 + i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }
     }),
 };
 
 export default function Hero() {
     const { t } = useI18n();
-    const isMobile = useWindowWidthBelow(768);
+    const navigate = useNavigate();
+
+    const indexItems = [
+        { num: '01', label: t('nav.about'), onClick: () => scrollToSelector('#about') },
+        { num: '02', label: t('nav.portfolio'), onClick: () => { navigate(PORTFOLIO_ROUTE); scrollToTop(); } },
+        { num: '03', label: t('nav.mentoring'), onClick: () => { navigate(MENTORING_ROUTE); scrollToTop(); } },
+        { num: '04', label: t('nav.contact'), onClick: () => scrollToSelector('#contact') },
+    ];
 
     return (
         <section id="hero" className="hero">
+            <div className="hero-frame">
 
-            {/* Prism — disabled on mobile for massive performance gains */}
-            {!isMobile && (
-                <div className="hero-prism">
-                    <Prism
-                        animationType="rotate"
-                        timeScale={0.5}
-                        height={3.5}
-                        baseWidth={5.5}
-                        scale={3.6}
-                        hueShift={0}
-                        colorFrequency={1}
-                        noise={0}
-                        bloom={1}
-                        transparent={true}
-                        suspendWhenOffscreen={true}
-                    />
+                {/* Meta row — spec-sheet header */}
+                <motion.div className="hero-meta" variants={fade} initial="hidden" animate="visible" custom={0}>
+                    <span className="hero-meta-item">La Paz, Bolivia — GMT−4</span>
+                    <span className="hero-meta-item hero-meta-status">
+                        <span className="status-dot" aria-hidden="true" />
+                        {t('hero.availability')}
+                    </span>
+                    <span className="hero-meta-item hero-meta-right">Portfolio — 2026</span>
+                </motion.div>
+
+                {/* Giant name */}
+                <h1 className="hero-name">
+                    <span className="hero-name-line">
+                        <motion.span className="hero-name-text" variants={reveal} initial="hidden" animate="visible" custom={0}>
+                            Rodrigo
+                        </motion.span>
+                    </span>
+                    <span className="hero-name-line">
+                        <motion.span className="hero-name-text hero-name-outline" variants={reveal} initial="hidden" animate="visible" custom={1}>
+                            Machaca<span className="hero-name-dot">.</span>
+                        </motion.span>
+                    </span>
+                </h1>
+
+                {/* Statement + index */}
+                <div className="hero-grid">
+                    <motion.div className="hero-statement" variants={fade} initial="hidden" animate="visible" custom={1}>
+                        <p className="hero-role">
+                            {t('hero.role1')} <span className="hero-role-sep">/</span> {t('hero.role2')}
+                        </p>
+                        <p className="hero-bio">{t('hero.bio')}</p>
+
+                        <div className="hero-actions">
+                            <a
+                                href="#contact"
+                                className="btn-primary"
+                                onClick={(e) => { e.preventDefault(); scrollToSelector('#contact'); }}
+                            >
+                                {t('hero.ctaContact')} <ArrowDownRight size={15} aria-hidden="true" />
+                            </a>
+                            <a href={cvEs} download="CV_Beimar_Rodrigo_Machaca_ES.pdf" className="btn-secondary" aria-label="Descargar CV en español">
+                                CV — ES <Download size={14} aria-hidden="true" />
+                            </a>
+                            <a href={cvEn} download="CV_Beimar_Rodrigo_Machaca_EN.pdf" className="btn-secondary" aria-label="Download English resume">
+                                CV — EN <Download size={14} aria-hidden="true" />
+                            </a>
+                        </div>
+                    </motion.div>
+
+                    {/* Table of contents */}
+                    <motion.nav className="hero-index" aria-label="Índice del sitio" variants={fade} initial="hidden" animate="visible" custom={2}>
+                        {indexItems.map(item => (
+                            <button key={item.num} className="hero-index-item" onClick={item.onClick}>
+                                <span className="hero-index-num">{item.num}</span>
+                                <span className="hero-index-label">{item.label}</span>
+                                <ArrowDownRight size={16} className="hero-index-arrow" aria-hidden="true" />
+                            </button>
+                        ))}
+                    </motion.nav>
                 </div>
-            )}
 
-            {/* Overlay */}
-            <div className="hero-overlay" />
-
-            {/* Centered content */}
-            <div className="hero-content">
-                <motion.span className="hero-greeting" variants={fadeUp} initial="hidden" animate="visible" custom={0}>
-                    {t('hero.greeting')}
-                </motion.span>
-
-                {/* Accessible h1 — visually hidden; FuzzyText canvas is aria-hidden */}
-                <h1 className="sr-only">Rodrigo Machaca</h1>
-
-                <motion.div aria-hidden="true" className="hero-fuzzy-wrapper" variants={fadeUp} initial="hidden" animate="visible" custom={1}>
-                    <FuzzyText
-                        fontSize="clamp(3rem, 8vw, 7rem)"
-                        fontWeight={900}
-                        fontFamily="'Inter', sans-serif"
-                        gradient={['#ffffff', '#e0f7ff', '#00d4ff', '#0ea5e9']}
-                        enableHover={true}
-                        baseIntensity={0.1}
-                        hoverIntensity={0.4}
-                        fuzzRange={28}
-                        fps={60}
-                        transitionDuration={300}
-                    >
-                        Rodrigo Machaca
-                    </FuzzyText>
-                </motion.div>
-
-                <motion.div className="hero-roles" variants={fadeUp} initial="hidden" animate="visible" custom={2}>
-                    <span className="role-chip">{t('hero.role1')}</span>
-                    <span className="role-chip role-chip--dim">{t('hero.role2')}</span>
-                    <span className="role-chip role-chip--dim">{t('hero.role3')}</span>
-                </motion.div>
-
-                <motion.p className="hero-bio" variants={fadeUp} initial="hidden" animate="visible" custom={3}>
-                    {t('hero.bio')}
-                </motion.p>
-
-                <motion.div className="hero-actions" variants={fadeUp} initial="hidden" animate="visible" custom={4}>
-                    <a
-                        href="#about"
-                        className="btn-primary"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            scrollToSelector('#about');
-                        }}
-                    >
-                        {t('hero.cta')}
-                    </a>
-                    
-                    <div className="hero-cv-actions">
-                        <a href={cvEs} download="CV_Beimar_Rodrigo_Machaca_ES.pdf" className="btn-cv-hero" aria-label="Descargar CV en español">
-                            <FileText size={16} aria-hidden="true" />
-                            <span>{t('about.cvEs')}</span>
-                            <Download size={14} className="download-icon" aria-hidden="true" />
-                        </a>
-                        <a href={cvEn} download="CV_Beimar_Rodrigo_Machaca_EN.pdf" className="btn-cv-hero btn-cv-hero--en" aria-label="Download English resume">
-                            <FileText size={16} aria-hidden="true" />
-                            <span>{t('about.cvEn')}</span>
-                            <Download size={14} className="download-icon" aria-hidden="true" />
-                        </a>
-                    </div>
-                </motion.div>
-
-                <motion.div className="hero-socials" variants={fadeUp} initial="hidden" animate="visible" custom={5}>
-                    {socialLinks.map(s => (
-                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="social-dot" aria-label={s.label}>
-                            <span aria-hidden="true">{s.icon}</span>
+                {/* Footer row — text links */}
+                <motion.div className="hero-links" variants={fade} initial="hidden" animate="visible" custom={3}>
+                    {textLinks.map(link => (
+                        <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="hero-link">
+                            {link.label} <ArrowUpRight size={13} aria-hidden="true" />
                         </a>
                     ))}
+                    <a href={EXTERNAL_LINKS.email} className="hero-link hero-link--email">
+                        beimar090@gmail.com
+                    </a>
                 </motion.div>
-            </div>
-
-            <div className="hero-scroll-hint">
-                <motion.div
-                    animate={{ y: [0, 8, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.8 }}
-                    className="scroll-chevron"
-                >↓</motion.div>
             </div>
         </section>
     );

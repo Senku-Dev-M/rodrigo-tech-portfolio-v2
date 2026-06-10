@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 const VALUES = [
     { value: 17, status: 'Invalido', reason: 'Justo por debajo del minimo permitido', color: '#fb7185' },
-    { value: 18, status: 'Valido', reason: 'Minimo permitido', color: '#67e8f9' },
-    { value: 19, status: 'Valido', reason: 'Inmediatamente dentro del rango', color: '#22d3ee' },
-    { value: 64, status: 'Valido', reason: 'Inmediatamente antes del maximo', color: '#22d3ee' },
-    { value: 65, status: 'Valido', reason: 'Maximo permitido', color: '#67e8f9' },
+    { value: 18, status: 'Valido', reason: 'Minimo permitido', color: '#FF8A5C' },
+    { value: 19, status: 'Valido', reason: 'Inmediatamente dentro del rango', color: '#FF5A1F' },
+    { value: 64, status: 'Valido', reason: 'Inmediatamente antes del maximo', color: '#FF5A1F' },
+    { value: 65, status: 'Valido', reason: 'Maximo permitido', color: '#FF8A5C' },
     { value: 66, status: 'Invalido', reason: 'Justo por encima del maximo', color: '#fb7185' },
 ];
 

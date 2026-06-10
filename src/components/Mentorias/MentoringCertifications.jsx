@@ -21,7 +21,7 @@ export default function MentoringCertifications() {
                         transition={{ delay: index * 0.06 }}
                     >
                         <span className="cert-check">
-                            <Icon name="check" size={14} color="#00d4ff" />
+                            <Icon name="check" size={14} color="#FF5A1F" />
                         </span>
                         <span>{certification}</span>
                     </motion.div>
@@ -32,7 +32,7 @@ export default function MentoringCertifications() {
                     href={EXTERNAL_LINKS.certifications}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary"
+                    className="btn-secondary"
                 >
                     {t('mentoring.certsViewAll')}
                 </a>

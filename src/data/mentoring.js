@@ -15,7 +15,7 @@ const rawSubjects = [
         description:
             'Introducción práctica a la robótica con microcontroladores Arduino. Sensores, actuadores, circuitos electrónicos y programación embebida para construir sistemas robóticos básicos desde cero.',
         icon: 'cpu',
-        color: '#22d3ee',
+        color: '#FF5A1F',
         topics: ['Arduino', 'Electrónica', 'Sensores', 'Actuadores', 'C++'],
         learningPath: {
             title: 'Ruta de aprendizaje sugerida',

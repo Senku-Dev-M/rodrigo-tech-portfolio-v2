@@ -118,8 +118,8 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #080808;
-    background: #00d4ff;
+    color: #0A0B0F;
+    background: #FF5A1F;
     padding: 0.22rem 0.7rem;
     border-radius: 4px;
 }
@@ -127,7 +127,7 @@
 .guide-difficulty {
     font-size: 0.78rem;
     font-weight: 600;
-    color: #0ea5e9;
+    color: #E84D14;
 }
 
 .guide-duration {
@@ -159,9 +159,9 @@
 .guide-tag {
     font-size: 0.75rem;
     font-weight: 500;
-    color: #00d4ff;
-    background: rgba(0, 212, 255, 0.08);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    color: #FF5A1F;
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 90, 31, 0.2);
     padding: 0.2rem 0.65rem;
     border-radius: 50px;
 }
@@ -179,7 +179,7 @@
     font-weight: 700;
     color: #fff;
     padding-bottom: 0.6rem;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 90, 31, 0.15);
     margin: 0;
 }
 
@@ -221,7 +221,7 @@
 .guide-intro-card h3 {
     font-size: 0.88rem;
     font-weight: 700;
-    color: #00d4ff;
+    color: #FF5A1F;
     margin: 0;
 }
 
@@ -283,8 +283,8 @@
 .guide-vm-card {
     flex: 1;
     min-width: 200px;
-    background: rgba(0, 212, 255, 0.04);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    background: rgba(255, 90, 31, 0.04);
+    border: 1px solid rgba(255, 90, 31, 0.2);
     border-radius: 12px;
     padding: 1.4rem;
 }
@@ -297,14 +297,14 @@
 }
 
 .guide-vm-card__name {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #00d4ff;
+    color: #FF5A1F;
 }
 
 .guide-vm-card__ip {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.78rem;
     color: rgba(255, 255, 255, 0.35);
     background: rgba(255, 255, 255, 0.04);
@@ -337,19 +337,19 @@
 .guide-vm-connector__line {
     width: 1px;
     height: 28px;
-    background: rgba(0, 212, 255, 0.3);
+    background: rgba(255, 90, 31, 0.3);
 }
 
 .guide-vm-connector__label {
     font-size: 0.68rem;
     font-weight: 600;
-    color: rgba(0, 212, 255, 0.5);
+    color: rgba(255, 90, 31, 0.5);
     letter-spacing: 0.06em;
     text-align: center;
     writing-mode: horizontal-tb;
     white-space: nowrap;
-    background: rgba(0, 212, 255, 0.06);
-    border: 1px solid rgba(0, 212, 255, 0.18);
+    background: rgba(255, 90, 31, 0.06);
+    border: 1px solid rgba(255, 90, 31, 0.18);
     padding: 0.25rem 0.6rem;
     border-radius: 50px;
 }
@@ -381,16 +381,16 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(0, 212, 255, 0.12);
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    color: #00d4ff;
+    background: rgba(255, 90, 31, 0.12);
+    border: 1px solid rgba(255, 90, 31, 0.3);
+    color: #FF5A1F;
     font-size: 0.8rem;
     font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 .guide-step__title {
@@ -403,9 +403,9 @@
 .guide-step__vm {
     font-size: 0.74rem;
     font-weight: 600;
-    color: #00d4ff;
+    color: #FF5A1F;
     opacity: 0.7;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 .guide-step__text {
@@ -429,7 +429,7 @@
 }
 
 .guide-step__list li::marker {
-    color: #00d4ff;
+    color: #FF5A1F;
 }
 
 /* ── Interactive Tables (tablePrompt) ── */
@@ -538,7 +538,7 @@
 }
 
 .guide-code code {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.83rem;
     color: #e6edf3;
     white-space: pre;
@@ -556,12 +556,12 @@
     color: rgba(255, 255, 255, 0.4);
     margin: 0;
     padding-left: 0.5rem;
-    border-left: 2px solid rgba(0, 212, 255, 0.2);
+    border-left: 2px solid rgba(255, 90, 31, 0.2);
 }
 
 .guide-step__result {
-    background: rgba(0, 212, 255, 0.03);
-    border: 1px solid rgba(0, 212, 255, 0.1);
+    background: rgba(255, 90, 31, 0.03);
+    border: 1px solid rgba(255, 90, 31, 0.1);
     border-radius: 10px;
     padding: 1rem;
     display: flex;
@@ -574,7 +574,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: #00d4ff;
+    color: #FF5A1F;
     opacity: 0.6;
 }
 
@@ -589,8 +589,8 @@
 .guide-conclusion {
     text-align: center;
     align-items: center;
-    background: rgba(0, 212, 255, 0.04);
-    border: 1px solid rgba(0, 212, 255, 0.15);
+    background: rgba(255, 90, 31, 0.04);
+    border: 1px solid rgba(255, 90, 31, 0.15);
     border-radius: 16px;
     padding: 2.5rem;
 }
@@ -615,10 +615,10 @@
 }
 
 .guide-conclusion code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.85em;
-    color: #00d4ff;
-    background: rgba(0, 212, 255, 0.1);
+    color: #FF5A1F;
+    background: rgba(255, 90, 31, 0.1);
     padding: 0.1em 0.4em;
     border-radius: 4px;
 }
@@ -640,7 +640,7 @@
 
 .guide-tech-item {
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.15);
+    border: 1px solid rgba(255, 90, 31, 0.15);
     border-radius: 8px;
     padding: 1rem;
     display: flex;
@@ -656,7 +656,7 @@
 
 .guide-tech-cat {
     font-size: 0.75rem;
-    color: #00d4ff;
+    color: #FF5A1F;
     opacity: 0.8;
 }
 
@@ -697,8 +697,8 @@
 }
 
 .guide-arch-node {
-    background: rgba(0, 212, 255, 0.04);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    background: rgba(255, 90, 31, 0.04);
+    border: 1px solid rgba(255, 90, 31, 0.2);
     border-radius: 10px;
     padding: 1.5rem;
     display: flex;
@@ -710,7 +710,7 @@
 
 .guide-arch-node__icon {
     padding: 0.8rem;
-    background: rgba(0, 212, 255, 0.08);
+    background: rgba(255, 90, 31, 0.08);
     border-radius: 8px;
 }
 
@@ -726,7 +726,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #00d4ff;
+    color: #FF5A1F;
     opacity: 0.7;
 }
 
@@ -754,8 +754,8 @@
 
 .guide-arch-pkg {
     font-size: 0.72rem;
-    background: rgba(0, 212, 255, 0.1);
-    color: #00d4ff;
+    background: rgba(255, 90, 31, 0.1);
+    color: #FF5A1F;
     padding: 0.15rem 0.5rem;
     border-radius: 4px;
 }
@@ -790,22 +790,22 @@
 .guide-arch-conn__line {
     width: 2px;
     height: 24px;
-    background: rgba(0, 212, 255, 0.3);
+    background: rgba(255, 90, 31, 0.3);
 }
 
 .guide-arch-conn__arrow {
-    color: #00d4ff;
+    color: #FF5A1F;
     font-size: 1.2rem;
     line-height: 1;
 }
 
 .guide-arch-conn__label {
     font-size: 0.75rem;
-    color: #00d4ff;
-    background: rgba(0, 212, 255, 0.08);
+    color: #FF5A1F;
+    background: rgba(255, 90, 31, 0.08);
     padding: 0.3rem 0.8rem;
     border-radius: 50px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(255, 90, 31, 0.2);
 }
 
 /* ── Objectives ── */
@@ -832,11 +832,11 @@
 }
 
 .guide-obj-num {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
     font-weight: 700;
-    color: #00d4ff;
-    background: rgba(0, 212, 255, 0.1);
+    color: #FF5A1F;
+    background: rgba(255, 90, 31, 0.1);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
 }
@@ -849,8 +849,8 @@
 }
 
 .guide-verify-item {
-    background: rgba(0, 212, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.15);
+    background: rgba(255, 90, 31, 0.02);
+    border: 1px solid rgba(255, 90, 31, 0.15);
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
@@ -906,11 +906,11 @@
 }
 
 .guide-trouble-label--fix {
-    color: #00d4ff;
+    color: #FF5A1F;
 }
 
 .guide-trouble-msg {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.85rem;
     color: #ff5555;
     background: rgba(255, 50, 50, 0.1);
@@ -942,7 +942,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: rgba(0, 212, 255, 0.15);
+    background: rgba(255, 90, 31, 0.15);
 }
 
 .guide-learning-item {
@@ -956,11 +956,11 @@
 .guide-learning-dot {
     width: 14px;
     height: 14px;
-    background: #00d4ff;
+    background: #FF5A1F;
     border-radius: 50%;
     margin-top: 0.25rem;
     margin-left: 14px;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 90, 31, 0.5);
     flex-shrink: 0;
 }
 
@@ -994,7 +994,7 @@
 .guide-ext-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 3px solid #00d4ff;
+    border-left: 3px solid #FF5A1F;
     border-radius: 8px;
     padding: 1.4rem;
     display: flex;
@@ -1009,11 +1009,11 @@
 }
 
 .guide-ext-num {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.75rem;
     font-weight: 700;
     color: #fff;
-    background: rgba(0, 212, 255, 0.15);
+    background: rgba(255, 90, 31, 0.15);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
 }

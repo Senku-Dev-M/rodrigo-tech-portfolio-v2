@@ -1,8 +1,9 @@
-export const PAGE_TITLE_GRADIENT = ['#00d4ff', '#0ea5e9', '#22d3ee', '#00d4ff'];
+/* Solid title — the gradient era is over (Ink & Signal system) */
+export const PAGE_TITLE_GRADIENT = ['#F2F3F5', '#F2F3F5'];
 
 export const PAGE_BACKGROUND_PARTICLES = {
     count: 120,
-    color: '#00d4ff',
+    color: '#3A3D44',
     autoAnimate: true,
     particleSize: 0.45,
     particleShape: 'tetrahedron',

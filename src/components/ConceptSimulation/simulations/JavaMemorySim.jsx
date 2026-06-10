@@ -22,7 +22,7 @@ export default function JavaMemorySim() {
                 textAlign: 'center',
             }}
         >
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulacion: Variables en Memoria</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Simulacion: Variables en Memoria</h3>
             <p
                 style={{
                     color: 'var(--text-grey)',
@@ -59,7 +59,7 @@ export default function JavaMemorySim() {
                         color: '#fff',
                     }}
                 >
-                    <span style={{ color: '#67e8f9' }}>int</span> <span style={{ color: '#e06c75' }}>edad</span>{' '}
+                    <span style={{ color: '#FF8A5C' }}>int</span> <span style={{ color: '#e06c75' }}>edad</span>{' '}
                     {step >= 1 && <span style={{ color: '#56b6c2' }}>=</span>}{' '}
                     {step >= 1 && <span style={{ color: '#d19a66' }}>20</span>};
                 </div>
@@ -71,7 +71,7 @@ export default function JavaMemorySim() {
                         style={{
                             width: isCompact ? '3px' : '60px',
                             height: isCompact ? '44px' : '3px',
-                            background: '#00d4ff',
+                            background: '#FF5A1F',
                             position: 'relative',
                             flexShrink: 0,
                         }}
@@ -84,7 +84,7 @@ export default function JavaMemorySim() {
                                 position: 'absolute',
                                 top: isCompact ? '-2px' : '-10px',
                                 left: isCompact ? '-14px' : '0',
-                                background: '#00d4ff',
+                                background: '#FF5A1F',
                                 color: '#000',
                                 padding: '2px 6px',
                                 borderRadius: '4px',
@@ -135,14 +135,14 @@ export default function JavaMemorySim() {
                         style={{
                             width: isCompact ? '110px' : '120px',
                             height: isCompact ? '74px' : '80px',
-                            background: step >= 2 ? 'rgba(0, 212, 255, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-                            border: `2px solid ${step >= 2 ? '#00d4ff' : 'rgba(255,255,255,0.2)'}`,
+                            background: step >= 2 ? 'rgba(255, 90, 31, 0.2)' : 'rgba(255, 255, 255, 0.05)',
+                            border: `2px solid ${step >= 2 ? '#FF5A1F' : 'rgba(255,255,255,0.2)'}`,
                             borderRadius: '8px',
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            boxShadow: step >= 2 ? '0 0 20px rgba(0, 212, 255, 0.4)' : 'none',
+                            boxShadow: step >= 2 ? '0 0 20px rgba(255, 90, 31, 0.4)' : 'none',
                             transition: 'all 0.5s ease',
                         }}
                     >
@@ -193,7 +193,7 @@ export default function JavaMemorySim() {
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
                     style={{
-                        background: '#00d4ff',
+                        background: '#FF5A1F',
                         color: '#000',
                         border: 'none',
                         padding: isCompact ? '0.68rem 1rem' : '0.5rem 1rem',

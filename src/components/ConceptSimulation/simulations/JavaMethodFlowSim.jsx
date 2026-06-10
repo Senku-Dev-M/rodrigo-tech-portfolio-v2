@@ -8,18 +8,18 @@ const cpuDotStyle = {
     width: '10px',
     height: '10px',
     borderRadius: '999px',
-    background: '#67e8f9',
-    boxShadow: '0 0 10px rgba(103, 232, 249, 0.8)',
+    background: '#FF8A5C',
+    boxShadow: '0 0 10px rgba(255, 138, 92, 0.8)',
 };
 
-function CodeLine({ active, children, tone = '#67e8f9' }) {
+function CodeLine({ active, children, tone = '#FF8A5C' }) {
     return (
         <div
             style={{
                 position: 'relative',
                 padding: '0.35rem 0.75rem 0.35rem 1.65rem',
                 borderRadius: '8px',
-                background: active ? 'rgba(34, 211, 238, 0.12)' : 'transparent',
+                background: active ? 'rgba(255, 90, 31, 0.12)' : 'transparent',
                 color: '#e5e7eb',
             }}
         >
@@ -80,9 +80,9 @@ export default function JavaMethodFlowSim() {
         if (step === 4) {
             return {
                 label: 'return 10',
-                accent: '#38bdf8',
-                pillBackground: 'rgba(56, 189, 248, 0.14)',
-                lineBackground: 'rgba(56, 189, 248, 0.3)',
+                accent: '#FF8A5C',
+                pillBackground: 'rgba(255, 138, 92, 0.14)',
+                lineBackground: 'rgba(255, 138, 92, 0.3)',
                 start: 54,
                 end: 6,
             };
@@ -108,7 +108,7 @@ export default function JavaMethodFlowSim() {
                 textAlign: 'center',
             }}
         >
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>El salto de ejecucion</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>El salto de ejecucion</h3>
             <p style={{ color: 'var(--text-grey)', marginBottom: '2rem', fontSize: '0.92rem', minHeight: '44px' }}>
                 {descriptions[step]}
             </p>
@@ -136,12 +136,12 @@ export default function JavaMethodFlowSim() {
                     }}
                 >
                     <div style={{ color: '#94a3b8', marginBottom: '0.55rem', fontSize: '0.92rem' }}>// Archivo principal</div>
-                    <div style={{ color: '#67e8f9', marginBottom: '0.7rem' }}>public static void main(...) {'{'}</div>
+                    <div style={{ color: '#FF8A5C', marginBottom: '0.7rem' }}>public static void main(...) {'{'}</div>
                     <CodeLine active={step === 0 || step === 6}>
                         <span>int</span> a = <span style={{ color: '#d19a66' }}>5</span>;
                     </CodeLine>
                     <CodeLine active={step === 1 || step === 4} tone="#e5e7eb">
-                        <span style={{ color: '#67e8f9' }}>int</span> b = <span style={{ color: '#61afef' }}>duplicar</span>(a);
+                        <span style={{ color: '#FF8A5C' }}>int</span> b = <span style={{ color: '#61afef' }}>duplicar</span>(a);
                     </CodeLine>
                     <CodeLine active={step === 5} tone="#e5e7eb">
                         <span style={{ color: '#56b6c2' }}>System</span>.out.println(b);
@@ -160,9 +160,9 @@ export default function JavaMethodFlowSim() {
                                     gap: '0.45rem',
                                     padding: '0.35rem 0.7rem',
                                     borderRadius: '999px',
-                                    border: '1px solid rgba(56, 189, 248, 0.35)',
-                                    background: 'rgba(56, 189, 248, 0.1)',
-                                    color: '#38bdf8',
+                                    border: '1px solid rgba(255, 138, 92, 0.35)',
+                                    background: 'rgba(255, 138, 92, 0.1)',
+                                    color: '#FF8A5C',
                                     fontSize: '0.82rem',
                                     fontWeight: '700',
                                 }}
@@ -172,7 +172,7 @@ export default function JavaMethodFlowSim() {
                         )}
                     </AnimatePresence>
 
-                    <div style={{ color: '#67e8f9', marginTop: '0.75rem' }}>{'}'}</div>
+                    <div style={{ color: '#FF8A5C', marginTop: '0.75rem' }}>{'}'}</div>
                 </div>
 
                 <div
@@ -256,16 +256,16 @@ export default function JavaMethodFlowSim() {
                     }}
                 >
                     <div style={{ color: '#4ade80', marginBottom: '0.55rem', fontSize: '0.92rem' }}>// Metodo auxiliar</div>
-                    <div style={{ color: '#67e8f9', marginBottom: '0.7rem' }}>
+                    <div style={{ color: '#FF8A5C', marginBottom: '0.7rem' }}>
                         public static <span style={{ color: '#e06c75' }}>int</span> <span style={{ color: '#61afef' }}>duplicar</span>(<span style={{ color: '#e06c75' }}>int</span> <span style={{ color: '#d19a66' }}>num</span>) {'{'}
                     </div>
                     <CodeLine active={step === 2} tone="#e5e7eb">
-                        <span style={{ color: '#67e8f9' }}>int</span> calc = num * <span style={{ color: '#d19a66' }}>2</span>;
+                        <span style={{ color: '#FF8A5C' }}>int</span> calc = num * <span style={{ color: '#d19a66' }}>2</span>;
                     </CodeLine>
                     <CodeLine active={step === 3} tone="#e5e7eb">
-                        <span style={{ color: '#67e8f9' }}>return</span> calc;
+                        <span style={{ color: '#FF8A5C' }}>return</span> calc;
                     </CodeLine>
-                    <div style={{ color: '#67e8f9', marginTop: '0.75rem' }}>{'}'}</div>
+                    <div style={{ color: '#FF8A5C', marginTop: '0.75rem' }}>{'}'}</div>
                 </div>
             </div>
 
@@ -274,7 +274,7 @@ export default function JavaMethodFlowSim() {
                     <button
                         onClick={() => setIsPlaying(true)}
                         style={{
-                            background: '#00d4ff',
+                            background: '#FF5A1F',
                             color: '#000',
                             border: 'none',
                             padding: '0.6rem 1.2rem',

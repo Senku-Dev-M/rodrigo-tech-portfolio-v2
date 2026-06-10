@@ -62,7 +62,7 @@ export default function TCPHTTPSim({ isPlaying }) {
             <line x1="380" y1="40" x2="380" y2="360" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="5,5" />
 
             <text x="120" y="25" className="sim-label" fill="#fff" fontSize="14">Cliente</text>
-            <text x="380" y="25" className="sim-label" fill="#00d4ff" fontSize="14">Servidor</text>
+            <text x="380" y="25" className="sim-label" fill="#FF5A1F" fontSize="14">Servidor</text>
 
             {isPlaying && STEPS.map((step) => (
                 <g key={step.label}>

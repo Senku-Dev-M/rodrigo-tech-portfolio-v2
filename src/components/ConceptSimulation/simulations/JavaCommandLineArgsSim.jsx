@@ -24,7 +24,7 @@ export default function JavaCommandLineArgsSim() {
                 textAlign: 'center',
             }}
         >
-            <h3 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Simulador: linea de comandos</h3>
+            <h3 style={{ color: '#FF5A1F', marginBottom: '0.5rem' }}>Simulador: linea de comandos</h3>
             <p
                 style={{
                     color: 'var(--text-grey)',
@@ -61,7 +61,7 @@ export default function JavaCommandLineArgsSim() {
                             padding: '0.12rem 0.35rem',
                             borderRadius: '4px',
                             background: step <= 1 ? 'rgba(255,255,255,0.16)' : 'transparent',
-                            color: step >= 1 ? '#38bdf8' : '#fff',
+                            color: step >= 1 ? '#FF8A5C' : '#fff',
                         }}
                     >
                         12
@@ -72,7 +72,7 @@ export default function JavaCommandLineArgsSim() {
                             padding: '0.12rem 0.35rem',
                             borderRadius: '4px',
                             background: step <= 1 ? 'rgba(255,255,255,0.16)' : 'transparent',
-                            color: step >= 1 ? '#00d4ff' : '#fff',
+                            color: step >= 1 ? '#FF5A1F' : '#fff',
                         }}
                     >
                         8
@@ -99,12 +99,12 @@ export default function JavaCommandLineArgsSim() {
                     <div
                         style={{
                             margin: '0.35rem 0',
-                            background: step === 1 ? 'rgba(103, 232, 249, 0.1)' : 'transparent',
-                            borderLeft: step === 1 ? '4px solid #67e8f9' : '4px solid transparent',
+                            background: step === 1 ? 'rgba(255, 138, 92, 0.1)' : 'transparent',
+                            borderLeft: step === 1 ? '4px solid #FF8A5C' : '4px solid transparent',
                             paddingLeft: '0.55rem',
                         }}
                     >
-                        public static void main(String[] <span style={{ color: step === 1 ? '#67e8f9' : '#61afef', fontWeight: step === 1 ? 'bold' : 'normal' }}>args</span>) {'{'}
+                        public static void main(String[] <span style={{ color: step === 1 ? '#FF8A5C' : '#61afef', fontWeight: step === 1 ? 'bold' : 'normal' }}>args</span>) {'{'}
                     </div>
 
                     <AnimatePresence>
@@ -121,16 +121,16 @@ export default function JavaCommandLineArgsSim() {
                                     padding: '0.38rem 0.6rem',
                                     borderRadius: '8px',
                                     background: 'rgba(0,0,0,0.65)',
-                                    border: '1px solid #67e8f9',
+                                    border: '1px solid #FF8A5C',
                                     color: '#fff',
                                     fontSize: isCompact ? '0.76rem' : '0.82rem',
                                 }}
                             >
                                 <span>args =</span>
                                 <span>[</span>
-                                <span style={{ color: '#38bdf8' }}>"12"</span>
+                                <span style={{ color: '#FF8A5C' }}>"12"</span>
                                 <span>,</span>
-                                <span style={{ color: '#00d4ff' }}>"8"</span>
+                                <span style={{ color: '#FF5A1F' }}>"8"</span>
                                 <span>]</span>
                             </motion.div>
                         )}
@@ -141,13 +141,13 @@ export default function JavaCommandLineArgsSim() {
                             paddingLeft: isCompact ? '1rem' : '1.5rem',
                             margin: '0.45rem 0',
                             opacity: step >= 2 ? 1 : 0.35,
-                            background: step === 2 || step === 3 ? 'rgba(56, 189, 248, 0.1)' : 'transparent',
-                            borderLeft: step === 2 || step === 3 ? '4px solid #38bdf8' : '4px solid transparent',
+                            background: step === 2 || step === 3 ? 'rgba(255, 138, 92, 0.1)' : 'transparent',
+                            borderLeft: step === 2 || step === 3 ? '4px solid #FF8A5C' : '4px solid transparent',
                             overflowWrap: 'anywhere',
                         }}
                     >
-                        <span style={{ color: '#67e8f9' }}>int</span> n1 = Integer.parseInt(
-                        <span style={{ color: step === 2 ? '#38bdf8' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}> args[0] </span>);
+                        <span style={{ color: '#FF8A5C' }}>int</span> n1 = Integer.parseInt(
+                        <span style={{ color: step === 2 ? '#FF8A5C' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}> args[0] </span>);
                     </div>
 
                     <div
@@ -155,13 +155,13 @@ export default function JavaCommandLineArgsSim() {
                             paddingLeft: isCompact ? '1rem' : '1.5rem',
                             margin: '0.45rem 0',
                             opacity: step >= 2 ? 1 : 0.35,
-                            background: step === 2 || step === 3 ? 'rgba(0, 212, 255, 0.1)' : 'transparent',
-                            borderLeft: step === 2 || step === 3 ? '4px solid #00d4ff' : '4px solid transparent',
+                            background: step === 2 || step === 3 ? 'rgba(255, 90, 31, 0.1)' : 'transparent',
+                            borderLeft: step === 2 || step === 3 ? '4px solid #FF5A1F' : '4px solid transparent',
                             overflowWrap: 'anywhere',
                         }}
                     >
-                        <span style={{ color: '#67e8f9' }}>int</span> n2 = Integer.parseInt(
-                        <span style={{ color: step === 2 ? '#00d4ff' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}> args[1] </span>);
+                        <span style={{ color: '#FF8A5C' }}>int</span> n2 = Integer.parseInt(
+                        <span style={{ color: step === 2 ? '#FF5A1F' : '#e06c75', fontWeight: step === 2 ? 'bold' : 'normal' }}> args[1] </span>);
                     </div>
 
                     {step === 3 && (
@@ -189,7 +189,7 @@ export default function JavaCommandLineArgsSim() {
                             borderLeft: step === 4 ? '4px solid #27ae60' : '4px solid transparent',
                         }}
                     >
-                        <span style={{ color: '#67e8f9' }}>int</span> resul = <span style={{ color: '#61afef' }}>sumarValores</span>(n1, n2);
+                        <span style={{ color: '#FF8A5C' }}>int</span> resul = <span style={{ color: '#61afef' }}>sumarValores</span>(n1, n2);
                     </div>
 
                     <div style={{ paddingLeft: isCompact ? '1rem' : '1.5rem', margin: '0.45rem 0', opacity: step >= 4 ? 1 : 0.35 }}>
@@ -237,7 +237,7 @@ export default function JavaCommandLineArgsSim() {
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
                     style={{
-                        background: '#00d4ff',
+                        background: '#FF5A1F',
                         color: '#000',
                         border: 'none',
                         padding: '0.62rem 1rem',

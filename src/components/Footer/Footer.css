@@ -1,5 +1,5 @@
 .footer {
-    background: #050508;
+    background: var(--color-surface-1);
     border-top: 1px solid var(--color-border-subtle);
 }
 
@@ -21,13 +21,13 @@
 }
 
 .footer-logo {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 1.15rem;
     font-weight: 700;
 }
 
 .footer-logo .logo-bracket {
-    color: var(--color-primary);
+    color: var(--color-accent);
 }
 
 .footer-logo .logo-name {
@@ -72,7 +72,7 @@
 }
 
 .footer-nav-btn:hover {
-    color: var(--color-primary);
+    color: var(--color-accent);
 }
 
 /* Social column */
@@ -93,7 +93,7 @@
 }
 
 .footer-social-link:hover {
-    color: var(--color-primary);
+    color: var(--color-accent);
 }
 
 .footer-social-link svg {
@@ -140,8 +140,8 @@
 }
 
 .footer-back-top:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 @media (max-width: 768px) {
