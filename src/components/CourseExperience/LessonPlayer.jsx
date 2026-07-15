@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, CheckCircle2, Circle, ClipboardCheck, Compass, Target, Trophy } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Circle, Compass, Trophy } from 'lucide-react';
 import ArduinoLabView from '../ArduinoLabView/ArduinoLabView';
 import GuideView from '../GuideView/GuideView';
 import PacketTracerLabView from '../PacketTracerLabView/PacketTracerLabView';
@@ -87,42 +87,6 @@ export default function LessonPlayer({ course, lesson, progressApi }) {
                 </aside>
 
                 <div className="lesson-player__main">
-                    <section id="lesson-brief" className="lesson-brief">
-                        <div className="lesson-brief__header">
-                            <span><Target size={16} /> Qué aprenderás</span>
-                            <strong>{lesson.blueprint.deliverable}</strong>
-                        </div>
-
-                        <div className="lesson-brief__grid">
-                            <div>
-                                <h2>Problema que resuelve</h2>
-                                <p>{lesson.blueprint.problemContext}</p>
-                            </div>
-                            <div>
-                                <h2>Práctica esperada</h2>
-                                <p>{lesson.blueprint.practice}</p>
-                            </div>
-                            <div>
-                                <h2>Checkpoints</h2>
-                                <ul>
-                                    {lesson.blueprint.checkpoints.map((checkpoint) => (
-                                        <li key={checkpoint}>{checkpoint}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div>
-                                <h2>Evidencia para portfolio</h2>
-                                <p>{lesson.blueprint.portfolioProof}</p>
-                            </div>
-                        </div>
-
-                        <div className="lesson-brief__outcomes">
-                            {lesson.blueprint.outcomes.map((outcome) => (
-                                <span key={outcome}><ClipboardCheck size={15} /> {outcome}</span>
-                            ))}
-                        </div>
-                    </section>
-
                     <section id="lesson-content" className="lesson-engine">
                         {renderLessonEngine(lesson)}
                     </section>

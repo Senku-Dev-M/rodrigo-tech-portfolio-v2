@@ -332,7 +332,6 @@ export function getLessonSections(lesson) {
     }
 
     return [
-        { id: 'lesson-brief', label: 'Brief' },
         { id: 'lesson-content', label: 'Contenido' },
         { id: 'lesson-finish', label: 'Cierre' },
     ];

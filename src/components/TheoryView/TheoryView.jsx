@@ -89,22 +89,6 @@ function SectionNav({ items, introLabel, conclusionLabel }) {
     );
 }
 
-function ObjectivesGrid({ objectives, title }) {
-    return (
-        <div className="theory-objectives-card">
-            <div className="theory-card__eyebrow">{title}</div>
-            <div className="theory-objectives-grid">
-                {objectives.map((objective, index) => (
-                    <div key={objective} className="theory-objective">
-                        <span className="theory-objective__index">{index + 1}</span>
-                        <p className="theory-objective__text">{objective}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
-
 function CalloutGroup({ title, items, variant = 'info' }) {
     return (
         <div className={`theory-callout-group theory-callout-group--${variant}`}>
@@ -451,12 +435,6 @@ export default function TheoryView({ lab, showHeader = true, showSidebar = true 
                             <div className="theory-card__eyebrow">Contexto del tema</div>
                             {renderHtmlParagraphs(content.intro, 'theory-text theory-text--lead')}
                         </div>
-                        {content.objectives?.length > 0 && (
-                            <ObjectivesGrid
-                                objectives={content.objectives}
-                                title={t('theory.learningObjectives', 'Objetivos de aprendizaje')}
-                            />
-                        )}
                     </Section>
 
                     {content.models &&

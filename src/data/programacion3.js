@@ -150,27 +150,42 @@ public static class Program
     {
         id: 'csharp-type-system', moduleIndex: 0, title: 'Sistema de tipos, nullabilidad y memoria', subtitle: 'Variables, valor, referencia, object, boxing y conversiones seguras', tags: ['Tipos', 'Nullability', 'Boxing'],
         core: 'C# es estáticamente tipado: el compilador comprueba qué operaciones son válidas antes de ejecutar.', analogy: 'Un tipo es el contrato de un contenedor: especifica qué puede guardar y qué operaciones admite.',
-        explanation: 'Los tipos de valor contienen sus datos; al asignarlos se copia el valor. Una variable de tipo referencia contiene una referencia a una instancia y varias variables pueden señalar el mismo objeto. Esto es semántica, no una regla absoluta de “stack contra heap”.\n\nLa nullabilidad ayuda a expresar si una referencia puede ser nula. Boxing convierte un valor a <code>object</code> o a una interfaz, lo que puede implicar una asignación; conviene evitarlo en rutas críticas.',
+        explanation: 'Una <strong>variable</strong> es un nombre asociado a un dato que el programa puede consultar o modificar. Su tipo determina qué valores admite, cuánto detalle conserva y qué operaciones son válidas. Por ejemplo, <code>int lives = 3;</code> declara una variable entera, mientras que <code>bool isAlive = true;</code> representa una condición lógica.\n\nC# ofrece enteros (<code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code> y variantes sin signo), números con decimales (<code>float</code>, <code>double</code>, <code>decimal</code>), <code>bool</code>, <code>char</code> y <code>string</code>. <code>var</code> no es un tipo dinámico: solicita al compilador inferir un tipo fijo a partir del valor inicial. <code>dynamic</code>, en cambio, pospone comprobaciones hasta la ejecución y debe utilizarse solo al interoperar con APIs que lo necesitan.\n\nLos tipos de valor contienen sus datos; al asignarlos se copia el valor. Una variable de tipo referencia contiene una referencia a una instancia y varias variables pueden señalar el mismo objeto. Esto es semántica, no una regla absoluta de “stack contra heap”. Usa <code>?</code> para expresar nullabilidad, como <code>int?</code> o <code>string?</code>, y <code>TryParse</code> para convertir texto no confiable sin provocar una excepción.',
         simType: 'csharp-memory',
-        code: `int livesA = 3;
-int livesB = livesA;
-livesB--;
+        comparison: { title: 'Tipos fundamentales de C#', headers: ['Tipo', 'Representa', 'Ejemplo', 'Uso habitual'], rows: [
+            ['byte / sbyte', 'Enteros de 8 bits', 'byte pellets = 240;', 'Datos pequeños o bytes'],
+            ['short / ushort', 'Enteros de 16 bits', 'short offset = -120;', 'Rangos enteros acotados'],
+            ['int / uint', 'Enteros de 32 bits', 'int score = 1200;', 'Contadores e índices'],
+            ['long / ulong', 'Enteros de 64 bits', 'long ticks = 9000000L;', 'Cantidades enteras grandes'],
+            ['float', 'Decimal de precisión simple', 'float opacity = 0.8f;', 'Gráficos y valores aproximados'],
+            ['double', 'Decimal de doble precisión', 'double speed = 4.75;', 'Cálculos generales'],
+            ['decimal', 'Decimal base 10 preciso', 'decimal price = 19.90m;', 'Dinero y cálculos financieros'],
+            ['bool', 'Verdadero o falso', 'bool isAlive = true;', 'Condiciones y banderas'],
+            ['char', 'Un carácter UTF-16', "char rank = 'A';", 'Símbolos individuales'],
+            ['string', 'Secuencia de caracteres', 'string name = "Pac";', 'Texto'],
+            ['object', 'Tipo base de .NET', 'object value = score;', 'APIs generales; puede producir boxing'],
+            ['Tipos propios', 'Objetos del dominio', 'Player player = new("Pac");', 'Entidades y modelos'],
+        ] },
+        code: `int lives = 3;
+bool isAlive = lives > 0;
+char rank = 'A';
+string playerName = "Pac";
+double speed = 4.75;
+decimal prize = 19.90m;
 
-Player playerA = new("Puck");
-Player playerB = playerA;
-playerB.Name = "Pac";
+var level = 1;             // El compilador infiere int
+string? nickname = null;   // La referencia puede ser nula
+int? bonus = null;         // Valor nullable
 
-Console.WriteLine($"{livesA} / {livesB}");
-Console.WriteLine(playerA.Name);
+if (int.TryParse("1200", out int score))
+    Console.WriteLine($"{playerName}: {score}");
 
-public sealed class Player(string name)
-{
-    public string Name { get; set; } = name;
-}`, output: ['3 / 2', 'Pac'],
+object boxedLives = lives; // Boxing: int → object
+Console.WriteLine($"Vivo: {isAlive}, rango: {rank}");`, output: ['Pac: 1200', 'Vivo: True, rango: A'],
         best: ['Activa nullable reference types.', 'Prefiere conversiones explícitas cuando puede perderse información.', 'Usa TryParse para entrada no confiable.'],
         mistake: 'Asumir que copiar una referencia clona el objeto', mistakeDetail: 'La asignación copia la referencia; ambas variables apuntan a la misma instancia.', fix: 'Crea una nueva instancia o implementa una copia explícita cuando necesites independencia.',
-        practice: 'Predice la salida del ejemplo antes de ejecutarlo y modifica Player para que Name no pueda ser null.', expected: 'Explicación correcta de 3/2 y del cambio visible mediante ambas referencias.',
-        quiz: [q('¿Qué se copia al asignar una variable de clase a otra?', ['La referencia', 'Todo el objeto automáticamente', 'El archivo fuente'], 0, 'Las clases tienen semántica de referencia.')],
+        practice: 'Declara nombre, vidas, score, velocidad, estado activo y premio usando el tipo más adecuado. Después convierte un score recibido como texto con TryParse.', expected: 'Variables correctamente tipadas y una conversión que maneja entradas inválidas sin lanzar excepciones.',
+        quiz: [q('¿Qué tipo usarías para contar vidas?', ['int', 'string', 'bool'], 0, 'int representa enteros y es la opción habitual para contadores.'), q('¿Qué guarda bool?', ['Verdadero o falso', 'Texto', 'Números decimales'], 0, 'bool modela condiciones lógicas.'), q('¿Qué significa var en C#?', ['El compilador infiere un tipo fijo', 'La variable cambia de tipo libremente', 'Siempre equivale a object'], 0, 'var conserva tipado estático; el tipo se decide al compilar.')],
     },
     {
         id: 'csharp-flow-lab', moduleIndex: 0, title: 'Control de flujo y métodos', subtitle: 'Decisiones, ciclos, conversiones y una primera regla del juego', type: 'Laboratorio', duration: '35–45 min', tags: ['Control de flujo', 'Métodos', 'Pac-Man'],
