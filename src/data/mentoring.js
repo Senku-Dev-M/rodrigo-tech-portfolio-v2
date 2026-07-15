@@ -5,6 +5,7 @@
 import desarrolloSoftwareSubject from './desarrolloSoftware.js';
 import calidadSoftware2Subject from './calidadSoftware2.js';
 import programacion1Subject from './programacion1.js';
+import programacion3Subject from './programacion3.js';
 import redesSubject from './redes.js';
 
 const rawSubjects = [
@@ -63,6 +64,7 @@ export const subjects = [
     desarrolloSoftwareSubject,
     calidadSoftware2Subject,
     programacion1Subject,
+    programacion3Subject,
     ...rawSubjects,
 ];
 

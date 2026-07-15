@@ -40,6 +40,12 @@ function AcademySummary({ courses }) {
         }),
         { lessons: 0, simulations: 0, exercises: 0, labs: 0 }
     );
+    const metrics = [
+        { value: courses.length, label: 'materias' },
+        { value: totals.lessons, label: 'lecciones' },
+        { value: totals.simulations, label: 'simulaciones' },
+        { value: totals.labs, label: 'laboratorios' },
+    ];
 
     return (
         <section className="academy-summary" aria-label="Resumen de contenido educativo">
@@ -48,10 +54,12 @@ function AcademySummary({ courses }) {
                 <h2>Rutas de aprendizaje interactivas y material de estudio</h2>
             </div>
             <div className="academy-summary__metrics">
-                <strong>{courses.length}</strong><span>materias</span>
-                <strong>{totals.lessons}</strong><span>lecciones</span>
-                <strong>{totals.simulations}</strong><span>simulaciones</span>
-                <strong>{totals.labs}</strong><span>labs</span>
+                {metrics.map((metric) => (
+                    <div key={metric.label} className="academy-summary__metric">
+                        <strong>{metric.value}</strong>
+                        <span>{metric.label}</span>
+                    </div>
+                ))}
             </div>
         </section>
     );

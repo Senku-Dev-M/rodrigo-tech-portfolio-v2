@@ -27,6 +27,13 @@ const COURSE_VISUALS = {
         audience: 'Programación inicial en Java',
         promise: 'Construye una base mental sólida para leer, explicar y escribir programas Java.',
     },
+    'programacion-3': {
+        accent: 'var(--mentor-accent-strong)',
+        accent2: 'var(--mentor-accent-soft)',
+        level: 'C# y .NET aplicado',
+        audience: 'Aplicaciones de escritorio y POO',
+        promise: 'Construye una aplicación Pac-Man por etapas mientras dominas C#, Avalonia, LINQ, concurrencia y archivos.',
+    },
     'robotica-arduino': {
         accent: 'var(--mentor-accent)',
         accent2: 'var(--mentor-accent-soft)',
@@ -186,7 +193,7 @@ function getQuality(lesson) {
     };
 }
 
-function getModuleForLesson(subject, index) {
+function getModuleForLesson(subject, index, lab) {
     const stages = subject.learningPath?.stages || [];
     if (!stages.length) {
         return {
@@ -197,7 +204,10 @@ function getModuleForLesson(subject, index) {
         };
     }
 
-    const stageIndex = Math.min(stages.length - 1, Math.floor((index * stages.length) / subject.labs.length));
+    const requestedStage = Number.isInteger(lab?.moduleIndex) ? lab.moduleIndex : null;
+    const stageIndex = requestedStage === null
+        ? Math.min(stages.length - 1, Math.floor((index * stages.length) / subject.labs.length))
+        : Math.max(0, Math.min(stages.length - 1, requestedStage));
     const stage = stages[stageIndex];
 
     return {
@@ -209,7 +219,7 @@ function getModuleForLesson(subject, index) {
 }
 
 export function buildLesson(subject, lab, index) {
-    const module = getModuleForLesson(subject, index);
+    const module = getModuleForLesson(subject, index, lab);
     const blueprint = getLessonBlueprint(lab);
 
     return {

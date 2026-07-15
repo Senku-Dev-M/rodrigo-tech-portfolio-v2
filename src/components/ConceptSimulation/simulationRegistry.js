@@ -34,6 +34,16 @@ import QAPairwiseSim from './simulations/QAPairwiseSim';
 import QARiskMatrixSim from './simulations/QARiskMatrixSim';
 import QASessionCharterSim from './simulations/QASessionCharterSim';
 import QATourBasedSim from './simulations/QATourBasedSim';
+import {
+    CSharpMemorySim,
+    DotNetPipelineSim,
+    EventFlowSim,
+    LayoutChoiceSim,
+    LinqPipelineSim,
+    MvvmBindingSim,
+    StreamPipelineSim,
+    ThreadSafetySim,
+} from './simulations/DotNetConceptSims';
 
 const simulationRegistry = {
     'client-server': { Component: ClientServerSim, duration: 4000 },
@@ -64,6 +74,14 @@ const simulationRegistry = {
     'java-scope': { Component: JavaScopeSim, isAuto: true, isWide: true },
     'java-param-pass': { Component: JavaParamPassSim, isAuto: true, isWide: true },
     'java-command-line': { Component: JavaCommandLineArgsSim, isAuto: true, isWide: true },
+    'dotnet-pipeline': { Component: DotNetPipelineSim, isAuto: true, isWide: true },
+    'csharp-memory': { Component: CSharpMemorySim, isAuto: true, isWide: true },
+    'csharp-events': { Component: EventFlowSim, isAuto: true, isWide: true },
+    'csharp-mvvm': { Component: MvvmBindingSim, isAuto: true, isWide: true },
+    'avalonia-layouts': { Component: LayoutChoiceSim, isAuto: true, isWide: true },
+    'csharp-linq': { Component: LinqPipelineSim, isAuto: true, isWide: true },
+    'csharp-thread-safety': { Component: ThreadSafetySim, isAuto: true, isWide: true },
+    'csharp-streams': { Component: StreamPipelineSim, isAuto: true, isWide: true },
     'qa-tour-based': {
         Component: QATourBasedSim,
         isWide: true,

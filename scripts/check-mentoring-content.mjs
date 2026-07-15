@@ -11,6 +11,7 @@ const dataFiles = [
     'src/data/desarrolloSoftware.js',
     'src/data/calidadSoftware2.js',
     'src/data/programacion1.js',
+    'src/data/programacion3.js',
 ];
 const textIssuePattern = /�|Ã|Â|â[^\s]?/;
 const lessonFields = ['title', 'subtitle', 'type', 'difficulty', 'duration'];

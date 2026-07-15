@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Check, Clipboard, Code2, ListTree, SquareTerminal } from 'lucide-react';
 import Icon from '../Icon/Icon';
 
 function normalizeExplanation(explanation) {
@@ -12,19 +13,60 @@ function normalizeExplanation(explanation) {
     };
 }
 
-function renderOutput(output) {
+function renderOutput(output, className = '') {
     if (!output) return null;
 
     const lines = Array.isArray(output) ? output : [output];
 
     return (
-        <div className="theory-code-output">
+        <div className={`theory-code-output ${className}`.trim()}>
             <div className="theory-code-output__label">Salida esperada</div>
             <pre className="theory-code-output__body">
                 <code>{lines.join('\n')}</code>
             </pre>
         </div>
     );
+}
+
+const CSHARP_KEYWORDS = new Set([
+    'abstract', 'as', 'async', 'await', 'base', 'bool', 'break', 'byte', 'case', 'catch',
+    'char', 'class', 'const', 'continue', 'decimal', 'default', 'delegate', 'do', 'double',
+    'else', 'enum', 'event', 'explicit', 'extern', 'false', 'finally', 'fixed', 'float',
+    'for', 'foreach', 'goto', 'if', 'implicit', 'in', 'int', 'interface', 'internal', 'is',
+    'lock', 'long', 'namespace', 'new', 'null', 'object', 'operator', 'out', 'override',
+    'params', 'private', 'protected', 'public', 'readonly', 'record', 'ref', 'return',
+    'sbyte', 'sealed', 'short', 'sizeof', 'stackalloc', 'static', 'string', 'struct',
+    'switch', 'this', 'throw', 'true', 'try', 'typeof', 'uint', 'ulong', 'unchecked',
+    'unsafe', 'ushort', 'using', 'var', 'virtual', 'void', 'volatile', 'while', 'where',
+    'yield', 'get', 'set', 'init', 'required', 'file', 'global', 'value', 'when',
+]);
+
+function highlightCodeFragment(fragment, keyPrefix) {
+    return fragment.split(/(\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b)/g).map((token, index) => {
+        if (!token) return null;
+        let className = '';
+        if (CSHARP_KEYWORDS.has(token)) className = 'code-token code-token--keyword';
+        else if (/^\d/.test(token)) className = 'code-token code-token--number';
+        else if (/^[A-Z][A-Za-z0-9_]*$/.test(token)) className = 'code-token code-token--type';
+
+        return className
+            ? <span key={`${keyPrefix}-${index}`} className={className}>{token}</span>
+            : token;
+    });
+}
+
+function highlightCSharpLine(line, lineNumber) {
+    const chunks = line.split(/(\/\/.*$|@?"(?:""|\\.|[^"\\])*"|'(?:\\.|[^'\\])')/g);
+    return chunks.map((chunk, index) => {
+        if (!chunk) return null;
+        if (chunk.startsWith('//')) {
+            return <span key={`${lineNumber}-${index}`} className="code-token code-token--comment">{chunk}</span>;
+        }
+        if (chunk.startsWith('"') || chunk.startsWith('@"') || chunk.startsWith("'")) {
+            return <span key={`${lineNumber}-${index}`} className="code-token code-token--string">{chunk}</span>;
+        }
+        return highlightCodeFragment(chunk, `${lineNumber}-${index}`);
+    });
 }
 
 function findNearestContentLine(lineNumber, lines) {
@@ -51,8 +93,9 @@ function findNearestContentLine(lineNumber, lines) {
     return null;
 }
 
-function inferExplanation(lineNumber, lineText) {
+function inferExplanation(lineNumber, lineText, language) {
     const compactLine = lineText.trim().replace(/\s+/g, ' ');
+    const isCSharp = language === 'csharp';
 
     if (!compactLine) {
         return null;
@@ -78,13 +121,23 @@ function inferExplanation(lineNumber, lineText) {
         };
     }
 
+    if (compactLine.startsWith('using ')) {
+        return {
+            line: lineNumber,
+            title: 'Espacio de nombres',
+            what: 'Habilita el uso directo de tipos definidos en otro espacio de nombres.',
+            why: 'Evita repetir el nombre completamente calificado de cada tipo de .NET.',
+            teaches: 'Organización y reutilización de APIs en C#.',
+        };
+    }
+
     if (/class\s+\w+/.test(compactLine)) {
         return {
             line: lineNumber,
             title: 'Declaración estructural',
             what: 'Esta línea define la estructura principal donde vivirá el resto del código.',
-            why: 'Java encapsula la lógica dentro de clases.',
-            teaches: 'Estructura base de un archivo Java.',
+            why: `${isCSharp ? 'C#' : 'Java'} usa tipos para agrupar estado y comportamiento relacionados.`,
+            teaches: `Estructura base de un archivo ${isCSharp ? 'C#' : 'Java'}.`,
         };
     }
 
@@ -93,8 +146,28 @@ function inferExplanation(lineNumber, lineText) {
             line: lineNumber,
             title: 'Punto de entrada',
             what: 'Aquí comienza la ejecución principal del programa.',
-            why: 'La JVM busca este método para arrancar la aplicación.',
+            why: isCSharp ? '.NET usa este método como punto de entrada explícito.' : 'La JVM busca este método para arrancar la aplicación.',
             teaches: 'Arranque del programa y firma del método principal.',
+        };
+    }
+
+    if (/Console\.Write(Line)?/.test(compactLine)) {
+        return {
+            line: lineNumber,
+            title: 'Salida por consola',
+            what: 'Muestra texto o valores en la salida estándar del programa.',
+            why: 'Permite comprobar rápidamente el resultado y seguir el flujo de ejecución.',
+            teaches: 'Salida estándar con la API Console de .NET.',
+        };
+    }
+
+    if (/Console\.Read(Line|Key)/.test(compactLine)) {
+        return {
+            line: lineNumber,
+            title: 'Entrada por consola',
+            what: 'Lee información escrita por la persona usuaria o espera una tecla.',
+            why: 'Conecta el programa con una interacción básica de entrada.',
+            teaches: 'Entrada estándar con la API Console de .NET.',
         };
     }
 
@@ -217,8 +290,10 @@ function inferExplanation(lineNumber, lineText) {
     };
 }
 
-export default function InteractiveCodeBlock({ code, explanations = [], output }) {
+export default function InteractiveCodeBlock({ code, explanations = [], output, language = 'csharp' }) {
     const [activeLine, setActiveLine] = useState(null);
+    const [activeTab, setActiveTab] = useState('code');
+    const [copyState, setCopyState] = useState('idle');
     const lines = useMemo(() => code.split('\n'), [code]);
     const explanationIndex = useMemo(() => {
         const index = new Map();
@@ -239,8 +314,8 @@ export default function InteractiveCodeBlock({ code, explanations = [], output }
         [lines]
     );
     const activeExplanation = useMemo(
-        () => (activeLine ? explanationIndex.get(activeLine) || inferExplanation(activeLine, lines[activeLine - 1]) : null),
-        [activeLine, explanationIndex, lines]
+        () => (activeLine ? explanationIndex.get(activeLine) || inferExplanation(activeLine, lines[activeLine - 1], language) : null),
+        [activeLine, explanationIndex, language, lines]
     );
     const normalizedActiveExplanation = useMemo(
         () => (activeExplanation ? normalizeExplanation(activeExplanation) : null),
@@ -252,9 +327,149 @@ export default function InteractiveCodeBlock({ code, explanations = [], output }
         setActiveLine((current) => (current === lineNumber ? null : lineNumber));
     };
 
+    const copyCode = async () => {
+        const copyWithSelection = () => {
+            const textArea = document.createElement('textarea');
+            textArea.value = code;
+            textArea.setAttribute('readonly', '');
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            const copied = document.execCommand('copy');
+            textArea.remove();
+            if (!copied) throw new Error('Copy command was rejected');
+        };
+
+        try {
+            if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(code);
+            } else {
+                copyWithSelection();
+            }
+            setCopyState('copied');
+            window.setTimeout(() => setCopyState('idle'), 1800);
+        } catch {
+            try {
+                copyWithSelection();
+                setCopyState('copied');
+                window.setTimeout(() => setCopyState('idle'), 1800);
+            } catch {
+                setCopyState('error');
+                window.setTimeout(() => setCopyState('idle'), 2200);
+            }
+        }
+    };
+
+    const tabs = [
+        { id: 'code', label: 'Código' },
+        { id: 'explanation', label: 'Explicación' },
+        { id: 'output', label: 'Resultado', disabled: !output },
+    ];
+
+    const explanationPanel = (
+        <div className="theory-code-panel">
+            <div className="theory-code-panel__eyebrow">Lectura guiada</div>
+            <AnimatePresence mode="wait">
+                {normalizedActiveExplanation ? (
+                    <motion.div
+                        key={activeLine}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="theory-code-explanation"
+                    >
+                        <div className="theory-code-explanation__meta">
+                            <span className="theory-code-explanation__line">Línea {activeLine}</span>
+                            <span className="theory-code-explanation__badge">
+                                <Icon name="lightbulb" size={14} />
+                                Concepto
+                            </span>
+                        </div>
+                        <h3 className="theory-code-explanation__title">
+                            {normalizedActiveExplanation.title}
+                        </h3>
+
+                        <div className="theory-code-explanation__group">
+                            <div className="theory-code-explanation__label">Qué hace</div>
+                            <p>{normalizedActiveExplanation.what}</p>
+                        </div>
+
+                        {normalizedActiveExplanation.why && (
+                            <div className="theory-code-explanation__group">
+                                <div className="theory-code-explanation__label">Por qué se usa</div>
+                                <p>{normalizedActiveExplanation.why}</p>
+                            </div>
+                        )}
+
+                        {normalizedActiveExplanation.teaches && (
+                            <div className="theory-code-explanation__group">
+                                <div className="theory-code-explanation__label">Qué concepto enseña</div>
+                                <p>{normalizedActiveExplanation.teaches}</p>
+                            </div>
+                        )}
+
+                        {normalizedActiveExplanation.output && (
+                            <div className="theory-code-explanation__group">
+                                <div className="theory-code-explanation__label">Efecto o salida</div>
+                                <p>{normalizedActiveExplanation.output}</p>
+                            </div>
+                        )}
+                    </motion.div>
+                ) : (
+                    <motion.div
+                        key="idle"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="theory-code-empty"
+                    >
+                        <div className="theory-code-empty__icon">
+                            <Icon name="helpCircle" size={22} />
+                        </div>
+                        <p>Pasa el cursor, haz clic o navega con el teclado sobre una línea resaltada para ver su explicación.</p>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+
     return (
         <div className="theory-code-block">
-            <div className="theory-code-block__workspace">
+            <div className="theory-code-toolbar">
+                <div className="theory-code-tabs" role="tablist" aria-label="Vista del ejemplo de código">
+                    {tabs.map(({ id, label, disabled }) => (
+                        <button
+                            key={id}
+                            type="button"
+                            role="tab"
+                            aria-selected={activeTab === id}
+                            aria-controls={`code-panel-${id}`}
+                            disabled={disabled}
+                            className={activeTab === id ? 'is-active' : ''}
+                            onClick={() => setActiveTab(id)}
+                        >
+                            {id === 'code' && <Code2 size={15} />}
+                            {id === 'explanation' && <ListTree size={15} />}
+                            {id === 'output' && <SquareTerminal size={15} />}
+                            {label}
+                        </button>
+                    ))}
+                </div>
+                <div className="theory-code-toolbar__meta">
+                    <span className="theory-code-language">{language === 'csharp' ? 'C#' : language}</span>
+                    <button type="button" className="theory-copy-button" onClick={copyCode}>
+                        {copyState === 'copied' ? <Check size={15} /> : <Clipboard size={15} />}
+                        {copyState === 'copied' ? 'Copiado' : 'Copiar'}
+                    </button>
+                    <span className="sr-only" aria-live="polite">
+                        {copyState === 'copied' ? 'Código copiado al portapapeles.' : copyState === 'error' ? 'No se pudo copiar el código.' : ''}
+                    </span>
+                </div>
+            </div>
+
+            {activeTab === 'code' && <div id="code-panel-code" role="tabpanel" className="theory-code-block__workspace">
                 <div className="theory-code-editor">
                     <div className="theory-code-editor__topbar" aria-hidden="true">
                         <span />
@@ -290,81 +505,28 @@ export default function InteractiveCodeBlock({ code, explanations = [], output }
                                     }}
                                 >
                                     <span className="theory-code-line__number">{lineNumber}</span>
-                                    <span className="theory-code-line__content">{line || ' '}</span>
+                                    <span className="theory-code-line__content">
+                                        {language === 'csharp' ? highlightCSharpLine(line, lineNumber) : line || ' '}
+                                    </span>
                                 </div>
                             );
                         })}
                     </div>
-
-                    {renderOutput(output)}
                 </div>
+                {explanationPanel}
+            </div>}
 
-                <div className="theory-code-panel">
-                    <div className="theory-code-panel__eyebrow">Lectura guiada</div>
-                    <AnimatePresence mode="wait">
-                        {normalizedActiveExplanation ? (
-                            <motion.div
-                                key={activeLine}
-                                initial={{ opacity: 0, y: 12 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.2 }}
-                                className="theory-code-explanation"
-                            >
-                                <div className="theory-code-explanation__meta">
-                                    <span className="theory-code-explanation__line">Línea {activeLine}</span>
-                                    <span className="theory-code-explanation__badge">
-                                        <Icon name="lightbulb" size={14} />
-                                        Concepto
-                                    </span>
-                                </div>
-                                <h3 className="theory-code-explanation__title">
-                                    {normalizedActiveExplanation.title}
-                                </h3>
-
-                                <div className="theory-code-explanation__group">
-                                    <div className="theory-code-explanation__label">Qué hace</div>
-                                    <p>{normalizedActiveExplanation.what}</p>
-                                </div>
-
-                                {normalizedActiveExplanation.why && (
-                                    <div className="theory-code-explanation__group">
-                                        <div className="theory-code-explanation__label">Por qué se usa</div>
-                                        <p>{normalizedActiveExplanation.why}</p>
-                                    </div>
-                                )}
-
-                                {normalizedActiveExplanation.teaches && (
-                                    <div className="theory-code-explanation__group">
-                                        <div className="theory-code-explanation__label">Qué concepto enseña</div>
-                                        <p>{normalizedActiveExplanation.teaches}</p>
-                                    </div>
-                                )}
-
-                                {normalizedActiveExplanation.output && (
-                                    <div className="theory-code-explanation__group">
-                                        <div className="theory-code-explanation__label">Efecto o salida</div>
-                                        <p>{normalizedActiveExplanation.output}</p>
-                                    </div>
-                                )}
-                            </motion.div>
-                        ) : (
-                            <motion.div
-                                key="idle"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="theory-code-empty"
-                            >
-                                <div className="theory-code-empty__icon">
-                                    <Icon name="helpCircle" size={22} />
-                                </div>
-                                <p>Pasa el cursor, haz clic o navega con el teclado sobre una línea resaltada para ver su explicación.</p>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+            {activeTab === 'explanation' && (
+                <div id="code-panel-explanation" role="tabpanel" className="theory-code-single-panel">
+                    {explanationPanel}
                 </div>
-            </div>
+            )}
+
+            {activeTab === 'output' && (
+                <div id="code-panel-output" role="tabpanel" className="theory-code-result-panel">
+                    {renderOutput(output, 'theory-code-output--standalone')}
+                </div>
+            )}
         </div>
     );
 }

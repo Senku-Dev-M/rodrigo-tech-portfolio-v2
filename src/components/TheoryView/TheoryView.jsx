@@ -4,7 +4,9 @@ import { useI18n } from '../../i18n/i18n';
 import Icon from '../Icon/Icon';
 import ContentHeader from '../MentoringContent/ContentHeader';
 import ConceptSimulation from '../ConceptSimulation/ConceptSimulation';
+import AccordionGroup from './AccordionGroup';
 import InteractiveCodeBlock from './InteractiveCodeBlock';
+import ReviewQuiz from './ReviewQuiz';
 import './TheoryView.css';
 
 function toSectionId(title, index) {
@@ -397,8 +399,17 @@ export default function TheoryView({ lab, showHeader = true, showSidebar = true 
                     code={section.code}
                     explanations={section.explanations}
                     output={section.output}
+                    language={section.language || 'csharp'}
                 />
             );
+        }
+
+        if (section.type === 'accordion') {
+            return <AccordionGroup items={section.items} />;
+        }
+
+        if (section.type === 'quiz') {
+            return <ReviewQuiz questions={section.questions} />;
         }
 
         if (section.type === 'featureCards' || section.type === 'useCases' || section.type === 'grid-cards') {
